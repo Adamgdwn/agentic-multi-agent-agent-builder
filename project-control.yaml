@@ -1,0 +1,78 @@
+project_name: agentic-multi-agent-agent-builder
+project_type: build-orchestration-control-plane
+use_case:
+  primary: Cross-repo build orchestration for Guided AI Labs Agentic OS CNS
+  secondary:
+    - Multi-repo dependency governance
+    - Architecture contract management
+    - Research and standards integration
+  notes: |
+    This repo is the build orchestration control plane for the Guided AI Labs Agentic OS CNS
+    initiative — a multi-repo, cross-platform (Linux + Windows) agentic operating system.
+    Risk tier is strategic because this repo governs contracts, phase sequencing, and
+    coordination for a production agentic system spanning 10+ repos. See docs/build-control/.
+risk_tier: strategic
+governance_level: 2
+repository_model: multi-repo-coordination
+owner:
+  name: Adam Goodwin
+  role: owner
+technical_lead:
+  name: Build Agent Orchestrator (Claude)
+  role: technical-lead
+status: active
+environments:
+  - dev
+  - staging
+  - prod
+data_classification:
+  handles_sensitive_data: false
+  handles_money: false
+  notes: ""
+controls:
+  required_docs:
+    - README.md
+    - START_HERE.md
+    - docs/context-map.md
+    - docs/architecture.md
+    - docs/current-build-pathway.md
+    - docs/manual.md
+    - docs/roadmap.md
+    - docs/policy/durable-development-engineering-policy.md
+    - docs/standards/README.md
+    - docs/standards/engineering-governance-by-use-case.md
+    - docs/standards/ship-ready-engineering-standard.md
+    - docs/deployment-guide.md
+    - docs/runbook.md
+    - docs/CHANGELOG.md
+    - docs/risks/risk-register.md
+  machine_enforcement:
+    - required-file-check
+    - lint
+    - tests
+    - secret-scan
+exceptions: []
+agent_controls:
+  applicable: false
+  autonomy_level: A0
+  model_registry: []
+  prompt_registry: []
+agentic_coding:
+  principle: "The repository remembers. Agents rent context."
+  default_budget: medium
+  always_loaded_files:
+    - AGENTS.md
+  conditional_loaded_files:
+    START_HERE.md: material work, unclear scope, handoffs, or active-plan changes
+    docs/context-map.md: unclear context routing or broader task scoping
+    project-control.yaml: risk, governance level, controls, or required docs
+  context_limits:
+    agents_md_target_kb: 6
+    claude_md_target_kb: 6
+    task_packet_target_words: 1200
+    handoff_target_words: 900
+  subagent_policy:
+    max_parallel_readers: 3
+    max_parallel_editors: 1
+    require_summary_only: true
+    no_overlapping_file_edits: true
