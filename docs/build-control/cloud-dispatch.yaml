@@ -239,10 +239,10 @@ tasks:
     repo: Adamgdwn/gail-ai-operating-system-rev-2
     platform: cloud-safe
     type: infrastructure
-    status: available
-    claimed_by: null
-    claimed_at: null
-    branch: null
+    status: claimed
+    claimed_by: "claude-code-local"
+    claimed_at: "2026-06-26"
+    branch: "cloud/1.0-ci-setup"
     pr_url: null
     chunk_spec_ref: "docs/build-control/2026-06-25 - phase-1-chunk-specs.md"
     notes: >
