@@ -151,11 +151,11 @@ tasks:
     repo: Adamgdwn/oldskoolai.com
     platform: cloud-safe
     type: docs
-    status: claimed
-    claimed_by: "claude-code-local"
+    status: ready-for-review
+    claimed_by: null
     claimed_at: "2026-06-26"
     branch: "cloud/0.7b-oldskoolai-cns-role"
-    pr_url: null
+    pr_url: "https://github.com/Adamgdwn/oldskoolai.com/pull/1"
     chunk_spec_ref: "docs/build-control/2026-06-26 - phase-0-chunk-specs.md#task-07"
     notes: >
       CNS role: Learning + capability signal layer.

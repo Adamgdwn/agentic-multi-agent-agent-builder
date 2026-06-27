@@ -9,35 +9,11 @@ This file is the restart point for any agent, session, or context reset. Read th
 
 ## Loop State
 
-active: true
-current_task_id: "0.7b"
-current_task_title: "CNS role statement in oldskoolai.com"
-target_repo: "Adamgdwn/oldskoolai.com"
-branch: "cloud/0.7b-oldskoolai-cns-role"
-pr_url: null
-started_at: "2026-06-26"
-compaction_count: 4
-current_phase: "implementation"
-step: "claimed"
-exact_next_step: "Create branch FIRST, then create/update AGENTS.md with CNS Role (Learning + capability signal layer; events lesson.completed/role_path.selected/capability.signal_emitted), open PR"
-acceptance_criteria:
-  met: []
-  remaining:
-    - "AGENTS.md exists with CNS Role section per #task-07 template"
-    - "References 3-layer core + Phase 5 events + CP-1 prerequisite"
-    - "PR opened to main"
-decisions: []
-validation:
-  run: []
-  not_run:
-    - "Human PR review — pending Adam merge"
-required_context_on_resume:
-  - "docs/loop-protocol.md"
-  - "docs/build-control/2026-06-26 - phase-0-chunk-specs.md (#task-07 template + role/events table)"
-blockers: []
-last_completed_task: "0.7a"
-next_task: "0.7b"
+active: false
+last_completed_task: "0.7b"
+next_task: "0.7c"
 skipped_tasks: []
+compaction_count: 4
 paused: false
 pause_reason: null
 
@@ -49,6 +25,13 @@ pause_reason: null
 **Status:** Cloud agent infrastructure complete. Phase 0 tasks 0.2–0.7f ready to run (all cloud-safe). Phase 1 chunk specs written but require Windows-local execution.
 **Immediate next (cloud agents):** Pick up any `available` task from `docs/build-control/cloud-dispatch.yaml`. Read `docs/cloud-agent-startup.md` first.
 **Immediate next (Windows/local):** After CP-0 — begin Chunk 20 in GAIL OS Rev 2. See `docs/build-control/2026-06-25 - phase-1-chunk-specs.md`.
+
+### 2026-06-26 Session 5 — Loop run: Task 0.7b (oldskoolai.com CNS role)
+
+1. **Resumed from pause** (Adam re-ran /loop); claimed + executed task 0.7b in `Adamgdwn/oldskoolai.com`.
+   - Branch created first (per 0.7a lesson), then prepended CNS Role section to existing AGENTS.md (Learning + capability signal layer; events lesson.completed/role_path.selected/capability.signal_emitted; CP-1 prerequisite).
+   - **PR #1 opened** → https://github.com/Adamgdwn/oldskoolai.com/pull/1 (`ready-for-review`).
+2. **Dispatch updated** — 0.7b → `ready-for-review`. Next: 0.7c (bowtie_risk_program).
 
 ### 2026-06-26 Session 5 — Loop run: Task 0.7a (GAI Journey CNS role)
 
