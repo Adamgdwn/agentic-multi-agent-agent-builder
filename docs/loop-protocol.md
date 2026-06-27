@@ -109,13 +109,21 @@ These are the most common tasks. Use GitHub MCP throughout:
 
 ### Phase 0 — Documentation tasks in THIS repo (control repo)
 
-For tasks that update files in `agentic-multi-agent-agent-builder` itself:
+For tasks that update files in `agentic-multi-agent-agent-builder` itself, use the same branch + PR pattern as subject repos — do NOT push directly to `main`:
 
 1. Read chunk spec
-2. Edit files locally (Edit tool)
-3. Commit + push directly to `main` (no PR needed — this is the control repo)
-4. Update `cloud-dispatch.yaml` task to `status: "complete"`
-5. Update `handoff-state.md`
+2. Create a local feature branch: `git checkout -b cloud/{task_id}-{short-slug}`
+3. Update loop state: `step: "branch_created"`, `branch: "cloud/{task_id}-{short-slug}"`
+4. Edit files locally (Edit tool)
+5. `git add <files> && git commit -m "[CNS Task {id}] {title}"` then `git push -u origin cloud/{task_id}-{short-slug}`
+6. Update loop state: `step: "branch_pushed"`
+7. Open PR via `mcp__github__create_pull_request` against `Adamgdwn/agentic-multi-agent-agent-builder` base `main`:
+   - Title: `[CNS Task {id}] {title}`
+   - Body: acceptance criteria checklist + "Opened by claude-code-local loop"
+8. Update `cloud-dispatch.yaml` task: `status: "ready-for-review"`, `pr_url: <url>`
+9. Update `handoff-state.md` session log with dated entry
+10. Commit + push `cloud-dispatch.yaml` and `handoff-state.md` on the same branch
+11. Update loop state: `active: false`, `last_completed_task: "{id}"`
 
 ### Phase 1 — Code tasks (windows-local)
 
