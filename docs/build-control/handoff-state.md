@@ -9,37 +9,11 @@ This file is the restart point for any agent, session, or context reset. Read th
 
 ## Loop State
 
-active: true
-current_task_id: "0.4"
-current_task_title: "Align Graphify to core cognitive infrastructure framing"
-target_repo: "Adamgdwn/graphify-workspace-cockpit"
-branch: "cloud/0.4-graphify-framing"
-pr_url: null
-started_at: "2026-06-26"
-compaction_count: 1
-current_phase: "implementation"
-step: "claimed"
-exact_next_step: "Create branch cloud/0.4-graphify-framing, verify AGENTS.md CNS role, fix README/docs that frame Graphify as workspace-visualization-only → relationship-intelligence/connectome"
-acceptance_criteria:
-  met: []
-  remaining:
-    - "AGENTS.md CNS role section present and accurate"
-    - "README.md not framed as workspace-visualization-only"
-    - "Cockpit /docs reflect relationship-intelligence framing"
-    - "PR opened to main"
-decisions: []
-validation:
-  run: []
-  not_run:
-    - "Human PR review — pending Adam merge"
-required_context_on_resume:
-  - "docs/loop-protocol.md"
-  - "docs/build-control/2026-06-26 - phase-0-chunk-specs.md (task 0.4 section)"
-  - "docs/build-control/master-plan-summary.md §2, §8"
-blockers: []
-last_completed_task: "0.3"
-next_task: "0.4"
+active: false
+last_completed_task: "0.4"
+next_task: "0.5"
 skipped_tasks: []
+compaction_count: 1
 paused: false
 pause_reason: null
 
@@ -51,6 +25,17 @@ pause_reason: null
 **Status:** Cloud agent infrastructure complete. Phase 0 tasks 0.2–0.7f ready to run (all cloud-safe). Phase 1 chunk specs written but require Windows-local execution.
 **Immediate next (cloud agents):** Pick up any `available` task from `docs/build-control/cloud-dispatch.yaml`. Read `docs/cloud-agent-startup.md` first.
 **Immediate next (Windows/local):** After CP-0 — begin Chunk 20 in GAIL OS Rev 2. See `docs/build-control/2026-06-25 - phase-1-chunk-specs.md`.
+
+### 2026-06-26 Session 5 — Loop run: Task 0.4 (Graphify framing)
+
+1. **Resumed from checkpoint** after compaction refresh (compaction_count 1); claimed + executed task 0.4 against `Adamgdwn/graphify-workspace-cockpit` via GitHub MCP.
+   - Branch `cloud/0.4-graphify-framing` created.
+   - `AGENTS.md` verified canonical (connectome / relationship-intelligence) — no change.
+   - `README.md` verified not visualization-only (decision cockpit) — no change; left public OSS readme clean.
+   - `docs/vision.md` — added "Role in the Guided AI Labs CNS" section; **resolved framing conflict**: Layer-3 "UAOS" → GAIL OS (superseded 2026-06-21), with dated naming note; mapped internal layering to CNS triad.
+   - **PR #1 opened** → https://github.com/Adamgdwn/graphify-workspace-cockpit/pull/1 (status `ready-for-review`).
+2. **Follow-up flagged:** full UAOS→GAIL OS rename across cockpit's other /docs (integration-guide.md, specs) deferred — out of scope for Tiny task.
+3. **Dispatch updated** — 0.4 → `ready-for-review`, pr_url set. Next: 0.5 (GAIL OS authority-ladders doc).
 
 ### 2026-06-26 Session 5 — Loop run: Task 0.3 (GAIL OS framing)
 

@@ -84,11 +84,11 @@ tasks:
     repo: Adamgdwn/graphify-workspace-cockpit
     platform: cloud-safe
     type: docs
-    status: claimed
-    claimed_by: "claude-code-local"
+    status: ready-for-review
+    claimed_by: null
     claimed_at: "2026-06-26"
     branch: "cloud/0.4-graphify-framing"
-    pr_url: null
+    pr_url: "https://github.com/Adamgdwn/graphify-workspace-cockpit/pull/1"
     chunk_spec_ref: "docs/build-control/2026-06-26 - phase-0-chunk-specs.md#task-04"
     notes: >
       CNS role section prepended to AGENTS.md on 2026-06-25.
