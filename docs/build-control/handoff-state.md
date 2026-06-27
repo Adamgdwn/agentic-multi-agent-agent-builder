@@ -9,39 +9,11 @@ This file is the restart point for any agent, session, or context reset. Read th
 
 ## Loop State
 
-active: true
-current_task_id: "0.2"
-current_task_title: "Align Freedom repo to executive cognition framing"
-target_repo: "Adamgdwn/the-freedom-engine-os"
-branch: "cloud/0.2-freedom-framing"
-pr_url: null
-started_at: "2026-06-26"
-compaction_count: 0
-current_phase: "implementation"
-step: "claimed"
-exact_next_step: "Create branch cloud/0.2-freedom-framing in the-freedom-engine-os, then read AGENTS.md/README.md/docs and align to executive-cognition framing"
-acceptance_criteria:
-  met: []
-  remaining:
-    - "AGENTS.md states Freedom as executive cognition layer in 3-layer CNS model"
-    - "README.md not framed as primarily UI/dashboard/app"
-    - "Executive AI business partner framing present"
-    - "No conflicting framing in /docs"
-    - "PR opened to main"
-decisions: []
-validation:
-  run: []
-  not_run:
-    - "Human PR review — pending Adam merge"
-required_context_on_resume:
-  - "docs/loop-protocol.md"
-  - "docs/build-control/2026-06-26 - phase-0-chunk-specs.md (task 0.2 section)"
-  - "docs/build-control/handoff-state.md"
-  - "docs/build-control/master-plan-summary.md §2"
-blockers: []
-last_completed_task: null
-next_task: "0.2"
+active: false
+last_completed_task: "0.2"
+next_task: "0.3"
 skipped_tasks: []
+compaction_count: 0
 paused: false
 pause_reason: null
 
@@ -53,6 +25,18 @@ pause_reason: null
 **Status:** Cloud agent infrastructure complete. Phase 0 tasks 0.2–0.7f ready to run (all cloud-safe). Phase 1 chunk specs written but require Windows-local execution.
 **Immediate next (cloud agents):** Pick up any `available` task from `docs/build-control/cloud-dispatch.yaml`. Read `docs/cloud-agent-startup.md` first.
 **Immediate next (Windows/local):** After CP-0 — begin Chunk 20 in GAIL OS Rev 2. See `docs/build-control/2026-06-25 - phase-1-chunk-specs.md`.
+
+### 2026-06-26 Session 5 — Loop run: Task 0.2 (Freedom framing)
+
+1. **Loop started** (`/loop coordinate CNS build`) — claimed task 0.2 per loop-protocol atomic claim lock (commit `e9e4075`).
+2. **Task 0.2 executed** against `Adamgdwn/the-freedom-engine-os` via GitHub MCP:
+   - Branch `cloud/0.2-freedom-framing` created.
+   - `AGENTS.md` — CNS Role section sharpened: names 3-layer CNS core explicitly, adds "executive AI business partner" framing, clarifies UI/cockpit/voice surfaces express cognition (not the product).
+   - `README.md` — added "Role in the Guided AI Labs CNS" section after Purpose; corrects UI-first reading risk.
+   - `docs/architecture.md` — verified already consistent (control-plane / business-partner framing); no change needed.
+   - **PR #21 opened** → https://github.com/Adamgdwn/the-freedom-engine-os/pull/21 (status `ready-for-review`).
+3. **Dispatch updated** — 0.2 → `ready-for-review`, claimed_by null, pr_url set.
+4. **Next task:** 0.3 (GAIL OS Rev 2 deep-brain framing) — available, cloud-safe.
 
 ### 2026-06-26 Session 4 — What Was Done
 

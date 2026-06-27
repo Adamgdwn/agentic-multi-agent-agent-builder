@@ -50,11 +50,11 @@ tasks:
     repo: Adamgdwn/the-freedom-engine-os
     platform: cloud-safe
     type: docs
-    status: claimed
-    claimed_by: "claude-code-local"
+    status: ready-for-review
+    claimed_by: null
     claimed_at: "2026-06-26"
     branch: "cloud/0.2-freedom-framing"
-    pr_url: null
+    pr_url: "https://github.com/Adamgdwn/the-freedom-engine-os/pull/21"
     chunk_spec_ref: "docs/build-control/2026-06-26 - phase-0-chunk-specs.md#task-02"
     notes: >
       CNS role statement added to AGENTS.md on 2026-06-25.
