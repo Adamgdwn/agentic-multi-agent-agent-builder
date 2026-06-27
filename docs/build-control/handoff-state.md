@@ -9,14 +9,39 @@ This file is the restart point for any agent, session, or context reset. Read th
 
 ## Loop State
 
-active: false
+active: true
+current_task_id: "0.4"
+current_task_title: "Align Graphify to core cognitive infrastructure framing"
+target_repo: "Adamgdwn/graphify-workspace-cockpit"
+branch: "cloud/0.4-graphify-framing"
+pr_url: null
+started_at: "2026-06-26"
+compaction_count: 1
+current_phase: "implementation"
+step: "claimed"
+exact_next_step: "Create branch cloud/0.4-graphify-framing, verify AGENTS.md CNS role, fix README/docs that frame Graphify as workspace-visualization-only → relationship-intelligence/connectome"
+acceptance_criteria:
+  met: []
+  remaining:
+    - "AGENTS.md CNS role section present and accurate"
+    - "README.md not framed as workspace-visualization-only"
+    - "Cockpit /docs reflect relationship-intelligence framing"
+    - "PR opened to main"
+decisions: []
+validation:
+  run: []
+  not_run:
+    - "Human PR review — pending Adam merge"
+required_context_on_resume:
+  - "docs/loop-protocol.md"
+  - "docs/build-control/2026-06-26 - phase-0-chunk-specs.md (task 0.4 section)"
+  - "docs/build-control/master-plan-summary.md §2, §8"
+blockers: []
 last_completed_task: "0.3"
 next_task: "0.4"
 skipped_tasks: []
-compaction_count: 1
 paused: false
 pause_reason: null
-refresh_reason: "context budget — refreshing via ScheduleWakeup before task 0.4"
 
 ---
 
