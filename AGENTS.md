@@ -6,7 +6,9 @@ If you are a cloud agent (claude.ai, scheduled run, remote CI) — not a local C
 
 **Stop here. Read `docs/cloud-agent-startup.md` instead.**
 
-The sections below contain local filesystem paths and CLI commands (`/compact`, `graphify`, `date -Iseconds`) that only apply to local Claude Code sessions on Adam's Linux machine.
+The sections below reference local filesystem paths and CLI tools (`graphify`, `date -Iseconds`) that only apply to local Claude Code sessions on Adam's Linux machine.
+
+**Compaction is required in all contexts.** The mechanism differs by runtime — see `docs/loop-protocol.md` § Compaction. The invariant is always: checkpoint → compact → rehydrate → continue. Cloud agents achieve this via auto-compaction (Claude Code web) or checkpoint-based restart-and-resume (generic GitHub-only workers). The loop does not stop merely because compaction occurred.
 
 ---
 

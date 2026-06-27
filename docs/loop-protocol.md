@@ -134,32 +134,95 @@ Continue to next available task. Do not block the loop on coordinated tasks.
 
 ---
 
-## Token Budget and Context Refresh
+## Compaction — The Core Continuity Mechanism
 
-### Default pattern
+Compaction is not a close-out ritual. It is a mandatory maintenance step inside the work loop. Without it, context quality degrades over hours and task fidelity collapses. Compaction is what keeps this loop running for hours across all phases of the CNS build — through Phase 0, Phase 1, and every recursive phase as the system learns from itself.
 
-One task = one context segment. After each task is fully closed out (PR open or commit pushed), assess before starting the next.
+The invariant, on every runtime surface:
 
-### Refresh trigger signals (any one is sufficient)
+```
+checkpoint → compact → rehydrate → continue
+```
+
+The loop must not stop merely because compaction occurred. Compaction is neutral maintenance — not task completion. Every time compaction fires, the loop picks up exactly where it left off.
+
+### Compaction Threshold
+
+Target: 100,000 input tokens. Do not wait until the window is nearly exhausted — context fidelity degrades well before the hard limit is hit. Compact at the next safe checkpoint boundary after this threshold is crossed.
+
+### Runtime-Specific Mechanism
+
+**Local Claude Code CLI with `/loop` mode (primary runtime for this loop):**
+
+1. Complete the current atomic operation — never interrupt a file write, PR creation, or commit sequence
+2. Write the full checkpoint to `## Loop State` in `docs/build-control/handoff-state.md` (see Checkpoint Format below)
+3. Commit: `"Loop: checkpoint before compaction — task {id} step {step}"`
+4. Push
+5. Call `ScheduleWakeup(delaySeconds: 60, reason: "CNS loop compaction — resuming task {id} step {step}", prompt: "/loop coordinate CNS build")`
+6. End turn — the 60-second wakeup fires with a fresh context window and resumes from checkpoint
+
+**Claude Code web (auto-compaction):**
+
+Auto-compaction fires automatically near the configured token limit. The loop must write a checkpoint BEFORE auto-compaction triggers:
+
+1. At each task close-out and each major step boundary, write the checkpoint to `handoff-state.md` and immediately commit + push
+2. After auto-compaction fires, the `SessionStart (compact)` hook or the loop startup sequence rehydrates from the latest checkpoint
+3. Continue with `exact_next_step` from the checkpoint
+
+Recommended Claude Code web environment settings:
+
+```bash
+CLAUDE_CODE_AUTO_COMPACT_WINDOW=125000
+CLAUDE_AUTOCOMPACT_PCT_OVERRIDE=80
+```
+
+This targets auto-compaction near 100,000 input tokens.
+
+### Safe Checkpoint Boundary
+
+Compact only at a safe boundary. Compaction must NOT interrupt:
+
+- a file write in progress
+- a branch creation or PR update
+- a multi-file edit halfway through its atomic change
+- a commit/push sequence
+
+A boundary is safe when:
+- the current subtask state is explainable in one sentence
+- changed files are committed, staged, or explicitly listed as WIP in the checkpoint
+- `exact_next_step` can be stated in one sentence
+
+### Trigger Signals (any one is sufficient — compact at the next safe boundary)
 
 - Completed one full task (PR opened or control repo commit done)
-- Made more than 20 GitHub MCP calls in this turn
-- Written more than 5 large files (>200 lines each) in this turn
-- Been in a single turn for an unusually long time
-- A task is unexpectedly complex and you are mid-way through with heavy context
+- Context approaching 100,000 input tokens
+- More than 20 GitHub MCP calls made in this turn
+- More than 5 large files written (>200 lines each) in this turn
+- Task is unexpectedly complex and context is heavy mid-task
 
-### Context refresh procedure
+---
 
-1. Complete the current atomic operation — finish the file or the PR; never leave a task half-done across a context boundary
-2. Write updated `## Loop State` to `handoff-state.md` (see format below)
-3. Commit: `"Loop: handoff before context refresh — task {id} step {step}"`
-4. Push
-5. Call `ScheduleWakeup(delaySeconds: 60, reason: "CNS loop context refresh — resuming at task {id} step {step}", prompt: "/loop coordinate CNS build")`
-6. End turn
+## Rehydration — Minimum Context After Compaction
 
-The 60-second wakeup fires with a fresh context window. That context reads this protocol, finds the loop state in `handoff-state.md`, and resumes exactly where this context left off.
+After compaction, the loop must reload the minimum required context before continuing. Broad rescans waste tokens and slow recovery. Load only what the next step needs.
 
-Do NOT call `/compact` — that is a user CLI command only. `ScheduleWakeup` achieves the same result autonomously and is the correct mechanism here.
+**Minimum rehydration set:**
+
+1. `docs/build-control/handoff-state.md` → `## Loop State` checkpoint — this is the resume anchor
+2. This protocol (`docs/loop-protocol.md`) — task selection, execution, stop conditions
+3. Active task spec: the relevant section of `docs/build-control/2026-06-26 - phase-0-chunk-specs.md` (Phase 0) or `docs/build-control/2026-06-25 - phase-1-chunk-specs.md` (Phase 1)
+4. `docs/build-control/cloud-dispatch.yaml` → current task entry only
+5. Current branch and git state
+6. `exact_next_step` from the checkpoint
+
+**Do NOT reload after compaction** unless the checkpoint's `required_context_on_resume` field explicitly lists it:
+
+- Full master architecture doc
+- All chunk specs (load only the active task's section)
+- `repo-workstream-board.md` (only if the next action requires board updates)
+- Any subject repo's files (use GitHub MCP to fetch specific files on demand)
+
+The checkpoint is the memory. The repository is the persistent store. The agent rents context only for what the next step needs.
 
 ---
 
@@ -191,42 +254,64 @@ If context is large → use the refresh procedure above (ScheduleWakeup) before 
 
 ---
 
-## Loop State Format
+## Checkpoint Format
 
-This block lives in `## Loop State` in `docs/build-control/handoff-state.md`. Write it before every context refresh and update it at each step change.
+This block lives in `## Loop State` in `docs/build-control/handoff-state.md`. Write the full checkpoint before every compaction and update it at each step change. The checkpoint must be complete enough for a fresh context to resume without reading the chat transcript.
 
 **Mid-task (active):**
 
-```
+```yaml
 active: true
 current_task_id: "0.4"
 current_task_title: "Align Graphify to core cognitive infrastructure framing"
 target_repo: "graphify-workspace-cockpit"
-step: "branch_created"
 branch: "cloud/0.4-graphify-framing"
 pr_url: null
 started_at: "2026-06-26"
+compaction_count: 1
+current_phase: "implementation"
+step: "branch_created"
+exact_next_step: "Write AGENTS.md CNS role section via mcp__github__create_or_update_file"
+acceptance_criteria:
+  met:
+    - "Branch created"
+  remaining:
+    - "AGENTS.md CNS role section written"
+    - "README updated"
+    - "PR opened"
+decisions:
+  - "Prepend CNS role section to existing AGENTS.md rather than replacing it"
+validation:
+  run: []
+  not_run:
+    - "Human PR review — pending Adam merge"
+required_context_on_resume:
+  - "docs/loop-protocol.md"
+  - "docs/build-control/2026-06-26 - phase-0-chunk-specs.md (task 0.4 section)"
+  - "docs/build-control/handoff-state.md"
+blockers: []
 refresh_reason: "context budget"
-notes: "Branch created. Next: write AGENTS.md CNS role section and open PR."
 ```
 
 **Between tasks (idle):**
 
-```
+```yaml
 active: false
 last_completed_task: "0.4"
 next_task: "0.5"
 skipped_tasks: []
+compaction_count: 2
 ```
 
 **Paused (stop condition):**
 
-```
+```yaml
 active: false
 paused: true
 pause_reason: "All Phase 0 PRs open — awaiting Adam review and merge for CP-0 gate"
 last_completed_task: "0.7f"
 next_task: "Phase 1 — windows-local"
+compaction_count: 8
 ```
 
 ---
