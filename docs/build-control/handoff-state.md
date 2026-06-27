@@ -9,7 +9,36 @@ This file is the restart point for any agent, session, or context reset. Read th
 
 ## Loop State
 
-active: false
+active: true
+current_task_id: "0.2"
+current_task_title: "Align Freedom repo to executive cognition framing"
+target_repo: "Adamgdwn/the-freedom-engine-os"
+branch: "cloud/0.2-freedom-framing"
+pr_url: null
+started_at: "2026-06-26"
+compaction_count: 0
+current_phase: "implementation"
+step: "claimed"
+exact_next_step: "Create branch cloud/0.2-freedom-framing in the-freedom-engine-os, then read AGENTS.md/README.md/docs and align to executive-cognition framing"
+acceptance_criteria:
+  met: []
+  remaining:
+    - "AGENTS.md states Freedom as executive cognition layer in 3-layer CNS model"
+    - "README.md not framed as primarily UI/dashboard/app"
+    - "Executive AI business partner framing present"
+    - "No conflicting framing in /docs"
+    - "PR opened to main"
+decisions: []
+validation:
+  run: []
+  not_run:
+    - "Human PR review — pending Adam merge"
+required_context_on_resume:
+  - "docs/loop-protocol.md"
+  - "docs/build-control/2026-06-26 - phase-0-chunk-specs.md (task 0.2 section)"
+  - "docs/build-control/handoff-state.md"
+  - "docs/build-control/master-plan-summary.md §2"
+blockers: []
 last_completed_task: null
 next_task: "0.2"
 skipped_tasks: []
