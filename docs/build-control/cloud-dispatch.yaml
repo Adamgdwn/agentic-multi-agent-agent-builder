@@ -1,6 +1,6 @@
 # Cloud Agent Task Dispatch — Guided AI Labs Agentic OS CNS
 # Version: 1.0
-# Last Updated: 2026-06-26
+# Last Updated: 2026-06-27
 #
 # This is the machine-readable entry point for cloud agents.
 # Agents read this file to find available tasks, then read chunk_spec_ref for full details.
@@ -50,7 +50,7 @@ tasks:
     repo: Adamgdwn/the-freedom-engine-os
     platform: cloud-safe
     type: docs
-    status: ready-for-review
+    status: complete
     claimed_by: null
     claimed_at: "2026-06-26"
     branch: "cloud/0.2-freedom-framing"
@@ -67,7 +67,7 @@ tasks:
     repo: Adamgdwn/gail-ai-operating-system-rev-2
     platform: cloud-safe
     type: docs
-    status: ready-for-review
+    status: complete
     claimed_by: null
     claimed_at: "2026-06-26"
     branch: "cloud/0.3-gailos-framing"
@@ -84,7 +84,7 @@ tasks:
     repo: Adamgdwn/graphify-workspace-cockpit
     platform: cloud-safe
     type: docs
-    status: ready-for-review
+    status: complete
     claimed_by: null
     claimed_at: "2026-06-26"
     branch: "cloud/0.4-graphify-framing"
@@ -101,7 +101,7 @@ tasks:
     repo: Adamgdwn/gail-ai-operating-system-rev-2
     platform: cloud-safe
     type: docs
-    status: ready-for-review
+    status: complete
     claimed_by: null
     claimed_at: "2026-06-26"
     branch: "cloud/0.5-authority-ladders"
@@ -118,7 +118,7 @@ tasks:
     repo: Adamgdwn/ag-operations-m365-foundation
     platform: cloud-safe
     type: docs
-    status: ready-for-review
+    status: complete
     claimed_by: null
     claimed_at: "2026-06-26"
     branch: "cloud/0.6-m365-framing"
@@ -135,7 +135,7 @@ tasks:
     repo: Adamgdwn/guided-ai-journey-website-and-tools
     platform: cloud-safe
     type: docs
-    status: ready-for-review
+    status: complete
     claimed_by: null
     claimed_at: "2026-06-26"
     branch: "cloud/0.7a-guided-ai-journey-cns-role"
@@ -151,7 +151,7 @@ tasks:
     repo: Adamgdwn/oldskoolai.com
     platform: cloud-safe
     type: docs
-    status: ready-for-review
+    status: complete
     claimed_by: null
     claimed_at: "2026-06-26"
     branch: "cloud/0.7b-oldskoolai-cns-role"
@@ -167,7 +167,7 @@ tasks:
     repo: Adamgdwn/bowtie_risk_program
     platform: cloud-safe
     type: docs
-    status: ready-for-review
+    status: complete
     claimed_by: null
     claimed_at: "2026-06-26"
     branch: "cloud/0.7c-bowtie-cns-role"
@@ -183,7 +183,7 @@ tasks:
     repo: Adamgdwn/change-leadership-tools
     platform: cloud-safe
     type: docs
-    status: ready-for-review
+    status: complete
     claimed_by: null
     claimed_at: "2026-06-26"
     branch: "cloud/0.7d-change-leadership-cns-role"
@@ -200,7 +200,7 @@ tasks:
     repo: Adamgdwn/clean-pdf-build
     platform: cloud-safe
     type: docs
-    status: ready-for-review
+    status: complete
     claimed_by: null
     claimed_at: "2026-06-26"
     branch: "cloud/0.7e-clean-pdf-cns-role"
@@ -216,7 +216,7 @@ tasks:
     repo: Adamgdwn/guided-ai-labs-website
     platform: cloud-safe
     type: docs
-    status: ready-for-review
+    status: complete
     claimed_by: null
     claimed_at: "2026-06-26"
     branch: "cloud/0.7f-gail-website-cns-role"

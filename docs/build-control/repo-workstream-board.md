@@ -1,6 +1,6 @@
 # Repo Workstream Board — Guided AI Labs Agentic OS CNS
 
-**Last Updated:** 2026-06-25
+**Last Updated:** 2026-06-27
 **Owner:** Build Agent Orchestrator
 
 Task states: `independent` | `coordinated` | `blocked` | `ready-for-integration` | `ready-for-review` | `complete`
@@ -16,12 +16,12 @@ Platform tags: `cloud-safe` = GitHub MCP only | `windows-local` = needs Windows 
 | # | Task | Repo | Platform | State | Notes |
 |---|---|---|---|---|---|
 | 0.1 | Accept master architecture doc as governing reference | All repos | — | `complete` | Locked 2026-06-25 in `master-plan-summary.md` |
-| 0.2 | Align Freedom repo to "executive cognition" framing (not UI-first) | `the-freedom-engine-os` | `cloud-safe` | `independent` | See dispatch 0.2. Verify AGENTS.md + README framing. |
-| 0.3 | Align GAIL OS Rev 2 to "deep-brain / autonomic management" framing | `gail-ai-operating-system-rev-2` | `cloud-safe` | `independent` | See dispatch 0.3. Check for "hand brake" framing. |
-| 0.4 | Align Graphify to "core cognitive infrastructure" framing (not product spoke) | `graphify-workspace-cockpit` | `cloud-safe` | `independent` | See dispatch 0.4. CNS role section added 2026-06-25; verify cockpit docs. |
-| 0.5 | Document R0–R5 + A0–A6 ladders as shared canonical in GAIL OS | `gail-ai-operating-system-rev-2` | `cloud-safe` | `independent` | See dispatch 0.5. New file: `docs/governance/authority-ladders.md`. |
-| 0.6 | Align M365 Foundation to "first-class enterprise body" framing | `ag-operations-m365-foundation` | `cloud-safe` | `independent` | See dispatch 0.6. Create AGENTS.md with CNS role. |
-| 0.7 | Each product repo adds CNS role statement to AGENTS.md | All product repos | `cloud-safe` | `independent` | See dispatch 0.7a–0.7f. One PR per repo. 0.7d + 0.7e are private. |
+| 0.2 | Align Freedom repo to "executive cognition" framing (not UI-first) | `the-freedom-engine-os` | `cloud-safe` | `complete` | Merged 2026-06-27. PR #21. |
+| 0.3 | Align GAIL OS Rev 2 to "deep-brain / autonomic management" framing | `gail-ai-operating-system-rev-2` | `cloud-safe` | `complete` | Merged 2026-06-27. PR #1. |
+| 0.4 | Align Graphify to "core cognitive infrastructure" framing (not product spoke) | `graphify-workspace-cockpit` | `cloud-safe` | `complete` | Merged 2026-06-27. PR #1. vision.md UAOS→GAIL OS conflict resolved. |
+| 0.5 | Document R0–R5 + A0–A6 ladders as shared canonical in GAIL OS | `gail-ai-operating-system-rev-2` | `cloud-safe` | `complete` | Merged 2026-06-27. PR #2. A-level descriptions elaborated (Adam confirmed). |
+| 0.6 | Align M365 Foundation to "first-class enterprise body" framing | `ag-operations-m365-foundation` | `cloud-safe` | `complete` | Merged 2026-06-27. PR #2. UAOS drift in stage docs flagged for rename pass. |
+| 0.7 | Each product repo adds CNS role statement to AGENTS.md | All product repos | `cloud-safe` | `complete` | Merged 2026-06-27. PRs 0.7a–0.7f all merged across 6 repos. |
 | 0.8 | Resolve what "Enhanced Graphify" on Windows means vs. cockpit on Linux | Windows + Linux | `coordinated` | `coordinated` | Decision in master-plan-summary.md §8. Blocked by open Q2. |
 
 **Phase 0 gate (CP-0):** All repos can map their purpose to CNS layer. Open a PR in each repo with role statement before Phase 1 proceeds in that repo.

@@ -1,6 +1,6 @@
 # Handoff State — Guided AI Labs Agentic OS CNS
 
-**Last Updated:** 2026-06-26 (session 4 — compaction-first loop protocol)
+**Last Updated:** 2026-06-27 (CP-0 confirmed — all 11 Phase 0 PRs merged)
 **Owner:** Build Agent Orchestrator
 
 This file is the restart point for any agent, session, or context reset. Read this first after a compaction, clear, or handoff.
@@ -11,20 +11,20 @@ This file is the restart point for any agent, session, or context reset. Read th
 
 active: false
 last_completed_task: "0.7f"
-next_task: "Phase 1 (windows-local) — awaiting Adam CP-0 confirmation"
+next_task: "Phase 1 (windows-local) — CP-0 confirmed 2026-06-27, awaiting Windows session to begin Chunk 20"
 skipped_tasks: []
 compaction_count: 6
-paused: true
-pause_reason: "CP-0 GATE REACHED 2026-06-26 — all 11 Phase 0 tasks (0.2-0.7f) are ready-for-review across 9 repos. Loop paused per stop condition; do NOT start Phase 1 (windows-local) without Adam's confirmation + PR merges. Two review flags: (1) PR #2/task 0.5 A-level descriptions elaborated (confirm); (2) cross-repo UAOS->GAIL OS rename pass recommended post-CP-0."
+paused: false
+pause_reason: ""
 
 ---
 
 ## Where We Are
 
-**Phase:** Phase 0 — cloud agent runs in progress
-**Status:** Cloud agent infrastructure complete. Phase 0 tasks 0.2–0.7f ready to run (all cloud-safe). Phase 1 chunk specs written but require Windows-local execution.
-**Immediate next (cloud agents):** Pick up any `available` task from `docs/build-control/cloud-dispatch.yaml`. Read `docs/cloud-agent-startup.md` first.
-**Immediate next (Windows/local):** After CP-0 — begin Chunk 20 in GAIL OS Rev 2. See `docs/build-control/2026-06-25 - phase-1-chunk-specs.md`.
+**Phase:** Phase 0 — COMPLETE (CP-0 confirmed 2026-06-27)
+**Status:** All 11 Phase 0 PRs merged. All 9 subject repos have correct CNS role framing in AGENTS.md. Dispatch updated to `complete`. Workstream board updated.
+**Immediate next (Windows/local):** Begin Chunk 20 in `gail-ai-operating-system-rev-2` (local governed approval writes). See `docs/build-control/2026-06-25 - phase-1-chunk-specs.md`.
+**Open follow-up (post-CP-0):** Cross-repo UAOS→GAIL OS rename pass in `ag-operations-m365-foundation` stage docs and any remaining cockpit docs — schedule as a separate cloud-safe task before Phase 1 code work begins.
 
 ### 2026-06-26 — Session transition: terminal → VS Code
 

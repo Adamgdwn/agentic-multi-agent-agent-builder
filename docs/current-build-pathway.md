@@ -76,8 +76,9 @@ Avoid mixing unrelated code, governance, deployment, and product decisions in on
 | Cloud agent infrastructure setup | complete | 2026-06-26 | Claude Code | All cloud agent files written and committed. See Chunk One. |
 | Loop coordination infrastructure | complete | 2026-06-26 | Claude Code | Loop protocol, auto-refresh mechanism, loop state tracking. See Chunk Three. |
 | Compaction-first loop protocol | complete | 2026-06-26 | Claude Code | Mandatory compaction, richer checkpoint format, rehydration spec. See Chunk Four. |
-| Phase 0 cloud agent runs | planned | — | Claude Code (/loop) | 11 PRs across 9 repos. Run `/loop coordinate CNS build`. See Chunk Two. |
-| CP-0 gate | pending | — | Adam | All Phase 0 PRs merged. All repos can map purpose to CNS layer. |
+| Phase 0 cloud agent runs | complete | 2026-06-27 | Claude Code (/loop) | All 11 PRs opened and merged. See Chunk Two. |
+| CP-0 gate | complete | 2026-06-27 | Adam | All Phase 0 PRs merged. All 9 repos mapped to CNS layer. |
+| Phase 1 — GAIL OS HTTP API | next | — | Windows local | Begin Chunk 20 in gail-ai-operating-system-rev-2. See phase-1-chunk-specs.md. |
 
 ## Chunk One - Cloud Agent Infrastructure Setup
 
@@ -134,7 +135,8 @@ Next action: Run first cloud agent against dispatch task 0.2, or run all 0.2–0
 
 ## Chunk Two - Phase 0 Cloud Agent Runs
 
-Status: planned
+Status: complete
+Date: 2026-06-27
 
 Completion target: Task complete
 
