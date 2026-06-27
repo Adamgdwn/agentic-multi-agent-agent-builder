@@ -74,7 +74,8 @@ Avoid mixing unrelated code, governance, deployment, and product decisions in on
 | Step | Status | Timestamp | Owner | Notes |
 |------|--------|-----------|-------|-------|
 | Cloud agent infrastructure setup | complete | 2026-06-26 | Claude Code | All cloud agent files written and committed. See Chunk One. |
-| Phase 0 cloud agent runs | active | 2026-06-26 | Cloud agents | 11 PRs to open across 9 repos. See cloud-dispatch.yaml tasks 0.2–0.7f. |
+| Loop coordination infrastructure | complete | 2026-06-26 | Claude Code | Loop protocol, auto-refresh mechanism, loop state tracking. See Chunk Three. |
+| Phase 0 cloud agent runs | planned | — | Claude Code (/loop) | 11 PRs across 9 repos. Run `/loop coordinate CNS build`. See Chunk Two. |
 | CP-0 gate | pending | — | Adam | All Phase 0 PRs merged. All repos can map purpose to CNS layer. |
 
 ## Chunk One - Cloud Agent Infrastructure Setup
@@ -173,6 +174,46 @@ Known gaps:
 - If GitHub Actions is added to GAIL OS Rev 2 before chunk two is complete, Phase 1 code tasks become cloud-validated
 
 Next action: After CP-0 — update `handoff-state.md` Phase 0 status. Then proceed to Phase 1 (Chunk 20 in `gail-ai-operating-system-rev-2`, Windows-local).
+
+## Chunk Three - Loop Coordination Infrastructure
+
+Status: complete
+Date: 2026-06-26
+
+Completion target: Task complete
+
+Budget class: Small
+
+Objective: Build the autonomous coordination loop so that a local Claude Code session can run `/loop coordinate CNS build` and execute all Phase 0 tasks across all subject repos, auto-refreshing context via `ScheduleWakeup` before hitting token limits, and resuming cleanly from persistent loop state in `handoff-state.md`.
+
+Acceptance criteria:
+
+- [x] `docs/loop-protocol.md` created — full iteration protocol: startup sequence, task selection, execution by type, token budget check, context refresh via ScheduleWakeup, stop conditions, loop state format
+- [x] `AGENTS.md` updated — `## Loop Mode` section added with `/loop coordinate CNS build` entry point
+- [x] `docs/build-control/handoff-state.md` updated — `## Loop State` block added at top for mid-task resume state
+- [x] `docs/current-build-pathway.md` updated — Chunk Three added, Active Path table updated
+
+Inputs:
+
+- `docs/build-control/cloud-dispatch.yaml`
+- `docs/build-control/2026-06-26 - phase-0-chunk-specs.md`
+- `docs/cloud-agent-startup.md`
+
+Outputs:
+
+- `docs/loop-protocol.md`
+- Updated `AGENTS.md`, `docs/build-control/handoff-state.md`
+
+Validation:
+
+- Human review: open `docs/loop-protocol.md` — confirm iteration structure, ScheduleWakeup mechanism, stop conditions, and loop state format are all present and actionable
+- Human review: open `AGENTS.md` — confirm `## Loop Mode` section appears near top, before Normal Startup
+
+Stop condition: N/A — chunk complete.
+
+Next action: Run `/loop coordinate CNS build` in this repo to begin Phase 0 execution (Chunk Two).
+
+---
 
 ## Timestamp Rule
 

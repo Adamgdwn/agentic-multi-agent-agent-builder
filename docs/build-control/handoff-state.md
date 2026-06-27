@@ -7,6 +7,17 @@ This file is the restart point for any agent, session, or context reset. Read th
 
 ---
 
+## Loop State
+
+active: false
+last_completed_task: null
+next_task: "0.2"
+skipped_tasks: []
+paused: false
+pause_reason: null
+
+---
+
 ## Where We Are
 
 **Phase:** Phase 0 — cloud agent runs in progress
