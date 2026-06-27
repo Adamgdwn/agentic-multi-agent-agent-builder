@@ -9,36 +9,11 @@ This file is the restart point for any agent, session, or context reset. Read th
 
 ## Loop State
 
-active: true
-current_task_id: "0.7d"
-current_task_title: "CNS role statement in change-leadership-tools"
-target_repo: "Adamgdwn/change-leadership-tools"
-branch: "cloud/0.7d-change-leadership-cns-role"
-pr_url: null
-started_at: "2026-06-26"
-compaction_count: 5
-current_phase: "implementation"
-step: "claimed"
-exact_next_step: "Private repo access confirmed; branch created; prepend CNS Role to AGENTS.md (Adoption + organizational change circuit; events stakeholder.engagement_recorded/adoption.milestone_reached), open PR"
-acceptance_criteria:
-  met: []
-  remaining:
-    - "AGENTS.md CNS Role section per #task-07 template"
-    - "References 3-layer core + Phase 5 events + CP-1 prerequisite"
-    - "PR opened to main"
-decisions:
-  - "Private repo access verified via read probe — not blocked"
-validation:
-  run: []
-  not_run:
-    - "Human PR review — pending Adam merge"
-required_context_on_resume:
-  - "docs/loop-protocol.md"
-  - "docs/build-control/2026-06-26 - phase-0-chunk-specs.md (#task-07 template + role/events table)"
-blockers: []
-last_completed_task: "0.7c"
-next_task: "0.7d"
+active: false
+last_completed_task: "0.7d"
+next_task: "0.7e"
 skipped_tasks: []
+compaction_count: 5
 paused: false
 pause_reason: null
 
@@ -50,6 +25,13 @@ pause_reason: null
 **Status:** Cloud agent infrastructure complete. Phase 0 tasks 0.2–0.7f ready to run (all cloud-safe). Phase 1 chunk specs written but require Windows-local execution.
 **Immediate next (cloud agents):** Pick up any `available` task from `docs/build-control/cloud-dispatch.yaml`. Read `docs/cloud-agent-startup.md` first.
 **Immediate next (Windows/local):** After CP-0 — begin Chunk 20 in GAIL OS Rev 2. See `docs/build-control/2026-06-25 - phase-1-chunk-specs.md`.
+
+### 2026-06-26 Session 5 — Loop run: Task 0.7d (change-leadership-tools CNS role)
+
+1. **Private repo access verified** via read probe (authenticated as Adamgdwn, repo owner) — not blocked. Claimed + executed task 0.7d.
+   - Prepended CNS Role section to AGENTS.md (after managed nextjs-agent-rules block): Adoption + organizational change circuit; events stakeholder.engagement_recorded/adoption.milestone_reached; CP-1 prerequisite. Verified 20 additions / 0 deletions.
+   - **PR #2 opened** → https://github.com/Adamgdwn/change-leadership-tools/pull/2 (`ready-for-review`).
+2. **Dispatch updated** — 0.7d → `ready-for-review`. Next: 0.7e (clean-pdf-build — PRIVATE; verify access).
 
 ### 2026-06-26 Session 5 — Loop run: Task 0.7c (bowtie_risk_program CNS role)
 
