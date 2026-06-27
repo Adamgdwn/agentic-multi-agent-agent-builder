@@ -135,10 +135,10 @@ tasks:
     repo: Adamgdwn/guided-ai-journey-website-and-tools
     platform: cloud-safe
     type: docs
-    status: available
-    claimed_by: null
-    claimed_at: null
-    branch: null
+    status: claimed
+    claimed_by: "claude-code-local"
+    claimed_at: "2026-06-26"
+    branch: "cloud/0.7a-guided-ai-journey-cns-role"
     pr_url: null
     chunk_spec_ref: "docs/build-control/2026-06-26 - phase-0-chunk-specs.md#task-07"
     notes: >

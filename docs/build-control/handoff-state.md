@@ -9,11 +9,35 @@ This file is the restart point for any agent, session, or context reset. Read th
 
 ## Loop State
 
-active: false
+active: true
+current_task_id: "0.7a"
+current_task_title: "CNS role statement in guided-ai-journey-website-and-tools"
+target_repo: "Adamgdwn/guided-ai-journey-website-and-tools"
+branch: "cloud/0.7a-guided-ai-journey-cns-role"
+pr_url: null
+started_at: "2026-06-26"
+compaction_count: 3
+current_phase: "implementation"
+step: "claimed"
+exact_next_step: "Create branch, create/update AGENTS.md with CNS Role section (diagnostic sensory + readiness pathway; events readiness.completed/pilot_candidate.created/inquiry.created) per #task-07 template, open PR"
+acceptance_criteria:
+  met: []
+  remaining:
+    - "AGENTS.md exists with CNS Role section per template"
+    - "References 3-layer core + Phase 5 events + CP-1 prerequisite"
+    - "PR opened to main"
+decisions: []
+validation:
+  run: []
+  not_run:
+    - "Human PR review — pending Adam merge"
+required_context_on_resume:
+  - "docs/loop-protocol.md"
+  - "docs/build-control/2026-06-26 - phase-0-chunk-specs.md (#task-07 template + role/events table)"
+blockers: []
 last_completed_task: "0.6"
 next_task: "0.7a"
 skipped_tasks: []
-compaction_count: 3
 paused: false
 pause_reason: null
 refresh_reason: "context budget — large M365 dir listing + Stage 9 read; refreshing before 0.7-series"
