@@ -9,11 +9,36 @@ This file is the restart point for any agent, session, or context reset. Read th
 
 ## Loop State
 
-active: false
+active: true
+current_task_id: "0.6"
+current_task_title: "Align M365 Foundation to first-class enterprise body framing"
+target_repo: "Adamgdwn/ag-operations-m365-foundation"
+branch: "cloud/0.6-m365-framing"
+pr_url: null
+started_at: "2026-06-26"
+compaction_count: 2
+current_phase: "implementation"
+step: "claimed"
+exact_next_step: "Create branch cloud/0.6-m365-framing, check/create AGENTS.md with CNS role block (first-class enterprise body) per chunk spec, verify Stage 9 doc framing, open PR"
+acceptance_criteria:
+  met: []
+  remaining:
+    - "AGENTS.md exists with CNS role section (first-class enterprise body)"
+    - "Framing positions M365 as first-class enterprise body, not integration/plugin"
+    - "Stage 9 doc framing consistent"
+    - "PR opened to main"
+decisions: []
+validation:
+  run: []
+  not_run:
+    - "Human PR review — pending Adam merge"
+required_context_on_resume:
+  - "docs/loop-protocol.md"
+  - "docs/build-control/2026-06-26 - phase-0-chunk-specs.md (task 0.6 section — contains CNS role block)"
+blockers: []
 last_completed_task: "0.5"
 next_task: "0.6"
 skipped_tasks: []
-compaction_count: 2
 paused: false
 pause_reason: null
 
