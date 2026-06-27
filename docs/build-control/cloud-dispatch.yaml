@@ -101,11 +101,11 @@ tasks:
     repo: Adamgdwn/gail-ai-operating-system-rev-2
     platform: cloud-safe
     type: docs
-    status: claimed
-    claimed_by: "claude-code-local"
+    status: ready-for-review
+    claimed_by: null
     claimed_at: "2026-06-26"
     branch: "cloud/0.5-authority-ladders"
-    pr_url: null
+    pr_url: "https://github.com/Adamgdwn/gail-ai-operating-system-rev-2/pull/2"
     chunk_spec_ref: "docs/build-control/2026-06-26 - phase-0-chunk-specs.md#task-05"
     notes: >
       New file: docs/governance/authority-ladders.md in GAIL OS Rev 2.

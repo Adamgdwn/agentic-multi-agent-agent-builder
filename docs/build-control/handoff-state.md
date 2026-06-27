@@ -9,37 +9,11 @@ This file is the restart point for any agent, session, or context reset. Read th
 
 ## Loop State
 
-active: true
-current_task_id: "0.5"
-current_task_title: "Document R0-R5 and A0-A6 authority ladders as canonical in GAIL OS"
-target_repo: "Adamgdwn/gail-ai-operating-system-rev-2"
-branch: "cloud/0.5-authority-ladders"
-pr_url: null
-started_at: "2026-06-26"
-compaction_count: 2
-current_phase: "implementation"
-step: "claimed"
-exact_next_step: "Create branch cloud/0.5-authority-ladders, write new docs/governance/authority-ladders.md (R0-R5 + A0-A6 + state machine per chunk spec / master-plan §4), open PR"
-acceptance_criteria:
-  met: []
-  remaining:
-    - "docs/governance/authority-ladders.md created"
-    - "R0-R5 table (6 levels) + A0-A6 table (7 levels)"
-    - "Notes source of truth = master-plan-summary.md; A6 future-state not current authority"
-    - "Cross-references mandatory action state machine"
-    - "PR opened to main"
-decisions: []
-validation:
-  run: []
-  not_run:
-    - "Human PR review — pending Adam merge"
-required_context_on_resume:
-  - "docs/loop-protocol.md"
-  - "docs/build-control/2026-06-26 - phase-0-chunk-specs.md (task 0.5 section — contains full content)"
-blockers: []
-last_completed_task: "0.4"
-next_task: "0.5"
+active: false
+last_completed_task: "0.5"
+next_task: "0.6"
 skipped_tasks: []
+compaction_count: 2
 paused: false
 pause_reason: null
 
@@ -51,6 +25,14 @@ pause_reason: null
 **Status:** Cloud agent infrastructure complete. Phase 0 tasks 0.2–0.7f ready to run (all cloud-safe). Phase 1 chunk specs written but require Windows-local execution.
 **Immediate next (cloud agents):** Pick up any `available` task from `docs/build-control/cloud-dispatch.yaml`. Read `docs/cloud-agent-startup.md` first.
 **Immediate next (Windows/local):** After CP-0 — begin Chunk 20 in GAIL OS Rev 2. See `docs/build-control/2026-06-25 - phase-1-chunk-specs.md`.
+
+### 2026-06-26 Session 5 — Loop run: Task 0.5 (authority ladders)
+
+1. **Resumed from checkpoint** (compaction_count 2); claimed + executed task 0.5 in `Adamgdwn/gail-ai-operating-system-rev-2` via GitHub MCP.
+   - Branch `cloud/0.5-authority-ladders` created; new file `docs/governance/authority-ladders.md` written (R0-R5 verbatim, A0-A6 table, action state machine, A6 future-state note, source-of-truth attribution).
+   - **PR #2 opened** → https://github.com/Adamgdwn/gail-ai-operating-system-rev-2/pull/2 (status `ready-for-review`).
+2. **Flagged for Adam:** master-plan §4 gives A-levels as names only; A-level *descriptions* in the new table are minimal elaborations (names verbatim) — noted in PR for confirmation.
+3. **Dispatch updated** — 0.5 → `ready-for-review`, pr_url set. Next: 0.6 (M365 Foundation — first-class enterprise body framing; likely create AGENTS.md).
 
 ### 2026-06-26 Session 5 — Loop run: Task 0.4 (Graphify framing)
 
