@@ -75,7 +75,9 @@ After a compaction, context clear, or fresh restart, use the latest handoff or w
 
 ## Graphify Policy
 
-Use the canonical Graphify governance file at `/home/adamgoodwin/code/Tools/graphify/docs/agent-governance.md`.
+**Cloud agents:** Skip Graphify. You cannot run the CLI. Use `docs/build-control/master-plan-summary.md` and `docs/build-control/dependency-graph.md` for architecture context. See `docs/cloud-agent-startup.md`.
+
+**Local Claude Code agents:** Use the canonical Graphify governance file at `/home/adamgoodwin/code/Tools/graphify/docs/agent-governance.md`.
 
 Before broad source exploration, architecture analysis, dependency tracing, unfamiliar large-surface work, or cross-repo planning, use Graphify first and reference `/home/adamgoodwin/code/Tools/graphify/workspace/out/graph.json`. Use the workspace graph for cross-repo routing. For known files, build or test errors, small scoped edits, or routine docs checks, use normal repo inspection first. When a new repo becomes active, set up repo-local Graphify with `graphify-setup-project /path/to/repo`.
 
@@ -88,12 +90,10 @@ Do not trigger a full `/graphify` rebuild to answer a question, at session start
 Preserve existing secret-handling rules: do not index, print, summarize, or commit secrets or environment files.
 
 ## Commands
-<!-- Replace these with the actual commands for this project -->
-- Install: `<fill in>`
-- Dev:     `<fill in>`
-- Lint:    `<fill in>`
-- Build:   `<fill in>`
-- Test:    `<fill in>`
+
+This is a coordination and documentation repository — there is no runnable application code at the repo root. Install, dev, lint, build, and test commands do not apply here.
+
+For commands in individual tracked repos, read that repo's `AGENTS.md` or `README.md`.
 
 ## Document control
 - Architecture decisions go in `docs/`

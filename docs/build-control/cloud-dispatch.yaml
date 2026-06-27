@@ -1,0 +1,293 @@
+# Cloud Agent Task Dispatch — Guided AI Labs Agentic OS CNS
+# Version: 1.0
+# Last Updated: 2026-06-26
+#
+# This is the machine-readable entry point for cloud agents.
+# Agents read this file to find available tasks, then read chunk_spec_ref for full details.
+#
+# Task statuses:
+#   available        - unclaimed, ready to start
+#   claimed          - agent created the feature branch (branch name is the lock)
+#   ready-for-review - PR opened, waiting for Adam to review
+#   complete         - PR merged, done
+#   blocked          - cannot proceed (see notes)
+#   coordinated      - requires human or cross-machine coordination before starting
+#
+# Platform tags:
+#   cloud-safe       - GitHub MCP only, no local execution needed
+#   windows-local    - requires Windows machine for test execution or runtime validation
+#   linux-local      - requires Linux machine (Graphify CLI, FastAPI server, etc.)
+#   coordinated      - requires cross-machine or human coordination
+
+project: agentic-multi-agent-agent-builder
+github_org: Adamgdwn
+control_repo: Adamgdwn/agentic-multi-agent-agent-builder
+
+branch_strategy: feature-branch-only
+merge_strategy: pr-then-adam-reviews
+never_push_to:
+  - main
+  - master
+
+branch_naming: "cloud/{task_id}-{short-slug}"
+pr_title_format: "[CNS Task {task_id}] {title}"
+pr_dispatch_update: "Always update this file in your PR — set status, branch, pr_url"
+
+startup_doc: docs/cloud-agent-startup.md
+chunk_specs_phase0: "docs/build-control/2026-06-26 - phase-0-chunk-specs.md"
+chunk_specs_phase1: "docs/build-control/2026-06-25 - phase-1-chunk-specs.md"
+
+# ─────────────────────────────────────────
+# PHASE 0 — Architecture Doctrine + Framing
+# All tasks below are cloud-safe (docs only, GitHub MCP only)
+# ─────────────────────────────────────────
+
+tasks:
+
+  - id: "0.2"
+    title: "Align Freedom repo to executive cognition framing"
+    phase: 0
+    repo: Adamgdwn/the-freedom-engine-os
+    platform: cloud-safe
+    type: docs
+    status: available
+    claimed_by: null
+    claimed_at: null
+    branch: null
+    pr_url: null
+    chunk_spec_ref: "docs/build-control/2026-06-26 - phase-0-chunk-specs.md#task-02"
+    notes: >
+      CNS role statement added to AGENTS.md on 2026-06-25.
+      Verify README and any /docs framing matches master-plan-summary.md §2.
+      Watch for UI-first or dashboard-first framing — Freedom is a cognition layer.
+
+  - id: "0.3"
+    title: "Align GAIL OS Rev 2 to deep-brain autonomic management framing"
+    phase: 0
+    repo: Adamgdwn/gail-ai-operating-system-rev-2
+    platform: cloud-safe
+    type: docs
+    status: available
+    claimed_by: null
+    claimed_at: null
+    branch: null
+    pr_url: null
+    chunk_spec_ref: "docs/build-control/2026-06-26 - phase-0-chunk-specs.md#task-03"
+    notes: >
+      Check docs for 'hand brake', 'guardian', 'blocker', or 'limiter' framing.
+      GAIL OS enables autonomy — it is not a restraint on Freedom.
+      CNS role: authority envelopes, evidence ledger, action state machine.
+
+  - id: "0.4"
+    title: "Align Graphify to core cognitive infrastructure framing"
+    phase: 0
+    repo: Adamgdwn/graphify-workspace-cockpit
+    platform: cloud-safe
+    type: docs
+    status: available
+    claimed_by: null
+    claimed_at: null
+    branch: null
+    pr_url: null
+    chunk_spec_ref: "docs/build-control/2026-06-26 - phase-0-chunk-specs.md#task-04"
+    notes: >
+      CNS role section prepended to AGENTS.md on 2026-06-25.
+      Verify cockpit docs frame Graphify as relationship intelligence / connectome,
+      not just workspace visualization.
+
+  - id: "0.5"
+    title: "Document R0-R5 and A0-A6 authority ladders as canonical in GAIL OS"
+    phase: 0
+    repo: Adamgdwn/gail-ai-operating-system-rev-2
+    platform: cloud-safe
+    type: docs
+    status: available
+    claimed_by: null
+    claimed_at: null
+    branch: null
+    pr_url: null
+    chunk_spec_ref: "docs/build-control/2026-06-26 - phase-0-chunk-specs.md#task-05"
+    notes: >
+      New file: docs/governance/authority-ladders.md in GAIL OS Rev 2.
+      Source of truth for R/A ladders within that repo.
+      Canonical definitions from master-plan-summary.md §4.
+
+  - id: "0.6"
+    title: "Align M365 Foundation to first-class enterprise body framing"
+    phase: 0
+    repo: Adamgdwn/ag-operations-m365-foundation
+    platform: cloud-safe
+    type: docs
+    status: available
+    claimed_by: null
+    claimed_at: null
+    branch: null
+    pr_url: null
+    chunk_spec_ref: "docs/build-control/2026-06-26 - phase-0-chunk-specs.md#task-06"
+    notes: >
+      Likely no AGENTS.md — create it with CNS role statement.
+      M365 Foundation = first-class enterprise body (not secondary integration).
+      Stage 9 doc already lays the agentic bridge groundwork.
+
+  - id: "0.7a"
+    title: "CNS role statement in guided-ai-journey-website-and-tools"
+    phase: 0
+    repo: Adamgdwn/guided-ai-journey-website-and-tools
+    platform: cloud-safe
+    type: docs
+    status: available
+    claimed_by: null
+    claimed_at: null
+    branch: null
+    pr_url: null
+    chunk_spec_ref: "docs/build-control/2026-06-26 - phase-0-chunk-specs.md#task-07"
+    notes: >
+      CNS role: Diagnostic sensory + readiness pathway circuit.
+      Add CNS Role section to AGENTS.md (create if absent).
+
+  - id: "0.7b"
+    title: "CNS role statement in oldskoolai.com"
+    phase: 0
+    repo: Adamgdwn/oldskoolai.com
+    platform: cloud-safe
+    type: docs
+    status: available
+    claimed_by: null
+    claimed_at: null
+    branch: null
+    pr_url: null
+    chunk_spec_ref: "docs/build-control/2026-06-26 - phase-0-chunk-specs.md#task-07"
+    notes: >
+      CNS role: Learning + capability signal layer.
+      Add CNS Role section to AGENTS.md (create if absent).
+
+  - id: "0.7c"
+    title: "CNS role statement in bowtie_risk_program"
+    phase: 0
+    repo: Adamgdwn/bowtie_risk_program
+    platform: cloud-safe
+    type: docs
+    status: available
+    claimed_by: null
+    claimed_at: null
+    branch: null
+    pr_url: null
+    chunk_spec_ref: "docs/build-control/2026-06-26 - phase-0-chunk-specs.md#task-07"
+    notes: >
+      CNS role: Risk + control modelling circuit.
+      Add CNS Role section to AGENTS.md (create if absent).
+
+  - id: "0.7d"
+    title: "CNS role statement in change-leadership-tools"
+    phase: 0
+    repo: Adamgdwn/change-leadership-tools
+    platform: cloud-safe
+    type: docs
+    status: available
+    claimed_by: null
+    claimed_at: null
+    branch: null
+    pr_url: null
+    chunk_spec_ref: "docs/build-control/2026-06-26 - phase-0-chunk-specs.md#task-07"
+    notes: >
+      CNS role: Adoption + organizational change circuit.
+      PRIVATE repo — verify GitHub token has repo scope before starting.
+      If access denied, open a [BLOCKED] issue on the control repo.
+
+  - id: "0.7e"
+    title: "CNS role statement in clean-pdf-build"
+    phase: 0
+    repo: Adamgdwn/clean-pdf-build
+    platform: cloud-safe
+    type: docs
+    status: available
+    claimed_by: null
+    claimed_at: null
+    branch: null
+    pr_url: null
+    chunk_spec_ref: "docs/build-control/2026-06-26 - phase-0-chunk-specs.md#task-07"
+    notes: >
+      CNS role: Document-production motor circuit (EasyDraft Docs).
+      PRIVATE repo — verify GitHub token has repo scope before starting.
+
+  - id: "0.7f"
+    title: "CNS role statement in guided-ai-labs-website"
+    phase: 0
+    repo: Adamgdwn/guided-ai-labs-website
+    platform: cloud-safe
+    type: docs
+    status: available
+    claimed_by: null
+    claimed_at: null
+    branch: null
+    pr_url: null
+    chunk_spec_ref: "docs/build-control/2026-06-26 - phase-0-chunk-specs.md#task-07"
+    notes: >
+      CNS role: Front door + commercial signal layer.
+      Add CNS Role section to AGENTS.md (create if absent).
+
+# ─────────────────────────────────────────
+# PHASE 1 — Core Operating Spine
+# These tasks require Windows-local execution for test validation.
+# A cloud agent may write code and open a PR, but cannot validate without CI.
+# Do not mark Phase 1 tasks complete without passing tests.
+# ─────────────────────────────────────────
+
+  - id: "1.1"
+    title: "Port Mission schema from Rev 1 to GAIL OS Rev 2"
+    phase: 1
+    repo: Adamgdwn/gail-ai-operating-system-rev-2
+    platform: windows-local
+    type: code
+    status: available
+    claimed_by: null
+    claimed_at: null
+    branch: null
+    pr_url: null
+    chunk_spec_ref: "docs/build-control/2026-06-25 - phase-1-chunk-specs.md"
+    notes: >
+      Cloud agent may write the schema file and open a PR.
+      Acceptance requires running python -m unittest on Windows or in GitHub Actions CI.
+      GitHub Actions not yet configured in GAIL OS Rev 2 — see gap in cloud-env-requirements.md.
+
+  - id: "1.2"
+    title: "Port Action + state machine from Rev 1 to GAIL OS Rev 2"
+    phase: 1
+    repo: Adamgdwn/gail-ai-operating-system-rev-2
+    platform: windows-local
+    type: code
+    status: blocked
+    claimed_by: null
+    claimed_at: null
+    branch: null
+    pr_url: null
+    chunk_spec_ref: "docs/build-control/2026-06-25 - phase-1-chunk-specs.md"
+    notes: "Blocked by 1.1."
+
+  - id: "1.3"
+    title: "Define AuthorityEnvelope schema"
+    phase: 1
+    repo: Adamgdwn/gail-ai-operating-system-rev-2
+    platform: windows-local
+    type: code
+    status: available
+    claimed_by: null
+    claimed_at: null
+    branch: null
+    pr_url: null
+    chunk_spec_ref: "docs/build-control/2026-06-25 - phase-1-chunk-specs.md"
+    notes: "New work. All 14 charter fields from master-plan-summary.md §5."
+
+  - id: "1.4"
+    title: "Define EvidencePacket schema"
+    phase: 1
+    repo: Adamgdwn/gail-ai-operating-system-rev-2
+    platform: windows-local
+    type: code
+    status: available
+    claimed_by: null
+    claimed_at: null
+    branch: null
+    pr_url: null
+    chunk_spec_ref: "docs/build-control/2026-06-25 - phase-1-chunk-specs.md"
+    notes: "New work. Required fields from master-plan-summary.md §5."

@@ -11,16 +11,18 @@ Task states: `independent` | `coordinated` | `blocked` | `ready-for-integration`
 
 **Phase goal:** All repos aligned to master architecture language. Locked: CNS model, R/A ladders, object model, source-of-truth ownership. No repo races ahead until this is complete.
 
-| # | Task | Repo | State | Notes |
-|---|---|---|---|---|
-| 0.1 | Accept master architecture doc as governing reference | All repos | `complete` | Locked 2026-06-25 in `master-plan-summary.md` |
-| 0.2 | Align Freedom repo to "executive cognition" framing (not UI-first) | `the-freedom-engine-os` | `independent` | README already reflects this; verify AGENTS.md |
-| 0.3 | Align GAIL OS Rev 2 to "deep-brain / autonomic management" framing | `gail-ai-operating-system-rev-2` | `independent` | Verify no "hand brake" framing in docs |
-| 0.4 | Align Graphify to "core cognitive infrastructure" framing (not product spoke) | `graphify-workspace-cockpit` | `independent` | Cockpit docs need CNS-role section added |
-| 0.5 | Document R0–R5 + A0–A6 ladders as shared canonical in GAIL OS | `gail-ai-operating-system-rev-2` | `independent` | Source of truth for both ladders |
-| 0.6 | Align M365 Foundation to "first-class enterprise body" framing | `ag-operations-m365-foundation` | `independent` | Stage 9 doc already lays groundwork |
-| 0.7 | Each product repo adds CNS role statement to AGENTS.md | All product repos | `independent` | Quick docs task per repo |
-| 0.8 | Resolve what "Enhanced Graphify" on Windows means vs. cockpit on Linux | Windows + Linux | `coordinated` | Decision captured in master-plan-summary.md §8 |
+Platform tags: `cloud-safe` = GitHub MCP only | `windows-local` = needs Windows execution | `linux-local` = needs Linux execution | `coordinated` = cross-machine
+
+| # | Task | Repo | Platform | State | Notes |
+|---|---|---|---|---|---|
+| 0.1 | Accept master architecture doc as governing reference | All repos | — | `complete` | Locked 2026-06-25 in `master-plan-summary.md` |
+| 0.2 | Align Freedom repo to "executive cognition" framing (not UI-first) | `the-freedom-engine-os` | `cloud-safe` | `independent` | See dispatch 0.2. Verify AGENTS.md + README framing. |
+| 0.3 | Align GAIL OS Rev 2 to "deep-brain / autonomic management" framing | `gail-ai-operating-system-rev-2` | `cloud-safe` | `independent` | See dispatch 0.3. Check for "hand brake" framing. |
+| 0.4 | Align Graphify to "core cognitive infrastructure" framing (not product spoke) | `graphify-workspace-cockpit` | `cloud-safe` | `independent` | See dispatch 0.4. CNS role section added 2026-06-25; verify cockpit docs. |
+| 0.5 | Document R0–R5 + A0–A6 ladders as shared canonical in GAIL OS | `gail-ai-operating-system-rev-2` | `cloud-safe` | `independent` | See dispatch 0.5. New file: `docs/governance/authority-ladders.md`. |
+| 0.6 | Align M365 Foundation to "first-class enterprise body" framing | `ag-operations-m365-foundation` | `cloud-safe` | `independent` | See dispatch 0.6. Create AGENTS.md with CNS role. |
+| 0.7 | Each product repo adds CNS role statement to AGENTS.md | All product repos | `cloud-safe` | `independent` | See dispatch 0.7a–0.7f. One PR per repo. 0.7d + 0.7e are private. |
+| 0.8 | Resolve what "Enhanced Graphify" on Windows means vs. cockpit on Linux | Windows + Linux | `coordinated` | `coordinated` | Decision in master-plan-summary.md §8. Blocked by open Q2. |
 
 **Phase 0 gate (CP-0):** All repos can map their purpose to CNS layer. Open a PR in each repo with role statement before Phase 1 proceeds in that repo.
 
@@ -30,17 +32,19 @@ Task states: `independent` | `coordinated` | `blocked` | `ready-for-integration`
 
 **Phase goal:** One canonical action can move through the state machine. GAIL OS Rev 2 is the implementation home.
 
-| # | Task | Repo | State | Notes |
-|---|---|---|---|---|
-| 1.1 | Port `Mission` schema from UAOS Rev 1 → GAIL OS Rev 2 | `gail-ai-operating-system-rev-2` | `independent` | Rev 1 at `user-ai-operating-system` as reference |
-| 1.2 | Port `Action` + state machine from Rev 1 → Rev 2 | `gail-ai-operating-system-rev-2` | `independent` | State: observed → proposed → … → learned |
-| 1.3 | Define `AuthorityEnvelope` schema (all 14 charter fields from master plan) | `gail-ai-operating-system-rev-2` | `independent` | New work; no prior implementation |
-| 1.4 | Define `EvidencePacket` schema (all required fields from master plan §11.4) | `gail-ai-operating-system-rev-2` | `independent` | New work |
-| 1.5 | Build `Connector` registry (registered bridges, scopes, rate limits, evidence expectations) | `gail-ai-operating-system-rev-2` | `independent` | |
-| 1.6 | Build `Agent` registry (purpose, owner/sponsor, maturity, permissions, performance) | `gail-ai-operating-system-rev-2` | `independent` | Freedom Engine already has agent registry — check for import |
-| 1.7 | Define canonical event vocabulary as TypeScript types | `gail-ai-operating-system-rev-2` | `independent` | ~30 events from master plan §13.4 |
-| 1.8 | Expose mission + action + evidence as API endpoints (HTTP or Supabase RPC) | `gail-ai-operating-system-rev-2` | `blocked` | Blocked by 1.1–1.4 |
-| 1.9 | Walk one action through full state machine manually with evidence | `gail-ai-operating-system-rev-2` | `blocked` | Acceptance test for Phase 1 gate |
+Note: Phase 1 tasks are `windows-local`. A cloud agent may write code and open a PR, but test validation requires the Windows machine or GitHub Actions CI (not yet configured in GAIL OS Rev 2).
+
+| # | Task | Repo | Platform | State | Notes |
+|---|---|---|---|---|---|
+| 1.1 | Port `Mission` schema from UAOS Rev 1 → GAIL OS Rev 2 | `gail-ai-operating-system-rev-2` | `windows-local` | `independent` | Rev 1 at `user-ai-operating-system` as reference. Cloud agent can write; needs test run to confirm. |
+| 1.2 | Port `Action` + state machine from Rev 1 → Rev 2 | `gail-ai-operating-system-rev-2` | `windows-local` | `independent` | Blocked by 1.1 in practice. State: observed → proposed → … → learned. |
+| 1.3 | Define `AuthorityEnvelope` schema (all 14 charter fields from master plan) | `gail-ai-operating-system-rev-2` | `windows-local` | `independent` | New work. Cloud agent can write schema; validation needs test run. |
+| 1.4 | Define `EvidencePacket` schema (all required fields from master plan §11.4) | `gail-ai-operating-system-rev-2` | `windows-local` | `independent` | New work. Same note as 1.3. |
+| 1.5 | Build `Connector` registry (registered bridges, scopes, rate limits, evidence expectations) | `gail-ai-operating-system-rev-2` | `windows-local` | `independent` | |
+| 1.6 | Build `Agent` registry (purpose, owner/sponsor, maturity, permissions, performance) | `gail-ai-operating-system-rev-2` | `windows-local` | `independent` | Freedom Engine already has agent registry — check for import. |
+| 1.7 | Define canonical event vocabulary as TypeScript types | `gail-ai-operating-system-rev-2` | `windows-local` | `independent` | ~30 events from master plan §13.4. |
+| 1.8 | Expose mission + action + evidence as API endpoints (HTTP or Supabase RPC) | `gail-ai-operating-system-rev-2` | `windows-local` | `blocked` | Blocked by 1.1–1.4. |
+| 1.9 | Walk one action through full state machine manually with evidence | `gail-ai-operating-system-rev-2` | `windows-local` | `blocked` | Acceptance test for Phase 1 gate. |
 
 **Phase 1 gate (CP-1):** One action walks the full state machine. Evidence packet created. API reachable from Linux.
 

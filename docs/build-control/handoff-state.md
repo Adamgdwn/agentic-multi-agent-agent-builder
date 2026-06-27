@@ -1,6 +1,6 @@
 # Handoff State — Guided AI Labs Agentic OS CNS
 
-**Last Updated:** 2026-06-25 (session 2 — Phase 0 execution + Phase 1 chunk specs)
+**Last Updated:** 2026-06-26 (session 3 — cloud agent infrastructure)
 **Owner:** Build Agent Orchestrator
 
 This file is the restart point for any agent, session, or context reset. Read this first after a compaction, clear, or handoff.
@@ -9,9 +9,22 @@ This file is the restart point for any agent, session, or context reset. Read th
 
 ## Where We Are
 
-**Phase:** Phase 0 complete → Phase 1 ready
-**Status:** Phase 0 CP-0 tasks done. Phase 1 chunk specs written. Ready for Windows agent to begin Chunk 20.
-**Immediate next:** On GAIL OS Rev 2 (Windows) — run Chunk 20 (local governed approval writes). See `2026-06-25 - phase-1-chunk-specs.md`.
+**Phase:** Phase 0 — cloud agent runs in progress
+**Status:** Cloud agent infrastructure complete. Phase 0 tasks 0.2–0.7f ready to run (all cloud-safe). Phase 1 chunk specs written but require Windows-local execution.
+**Immediate next (cloud agents):** Pick up any `available` task from `docs/build-control/cloud-dispatch.yaml`. Read `docs/cloud-agent-startup.md` first.
+**Immediate next (Windows/local):** After CP-0 — begin Chunk 20 in GAIL OS Rev 2. See `docs/build-control/2026-06-25 - phase-1-chunk-specs.md`.
+
+### 2026-06-26 Session 3 — What Was Done
+
+1. **Cloud agent infrastructure created** — 4 new files:
+   - `docs/cloud-agent-startup.md` — startup sequence, branch strategy, claim/lock pattern, close-out protocol for cloud context
+   - `docs/build-control/cloud-dispatch.yaml` — machine-readable dispatch: 11 available Phase 0 tasks (0.2–0.7f) + Phase 1 tasks with platform tags
+   - `docs/build-control/2026-06-26 - phase-0-chunk-specs.md` — detailed chunk specs for all Phase 0 tasks with acceptance criteria, templates, stop conditions
+   - `docs/cloud-env-requirements.md` — env var and MCP requirements by phase
+2. **AGENTS.md updated** — cloud agent banner added (redirects to cloud-agent-startup.md), Graphify Policy conditionalized, Close-Out Protocol updated (no /compact in cloud)
+3. **AI_BOOTSTRAP.md updated** — Graphify Policy conditionalized, Commands section filled in (N/A — coordination repo)
+4. **repo-workstream-board.md updated** — Platform column added to Phase 0 and Phase 1 tables (cloud-safe, windows-local, coordinated)
+5. **current-build-pathway.md updated** — Chunk One filled in (complete), Chunk Two added (Phase 0 cloud agent runs, planned)
 
 ### 2026-06-25 Session 2 — What Was Done
 

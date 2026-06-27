@@ -73,50 +73,106 @@ Avoid mixing unrelated code, governance, deployment, and product decisions in on
 
 | Step | Status | Timestamp | Owner | Notes |
 |------|--------|-----------|-------|-------|
-| Define current chunk | active | 2026-06-25T21:22:27-06:00 | Technical Lead | Replace this row with the current project-specific build step, target completion state, acceptance criteria, and stop condition. |
-| Validate chunk | pending | 2026-06-25T21:22:27-06:00 | Technical Lead | Record commands run and results. |
-| Handoff next chunk | pending | 2026-06-25T21:22:27-06:00 | Technical Lead | Leave the next agent a narrow, actionable start point. |
+| Cloud agent infrastructure setup | complete | 2026-06-26 | Claude Code | All cloud agent files written and committed. See Chunk One. |
+| Phase 0 cloud agent runs | active | 2026-06-26 | Cloud agents | 11 PRs to open across 9 repos. See cloud-dispatch.yaml tasks 0.2–0.7f. |
+| CP-0 gate | pending | — | Adam | All Phase 0 PRs merged. All repos can map purpose to CNS layer. |
 
-## Chunk One - Current Objective
+## Chunk One - Cloud Agent Infrastructure Setup
 
-Status: planned
+Status: complete
+Date: 2026-06-26
 
-Completion target: Draft complete / Task complete / Integration complete / Release ready / Blocked
+Completion target: Task complete
 
-Budget class: Tiny / Small / Medium / Large / Strategic
+Budget class: Small
 
-Objective:
+Objective: Set up all infrastructure needed for cloud agents to operate on Phase 0 tasks in a structured, safe, and repeatable way — fixing broken local-path references in startup docs, creating machine-readable task dispatch, writing detailed chunk specs, and documenting env requirements.
 
 Acceptance criteria:
 
-- [ ] Criterion one
-- [ ] Criterion two
+- [x] `docs/cloud-agent-startup.md` created — cloud-safe startup instructions, branch strategy, claim/lock pattern, close-out protocol
+- [x] `docs/build-control/cloud-dispatch.yaml` created — machine-readable dispatch with 11 available Phase 0 tasks, platform tags, branch naming convention
+- [x] `docs/build-control/2026-06-26 - phase-0-chunk-specs.md` created — detailed specs for tasks 0.2–0.7f with acceptance criteria, templates, and stop conditions
+- [x] `docs/cloud-env-requirements.md` created — env var and MCP tool requirements by phase and task type
+- [x] `AGENTS.md` updated — cloud agent banner at top, Graphify Policy conditional, Close-Out Protocol updated (no /compact in cloud)
+- [x] `AI_BOOTSTRAP.md` updated — Graphify Policy conditional, Commands section filled in (N/A — coordination repo)
+- [x] `docs/build-control/repo-workstream-board.md` updated — Platform column added to Phase 0 and Phase 1 tables
+- [x] All changes committed and pushed to GitHub
 
 Inputs:
 
-- `START_HERE.md`
-- `docs/context-map.md`
-- `docs/current-build-pathway.md`
+- `docs/build-control/handoff-state.md`
+- `docs/build-control/repo-workstream-board.md`
+- `AGENTS.md`, `AI_BOOTSTRAP.md`
 
 Outputs:
 
-- Replace with the files, behavior, evidence, or decision this chunk should produce.
+- `docs/cloud-agent-startup.md`
+- `docs/build-control/cloud-dispatch.yaml`
+- `docs/build-control/2026-06-26 - phase-0-chunk-specs.md`
+- `docs/cloud-env-requirements.md`
+- Updated `AGENTS.md`, `AI_BOOTSTRAP.md`, `docs/build-control/repo-workstream-board.md`
 
 Validation:
 
-- Replace with the commands, tests, reviews, or manual checks required for this chunk.
+- Human review: open `cloud-dispatch.yaml` — confirm task list, branch strategy, platform tags
+- Human review: open `cloud-agent-startup.md` — confirm startup sequence is cloud-safe (no local paths)
+- Human review: open `AGENTS.md` — confirm cloud banner is at top of file
 
-Stop condition:
-
-- Stop when the completion target is reached, when acceptance criteria are unclear, or when repeated attempts stop producing new evidence.
+Stop condition: N/A — chunk complete.
 
 Known gaps:
 
-- Replace with unverified items, deferred hardening, or risks.
+- GitHub Actions CI not yet added to `gail-ai-operating-system-rev-2` — Phase 1 code tasks cannot be fully validated by cloud agents until this is set up
+- Private repos (0.7d change-leadership-tools, 0.7e clean-pdf-build) may need explicit `repo` scope confirmation on GitHub token before cloud agent can access them
 
-Next action:
+Next action: Run first cloud agent against dispatch task 0.2, or run all 0.2–0.7f tasks in parallel.
 
-- Replace with the next bounded step.
+---
+
+## Chunk Two - Phase 0 Cloud Agent Runs
+
+Status: planned
+
+Completion target: Task complete
+
+Budget class: Small
+
+Objective: Run cloud agents against all available Phase 0 dispatch tasks (0.2–0.7f). Each agent opens one PR per task to the target repo. Adam reviews and merges. Phase 0 gate (CP-0) is confirmed when all PRs are merged.
+
+Acceptance criteria:
+
+- [ ] PRs opened for all 11 Phase 0 tasks (0.2, 0.3, 0.4, 0.5, 0.6, 0.7a–0.7f)
+- [ ] Each PR contains correct CNS framing per chunk spec in `docs/build-control/2026-06-26 - phase-0-chunk-specs.md`
+- [ ] Adam reviews and merges each PR
+- [ ] `cloud-dispatch.yaml` updated: all 0.x tasks marked `complete` (by agent in their PR)
+- [ ] `repo-workstream-board.md` Phase 0 tasks updated to `complete`
+- [ ] CP-0 confirmed: all repos can map their purpose to CNS layer
+
+Inputs:
+
+- `docs/build-control/cloud-dispatch.yaml`
+- `docs/build-control/2026-06-26 - phase-0-chunk-specs.md`
+- `docs/cloud-agent-startup.md`
+
+Outputs:
+
+- 11 PRs across 9 repos
+- All Phase 0 tasks marked `complete` in dispatch and workstream board
+
+Validation:
+
+- Human review of each PR before merge
+- After all merges: check Phase 0 table in `repo-workstream-board.md` — all rows should be `complete`
+
+Stop condition: Stop if a task is blocked (access denied, conflicting framing). Surface as `[BLOCKED]` PR in control repo. Do not skip blocked tasks silently.
+
+Known gaps:
+
+- 0.7d and 0.7e are private repos — may be blocked by token scope
+- If GitHub Actions is added to GAIL OS Rev 2 before chunk two is complete, Phase 1 code tasks become cloud-validated
+
+Next action: After CP-0 — update `handoff-state.md` Phase 0 status. Then proceed to Phase 1 (Chunk 20 in `gail-ai-operating-system-rev-2`, Windows-local).
 
 ## Timestamp Rule
 
@@ -130,8 +186,9 @@ date -Iseconds
 
 | Timestamp | Command | Result | Notes |
 |-----------|---------|--------|-------|
-| 2026-06-25T21:22:27-06:00 | `git status --short` | pending | Always check repo state before edits. |
-| 2026-06-25T21:22:27-06:00 | `bash scripts/governance-preflight.sh` | pending | Required for material or risk-triggering work; replace with the real validation result when run. |
+| 2026-06-26 | `git status --short` | clean | Confirmed before Chunk One edits. |
+| 2026-06-26 | Human review: `docs/cloud-agent-startup.md` | pending | Verify startup sequence has no local paths before first cloud agent run. |
+| 2026-06-26 | Human review: `docs/build-control/cloud-dispatch.yaml` | pending | Verify task list, branch strategy, and platform tags. |
 
 ## Next Handoff
 

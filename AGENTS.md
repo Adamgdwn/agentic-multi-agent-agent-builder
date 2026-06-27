@@ -1,5 +1,15 @@
 # Agent Instructions
 
+## Cloud Agent Mode
+
+If you are a cloud agent (claude.ai, scheduled run, remote CI) — not a local Claude Code session on Adam's workstation:
+
+**Stop here. Read `docs/cloud-agent-startup.md` instead.**
+
+The sections below contain local filesystem paths and CLI commands (`/compact`, `graphify`, `date -Iseconds`) that only apply to local Claude Code sessions on Adam's Linux machine.
+
+---
+
 ## Normal Startup
 
 For ordinary scoped work:
@@ -91,7 +101,9 @@ After a compaction, context clear, or fresh restart, treat the latest handoff or
 
 ## Graphify Policy
 
-Use the canonical Graphify governance file:
+**Cloud agents:** Skip this section. You cannot run the Graphify CLI. Use `docs/build-control/master-plan-summary.md`, `docs/build-control/dependency-graph.md`, and `docs/build-control/handoff-state.md` for architecture context instead. See `docs/cloud-agent-startup.md`.
+
+**Local Claude Code agents:** Use the canonical Graphify governance file:
 
 `/home/adamgoodwin/code/Tools/graphify/docs/agent-governance.md`
 
@@ -119,12 +131,13 @@ At the end of every chunk of work:
 2. Stage the relevant files, commit with a clear message, and push. Do this
    automatically — do not ask unless a carry-forward flag or blocker requires
    a decision first.
-3. Confirm the push succeeded, then suggest `/compact` to compress the context
-   window. Do not suggest `/clear` — compact preserves the summary of what was
-   done, which is cheaper to resume from than a cold start.
-4. `/clear` is an explicit user override only: use it when prior context had
-   persistent wrong assumptions, or the next chunk is in a completely unrelated
-   domain.
+3. Confirm the push succeeded. **Local Claude Code agents:** suggest `/compact` to compress
+   the context window — do not suggest `/clear` (compact preserves the summary, cheaper
+   to resume from). **Cloud agents:** open the PR and end your session — `/compact` and
+   `/clear` are CLI-only commands that do not exist in cloud context.
+4. `/clear` (local only) is an explicit user override: use it when prior context had
+   persistent wrong assumptions, or the next chunk is in a completely unrelated domain.
+   **Cloud agents:** N/A.
 5. Do not auto-compact. Do not skip the commit step without flagging why.
 
 A chunk ends when:
