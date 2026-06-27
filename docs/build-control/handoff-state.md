@@ -11,20 +11,26 @@ This file is the restart point for any agent, session, or context reset. Read th
 
 active: false
 last_completed_task: "1.0"
-next_task: "1.1, 1.3, 1.4 — Phase 1 code tasks (available after task 1.0 merges)"
+next_task: "1.1 (Mission schema), 1.3 (AuthorityEnvelope), 1.4 (EvidencePacket) — all available, cloud-safe"
 skipped_tasks: []
 compaction_count: 6
-paused: true
-pause_reason: "Task 1.0 PR #3 open — awaiting Adam merge. Phase 1 code tasks available after CI is live."
+paused: false
+pause_reason: null
 retry_counts: {}
 
 ---
 
 ## Where We Are
 
-**Phase:** Phase 0 — COMPLETE (CP-0 confirmed 2026-06-27)
-**Status:** All 11 Phase 0 PRs merged. All 9 subject repos have correct CNS role framing in AGENTS.md. Dispatch updated to `complete`. Workstream board updated.
-**Immediate next:** Merge PR #3 in `gail-ai-operating-system-rev-2` (task 1.0 — CI setup). After merge, Phase 1 code tasks 1.1, 1.3, 1.4 become available and can run as cloud agents — code + test file in the PR, CI validates on merge.
+**Phase:** Phase 1 — GAIL OS Spine schemas (CI now live)
+**Status:** Task 1.0 merged 2026-06-27. CI active on `gail-ai-operating-system-rev-2`. Tasks 1.1, 1.3, 1.4 are `available` and cloud-safe — cloud agent writes schema + test file, opens PR, CI validates on merge.
+**Immediate next:** Run tasks 1.1, 1.3, 1.4 (can run in parallel — no dependencies between them). Task 1.2 blocked on 1.1.
+
+### 2026-06-27 — Task 1.0 merged, Phase 1 code tasks unblocked
+
+- **PR #3 merged** by Adam: `.github/workflows/ci.yml` live on `gail-ai-operating-system-rev-2` main.
+- **Dispatch updated:** task 1.0 → `complete`; tasks 1.1, 1.3, 1.4 → `available`; platform → `cloud-safe` for all.
+- **Loop unpaused.** Ready for Phase 1 code tasks.
 
 ### 2026-06-26 — Task 1.0 complete (PR open, awaiting merge)
 
