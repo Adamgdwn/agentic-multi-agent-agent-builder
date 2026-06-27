@@ -9,38 +9,14 @@ This file is the restart point for any agent, session, or context reset. Read th
 
 ## Loop State
 
-active: true
-current_task_id: "0.6"
-current_task_title: "Align M365 Foundation to first-class enterprise body framing"
-target_repo: "Adamgdwn/ag-operations-m365-foundation"
-branch: "cloud/0.6-m365-framing"
-pr_url: null
-started_at: "2026-06-26"
-compaction_count: 2
-current_phase: "implementation"
-step: "claimed"
-exact_next_step: "Create branch cloud/0.6-m365-framing, check/create AGENTS.md with CNS role block (first-class enterprise body) per chunk spec, verify Stage 9 doc framing, open PR"
-acceptance_criteria:
-  met: []
-  remaining:
-    - "AGENTS.md exists with CNS role section (first-class enterprise body)"
-    - "Framing positions M365 as first-class enterprise body, not integration/plugin"
-    - "Stage 9 doc framing consistent"
-    - "PR opened to main"
-decisions: []
-validation:
-  run: []
-  not_run:
-    - "Human PR review — pending Adam merge"
-required_context_on_resume:
-  - "docs/loop-protocol.md"
-  - "docs/build-control/2026-06-26 - phase-0-chunk-specs.md (task 0.6 section — contains CNS role block)"
-blockers: []
-last_completed_task: "0.5"
-next_task: "0.6"
+active: false
+last_completed_task: "0.6"
+next_task: "0.7a"
 skipped_tasks: []
+compaction_count: 3
 paused: false
 pause_reason: null
+refresh_reason: "context budget — large M365 dir listing + Stage 9 read; refreshing before 0.7-series"
 
 ---
 
@@ -50,6 +26,22 @@ pause_reason: null
 **Status:** Cloud agent infrastructure complete. Phase 0 tasks 0.2–0.7f ready to run (all cloud-safe). Phase 1 chunk specs written but require Windows-local execution.
 **Immediate next (cloud agents):** Pick up any `available` task from `docs/build-control/cloud-dispatch.yaml`. Read `docs/cloud-agent-startup.md` first.
 **Immediate next (Windows/local):** After CP-0 — begin Chunk 20 in GAIL OS Rev 2. See `docs/build-control/2026-06-25 - phase-1-chunk-specs.md`.
+
+### 2026-06-26 Session 5 — Loop run: Task 0.6 (M365 framing)
+
+1. **Claimed + executed task 0.6** in `Adamgdwn/ag-operations-m365-foundation` via GitHub MCP.
+   - Repo had no AGENTS.md → created `AGENTS.md` with CNS role block (first-class enterprise body; no unregistered write paths; BLK-005; lean startup; secret handling).
+   - Stage 9 doc (`M365_STAGE_9_AGENTIC_OS_BRIDGE_READINESS.md`) verified consistent (governed business substrate, purpose-built agentic bridge).
+   - **PR #2 opened** → https://github.com/Adamgdwn/ag-operations-m365-foundation/pull/2 (`ready-for-review`).
+2. **Dispatch updated** — 0.6 → `ready-for-review`. Next: 0.7a.
+
+> **⚠️ CROSS-REPO ISSUE FOR ADAM — UAOS→GAIL OS naming drift.** Legacy "UAOS / User AI
+> Operating System" naming for the execution layer (superseded by GAIL OS Rev 2 on
+> 2026-06-21) persists across repos: found in `graphify-workspace-cockpit/docs/vision.md`
+> (task 0.4, partially corrected) and `ag-operations-m365-foundation` Stage 9 +
+> `M365_GRAPHIFY_UAOS_ALIGNMENT.md` (task 0.6, flagged via AGENTS.md note). This is broader
+> than any single Tiny task. **Recommend scheduling a dedicated cross-repo UAOS→GAIL OS
+> rename pass** as a follow-up work item after CP-0. Not blocking Phase 0.
 
 ### 2026-06-26 Session 5 — Loop run: Task 0.5 (authority ladders)
 
