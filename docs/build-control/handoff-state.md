@@ -9,13 +9,13 @@ This file is the restart point for any agent, session, or context reset. Read th
 
 ## Loop State
 
-active: true
-last_completed_task: "1.1, 1.3, 1.4 (parallel — PRs merged 2026-06-27)"
-next_task: "1.2 — Port Action + state machine from Rev 1 to GAIL OS Rev 2"
+active: false
+last_completed_task: "1.2 — Action schema + state machine (PR #7 open)"
+next_task: "Adam merges PR #7. After merge: identify next available Phase 1 task."
 skipped_tasks: []
 compaction_count: 6
-paused: false
-pause_reason: null
+paused: true
+pause_reason: "Task 1.2 PR #7 open — awaiting Adam review and merge."
 retry_counts: {}
 
 ---
@@ -23,8 +23,13 @@ retry_counts: {}
 ## Where We Are
 
 **Phase:** Phase 1 — GAIL OS Spine schemas
-**Status:** Tasks 1.1, 1.3, 1.4 merged to main 2026-06-27. CI passed on all three. Task 1.2 (Action + state machine) is now available.
-**Immediate next:** Execute task 1.2 — branch `cloud/1.2-action-state-machine`, write `action.py` + `tests/test_action.py`, open PR.
+**Status:** Tasks 1.1/1.3/1.4 merged 2026-06-27. Task 1.2 PR #7 open, CI running.
+**Immediate next:** Adam reviews and merges PR #7 (task 1.2). Loop then checks for next available Phase 1 task.
+
+### 2026-06-27 — Task 1.2 executed (PR #7 open, awaiting review)
+
+- **PR #7 opened** (task 1.2): `action.py` — `Action` dataclass, `VALID_TRANSITIONS` (all 12 `MissionStatus` stages), `TERMINAL_STATES` (`{rejected, learned}`), `ActionTransitionError`, `create_action()` factory, `transition_action()` (stamps `claimed_at`/`executed_at`), `validate_action()`. 21 tests in `tests/test_action.py`.
+- **Loop paused:** awaiting Adam review of PR #7.
 
 ### 2026-06-27 — Tasks 1.1, 1.3, 1.4 merged (CI green on all)
 
