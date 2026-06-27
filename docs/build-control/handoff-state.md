@@ -9,37 +9,14 @@ This file is the restart point for any agent, session, or context reset. Read th
 
 ## Loop State
 
-active: true
-current_task_id: "0.7a"
-current_task_title: "CNS role statement in guided-ai-journey-website-and-tools"
-target_repo: "Adamgdwn/guided-ai-journey-website-and-tools"
-branch: "cloud/0.7a-guided-ai-journey-cns-role"
-pr_url: null
-started_at: "2026-06-26"
-compaction_count: 3
-current_phase: "implementation"
-step: "claimed"
-exact_next_step: "Create branch, create/update AGENTS.md with CNS Role section (diagnostic sensory + readiness pathway; events readiness.completed/pilot_candidate.created/inquiry.created) per #task-07 template, open PR"
-acceptance_criteria:
-  met: []
-  remaining:
-    - "AGENTS.md exists with CNS Role section per template"
-    - "References 3-layer core + Phase 5 events + CP-1 prerequisite"
-    - "PR opened to main"
-decisions: []
-validation:
-  run: []
-  not_run:
-    - "Human PR review — pending Adam merge"
-required_context_on_resume:
-  - "docs/loop-protocol.md"
-  - "docs/build-control/2026-06-26 - phase-0-chunk-specs.md (#task-07 template + role/events table)"
-blockers: []
-last_completed_task: "0.6"
-next_task: "0.7a"
+active: false
+last_completed_task: "0.7a"
+next_task: "0.7b"
 skipped_tasks: []
+compaction_count: 4
 paused: false
 pause_reason: null
+refresh_reason: "context budget — large AGENTS.md prepend (sent twice after a missing-branch retry); refresh before 0.7b"
 refresh_reason: "context budget — large M365 dir listing + Stage 9 read; refreshing before 0.7-series"
 
 ---
@@ -50,6 +27,15 @@ refresh_reason: "context budget — large M365 dir listing + Stage 9 read; refre
 **Status:** Cloud agent infrastructure complete. Phase 0 tasks 0.2–0.7f ready to run (all cloud-safe). Phase 1 chunk specs written but require Windows-local execution.
 **Immediate next (cloud agents):** Pick up any `available` task from `docs/build-control/cloud-dispatch.yaml`. Read `docs/cloud-agent-startup.md` first.
 **Immediate next (Windows/local):** After CP-0 — begin Chunk 20 in GAIL OS Rev 2. See `docs/build-control/2026-06-25 - phase-1-chunk-specs.md`.
+
+### 2026-06-26 Session 5 — Loop run: Task 0.7a (GAI Journey CNS role)
+
+1. **Claimed + executed task 0.7a** in `Adamgdwn/guided-ai-journey-website-and-tools` via GitHub MCP.
+   - AGENTS.md existed (large, ~280 lines) → prepended CNS Role section (Diagnostic sensory + readiness pathway circuit; Phase 5 events readiness.completed/pilot_candidate.created/inquiry.created; CP-1 prerequisite).
+   - Integrity verified via commit diff: **20 additions, 0 deletions** (clean prepend).
+   - **PR #4 opened** → https://github.com/Adamgdwn/guided-ai-journey-website-and-tools/pull/4 (`ready-for-review`).
+2. **Process note:** initial write 404'd because the branch wasn't created first — fixed by creating the branch, then re-writing. Reminder for 0.7b–0.7f: create branch BEFORE composing large file writes.
+3. **Dispatch updated** — 0.7a → `ready-for-review`. Next: 0.7b (oldskoolai.com).
 
 ### 2026-06-26 Session 5 — Loop run: Task 0.6 (M365 framing)
 
