@@ -9,22 +9,29 @@ This file is the restart point for any agent, session, or context reset. Read th
 
 ## Loop State
 
-active: false
-last_completed_task: "1.1, 1.3, 1.4 (parallel)"
-next_task: "Merge PRs #4, #5, #6. After 1.1 merges: task 1.2 (Action + state machine) becomes available."
+active: true
+last_completed_task: "1.1, 1.3, 1.4 (parallel — PRs merged 2026-06-27)"
+next_task: "1.2 — Port Action + state machine from Rev 1 to GAIL OS Rev 2"
 skipped_tasks: []
 compaction_count: 6
-paused: true
-pause_reason: "Tasks 1.1/1.3/1.4 PRs open — awaiting Adam review and merge. Task 1.2 unblocks after 1.1 merges."
+paused: false
+pause_reason: null
 retry_counts: {}
 
 ---
 
 ## Where We Are
 
-**Phase:** Phase 1 — GAIL OS Spine schemas (3 PRs open for review)
-**Status:** Tasks 1.1, 1.3, 1.4 complete (run in parallel 2026-06-27). PRs #4, #5, #6 open on `gail-ai-operating-system-rev-2`. CI will validate each on merge.
-**Immediate next:** Adam reviews and merges PRs #4 (1.1), #5 (1.3), #6 (1.4). After #4 merges, task 1.2 (Action + state machine) becomes available.
+**Phase:** Phase 1 — GAIL OS Spine schemas
+**Status:** Tasks 1.1, 1.3, 1.4 merged to main 2026-06-27. CI passed on all three. Task 1.2 (Action + state machine) is now available.
+**Immediate next:** Execute task 1.2 — branch `cloud/1.2-action-state-machine`, write `action.py` + `tests/test_action.py`, open PR.
+
+### 2026-06-27 — Tasks 1.1, 1.3, 1.4 merged (CI green on all)
+
+- **PR #4 merged** (task 1.1): `mission.py` — `MissionStatus` enum, Mission type re-exports. 10 tests.
+- **PR #5 merged** (task 1.3): `authority_envelope.py` — 14-field `AuthorityEnvelope`, `AuthorityLevel` (R0–R5), `AutonomyLevel` (A0–A6), `EnvelopeStatus`, `validate_authority_envelope()`. 14 tests.
+- **PR #6 merged** (task 1.4): `evidence_packet.py` — 12-field `EvidencePacket`, `EvidenceResult`, `ExecutionMode`, `create_evidence_packet()`, `validate_evidence_packet()`. 14 tests.
+- **Task 1.2 unblocked** — dispatch updated to `available`.
 
 ### 2026-06-27 — Tasks 1.1, 1.3, 1.4 executed in parallel (PRs open)
 
