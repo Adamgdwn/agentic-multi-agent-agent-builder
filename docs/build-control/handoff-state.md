@@ -9,37 +9,14 @@ This file is the restart point for any agent, session, or context reset. Read th
 
 ## Loop State
 
-active: true
-current_task_id: "0.7c"
-current_task_title: "CNS role statement in bowtie_risk_program"
-target_repo: "Adamgdwn/bowtie_risk_program"
-branch: "cloud/0.7c-bowtie-cns-role"
-pr_url: null
-started_at: "2026-06-26"
-compaction_count: 4
-current_phase: "implementation"
-step: "claimed"
-exact_next_step: "Branch created; create/update AGENTS.md with CNS Role (Risk + control modelling circuit; events risk.identified/control.applied/risk_program.updated), open PR"
-acceptance_criteria:
-  met: []
-  remaining:
-    - "AGENTS.md exists with CNS Role section per #task-07 template"
-    - "References 3-layer core + Phase 5 events + CP-1 prerequisite"
-    - "PR opened to main"
-decisions: []
-validation:
-  run: []
-  not_run:
-    - "Human PR review — pending Adam merge"
-required_context_on_resume:
-  - "docs/loop-protocol.md"
-  - "docs/build-control/2026-06-26 - phase-0-chunk-specs.md (#task-07 template + role/events table)"
-blockers: []
-last_completed_task: "0.7b"
-next_task: "0.7c"
+active: false
+last_completed_task: "0.7c"
+next_task: "0.7d"
 skipped_tasks: []
+compaction_count: 5
 paused: false
 pause_reason: null
+refresh_reason: "refresh before private repos 0.7d/0.7e (verify token scope; [BLOCKED] path if access denied)"
 
 ---
 
@@ -49,6 +26,13 @@ pause_reason: null
 **Status:** Cloud agent infrastructure complete. Phase 0 tasks 0.2–0.7f ready to run (all cloud-safe). Phase 1 chunk specs written but require Windows-local execution.
 **Immediate next (cloud agents):** Pick up any `available` task from `docs/build-control/cloud-dispatch.yaml`. Read `docs/cloud-agent-startup.md` first.
 **Immediate next (Windows/local):** After CP-0 — begin Chunk 20 in GAIL OS Rev 2. See `docs/build-control/2026-06-25 - phase-1-chunk-specs.md`.
+
+### 2026-06-26 Session 5 — Loop run: Task 0.7c (bowtie_risk_program CNS role)
+
+1. **Claimed + executed task 0.7c** in `Adamgdwn/bowtie_risk_program`; repo had no AGENTS.md → created fresh AGENTS.md (Risk + control modelling circuit; events risk.identified/control.applied/risk_program.updated; CP-1 prerequisite).
+   - **PR #5 opened** → https://github.com/Adamgdwn/bowtie_risk_program/pull/5 (`ready-for-review`).
+2. **Dispatch updated** — 0.7c → `ready-for-review`. Next: 0.7d (change-leadership-tools — PRIVATE, verify token scope; [BLOCKED] path if denied).
+3. **7 of 11 Phase 0 tasks done** (0.2-0.6, 0.7a-0.7c). Remaining: 0.7d(private), 0.7e(private), 0.7f.
 
 ### 2026-06-26 Session 5 — Loop run: Task 0.7b (oldskoolai.com CNS role)
 
