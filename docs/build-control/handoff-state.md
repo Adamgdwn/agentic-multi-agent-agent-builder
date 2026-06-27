@@ -26,6 +26,14 @@ pause_reason: "CP-0 GATE REACHED 2026-06-26 — all 11 Phase 0 tasks (0.2-0.7f) 
 **Immediate next (cloud agents):** Pick up any `available` task from `docs/build-control/cloud-dispatch.yaml`. Read `docs/cloud-agent-startup.md` first.
 **Immediate next (Windows/local):** After CP-0 — begin Chunk 20 in GAIL OS Rev 2. See `docs/build-control/2026-06-25 - phase-1-chunk-specs.md`.
 
+### 2026-06-26 — Session transition: terminal → VS Code
+
+Terminal `/loop` session is closing. **The VS Code session continues from here.**
+
+- **State at handoff:** CP-0 gate reached — all 11 Phase 0 tasks (0.2–0.7f) are `ready-for-review`; 11 PRs open across 9 repos awaiting Adam's review/merge. Loop is paused (`paused: true`); Phase 1 is `windows-local` and must not start without Adam's confirmation.
+- **Resume point for VS Code:** read this Loop State block + `cloud-dispatch.yaml`. Two open flags for Adam: (1) PR #2/task 0.5 A-level descriptions (confirm or trim to names-only); (2) cross-repo UAOS→GAIL OS rename pass recommended post-CP-0.
+- **Note:** `docs/loop-protocol.md` was updated (commit `bb14461`) so control-repo *tasks* use branch+PR, not direct `main`. This entry is a continuity housekeeping note (not a task), committed to `main` so the next session sees it.
+
 ### 2026-06-26 Session 5 — Task 0.7f + CP-0 GATE
 
 1. **Task 0.7f executed** in `Adamgdwn/guided-ai-labs-website`: prepended CNS Role section to AGENTS.md (Front door + commercial signal layer; events inquiry.created/demo_requested/lead.qualified; CP-1 prerequisite). 20 additions / 0 deletions. **PR #1 opened** → https://github.com/Adamgdwn/guided-ai-labs-website/pull/1.
