@@ -1,6 +1,6 @@
 # Handoff State — Guided AI Labs Agentic OS CNS
 
-**Last Updated:** 2026-06-26 (session 3 — cloud agent infrastructure)
+**Last Updated:** 2026-06-26 (session 4 — compaction-first loop protocol)
 **Owner:** Build Agent Orchestrator
 
 This file is the restart point for any agent, session, or context reset. Read this first after a compaction, clear, or handoff.
@@ -24,6 +24,27 @@ pause_reason: null
 **Status:** Cloud agent infrastructure complete. Phase 0 tasks 0.2–0.7f ready to run (all cloud-safe). Phase 1 chunk specs written but require Windows-local execution.
 **Immediate next (cloud agents):** Pick up any `available` task from `docs/build-control/cloud-dispatch.yaml`. Read `docs/cloud-agent-startup.md` first.
 **Immediate next (Windows/local):** After CP-0 — begin Chunk 20 in GAIL OS Rev 2. See `docs/build-control/2026-06-25 - phase-1-chunk-specs.md`.
+
+### 2026-06-26 Session 4 — What Was Done
+
+1. **Reviewed requirements doc** (`2026-06-27-agentic-multi-agent-context-compaction-requirements.md`) — identified that prior loop protocol understated compaction as "unavailable to cloud agents." Corrected across all surfaces.
+2. **Rewrote compaction section in `docs/loop-protocol.md`** (Chunk Four):
+   - "Token Budget and Context Refresh" replaced with "Compaction — The Core Continuity Mechanism"
+   - Invariant established: `checkpoint → compact → rehydrate → continue`
+   - Target threshold: 100,000 input tokens
+   - Runtime-specific mechanisms: ScheduleWakeup (local /loop), auto-compaction (Claude Code web)
+   - Safe checkpoint boundary rules defined
+   - Trigger signals listed (any one sufficient)
+3. **Added Rehydration section** to `docs/loop-protocol.md` — 5-item minimum rehydration set; explicit "do not reload" list
+4. **Expanded checkpoint format** in `docs/loop-protocol.md` — added `exact_next_step`, `acceptance_criteria` (met/remaining), `decisions`, `validation`, `required_context_on_resume`, `compaction_count`, `current_phase`
+5. **Updated `AGENTS.md` cloud banner** — removed `/compact` from "local-only" list; added explicit statement that compaction is required in all contexts with the `checkpoint → compact → rehydrate → continue` invariant
+6. **Commit `514baa8`** — "Chunk Four: compaction-first loop protocol"
+
+**Key decision confirmed (Adam):** "cloud agents must compact is absolutely the answer and the loop inside must compact. That's the key to keeping this running for hours and hours without losing fidelity."
+
+**Session outcome:** Loop infrastructure is now complete. Compaction is the architectural core, not an afterthought. The loop is ready to run.
+
+---
 
 ### 2026-06-26 Session 3 — What Was Done
 

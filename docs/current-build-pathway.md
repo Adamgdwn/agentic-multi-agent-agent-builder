@@ -1,6 +1,6 @@
 # Current Build Pathway
 
-Last Updated: 2026-06-25T21:22:27-06:00
+Last Updated: 2026-06-26
 Status: draft
 Owner: Technical Lead
 
@@ -75,6 +75,7 @@ Avoid mixing unrelated code, governance, deployment, and product decisions in on
 |------|--------|-----------|-------|-------|
 | Cloud agent infrastructure setup | complete | 2026-06-26 | Claude Code | All cloud agent files written and committed. See Chunk One. |
 | Loop coordination infrastructure | complete | 2026-06-26 | Claude Code | Loop protocol, auto-refresh mechanism, loop state tracking. See Chunk Three. |
+| Compaction-first loop protocol | complete | 2026-06-26 | Claude Code | Mandatory compaction, richer checkpoint format, rehydration spec. See Chunk Four. |
 | Phase 0 cloud agent runs | planned | — | Claude Code (/loop) | 11 PRs across 9 repos. Run `/loop coordinate CNS build`. See Chunk Two. |
 | CP-0 gate | pending | — | Adam | All Phase 0 PRs merged. All repos can map purpose to CNS layer. |
 
@@ -210,6 +211,53 @@ Validation:
 - Human review: open `AGENTS.md` — confirm `## Loop Mode` section appears near top, before Normal Startup
 
 Stop condition: N/A — chunk complete.
+
+Next action: Run `/loop coordinate CNS build` in this repo to begin Phase 0 execution (Chunk Two).
+
+---
+
+## Chunk Four - Compaction-First Loop Protocol
+
+Status: complete
+Date: 2026-06-26
+
+Completion target: Task complete
+
+Budget class: Small
+
+Objective: Rewrite the loop protocol so that compaction is the architectural core of multi-hour autonomous sessions — not an afterthought. Establish the `checkpoint → compact → rehydrate → continue` invariant on all runtime surfaces. Add richer checkpoint format and explicit rehydration spec so fresh contexts can resume without the chat transcript.
+
+Acceptance criteria:
+
+- [x] `docs/loop-protocol.md` — "Compaction — The Core Continuity Mechanism" section replaces "Token Budget and Context Refresh"
+- [x] Invariant stated: `checkpoint → compact → rehydrate → continue`
+- [x] Compaction threshold defined: 100,000 input tokens
+- [x] Runtime-specific mechanisms: ScheduleWakeup (local /loop), auto-compaction (Claude Code web)
+- [x] Safe checkpoint boundary rules defined
+- [x] Trigger signals listed (any one sufficient)
+- [x] "Rehydration — Minimum Context After Compaction" section added — 5-item minimum set + explicit "do not reload" list
+- [x] Checkpoint format expanded: `exact_next_step`, `acceptance_criteria` (met/remaining), `decisions`, `validation`, `required_context_on_resume`, `compaction_count`, `current_phase`
+- [x] `AGENTS.md` cloud banner updated — compaction required in all contexts; invariant stated; `/compact` no longer listed as local-only
+
+Inputs:
+
+- `docs/loop-protocol.md` (prior version)
+- `AGENTS.md` (prior version)
+- `2026-06-27-agentic-multi-agent-context-compaction-requirements.md` (user-provided requirements doc)
+
+Outputs:
+
+- `docs/loop-protocol.md` (rewritten compaction section + rehydration + checkpoint format)
+- `AGENTS.md` (cloud banner corrected)
+
+Validation:
+
+- Human review: open `docs/loop-protocol.md` — confirm "Compaction" section leads with the invariant, defines both runtime paths, and rehydration section is present
+- Human review: open `AGENTS.md` — confirm cloud banner states compaction required in all contexts
+
+Stop condition: N/A — chunk complete.
+
+Key decision: Adam confirmed — "cloud agents must compact is absolutely the answer and the loop inside must compact. That's the key to keeping this running for hours and hours without losing fidelity."
 
 Next action: Run `/loop coordinate CNS build` in this repo to begin Phase 0 execution (Chunk Two).
 
