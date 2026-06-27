@@ -20,7 +20,9 @@ For autonomous multi-repo, multi-hour coordination of the CNS build:
 /loop coordinate CNS build
 ```
 
-This enters the coordination loop defined in `docs/loop-protocol.md`. Each iteration reads current dispatch state from `docs/build-control/cloud-dispatch.yaml`, picks the next available task, executes it via GitHub MCP or local git, and either continues or calls `ScheduleWakeup(60s)` to refresh context before the next task. The loop state between refreshes lives in `docs/build-control/handoff-state.md` under `## Loop State`.
+This enters the coordination loop defined in `docs/loop-protocol.md`. Each iteration reads current dispatch state from `docs/build-control/cloud-dispatch.yaml`, picks the next available task, executes it, and either continues or calls `ScheduleWakeup(60s)` to refresh context before the next task. The loop state between refreshes lives in `docs/build-control/handoff-state.md` under `## Loop State`.
+
+**Subject repos are GitHub-only.** All reads and writes to subject repos (`the-freedom-engine-os`, `gail-ai-operating-system-rev-2`, `graphify-workspace-cockpit`, etc.) go through `mcp__github__*` tools. Never look for them in local folders. Local filesystem is for this control repo only.
 
 Use loop mode when running multi-task, multi-repo coordination for an extended session. Do not use it for scoped single-task work — use Normal Startup below.
 

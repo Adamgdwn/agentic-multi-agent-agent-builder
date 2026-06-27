@@ -6,6 +6,16 @@ Not for: Cloud agents — see `docs/cloud-agent-startup.md`.
 
 ---
 
+## Critical: Repo Boundaries
+
+**This control repo** (`agentic-multi-agent-agent-builder`) is the only repo that exists locally. All reads and writes to this repo use local filesystem tools (Read, Edit, Write, git).
+
+**All subject repos** (`the-freedom-engine-os`, `gail-ai-operating-system-rev-2`, `graphify-workspace-cockpit`, `ag-operations-m365-foundation`, and all product repos) exist on GitHub only under `Adamgdwn/`. Never search for them in local folders. All subject repo operations — reading files, creating branches, writing files, opening PRs — go through `mcp__github__*` tools exclusively.
+
+If you find yourself looking at local filesystem paths for a subject repo, stop. Use `mcp__github__get_file_contents` to read, `mcp__github__create_or_update_file` to write, `mcp__github__create_branch` to branch, `mcp__github__create_pull_request` to open PRs.
+
+---
+
 ## Purpose
 
 This protocol drives autonomous coordination of the Guided AI Labs Agentic OS CNS build across all subject repos and all phases. Each loop iteration reads current state, picks the next available task, executes it, updates the handoff, and either continues or schedules a fresh context to resume.
