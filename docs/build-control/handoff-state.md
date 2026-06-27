@@ -9,11 +9,35 @@ This file is the restart point for any agent, session, or context reset. Read th
 
 ## Loop State
 
-active: false
+active: true
+current_task_id: "0.7e"
+current_task_title: "CNS role statement in clean-pdf-build"
+target_repo: "Adamgdwn/clean-pdf-build"
+branch: "cloud/0.7e-clean-pdf-cns-role"
+pr_url: null
+started_at: "2026-06-26"
+compaction_count: 5
+current_phase: "implementation"
+step: "claimed"
+exact_next_step: "Verify private repo access; create/update AGENTS.md with CNS Role (Document-production motor circuit / EasyDraft Docs; events document.generated/document.evidence_attached), open PR"
+acceptance_criteria:
+  met: []
+  remaining:
+    - "AGENTS.md CNS Role section per #task-07 template"
+    - "References 3-layer core + Phase 5 events + CP-1 prerequisite"
+    - "PR opened to main"
+decisions: []
+validation:
+  run: []
+  not_run:
+    - "Human PR review — pending Adam merge"
+required_context_on_resume:
+  - "docs/loop-protocol.md"
+  - "docs/build-control/2026-06-26 - phase-0-chunk-specs.md (#task-07 template + role/events table)"
+blockers: []
 last_completed_task: "0.7d"
 next_task: "0.7e"
 skipped_tasks: []
-compaction_count: 5
 paused: false
 pause_reason: null
 
