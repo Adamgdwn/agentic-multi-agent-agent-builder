@@ -255,16 +255,16 @@ tasks:
     repo: Adamgdwn/gail-ai-operating-system-rev-2
     platform: cloud-safe
     type: code
-    status: available
+    status: ready-for-review
     claimed_by: null
-    claimed_at: null
-    branch: null
-    pr_url: null
+    claimed_at: "2026-06-27"
+    branch: "cloud/1.1-mission-schema"
+    pr_url: "https://github.com/Adamgdwn/gail-ai-operating-system-rev-2/pull/4"
     test_command: "python -m pytest tests/"
     chunk_spec_ref: "docs/build-control/2026-06-25 - phase-1-chunk-specs.md"
     notes: >
-      Cloud agent writes schema + test file, opens PR. CI validates on merge.
-      Test file required in same PR: tests/test_mission.py.
+      Adds mission.py schema layer with MissionStatus enum (12 state machine stages)
+      and re-exports core Mission types. tests/test_mission.py: 10 tests.
 
   - id: "1.2"
     title: "Port Action + state machine from Rev 1 to GAIL OS Rev 2"
@@ -287,14 +287,17 @@ tasks:
     repo: Adamgdwn/gail-ai-operating-system-rev-2
     platform: cloud-safe
     type: code
-    status: available
+    status: ready-for-review
     claimed_by: null
-    claimed_at: null
-    branch: null
-    pr_url: null
+    claimed_at: "2026-06-27"
+    branch: "cloud/1.3-authority-envelope-schema"
+    pr_url: "https://github.com/Adamgdwn/gail-ai-operating-system-rev-2/pull/5"
     test_command: "python -m pytest tests/"
     chunk_spec_ref: "docs/build-control/2026-06-25 - phase-1-chunk-specs.md"
-    notes: "New work. All 14 charter fields from master-plan-summary.md §5. Test file required: tests/test_authority_envelope.py."
+    notes: >
+      Adds authority_envelope.py: 14-field AuthorityEnvelope, AuthorityLevel (R0-R5),
+      AutonomyLevel (A0-A6), EnvelopeStatus enums, validate_authority_envelope().
+      tests/test_authority_envelope.py: 14 tests.
 
   - id: "1.4"
     title: "Define EvidencePacket schema"
@@ -302,11 +305,14 @@ tasks:
     repo: Adamgdwn/gail-ai-operating-system-rev-2
     platform: cloud-safe
     type: code
-    status: available
+    status: ready-for-review
     claimed_by: null
-    claimed_at: null
-    branch: null
-    pr_url: null
+    claimed_at: "2026-06-27"
+    branch: "cloud/1.4-evidence-packet-schema"
+    pr_url: "https://github.com/Adamgdwn/gail-ai-operating-system-rev-2/pull/6"
     test_command: "python -m pytest tests/"
     chunk_spec_ref: "docs/build-control/2026-06-25 - phase-1-chunk-specs.md"
-    notes: "New work. Required fields from master-plan-summary.md §5. Test file required: tests/test_evidence_packet.py."
+    notes: >
+      Adds evidence_packet.py: 12-field EvidencePacket, EvidenceResult enum,
+      ExecutionMode enum, create_evidence_packet() factory, validate_evidence_packet().
+      tests/test_evidence_packet.py: 14 tests.

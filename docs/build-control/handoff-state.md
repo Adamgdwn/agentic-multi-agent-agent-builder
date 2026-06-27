@@ -10,21 +10,28 @@ This file is the restart point for any agent, session, or context reset. Read th
 ## Loop State
 
 active: false
-last_completed_task: "1.0"
-next_task: "1.1 (Mission schema), 1.3 (AuthorityEnvelope), 1.4 (EvidencePacket) — all available, cloud-safe"
+last_completed_task: "1.1, 1.3, 1.4 (parallel)"
+next_task: "Merge PRs #4, #5, #6. After 1.1 merges: task 1.2 (Action + state machine) becomes available."
 skipped_tasks: []
 compaction_count: 6
-paused: false
-pause_reason: null
+paused: true
+pause_reason: "Tasks 1.1/1.3/1.4 PRs open — awaiting Adam review and merge. Task 1.2 unblocks after 1.1 merges."
 retry_counts: {}
 
 ---
 
 ## Where We Are
 
-**Phase:** Phase 1 — GAIL OS Spine schemas (CI now live)
-**Status:** Task 1.0 merged 2026-06-27. CI active on `gail-ai-operating-system-rev-2`. Tasks 1.1, 1.3, 1.4 are `available` and cloud-safe — cloud agent writes schema + test file, opens PR, CI validates on merge.
-**Immediate next:** Run tasks 1.1, 1.3, 1.4 (can run in parallel — no dependencies between them). Task 1.2 blocked on 1.1.
+**Phase:** Phase 1 — GAIL OS Spine schemas (3 PRs open for review)
+**Status:** Tasks 1.1, 1.3, 1.4 complete (run in parallel 2026-06-27). PRs #4, #5, #6 open on `gail-ai-operating-system-rev-2`. CI will validate each on merge.
+**Immediate next:** Adam reviews and merges PRs #4 (1.1), #5 (1.3), #6 (1.4). After #4 merges, task 1.2 (Action + state machine) becomes available.
+
+### 2026-06-27 — Tasks 1.1, 1.3, 1.4 executed in parallel (PRs open)
+
+- **Task 1.1 — PR #4:** `mission.py` schema layer — `MissionStatus` enum (12 action state machine stages), re-exports core Mission types. `tests/test_mission.py`: 10 tests. https://github.com/Adamgdwn/gail-ai-operating-system-rev-2/pull/4
+- **Task 1.3 — PR #5:** `authority_envelope.py` — 14-field `AuthorityEnvelope`, `AuthorityLevel` (R0–R5), `AutonomyLevel` (A0–A6), `EnvelopeStatus` enums, `validate_authority_envelope()`. `tests/test_authority_envelope.py`: 14 tests. https://github.com/Adamgdwn/gail-ai-operating-system-rev-2/pull/5
+- **Task 1.4 — PR #6:** `evidence_packet.py` — 12-field `EvidencePacket`, `EvidenceResult` enum, `ExecutionMode` enum, `create_evidence_packet()` factory, `validate_evidence_packet()`. `tests/test_evidence_packet.py`: 14 tests. https://github.com/Adamgdwn/gail-ai-operating-system-rev-2/pull/6
+- **Loop paused:** awaiting Adam review of all three PRs.
 
 ### 2026-06-27 — Task 1.0 merged, Phase 1 code tasks unblocked
 
