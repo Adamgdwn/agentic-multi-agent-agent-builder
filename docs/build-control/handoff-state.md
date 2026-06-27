@@ -14,9 +14,8 @@ last_completed_task: "0.7a"
 next_task: "0.7b"
 skipped_tasks: []
 compaction_count: 4
-paused: false
-pause_reason: null
-refresh_reason: "context budget — large AGENTS.md prepend (sent twice after a missing-branch retry); refresh before 0.7b"
+paused: true
+pause_reason: "Adam signaled stop (2026-06-26) between tasks 0.7a and 0.7b. 6 Phase 0 PRs open (0.2-0.6, 0.7a). Remaining: 0.7b, 0.7c, 0.7d(private), 0.7e(private), 0.7f. Resume with /loop coordinate CNS build."
 refresh_reason: "context budget — large M365 dir listing + Stage 9 read; refreshing before 0.7-series"
 
 ---
