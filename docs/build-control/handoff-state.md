@@ -9,39 +9,14 @@ This file is the restart point for any agent, session, or context reset. Read th
 
 ## Loop State
 
-active: true
-current_task_id: "0.3"
-current_task_title: "Align GAIL OS Rev 2 to deep-brain autonomic management framing"
-target_repo: "Adamgdwn/gail-ai-operating-system-rev-2"
-branch: "cloud/0.3-gailos-framing"
-pr_url: null
-started_at: "2026-06-26"
-compaction_count: 0
-current_phase: "implementation"
-step: "claimed"
-exact_next_step: "Create branch cloud/0.3-gailos-framing, search AGENTS.md/README.md/docs for handbrake/guardian/blocker/limiter framing and replace with governance-as-enabler"
-acceptance_criteria:
-  met: []
-  remaining:
-    - "Search + replace handbrake/guardian/blocker/limiter/restricts-Freedom framing"
-    - "AGENTS.md states GAIL OS as autonomic management / authority + evidence layer"
-    - "Framing conveys OS enables R4 autonomy, not prevents action"
-    - "PR opened to main"
-decisions: []
-validation:
-  run: []
-  not_run:
-    - "Human PR review — pending Adam merge"
-required_context_on_resume:
-  - "docs/loop-protocol.md"
-  - "docs/build-control/2026-06-26 - phase-0-chunk-specs.md (task 0.3 section)"
-  - "docs/build-control/master-plan-summary.md §2, §7 (rules 9, 10)"
-blockers: []
-last_completed_task: "0.2"
-next_task: "0.3"
+active: false
+last_completed_task: "0.3"
+next_task: "0.4"
 skipped_tasks: []
+compaction_count: 1
 paused: false
 pause_reason: null
+refresh_reason: "context budget — refreshing via ScheduleWakeup before task 0.4"
 
 ---
 
@@ -51,6 +26,17 @@ pause_reason: null
 **Status:** Cloud agent infrastructure complete. Phase 0 tasks 0.2–0.7f ready to run (all cloud-safe). Phase 1 chunk specs written but require Windows-local execution.
 **Immediate next (cloud agents):** Pick up any `available` task from `docs/build-control/cloud-dispatch.yaml`. Read `docs/cloud-agent-startup.md` first.
 **Immediate next (Windows/local):** After CP-0 — begin Chunk 20 in GAIL OS Rev 2. See `docs/build-control/2026-06-25 - phase-1-chunk-specs.md`.
+
+### 2026-06-26 Session 5 — Loop run: Task 0.3 (GAIL OS framing)
+
+1. **Task 0.3 claimed + executed** against `Adamgdwn/gail-ai-operating-system-rev-2` via GitHub MCP (claim commit pushed before work).
+   - Branch `cloud/0.3-gailos-framing` created.
+   - Repo-wide code search for `hand brake` / `handbrake` / `guardian` / `limiter` / `restricts Freedom` → **0 hits**. No restraint framing to replace.
+   - `AGENTS.md` — added explicit "Enabler, not a hand brake" statement to CNS Role (governance-as-enabler per non-negotiable rule 9); header refreshed to 2026-06-26.
+   - `README.md` verified clean ("governed technical spine"); no change.
+   - **PR #1 opened** → https://github.com/Adamgdwn/gail-ai-operating-system-rev-2/pull/1 (status `ready-for-review`).
+2. **Dispatch updated** — 0.3 → `ready-for-review`, pr_url set.
+3. **Context refresh:** context heavy after two full tasks → ScheduleWakeup(60s) to refresh before task 0.4 (Graphify framing). compaction_count → 1.
 
 ### 2026-06-26 Session 5 — Loop run: Task 0.2 (Freedom framing)
 
