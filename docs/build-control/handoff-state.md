@@ -9,37 +9,13 @@ This file is the restart point for any agent, session, or context reset. Read th
 
 ## Loop State
 
-active: true
-current_task_id: "0.7f"
-current_task_title: "CNS role statement in guided-ai-labs-website"
-target_repo: "Adamgdwn/guided-ai-labs-website"
-branch: "cloud/0.7f-gail-website-cns-role"
-pr_url: null
-started_at: "2026-06-26"
-compaction_count: 6
-current_phase: "implementation"
-step: "claimed"
-exact_next_step: "Branch created; create/update AGENTS.md with CNS Role (Front door + commercial signal layer; events inquiry.created/demo_requested/lead.qualified), open PR; then CP-0 gate"
-acceptance_criteria:
-  met: []
-  remaining:
-    - "AGENTS.md CNS Role section per #task-07 template"
-    - "References 3-layer core + Phase 5 events + CP-1 prerequisite"
-    - "PR opened to main"
-decisions: []
-validation:
-  run: []
-  not_run:
-    - "Human PR review — pending Adam merge"
-required_context_on_resume:
-  - "docs/loop-protocol.md"
-  - "docs/build-control/2026-06-26 - phase-0-chunk-specs.md (#task-07 template + role/events table)"
-blockers: []
-last_completed_task: "0.7e"
-next_task: "0.7f"
+active: false
+last_completed_task: "0.7f"
+next_task: "Phase 1 (windows-local) — awaiting Adam CP-0 confirmation"
 skipped_tasks: []
-paused: false
-pause_reason: null
+compaction_count: 6
+paused: true
+pause_reason: "CP-0 GATE REACHED 2026-06-26 — all 11 Phase 0 tasks (0.2-0.7f) are ready-for-review across 9 repos. Loop paused per stop condition; do NOT start Phase 1 (windows-local) without Adam's confirmation + PR merges. Two review flags: (1) PR #2/task 0.5 A-level descriptions elaborated (confirm); (2) cross-repo UAOS->GAIL OS rename pass recommended post-CP-0."
 
 ---
 
@@ -49,6 +25,14 @@ pause_reason: null
 **Status:** Cloud agent infrastructure complete. Phase 0 tasks 0.2–0.7f ready to run (all cloud-safe). Phase 1 chunk specs written but require Windows-local execution.
 **Immediate next (cloud agents):** Pick up any `available` task from `docs/build-control/cloud-dispatch.yaml`. Read `docs/cloud-agent-startup.md` first.
 **Immediate next (Windows/local):** After CP-0 — begin Chunk 20 in GAIL OS Rev 2. See `docs/build-control/2026-06-25 - phase-1-chunk-specs.md`.
+
+### 2026-06-26 Session 5 — Task 0.7f + CP-0 GATE
+
+1. **Task 0.7f executed** in `Adamgdwn/guided-ai-labs-website`: prepended CNS Role section to AGENTS.md (Front door + commercial signal layer; events inquiry.created/demo_requested/lead.qualified; CP-1 prerequisite). 20 additions / 0 deletions. **PR #1 opened** → https://github.com/Adamgdwn/guided-ai-labs-website/pull/1.
+2. **CP-0 GATE REACHED — all 11 Phase 0 PRs open (ready-for-review):**
+   - 0.2 the-freedom-engine-os#21 · 0.3 gail-ai-operating-system-rev-2#1 · 0.4 graphify-workspace-cockpit#1 · 0.5 gail-ai-operating-system-rev-2#2 · 0.6 ag-operations-m365-foundation#2 · 0.7a guided-ai-journey-website-and-tools#4 · 0.7b oldskoolai.com#1 · 0.7c bowtie_risk_program#5 · 0.7d change-leadership-tools#2 · 0.7e clean-pdf-build#6 · 0.7f guided-ai-labs-website#1
+3. **Loop PAUSED at CP-0** per stop condition. Phase 1 tasks are windows-local (require Windows/CI test validation) — do NOT start without Adam's confirmation + merges.
+4. **Two flags for Adam:** (a) PR #2/0.5 A-level descriptions elaborated beyond names-only — confirm or trim; (b) cross-repo UAOS→GAIL OS rename pass recommended (drift in Graphify vision.md + M365 stage docs).
 
 ### 2026-06-26 Session 5 — Loop run: Task 0.7e (clean-pdf-build CNS role)
 
