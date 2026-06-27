@@ -9,11 +9,35 @@ This file is the restart point for any agent, session, or context reset. Read th
 
 ## Loop State
 
-active: false
+active: true
+current_task_id: "0.7c"
+current_task_title: "CNS role statement in bowtie_risk_program"
+target_repo: "Adamgdwn/bowtie_risk_program"
+branch: "cloud/0.7c-bowtie-cns-role"
+pr_url: null
+started_at: "2026-06-26"
+compaction_count: 4
+current_phase: "implementation"
+step: "claimed"
+exact_next_step: "Branch created; create/update AGENTS.md with CNS Role (Risk + control modelling circuit; events risk.identified/control.applied/risk_program.updated), open PR"
+acceptance_criteria:
+  met: []
+  remaining:
+    - "AGENTS.md exists with CNS Role section per #task-07 template"
+    - "References 3-layer core + Phase 5 events + CP-1 prerequisite"
+    - "PR opened to main"
+decisions: []
+validation:
+  run: []
+  not_run:
+    - "Human PR review — pending Adam merge"
+required_context_on_resume:
+  - "docs/loop-protocol.md"
+  - "docs/build-control/2026-06-26 - phase-0-chunk-specs.md (#task-07 template + role/events table)"
+blockers: []
 last_completed_task: "0.7b"
 next_task: "0.7c"
 skipped_tasks: []
-compaction_count: 4
 paused: false
 pause_reason: null
 
