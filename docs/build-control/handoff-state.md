@@ -9,37 +9,14 @@ This file is the restart point for any agent, session, or context reset. Read th
 
 ## Loop State
 
-active: true
-current_task_id: "0.7e"
-current_task_title: "CNS role statement in clean-pdf-build"
-target_repo: "Adamgdwn/clean-pdf-build"
-branch: "cloud/0.7e-clean-pdf-cns-role"
-pr_url: null
-started_at: "2026-06-26"
-compaction_count: 5
-current_phase: "implementation"
-step: "claimed"
-exact_next_step: "Verify private repo access; create/update AGENTS.md with CNS Role (Document-production motor circuit / EasyDraft Docs; events document.generated/document.evidence_attached), open PR"
-acceptance_criteria:
-  met: []
-  remaining:
-    - "AGENTS.md CNS Role section per #task-07 template"
-    - "References 3-layer core + Phase 5 events + CP-1 prerequisite"
-    - "PR opened to main"
-decisions: []
-validation:
-  run: []
-  not_run:
-    - "Human PR review — pending Adam merge"
-required_context_on_resume:
-  - "docs/loop-protocol.md"
-  - "docs/build-control/2026-06-26 - phase-0-chunk-specs.md (#task-07 template + role/events table)"
-blockers: []
-last_completed_task: "0.7d"
-next_task: "0.7e"
+active: false
+last_completed_task: "0.7e"
+next_task: "0.7f"
 skipped_tasks: []
+compaction_count: 6
 paused: false
 pause_reason: null
+refresh_reason: "refresh before final Phase 0 task 0.7f, then CP-0 gate (pause for Adam review)"
 
 ---
 
@@ -49,6 +26,13 @@ pause_reason: null
 **Status:** Cloud agent infrastructure complete. Phase 0 tasks 0.2–0.7f ready to run (all cloud-safe). Phase 1 chunk specs written but require Windows-local execution.
 **Immediate next (cloud agents):** Pick up any `available` task from `docs/build-control/cloud-dispatch.yaml`. Read `docs/cloud-agent-startup.md` first.
 **Immediate next (Windows/local):** After CP-0 — begin Chunk 20 in GAIL OS Rev 2. See `docs/build-control/2026-06-25 - phase-1-chunk-specs.md`.
+
+### 2026-06-26 Session 5 — Loop run: Task 0.7e (clean-pdf-build CNS role)
+
+1. **Private repo access verified** (read probe). Claimed + executed task 0.7e in `Adamgdwn/clean-pdf-build` (EasyDraft Docs).
+   - Inserted CNS Role section into AGENTS.md (Document-production motor circuit; events document.generated/document.evidence_attached; CP-1 prerequisite). Verified 20 additions / 0 deletions.
+   - **PR #6 opened** → https://github.com/Adamgdwn/clean-pdf-build/pull/6 (`ready-for-review`).
+2. **Dispatch updated** — 0.7e → `ready-for-review`. **10 of 11 Phase 0 tasks done.** Next: 0.7f (guided-ai-labs-website) — the LAST Phase 0 task. After 0.7f → CP-0 stop condition: pause and surface all Phase 0 PRs for Adam.
 
 ### 2026-06-26 Session 5 — Loop run: Task 0.7d (change-leadership-tools CNS role)
 
