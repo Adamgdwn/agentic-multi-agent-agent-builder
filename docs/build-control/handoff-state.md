@@ -10,23 +10,29 @@ This file is the restart point for any agent, session, or context reset. Read th
 ## Loop State
 
 active: false
-last_completed_task: "1.2 — Action schema + state machine (PR #7 open)"
-next_task: "Adam merges PR #7. After merge: identify next available Phase 1 task."
+last_completed_task: "1.2 — Action schema + state machine (PR #7 merged 2026-06-27)"
+next_task: "Windows-local: Chunk 20 — Local Governed Approval Writes (gail-ai-operating-system-rev-2, Windows machine required)"
 skipped_tasks: []
 compaction_count: 6
 paused: true
-pause_reason: "Task 1.2 PR #7 open — awaiting Adam review and merge."
+pause_reason: "All cloud-safe Phase 1 tasks complete. Remaining work (Chunks 20-23) is windows-local. Adam to confirm Windows machine ready before proceeding."
 retry_counts: {}
 
 ---
 
 ## Where We Are
 
-**Phase:** Phase 1 — GAIL OS Spine schemas
-**Status:** Tasks 1.1/1.3/1.4 merged 2026-06-27. Task 1.2 PR #7 open, CI running.
-**Immediate next:** Adam reviews and merges PR #7 (task 1.2). Loop then checks for next available Phase 1 task.
+**Phase:** Phase 1 — GAIL OS Spine schemas COMPLETE (cloud-safe portion)
+**Status:** Tasks 1.0–1.4 all merged. Cloud-safe Phase 1 schema foundation done.
+**Immediate next:** Windows-local Chunk 20 (Local Governed Approval Writes) on gail-ai-operating-system-rev-2. Requires Windows dev environment. Adam to signal when ready.
 
-### 2026-06-27 — Task 1.2 executed (PR #7 open, awaiting review)
+### 2026-06-27 — Task 1.2 merged; cloud-safe Phase 1 schema complete
+
+- **PR #7 merged** (task 1.2): `action.py` — `Action` dataclass, `VALID_TRANSITIONS`, `TERMINAL_STATES`, `ActionTransitionError`, `create_action()`, `transition_action()`, `validate_action()`. 21 tests.
+- **Cloud-safe Phase 1 complete**: tasks 1.0–1.4 all merged to main.
+- **Next boundary**: Chunk 20 (Windows-local) — Local Governed Approval Writes. Requires Windows machine.
+
+### 2026-06-27 — Task 1.2 executed (PR #7 open, awaiting review — superseded above)
 
 - **PR #7 opened** (task 1.2): `action.py` — `Action` dataclass, `VALID_TRANSITIONS` (all 12 `MissionStatus` stages), `TERMINAL_STATES` (`{rejected, learned}`), `ActionTransitionError`, `create_action()` factory, `transition_action()` (stamps `claimed_at`/`executed_at`), `validate_action()`. 21 tests in `tests/test_action.py`.
 - **Loop paused:** awaiting Adam review of PR #7.
