@@ -239,11 +239,11 @@ tasks:
     repo: Adamgdwn/gail-ai-operating-system-rev-2
     platform: cloud-safe
     type: infrastructure
-    status: claimed
-    claimed_by: "claude-code-local"
+    status: ready-for-review
+    claimed_by: null
     claimed_at: "2026-06-26"
     branch: "cloud/1.0-ci-setup"
-    pr_url: null
+    pr_url: "https://github.com/Adamgdwn/gail-ai-operating-system-rev-2/pull/3"
     chunk_spec_ref: "docs/build-control/2026-06-25 - phase-1-chunk-specs.md"
     notes: >
       Write .github/workflows/ci.yml — Python test runner (pytest).

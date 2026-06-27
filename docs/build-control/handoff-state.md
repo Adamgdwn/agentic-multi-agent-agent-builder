@@ -9,38 +9,14 @@ This file is the restart point for any agent, session, or context reset. Read th
 
 ## Loop State
 
-active: true
-current_task_id: "1.0"
-current_task_title: "Set up GitHub Actions CI in GAIL OS Rev 2"
-target_repo: "gail-ai-operating-system-rev-2"
-branch: "cloud/1.0-ci-setup"
-pr_url: null
-started_at: "2026-06-26"
-compaction_count: 6
-current_phase: "implementation"
-step: "claimed"
-exact_next_step: "Check if .github/workflows/ci.yml already exists; create branch and write ci.yml if not"
-acceptance_criteria:
-  met: []
-  remaining:
-    - ".github/workflows/ci.yml written to branch"
-    - "PR opened"
-    - "CI passes on merge"
-decisions: []
-validation:
-  run: []
-  not_run:
-    - "GitHub Actions CI run — pending PR merge"
-required_context_on_resume:
-  - "docs/loop-protocol.md"
-  - "docs/build-control/cloud-dispatch.yaml (task 1.0)"
-  - "docs/build-control/handoff-state.md"
-blockers: []
-retry_counts: {}
-last_completed_task: "0.7f"
+active: false
+last_completed_task: "1.0"
+next_task: "1.1, 1.3, 1.4 — Phase 1 code tasks (available after task 1.0 merges)"
 skipped_tasks: []
-paused: false
-pause_reason: ""
+compaction_count: 6
+paused: true
+pause_reason: "Task 1.0 PR #3 open — awaiting Adam merge. Phase 1 code tasks available after CI is live."
+retry_counts: {}
 
 ---
 
@@ -48,7 +24,14 @@ pause_reason: ""
 
 **Phase:** Phase 0 — COMPLETE (CP-0 confirmed 2026-06-27)
 **Status:** All 11 Phase 0 PRs merged. All 9 subject repos have correct CNS role framing in AGENTS.md. Dispatch updated to `complete`. Workstream board updated.
-**Immediate next (cloud-safe):** Task 1.0 — add GitHub Actions CI to `gail-ai-operating-system-rev-2`. This is a one-file cloud-safe task (write `.github/workflows/ci.yml`). See Chunk Five in `docs/current-build-pathway.md`. After 1.0 merges, Phase 1 code tasks (1.1, 1.3, 1.4) become available and can run as cloud agents with CI validating on merge.
+**Immediate next:** Merge PR #3 in `gail-ai-operating-system-rev-2` (task 1.0 — CI setup). After merge, Phase 1 code tasks 1.1, 1.3, 1.4 become available and can run as cloud agents — code + test file in the PR, CI validates on merge.
+
+### 2026-06-26 — Task 1.0 complete (PR open, awaiting merge)
+
+- **Task 1.0 executed:** Created branch `cloud/1.0-ci-setup` in `gail-ai-operating-system-rev-2`. Confirmed no existing `.github/workflows/`. 6 test files already present in `tests/`. Tests use `sys.path.insert` — no pip install beyond pytest needed.
+- **Written:** `.github/workflows/ci.yml` — Python 3.11, pytest, runs `python -m pytest tests/ -v` on push and pull_request to main.
+- **PR #3 opened:** https://github.com/Adamgdwn/gail-ai-operating-system-rev-2/pull/3
+- **Loop paused:** awaiting Adam merge of PR #3. Once merged, Phase 1 code tasks (1.1, 1.3, 1.4) unlock.
 **Open follow-up (post-CP-0):** Cross-repo UAOS→GAIL OS rename pass in `ag-operations-m365-foundation` stage docs and any remaining cockpit docs — schedule as a separate cloud-safe task before Phase 1 code work begins.
 
 ### 2026-06-26 — Session transition: terminal → VS Code
