@@ -1,6 +1,6 @@
 # CNS Build Coordination Loop Protocol
 
-Last Updated: 2026-06-26
+Last Updated: 2026-06-27
 Scope: Local Claude Code sessions running `/loop coordinate CNS build` in this repo.
 Not for: Cloud agents — see `docs/cloud-agent-startup.md`.
 
@@ -269,6 +269,53 @@ If context is large → use the refresh procedure above (ScheduleWakeup) before 
 | All remaining tasks are `windows-local` or `coordinated` | Pause loop. Write handoff: "Phase 0 complete. Phase 1 tasks are `windows-local` and require Windows test validation. Pausing until Windows session or GitHub Actions CI is set up in GAIL OS Rev 2." |
 | Three consecutive tasks blocked | Stop. Write handoff summarizing all blockers. Do not continue past three consecutive failures. |
 | Adam signals stop | Finish current atomic operation. Write handoff immediately. Do not start new tasks. |
+
+---
+
+## Retry and Stop Policy
+
+The loop works through normal friction automatically. It stops only when it has genuinely run out of moves on a specific problem.
+
+### Work through these — do not count as failures
+
+- GitHub API transient errors, rate limits, network timeouts → wait briefly, retry the same call
+- File SHA mismatch on `create_or_update_file` → re-read the file, get current SHA, retry the write
+- Branch already exists but no PR → take the branch, continue from there
+- PR template missing → open PR without template, include acceptance criteria in body
+- Fixable CI failures: lint, formatting, import order, missing blank line → read the failure output, apply the fix, repush
+- Merge conflict on a docs file → read both versions, produce a clean merge, retry
+
+### These count toward the retry limit
+
+- Test failure not resolvable from available context (wrong architecture, missing dependency that can't be inferred)
+- Spec says X but the existing code does Y in an incompatible way — genuine design ambiguity
+- Access denied after one retry (private repo, wrong token scope, permission error)
+- The same error class appears on the third attempt to fix the same problem
+- A required file, function, or module named in the spec does not exist and cannot be safely inferred
+
+### Limit: 3 attempts per substantive blocker
+
+After three failed attempts on the same substantive issue:
+
+1. Update `cloud-dispatch.yaml`: set `status: "blocked"`, note the reason in `notes`
+2. Update Loop State `blockers:` in `handoff-state.md` — describe what was tried (3 attempts), what failed, what decision or access is needed
+3. Open a `[BLOCKED]` issue in `Adamgdwn/agentic-multi-agent-agent-builder`:
+   - Title: `[BLOCKED] Task {id} — {one-line reason}`
+   - Body: attempt 1, attempt 2, attempt 3 summaries + exactly what Adam needs to provide
+4. Set `paused: true` in Loop State, `pause_reason: "[BLOCKED] Task {id} — {reason}"`
+5. Commit + push dispatch and handoff state
+6. Surface to Adam and stop — do not try a fourth approach
+
+Do not use the retry count for trivial mechanical retries (SHA mismatch, rate limit). Use it only when the same conceptual blocker recurs.
+
+### Retry tracking in checkpoint
+
+```yaml
+retry_counts:
+  "1.1": 2
+```
+
+Reset a task's count when it is successfully completed or when Adam explicitly re-opens it after resolving the blocker.
 
 ---
 

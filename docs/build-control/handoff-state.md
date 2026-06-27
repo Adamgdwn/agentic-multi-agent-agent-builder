@@ -11,11 +11,12 @@ This file is the restart point for any agent, session, or context reset. Read th
 
 active: false
 last_completed_task: "0.7f"
-next_task: "Phase 1 (windows-local) — CP-0 confirmed 2026-06-27, awaiting Windows session to begin Chunk 20"
+next_task: "1.0 — GitHub Actions CI setup in gail-ai-operating-system-rev-2 (cloud-safe, see Chunk Five)"
 skipped_tasks: []
 compaction_count: 6
 paused: false
 pause_reason: ""
+retry_counts: {}
 
 ---
 
@@ -23,7 +24,7 @@ pause_reason: ""
 
 **Phase:** Phase 0 — COMPLETE (CP-0 confirmed 2026-06-27)
 **Status:** All 11 Phase 0 PRs merged. All 9 subject repos have correct CNS role framing in AGENTS.md. Dispatch updated to `complete`. Workstream board updated.
-**Immediate next (Windows/local):** Begin Chunk 20 in `gail-ai-operating-system-rev-2` (local governed approval writes). See `docs/build-control/2026-06-25 - phase-1-chunk-specs.md`.
+**Immediate next (cloud-safe):** Task 1.0 — add GitHub Actions CI to `gail-ai-operating-system-rev-2`. This is a one-file cloud-safe task (write `.github/workflows/ci.yml`). See Chunk Five in `docs/current-build-pathway.md`. After 1.0 merges, Phase 1 code tasks (1.1, 1.3, 1.4) become available and can run as cloud agents with CI validating on merge.
 **Open follow-up (post-CP-0):** Cross-repo UAOS→GAIL OS rename pass in `ag-operations-m365-foundation` stage docs and any remaining cockpit docs — schedule as a separate cloud-safe task before Phase 1 code work begins.
 
 ### 2026-06-26 — Session transition: terminal → VS Code

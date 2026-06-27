@@ -228,17 +228,17 @@ tasks:
 
 # ─────────────────────────────────────────
 # PHASE 1 — Core Operating Spine
-# These tasks require Windows-local execution for test validation.
-# A cloud agent may write code and open a PR, but cannot validate without CI.
-# Do not mark Phase 1 tasks complete without passing tests.
+# Task 1.0 (CI setup) is cloud-safe. All subsequent code tasks require CI green before merge.
+# A cloud agent may write code and open a PR; CI validates on merge.
+# Do not mark Phase 1 code tasks complete without passing CI.
 # ─────────────────────────────────────────
 
-  - id: "1.1"
-    title: "Port Mission schema from Rev 1 to GAIL OS Rev 2"
+  - id: "1.0"
+    title: "Set up GitHub Actions CI in GAIL OS Rev 2"
     phase: 1
     repo: Adamgdwn/gail-ai-operating-system-rev-2
-    platform: windows-local
-    type: code
+    platform: cloud-safe
+    type: infrastructure
     status: available
     claimed_by: null
     claimed_at: null
@@ -246,9 +246,29 @@ tasks:
     pr_url: null
     chunk_spec_ref: "docs/build-control/2026-06-25 - phase-1-chunk-specs.md"
     notes: >
-      Cloud agent may write the schema file and open a PR.
-      Acceptance requires running python -m unittest on Windows or in GitHub Actions CI.
-      GitHub Actions not yet configured in GAIL OS Rev 2 — see gap in cloud-env-requirements.md.
+      Write .github/workflows/ci.yml — Python test runner (pytest).
+      Triggers on push and pull_request to main.
+      Runs: python -m pytest tests/ (or unittest discover if pytest not installed).
+      No secrets, no external services in CI.
+      Prerequisite for all Phase 1 code tasks — CI gate enforces test pass before merge.
+
+  - id: "1.1"
+    title: "Port Mission schema from Rev 1 to GAIL OS Rev 2"
+    phase: 1
+    repo: Adamgdwn/gail-ai-operating-system-rev-2
+    platform: windows-local
+    type: code
+    status: blocked
+    claimed_by: null
+    claimed_at: null
+    branch: null
+    pr_url: null
+    test_command: "python -m pytest tests/"
+    chunk_spec_ref: "docs/build-control/2026-06-25 - phase-1-chunk-specs.md"
+    notes: >
+      Blocked by 1.0 (CI not yet set up).
+      Cloud agent writes schema + test file, opens PR. CI validates on merge.
+      Test file required in same PR: tests/test_mission.py.
 
   - id: "1.2"
     title: "Port Action + state machine from Rev 1 to GAIL OS Rev 2"
@@ -261,8 +281,9 @@ tasks:
     claimed_at: null
     branch: null
     pr_url: null
+    test_command: "python -m pytest tests/"
     chunk_spec_ref: "docs/build-control/2026-06-25 - phase-1-chunk-specs.md"
-    notes: "Blocked by 1.1."
+    notes: "Blocked by 1.0 and 1.1. Test file required in same PR: tests/test_action.py."
 
   - id: "1.3"
     title: "Define AuthorityEnvelope schema"
@@ -270,13 +291,14 @@ tasks:
     repo: Adamgdwn/gail-ai-operating-system-rev-2
     platform: windows-local
     type: code
-    status: available
+    status: blocked
     claimed_by: null
     claimed_at: null
     branch: null
     pr_url: null
+    test_command: "python -m pytest tests/"
     chunk_spec_ref: "docs/build-control/2026-06-25 - phase-1-chunk-specs.md"
-    notes: "New work. All 14 charter fields from master-plan-summary.md §5."
+    notes: "Blocked by 1.0 (CI not yet set up). New work. All 14 charter fields from master-plan-summary.md §5. Test file required: tests/test_authority_envelope.py."
 
   - id: "1.4"
     title: "Define EvidencePacket schema"
@@ -284,10 +306,11 @@ tasks:
     repo: Adamgdwn/gail-ai-operating-system-rev-2
     platform: windows-local
     type: code
-    status: available
+    status: blocked
     claimed_by: null
     claimed_at: null
     branch: null
     pr_url: null
+    test_command: "python -m pytest tests/"
     chunk_spec_ref: "docs/build-control/2026-06-25 - phase-1-chunk-specs.md"
-    notes: "New work. Required fields from master-plan-summary.md §5."
+    notes: "Blocked by 1.0 (CI not yet set up). New work. Required fields from master-plan-summary.md §5. Test file required: tests/test_evidence_packet.py."

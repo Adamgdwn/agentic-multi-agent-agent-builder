@@ -1,6 +1,6 @@
 # Current Build Pathway
 
-Last Updated: 2026-06-26
+Last Updated: 2026-06-27
 Status: draft
 Owner: Technical Lead
 
@@ -78,7 +78,8 @@ Avoid mixing unrelated code, governance, deployment, and product decisions in on
 | Compaction-first loop protocol | complete | 2026-06-26 | Claude Code | Mandatory compaction, richer checkpoint format, rehydration spec. See Chunk Four. |
 | Phase 0 cloud agent runs | complete | 2026-06-27 | Claude Code (/loop) | All 11 PRs opened and merged. See Chunk Two. |
 | CP-0 gate | complete | 2026-06-27 | Adam | All Phase 0 PRs merged. All 9 repos mapped to CNS layer. |
-| Phase 1 — GAIL OS HTTP API | next | — | Windows local | Begin Chunk 20 in gail-ai-operating-system-rev-2. See phase-1-chunk-specs.md. |
+| Phase 1 CI + test harness setup | next | — | Cloud agent | Add GitHub Actions CI to gail-ai-operating-system-rev-2 before code work begins. See Chunk Five. |
+| Phase 1 — GAIL OS HTTP API | planned | — | Windows local | Begin Chunk 20 after CI is in place. See phase-1-chunk-specs.md. |
 
 ## Chunk One - Cloud Agent Infrastructure Setup
 
@@ -262,6 +263,49 @@ Stop condition: N/A — chunk complete.
 Key decision: Adam confirmed — "cloud agents must compact is absolutely the answer and the loop inside must compact. That's the key to keeping this running for hours and hours without losing fidelity."
 
 Next action: Run `/loop coordinate CNS build` in this repo to begin Phase 0 execution (Chunk Two).
+
+---
+
+## Chunk Five - Phase 1 CI and Test Harness Setup
+
+Status: next
+Date: —
+
+Completion target: Task complete
+
+Budget class: Tiny
+
+Objective: Add GitHub Actions CI to `gail-ai-operating-system-rev-2` before any Phase 1 code work begins. Once in place, every Phase 1 code PR must pass CI before merge — this is the structural gate that prevents untested code from accumulating across chunks.
+
+Acceptance criteria:
+
+- [ ] `.github/workflows/ci.yml` merged to main in `gail-ai-operating-system-rev-2`
+- [ ] Workflow triggers on `push` and `pull_request` to `main`
+- [ ] Runs `python -m pytest tests/` (or `unittest discover` if pytest not available)
+- [ ] Workflow passes on a clean repo (no tests yet = zero failures, not an error)
+- [ ] `cloud-dispatch.yaml` task 1.0 marked `complete`
+- [ ] Phase 1 code tasks (1.1–1.4) unblocked from 1.0 dependency (updated to `available` in dispatch)
+
+Inputs:
+
+- `gail-ai-operating-system-rev-2` repo structure (read via GitHub MCP to confirm Python layout)
+- `docs/build-control/2026-06-25 - phase-1-chunk-specs.md`
+
+Outputs:
+
+- `.github/workflows/ci.yml` in `gail-ai-operating-system-rev-2`
+- Updated `cloud-dispatch.yaml`: task 1.0 → `complete`, tasks 1.1/1.3/1.4 → `available`
+
+Validation:
+
+- GitHub Actions run passes on merge (zero test failures on a clean repo is a pass)
+- `cloud-dispatch.yaml` reflects updated task statuses
+
+Stop condition: Stop if GitHub Actions is already configured (check before creating). If present, skip and mark task 1.0 complete immediately.
+
+Platform: cloud-safe (GitHub MCP only — write one YAML file, open one PR)
+
+Next action: After Chunk Five — begin Phase 1 code work (Chunk 20 in `gail-ai-operating-system-rev-2`), which can now run as a cloud agent writing code + tests with CI validating on merge.
 
 ---
 

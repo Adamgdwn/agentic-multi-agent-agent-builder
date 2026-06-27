@@ -1,6 +1,6 @@
 # Phase 1 Chunk Specs — GAIL OS Spine → HTTP API
 
-**Last Updated:** 2026-06-25
+**Last Updated:** 2026-06-27
 **Owner:** Build Agent Orchestrator
 **Phase gate:** CP-1 — GAIL OS HTTP API live, tested, callable by Freedom and Graphify
 
@@ -18,6 +18,20 @@ Freedom is **TypeScript** (Next.js 16). It cannot import Python modules directly
 **Phase 1 objective:** Bridge the A1 local boundary → expose GAIL OS as an HTTP API, define JSON Schema contracts so TypeScript consumers (Freedom, Graphify clients) have typed interfaces.
 
 **`@gail/contracts` is a JSON Schema + generated TypeScript types package** (not Python types in GAIL OS). It lives in `the-freedom-engine-os` or as a standalone package consumed by Freedom.
+
+---
+
+## Per-Chunk Testing Standard
+
+Every Phase 1 code chunk must follow this rule: **no code PR without its test file**.
+
+1. **Test file in the same PR** — every code chunk ships with `tests/test_<module>.py` in the same commit. Writing tests is not a follow-up task.
+2. **CI green before merge** — once task 1.0 (GitHub Actions CI) is merged, all subsequent code PRs must show a passing CI run before Adam merges. A PR with failing CI is not review-ready.
+3. **Test coverage minimum** — happy path, at least one failure path, and each acceptance criterion that can be tested programmatically.
+4. **"All tests pass (`pytest tests/`)"** is a required acceptance criterion for every code chunk.
+5. **If CI is not yet in place** (task 1.0 not yet merged) — note in the PR body that tests were not run in CI, and list the command Adam should run locally to validate. This is a temporary exception only.
+
+When the loop opens a code PR and CI fails on something fixable (lint, import order, syntax error) — fix it and repush. When CI fails on a substantive issue (logic error, missing dependency, wrong schema) and three fix attempts don't resolve it — mark the task `blocked` and surface it to Adam per the retry policy in `docs/loop-protocol.md`.
 
 ---
 
