@@ -9,11 +9,37 @@ This file is the restart point for any agent, session, or context reset. Read th
 
 ## Loop State
 
-active: false
+active: true
+current_task_id: "0.5"
+current_task_title: "Document R0-R5 and A0-A6 authority ladders as canonical in GAIL OS"
+target_repo: "Adamgdwn/gail-ai-operating-system-rev-2"
+branch: "cloud/0.5-authority-ladders"
+pr_url: null
+started_at: "2026-06-26"
+compaction_count: 2
+current_phase: "implementation"
+step: "claimed"
+exact_next_step: "Create branch cloud/0.5-authority-ladders, write new docs/governance/authority-ladders.md (R0-R5 + A0-A6 + state machine per chunk spec / master-plan §4), open PR"
+acceptance_criteria:
+  met: []
+  remaining:
+    - "docs/governance/authority-ladders.md created"
+    - "R0-R5 table (6 levels) + A0-A6 table (7 levels)"
+    - "Notes source of truth = master-plan-summary.md; A6 future-state not current authority"
+    - "Cross-references mandatory action state machine"
+    - "PR opened to main"
+decisions: []
+validation:
+  run: []
+  not_run:
+    - "Human PR review — pending Adam merge"
+required_context_on_resume:
+  - "docs/loop-protocol.md"
+  - "docs/build-control/2026-06-26 - phase-0-chunk-specs.md (task 0.5 section — contains full content)"
+blockers: []
 last_completed_task: "0.4"
 next_task: "0.5"
 skipped_tasks: []
-compaction_count: 1
 paused: false
 pause_reason: null
 
