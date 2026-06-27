@@ -9,11 +9,37 @@ This file is the restart point for any agent, session, or context reset. Read th
 
 ## Loop State
 
-active: false
+active: true
+current_task_id: "0.3"
+current_task_title: "Align GAIL OS Rev 2 to deep-brain autonomic management framing"
+target_repo: "Adamgdwn/gail-ai-operating-system-rev-2"
+branch: "cloud/0.3-gailos-framing"
+pr_url: null
+started_at: "2026-06-26"
+compaction_count: 0
+current_phase: "implementation"
+step: "claimed"
+exact_next_step: "Create branch cloud/0.3-gailos-framing, search AGENTS.md/README.md/docs for handbrake/guardian/blocker/limiter framing and replace with governance-as-enabler"
+acceptance_criteria:
+  met: []
+  remaining:
+    - "Search + replace handbrake/guardian/blocker/limiter/restricts-Freedom framing"
+    - "AGENTS.md states GAIL OS as autonomic management / authority + evidence layer"
+    - "Framing conveys OS enables R4 autonomy, not prevents action"
+    - "PR opened to main"
+decisions: []
+validation:
+  run: []
+  not_run:
+    - "Human PR review — pending Adam merge"
+required_context_on_resume:
+  - "docs/loop-protocol.md"
+  - "docs/build-control/2026-06-26 - phase-0-chunk-specs.md (task 0.3 section)"
+  - "docs/build-control/master-plan-summary.md §2, §7 (rules 9, 10)"
+blockers: []
 last_completed_task: "0.2"
 next_task: "0.3"
 skipped_tasks: []
-compaction_count: 0
 paused: false
 pause_reason: null
 
