@@ -1,9 +1,12 @@
 # Handoff State — Guided AI Labs Agentic OS CNS
 
-**Last Updated:** 2026-06-28 (CP-4 gate closed — Phase 4 COMPLETE)
+**Last Updated:** 2026-06-28 (Phase 5+6 spec written — ready for Chunk 5.0)
 **Owner:** Build Agent Orchestrator
 
 This file is the restart point for any agent, session, or context reset. Read this first after a compaction, clear, or handoff.
+
+**Active planning reference:** `docs/build-control/2026-06-28 - cns-phase5-phase6-build-specification.md`
+This document supersedes forward-looking Phase 5/6 sections of the turnover doc and the GPT Pro directive. Read it before any Phase 5/6 chunk.
 
 ---
 
@@ -11,7 +14,7 @@ This file is the restart point for any agent, session, or context reset. Read th
 
 active: true
 last_completed_task: "Phase 4 task 4.6 — Graphify evidence ingest endpoint (graphify-workspace-cockpit PR #2). ingest_evidence_entity() + POST /api/cns/evidence + GET /api/cns/evidence/{id}. 10 tests. CP-4 GATE MET. 2026-06-28"
-next_task: "Phase 5 blocked by CP-1 event contracts. Next cloud-safe work: Supabase RLS remediation (20 public tables, Freedom project — pending Adam decision) OR Windows-local tasks 2.7/2.8 (Graphify extraction on Windows)."
+next_task: "Chunk 5.0 — Corrections + Board Reconciliation. Read 2026-06-28 - cns-phase5-phase6-build-specification.md. Update workstream board Phase 1 GAIL OS rows (1.1-1.5 → complete). Write decisions doc. Update handoff-state next_task to Chunk 5.1."
 skipped_tasks: []
 compaction_count: 15
 paused: false
