@@ -8,7 +8,7 @@
 ## Purpose of This Document
 
 This is a complete, standalone turnover of everything built to this point on the
-**Guided AI Labs Agentic OS CNS** (Cognitive Nervous System) project. It includes:
+**Guided AI Labs Agentic OS CNS** (Central Nervous System) project. It includes:
 
 - What the system is and why it's being built
 - The four repos that are the subject of all CNS core work
@@ -32,7 +32,7 @@ dashboard, chatbot, or automation workflow. It is an architecture for
 **coordinated AI agency** — where AI agents can observe, reason, propose, act,
 and learn under explicit human-governed authority boundaries.
 
-The system is modelled as a **Cognitive Nervous System (CNS)**:
+The system is modelled as a **Central Nervous System (CNS)**:
 
 | CNS Layer | Biological Analogy | Role | Primary Repo |
 |---|---|---|---|

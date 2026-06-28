@@ -1,6 +1,6 @@
 # Handoff State — Guided AI Labs Agentic OS CNS
 
-**Last Updated:** 2026-06-28 (Phase 5+6 spec written — ready for Chunk 5.0)
+**Last Updated:** 2026-06-28 (Chunk 5.0 complete — ready for Chunk 5.1)
 **Owner:** Build Agent Orchestrator
 
 This file is the restart point for any agent, session, or context reset. Read this first after a compaction, clear, or handoff.
@@ -13,8 +13,8 @@ This document supersedes forward-looking Phase 5/6 sections of the turnover doc 
 ## Loop State
 
 active: true
-last_completed_task: "Phase 4 task 4.6 — Graphify evidence ingest endpoint (graphify-workspace-cockpit PR #2). ingest_evidence_entity() + POST /api/cns/evidence + GET /api/cns/evidence/{id}. 10 tests. CP-4 GATE MET. 2026-06-28"
-next_task: "Chunk 5.0 — Corrections + Board Reconciliation. Read 2026-06-28 - cns-phase5-phase6-build-specification.md. Update workstream board Phase 1 GAIL OS rows (1.1-1.5 → complete). Write decisions doc. Update handoff-state next_task to Chunk 5.1."
+last_completed_task: "Chunk 5.0 — Corrections + Board Reconciliation. Decision doc written (docs/decisions/2026-06-28 - Phase 5 and Phase 6 Reset Decision.md). Workstream board Phase 1 tasks 1.1-1.9 marked complete. Phase 5 rows replaced with new chunk list 5.0-5.8. Phase 6 rows replaced with new chunk list 6.0-6.5. Repo status summary updated. handoff-state stale language corrected. 2026-06-28."
+next_task: "Chunk 5.1 — Product Branch Abandonment Notes. Add docs/2026-06-28 - Phase 5 Branch Abandoned.md to each of 6 product repo branches via GitHub MCP. No PRs, no main-branch changes. Branches: guided-ai-journey-website-and-tools/phase5/5.1-5.7-gai-journey-events, oldskoolai.com/phase5/5.2-5.8-oldskool-events, bowtie_risk_program/phase5/5.3-bowtie-events, change-leadership-tools/phase5/5.4-change-leadership-events, clean-pdf-build/phase5/5.5-easydraft-events, guided-ai-labs-website/phase5/5.6-gail-labs-events. Then proceed to Chunk 5.2."
 skipped_tasks: []
 compaction_count: 15
 paused: false
@@ -25,9 +25,10 @@ retry_counts: {}
 
 ## Where We Are
 
-**Phase:** Phase 4 — **COMPLETE** ✓ | Phase 5 — **BLOCKED** (by CP-1 event contracts)
-**Status:** Phases 1–4 all complete. CP-4 gate met. Phase 5 product app integration blocked by CP-1 (event vocabulary not yet contracted). Two cloud-safe paths available: (1) Supabase RLS remediation in Freedom project (20 public tables — pending Adam decision); (2) defer to Adam for Windows-local tasks 2.7/2.8.
-**Immediate next:** Await Adam direction on Supabase RLS or Phase 5 scope.
+**Phase:** Phases 0–4 **COMPLETE** ✓ | Phase 5 — **ACTIVE** (Operating Knowledge Intake and Relationship Mesh)
+**Status:** Phases 0–4 all complete. CP-4 gate met (dry-run M365 proof only — live M365 not active). Phase 5 reset: product-repo event-emitter scope retired. All Phase 5 implementation in four core CNS repos only. Chunk 5.0 complete. Chunk 5.1 (product branch abandonment) is next. Chunk 5.2 (OKP schema) can follow immediately after 5.1.
+**CP-4 note:** Dry-run proof only. M365 status = proven. Live writes require BLK-005 (Entra app registration by Adam/Windows) + named scope + explicit approval before active status.
+**Immediate next:** Chunk 5.1 — product branch abandonment notes (cloud-safe, GitHub MCP).
 
 **Phase 2 completion note:** Chunks 2.1–2.9 plus 20D/20E were committed to `graphify-workspace-cockpit` in a prior session before this handoff was written. Discovered by reading git log + AGENTS.md. Tasks 2.7 (Windows Graphify extraction) and 2.8 (merge Windows graph) are NOT done — these are separate from the HTTP API work and remain pending.
 
@@ -49,7 +50,7 @@ retry_counts: {}
 
 **Phase 4 COMPLETE. CP-4 closed 2026-06-28.**
 
-**Phase 5 status:** All Phase 5 tasks blocked by CP-1 event contracts. CP-1 is proven (Phase 1 complete) but event vocabulary TypeScript types (task 1.7) are not yet contracted.
+**Phase 5 status:** Phase 5 reset 2026-06-28. Prior product-repo event-emitter tasks retired. Phase 5 is now Operating Knowledge Intake and Relationship Mesh in four core CNS repos. See `docs/decisions/2026-06-28 - Phase 5 and Phase 6 Reset Decision.md`. Chunk 5.0 complete. Next: 5.1 → 5.2 → 5.3/5.4/5.5 (parallel) → 5.6 → 5.7 (CP-5).
 
 ---
 

@@ -1,6 +1,6 @@
 # Repo Workstream Board — Guided AI Labs Agentic OS CNS
 
-**Last Updated:** 2026-06-28 — Phase 4 COMPLETE (tasks 4.1–4.6 all merged). CP-4 gate met.
+**Last Updated:** 2026-06-28 — Phase 4 COMPLETE. CP-4 gate met (dry-run proof only). Phase 5 reset to Operating Knowledge Intake — four core repos only.
 **Owner:** Build Agent Orchestrator
 
 Task states: `independent` | `coordinated` | `blocked` | `ready-for-integration` | `ready-for-review` | `complete`
@@ -36,17 +36,17 @@ Note: Phase 1 tasks are `windows-local`. A cloud agent may write code and open a
 
 | # | Task | Repo | Platform | State | Notes |
 |---|---|---|---|---|---|
-| 1.1 | Port `Mission` schema from UAOS Rev 1 → GAIL OS Rev 2 | `gail-ai-operating-system-rev-2` | `windows-local` | `independent` | Rev 1 at `user-ai-operating-system` as reference. Cloud agent can write; needs test run to confirm. |
-| 1.2 | Port `Action` + state machine from Rev 1 → Rev 2 | `gail-ai-operating-system-rev-2` | `windows-local` | `independent` | Blocked by 1.1 in practice. State: observed → proposed → … → learned. |
-| 1.3 | Define `AuthorityEnvelope` schema (all 14 charter fields from master plan) | `gail-ai-operating-system-rev-2` | `windows-local` | `independent` | New work. Cloud agent can write schema; validation needs test run. |
-| 1.4 | Define `EvidencePacket` schema (all required fields from master plan §11.4) | `gail-ai-operating-system-rev-2` | `windows-local` | `independent` | New work. Same note as 1.3. |
-| 1.5 | Build `Connector` registry (registered bridges, scopes, rate limits, evidence expectations) | `gail-ai-operating-system-rev-2` | `windows-local` | `independent` | |
+| 1.1 | Port `Mission` schema from UAOS Rev 1 → GAIL OS Rev 2 | `gail-ai-operating-system-rev-2` | `windows-local` | `complete` | Merged PR #4 2026-06-27. `MissionStatus` enum + Mission types. 10 tests. |
+| 1.2 | Port `Action` + state machine from Rev 1 → Rev 2 | `gail-ai-operating-system-rev-2` | `windows-local` | `complete` | Merged PR #7 2026-06-28. `Action` dataclass + 12 state transitions + `transition_action()`. 21 tests. |
+| 1.3 | Define `AuthorityEnvelope` schema (all 14 charter fields from master plan) | `gail-ai-operating-system-rev-2` | `windows-local` | `complete` | Merged PR #5 2026-06-27. 14-field `AuthorityEnvelope`, R0–R5, A0–A6 enums. 14 tests. |
+| 1.4 | Define `EvidencePacket` schema (all required fields from master plan §11.4) | `gail-ai-operating-system-rev-2` | `windows-local` | `complete` | Merged PR #6 2026-06-27. 12-field `EvidencePacket`, `create_evidence_packet()`, `validate_evidence_packet()`. 14 tests. |
+| 1.5 | Build `Connector` registry (registered bridges, scopes, rate limits, evidence expectations) | `gail-ai-operating-system-rev-2` | `windows-local` | `complete` | Merged PR #11 2026-06-28. `ConnectorRegistry` + 7 seed connectors. CP-1 prerequisite. |
 | 1.6 | Build `Agent` registry (purpose, owner/sponsor, maturity, permissions, performance) | `gail-ai-operating-system-rev-2` | `windows-local` | `complete` | Merged PR #13 2026-06-28. `AgentRegistry` + 6 seed agents. `GET /api/v1/agents`. 10 tests. |
-| 1.7 | Define canonical event vocabulary as TypeScript types | `gail-ai-operating-system-rev-2` | `windows-local` | `independent` | ~30 events from master plan §13.4. |
-| 1.8 | Expose mission + action + evidence as API endpoints (HTTP or Supabase RPC) | `gail-ai-operating-system-rev-2` | `windows-local` | `blocked` | Blocked by 1.1–1.4. |
-| 1.9 | Walk one action through full state machine manually with evidence | `gail-ai-operating-system-rev-2` | `windows-local` | `blocked` | Acceptance test for Phase 1 gate. |
+| 1.7 | Define canonical event vocabulary as TypeScript types | `the-freedom-engine-os` + `gail-ai-operating-system-rev-2` | `windows-local` | `complete` | Freedom PR #33: TypeScript wire types merged. GAIL OS Python-side `OkpRecordType` enum addressed in Chunk 5.2. Both sides covered. |
+| 1.8 | Expose mission + action + evidence as API endpoints | `gail-ai-operating-system-rev-2` | `windows-local` | `complete` | Merged PRs #8–#11 2026-06-28. FastAPI HTTP layer live. CP-1 integration test (Freedom PR #27) passes. |
+| 1.9 | Walk one action through full state machine manually with evidence | `gail-ai-operating-system-rev-2` | `complete` | `complete` | CP-1 proven 2026-06-28. 4/4 integration tests pass against live GAIL OS server via direct cable link. |
 
-**Phase 1 gate (CP-1):** One action walks the full state machine. Evidence packet created. API reachable from Linux.
+**Phase 1 gate (CP-1):** One action walks the full state machine. Evidence packet created. API reachable from Linux. **CP-1 COMPLETE 2026-06-28.**
 
 ---
 
@@ -103,32 +103,57 @@ Note: Phase 1 tasks are `windows-local`. A cloud agent may write code and open a
 
 ---
 
-## Phase 5 — Product App + Website Integration
+## Phase 5 — Operating Knowledge Intake and Relationship Mesh
 
-**Phase goal:** Each product app operates as a bounded circuit with registered authority, data, and evidence model.
+**Phase goal:** GAIL OS and Graphify ingest controlled operating knowledge from internal CNS sources. Freedom briefs with Signal Gravity. Synaptic Proof Chain demonstrated in dual format (CP-5).
 
-| # | Task | Repo | State | Notes |
-|---|---|---|---|---|
-| 5.1 | Guided AI Journey: define + emit structured events to OS | `guided-ai-journey-website-and-tools` | `blocked` | Blocked by CP-1 event contracts |
-| 5.2 | OldSkoolAI: define + emit capability signal events | `oldskoolai.com` | `blocked` | Blocked by CP-1 |
-| 5.3 | Bowtie: define + emit risk/control events to OS + Graphify | `bowtie_risk_program` | `blocked` | Blocked by CP-1 + Graphify risk domain (2.1) |
-| 5.4 | Change Leadership Tools: emit stakeholder + adoption events | `change-leadership-tools` | `blocked` | Blocked by CP-1 |
-| 5.5 | EasyDraft Docs: document generation under source/evidence control | `clean-pdf-build` | `blocked` | Blocked by CP-1 evidence model |
-| 5.6 | guidedailabs.com: emit `inquiry.created`, `demo_requested`, etc. | `guided-ai-labs-website` | `blocked` | Blocked by CP-1 event contracts |
-| 5.7 | guidedaijourney.com: emit `readiness.completed`, `pilot_candidate.created` | `guided-ai-journey-website-and-tools` | `blocked` | Blocked by CP-1 |
-| 5.8 | oldskoolai.com: emit `lesson.completed`, `role_path.selected` | `oldskoolai.com` | `blocked` | Blocked by CP-1 |
+**Scope reset 2026-06-28:** Prior product-repo event-emitter tasks are retired. All Phase 5 implementation stays in the four core CNS repos. See `docs/decisions/2026-06-28 - Phase 5 and Phase 6 Reset Decision.md`.
+
+Platform tags: `cloud-safe` = GitHub MCP only | `windows-local` = needs Windows | `blocked` = hard dependency outstanding
+
+| # | Chunk | Repo | Platform | State | Notes |
+|---|---|---|---|---|---|
+| 5.0 | Corrections + board reconciliation | `agentic-multi-agent-agent-builder` | `cloud-safe` | `complete` | Decision doc written. Board corrected. 2026-06-28. |
+| 5.1 | Product branch abandonment notes | Six product repos (docs only) | `cloud-safe` | `independent` | Abandonment note on each mistaken Phase 5 branch. No PRs, no main changes. |
+| 5.2 | OKP schema + EvidencePacket wrapper | `gail-ai-operating-system-rev-2` | `cloud-safe` | `independent` | `operating_knowledge.py` — 18 record types, OKP Pydantic model, EvidencePacketToOkpConverter, fingerprint, unsafe source ref rejection. Min 15 tests. |
+| 5.3 | OKP ingest + Signal Gravity L1 | `gail-ai-operating-system-rev-2` | `cloud-safe` | `blocked` | Blocked by 5.2. `operating_knowledge_store.py`, `signal_gravity.py`, `signal_gravity_config.json`, `GET /api/v1/okp/` + `POST /api/v1/okp/` endpoints. L1 scores on ingest. Min 15 tests. Parallel with 5.4. |
+| 5.4 | Graphify OKP nodes + Signal Gravity L2 | `graphify-workspace-cockpit` | `cloud-safe` | `blocked` | Blocked by 5.2. `operating_knowledge_writer.py`, OKP graph nodes + edges, L2 9-factor score, `POST /api/cns/okp`, `GET /api/cns/okp/{id}`. Min 10 tests. Parallel with 5.3. |
+| 5.5 | M365 CNS source surface map | `ag-operations-m365-foundation` | `cloud-safe` | `independent` | `docs/2026-06-28 - M365 CNS Source Surface Map.md` — 8 surfaces documented. BLK-005 status. No live Graph calls. Fully independent. |
+| 5.6 | Freedom OKP briefing + Signal Gravity | `the-freedom-engine-os` | `cloud-safe` | `blocked` | Blocked by 5.3 + 5.4. OKP query methods in gail-os-client + graphify-client. `generateOperatingKnowledgeBrief()` with gravity scores, source refs, calibration health. Min 10 tests. |
+| 5.7 | CP-5 dry-run proof (dual format) | All three code repos | `cloud-safe` | `blocked` | Blocked by 5.2–5.6. One EvidencePacket → OKP → Graphify → Freedom brief. Synaptic Proof Chain JSON + markdown. All three test suites green. |
+| 5.8 | Windows Graphify extraction status update | `graphify-workspace-cockpit` | `windows-local` | `blocked` | Blocked pending Windows operator action (BLK-004). Does not block 5.2–5.7. |
+
+**Phase 5 gate (CP-5):** Operating knowledge flows from source record → Graphify relationship → Freedom brief with Signal Gravity and Synaptic Proof Chain (dual format). **CP-5 closes when Chunk 5.7 passes.**
 
 ---
 
-## Phase 6–9 — Future Phases
+## Phase 6 — R4 Autonomy (Charter-Based)
 
-Phases 6–9 are sequenced after Phase 1–5 gates are met. Do not plan implementation tasks for these until the preceding gate is cleared.
+**Phase goal:** Define, prove, and execute the first R4 autonomous charter — Graphify stale-claim review — under governed conditions. Live execution (6.5) blocked until Adam explicitly approves.
+
+**Gate:** Begins after CP-5 is closed.
+
+| # | Chunk | Repo | Platform | State | Notes |
+|---|---|---|---|---|---|
+| 6.0 | R4 Charter Doctrine | `gail-ai-operating-system-rev-2` (docs) | `cloud-safe` | `blocked` | Blocked by CP-5. Decision doc: R4/R5 distinction, R4-001 Graphify Stale Claim Review Charter, exclusions, rollback, simulation-before-mutation rule. |
+| 6.1 | CharterProfile schema | `gail-ai-operating-system-rev-2` | `cloud-safe` | `blocked` | Blocked by 6.0. `charter_profile.py` — Pydantic model, R5-grant rejection, is_expired(), required fields for R4. Min 12 tests. |
+| 6.2 | Graphify charter nodes | `graphify-workspace-cockpit` | `cloud-safe` | `blocked` | Blocked by 6.1. Parallel with 6.3. Charter node type, edges to mission/agent/evidence/OKPs, `POST /api/cns/charters`, `GET /api/cns/charters/{id}`. Min 10 tests. |
+| 6.3 | Freedom charter discovery + briefing | `the-freedom-engine-os` | `cloud-safe` | `blocked` | Blocked by 6.1. Parallel with 6.2. `listCharters()`, `getCharter()`, charter_context in executive brief, CNS gate output. No self-approval. Min 8 tests. |
+| 6.4 | R4 dry-run simulation | All three code repos | `mixed` | `blocked` | Blocked by 6.1, 6.2, 6.3. Stale claim candidates → GAIL OS charter validation → dry-run execution → EvidencePacket → OKP (charter.executed) → Graphify preview → Freedom brief → rollback data. |
+| 6.5 | R4 limited internal execution | All three code repos | `mixed` | `blocked` | **BLOCKED — explicit Adam approval required.** No agent begins 6.5 without separate written authorization from Adam. |
+
+**Phase 6 gate (CP-6):** R4 charter simulated (6.4 proven). First limited internal execution reviewed by Adam. **6.5 requires explicit Adam authorization.**
+
+---
+
+## Phase 7–9 — Future Phases
+
+Phases 7–9 are sequenced after Phase 6 gates are met. Do not plan implementation tasks until the preceding gate is cleared.
 
 | Phase | Next action when gate met |
 |---|---|
-| 6 — R4 Autonomy | Define first R4 charter (narrow + reversible) when CP-3 is cleared |
-| 7 — Learning Loop | Define first learning consolidation target when Phases 1+2+3 produce operational evidence |
-| 8 — Client Package | Begin packaging when CP-4 is cleared + one R4 charter is proven |
+| 7 — Learning Loop | Define first learning consolidation target when Phases 1–5 produce operational evidence |
+| 8 — Client Package | Begin packaging when CP-6 cleared + one R4 charter proven in execution |
 | 9 — R&D Edge | R&D track runs in parallel; never blocks production gates |
 
 ---
@@ -137,13 +162,13 @@ Phases 6–9 are sequenced after Phase 1–5 gates are met. Do not plan implemen
 
 | Repo | Phase 0 | Phase 1 | Phase 2 | Phase 3 | Phase 4 | Phase 5 | Notes |
 |---|---|---|---|---|---|---|---|
-| `the-freedom-engine-os` | complete | complete | — | **complete** | — | — | All Phase 3 tasks done (3.1–3.6). checkCnsActionGate() unified portal gate live. |
-| `gail-ai-operating-system-rev-2` | complete | complete | — | independent | blocked | — | CP-1 proven. 3.3 (authority request) next coordinated task. |
-| `graphify-workspace-cockpit` | complete | — | **complete** | — | **complete** | — | CNS API live on port 8001. Evidence ingest endpoint live (4.6). 2.7/2.8 (Windows) still pending. |
-| `ag-operations-m365-foundation` | independent | — | — | — | independent | — | Stages 1–9 documented; needs OS connector registration |
-| `guided-ai-journey-website-and-tools` | independent | — | — | — | — | blocked | Active product; urgent customer journey fix in progress |
-| `oldskoolai.com` | independent | — | — | — | — | blocked | Active product |
-| `bowtie_risk_program` | independent | — | — | — | — | blocked | Active product |
-| `change-leadership-tools` | independent | — | — | — | — | blocked | |
-| `clean-pdf-build` | independent | — | — | — | — | blocked | |
-| `guided-ai-labs-website` | independent | — | — | — | — | blocked | Active site |
+| `the-freedom-engine-os` | complete | complete | — | **complete** | — | 5.6 (blocked by 5.3+5.4) | All Phase 3 tasks done (3.1–3.6). checkCnsActionGate() unified portal gate live. |
+| `gail-ai-operating-system-rev-2` | complete | **complete** | — | complete | complete | 5.2 → 5.3 | CP-1 proven 2026-06-28. All Phase 1 tasks 1.1–1.9 complete. OKP work next (5.2). |
+| `graphify-workspace-cockpit` | complete | — | **complete** | — | **complete** | 5.4 (blocked by 5.2) | CNS API live on port 8001. Evidence ingest endpoint live (4.6). 2.7/2.8 (Windows) still pending. |
+| `ag-operations-m365-foundation` | complete | — | — | — | — | 5.5 (independent) | Stages 1–9 documented. M365 CNS Source Surface Map (5.5) can proceed now. BLK-005 outstanding. |
+| `guided-ai-journey-website-and-tools` | complete | — | — | — | — | Phase 5 branch abandoned | Product repo — not a Phase 5 implementation target. Branch abandoned (Chunk 5.1). |
+| `oldskoolai.com` | complete | — | — | — | — | Phase 5 branch abandoned | Product repo — not a Phase 5 implementation target. Branch abandoned (Chunk 5.1). |
+| `bowtie_risk_program` | complete | — | — | — | — | Phase 5 branch abandoned | Product repo — not a Phase 5 implementation target. Branch abandoned (Chunk 5.1). |
+| `change-leadership-tools` | complete | — | — | — | — | Phase 5 branch abandoned | Product repo — not a Phase 5 implementation target. Branch abandoned (Chunk 5.1). |
+| `clean-pdf-build` | complete | — | — | — | — | Phase 5 branch abandoned | Product repo — not a Phase 5 implementation target. Branch abandoned (Chunk 5.1). |
+| `guided-ai-labs-website` | complete | — | — | — | — | Phase 5 branch abandoned | Product repo — not a Phase 5 implementation target. Branch abandoned (Chunk 5.1). |
