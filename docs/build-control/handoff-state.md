@@ -1,6 +1,6 @@
 # Handoff State — Guided AI Labs Agentic OS CNS
 
-**Last Updated:** 2026-06-28 (Chunk 5.0 complete — ready for Chunk 5.1)
+**Last Updated:** 2026-06-28 (Chunk 5.1 complete — ready for Chunk 5.2)
 **Owner:** Build Agent Orchestrator
 
 This file is the restart point for any agent, session, or context reset. Read this first after a compaction, clear, or handoff.
@@ -13,8 +13,8 @@ This document supersedes forward-looking Phase 5/6 sections of the turnover doc 
 ## Loop State
 
 active: true
-last_completed_task: "Chunk 5.0 — Corrections + Board Reconciliation. Decision doc written (docs/decisions/2026-06-28 - Phase 5 and Phase 6 Reset Decision.md). Workstream board Phase 1 tasks 1.1-1.9 marked complete. Phase 5 rows replaced with new chunk list 5.0-5.8. Phase 6 rows replaced with new chunk list 6.0-6.5. Repo status summary updated. handoff-state stale language corrected. 2026-06-28."
-next_task: "Chunk 5.1 — Product Branch Abandonment Notes. Add docs/2026-06-28 - Phase 5 Branch Abandoned.md to each of 6 product repo branches via GitHub MCP. No PRs, no main-branch changes. Branches: guided-ai-journey-website-and-tools/phase5/5.1-5.7-gai-journey-events, oldskoolai.com/phase5/5.2-5.8-oldskool-events, bowtie_risk_program/phase5/5.3-bowtie-events, change-leadership-tools/phase5/5.4-change-leadership-events, clean-pdf-build/phase5/5.5-easydraft-events, guided-ai-labs-website/phase5/5.6-gail-labs-events. Then proceed to Chunk 5.2."
+last_completed_task: "Chunk 5.1 — Product Branch Abandonment Notes. Added docs/2026-06-28 - Phase 5 Branch Abandoned.md to all 6 product repo phase5 branches via GitHub MCP (guided-ai-journey-website-and-tools, oldskoolai.com, bowtie_risk_program, change-leadership-tools, clean-pdf-build, guided-ai-labs-website). No PRs opened. No main-branch changes. All 6 pushes confirmed. 2026-06-28."
+next_task: "Chunk 5.2 — OKP Schema + EvidencePacket Wrapper. Repo: gail-ai-operating-system-rev-2. Output: packages/uaos-core/src/gail_ai_operating_system/operating_knowledge.py + tests/test_operating_knowledge.py. Deliverables: OkpRecordType enum (18 values), OperatingKnowledgePacket Pydantic model, EvidencePacketToOkpConverter, SHA-256 fingerprint, unsafe source ref rejection, field validators. Read spec §3 before starting. Platform: cloud-safe via GitHub MCP."
 skipped_tasks: []
 compaction_count: 15
 paused: false
@@ -26,9 +26,9 @@ retry_counts: {}
 ## Where We Are
 
 **Phase:** Phases 0–4 **COMPLETE** ✓ | Phase 5 — **ACTIVE** (Operating Knowledge Intake and Relationship Mesh)
-**Status:** Phases 0–4 all complete. CP-4 gate met (dry-run M365 proof only — live M365 not active). Phase 5 reset: product-repo event-emitter scope retired. All Phase 5 implementation in four core CNS repos only. Chunk 5.0 complete. Chunk 5.1 (product branch abandonment) is next. Chunk 5.2 (OKP schema) can follow immediately after 5.1.
+**Status:** Phases 0–4 COMPLETE. CP-4 met (dry-run M365 proof only — live M365 not active). Phase 5 reset: product-repo event-emitter scope retired. All Phase 5 implementation in four core CNS repos only. Chunks 5.0 + 5.1 complete. Chunk 5.2 (OKP schema in gail-ai-operating-system-rev-2) is next.
 **CP-4 note:** Dry-run proof only. M365 status = proven. Live writes require BLK-005 (Entra app registration by Adam/Windows) + named scope + explicit approval before active status.
-**Immediate next:** Chunk 5.1 — product branch abandonment notes (cloud-safe, GitHub MCP).
+**Immediate next:** Chunk 5.2 — OKP Schema + EvidencePacket Wrapper (gail-ai-operating-system-rev-2, cloud-safe via GitHub MCP).
 
 **Phase 2 completion note:** Chunks 2.1–2.9 plus 20D/20E were committed to `graphify-workspace-cockpit` in a prior session before this handoff was written. Discovered by reading git log + AGENTS.md. Tasks 2.7 (Windows Graphify extraction) and 2.8 (merge Windows graph) are NOT done — these are separate from the HTTP API work and remain pending.
 
