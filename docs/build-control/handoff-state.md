@@ -10,10 +10,10 @@ This file is the restart point for any agent, session, or context reset. Read th
 ## Loop State
 
 active: true
-last_completed_task: "Phase 4 tasks 4.2 + 4.1 — GraphAuthProvider + GET /api/v1/m365/status (GAIL OS PR #14) + m365-graph-api-bridge connector registration (GAIL OS PR #15). 21 combined tests. 2026-06-28"
-next_task: "Phase 4 task 4.3 — first M365 read action (R0 observe) with evidence packet in GAIL OS. Unblocked by 4.1 + 4.2."
+last_completed_task: "Phase 4 task 4.3 — first M365 R0 observe action with EvidencePacket (GAIL OS PR #16). observe_graph_metadata() + POST /api/v1/m365/observe. 12 tests. 2026-06-28"
+next_task: "Phase 4 task 4.4 — first M365 internal write (R2) — List row or Planner task. Unblocked by 4.3."
 skipped_tasks: []
-compaction_count: 11
+compaction_count: 12
 paused: false
 pause_reason: ""
 retry_counts: {}
@@ -23,10 +23,25 @@ retry_counts: {}
 ## Where We Are
 
 **Phase:** Phase 4 — **ACTIVE**
-**Status:** Phase 3 complete. Phase 4 tasks 4.1 (M365 bridge connector) and 4.2 (Graph auth) both merged. Task 4.3 (R0 observe read with evidence) is next.
-**Immediate next:** Task 4.3 — implement the first M365 read action (R0 observe) via Graph API using `GraphAuthProvider`, returning an `EvidencePacket`. Cloud-safe via GitHub MCP.
+**Status:** Phase 3 complete. Phase 4 tasks 4.1 + 4.2 + 4.3 all merged. Task 4.4 (first M365 write, R2) is next.
+**Immediate next:** Task 4.4 — implement first M365 internal write (R2) — List row or Planner task with source refs and EvidencePacket. Cloud-safe via GitHub MCP.
 
 **Phase 2 completion note:** Chunks 2.1–2.9 plus 20D/20E were committed to `graphify-workspace-cockpit` in a prior session before this handoff was written. Discovered by reading git log + AGENTS.md. Tasks 2.7 (Windows Graphify extraction) and 2.8 (merge Windows graph) are NOT done — these are separate from the HTTP API work and remain pending.
+
+### 2026-06-28 — Phase 4 task 4.3 complete — M365 R0 observe action with EvidencePacket
+
+**GAIL OS PR #16 merged.**
+
+**Task 4.3 — first M365 read action (R0 observe) with EvidencePacket:**
+- `packages/uaos-core/src/gail_ai_operating_system/m365_reader.py`: `observe_graph_metadata()` — dry-run R0 observe. Validates auth config, produces a planned EvidencePacket without any live Graph call (A1 boundary). Live path (`dry_run=False`, `allow_live=True`) calls `GET /v1.0/organization` for minimal org metadata and is gated at the EvidencePacket validation layer.
+- `apps/gail-os-api/routers/m365.py`: updated — added `POST /api/v1/m365/observe` (ObserveRequest Pydantic model, always `dry_run=True, allow_live=False` in Phase 4). Returns `{ok, evidence}` with full EvidencePacket dict.
+- `tests/test_m365_observe.py`: 12 tests — 7 service-layer unit tests (dry-run success, not-configured stopped, invalid target stopped, R0 authority basis, evidence-id prefix, validate_evidence_packet passes, dry-run execution mode) + 5 API tests (200 + evidence, not-configured → stopped, missing key → 422, wrong key → 401, invalid payload → 422).
+- `ALLOWED_OBSERVE_TARGETS = {"organization"}` — unknown targets produce STOPPED evidence.
+- No live calls. No secrets. No raw Graph content. A1 boundary preserved.
+
+**Next:** Task 4.4 — first M365 internal write (R2). Blocked by 4.3 (now cleared).
+
+---
 
 ### 2026-06-28 — Phase 4 tasks 4.2 + 4.1 complete — Graph auth + M365 bridge connector
 
