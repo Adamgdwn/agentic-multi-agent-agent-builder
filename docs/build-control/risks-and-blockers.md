@@ -10,7 +10,7 @@
 | ID | Blocker | Affects | Unblocked By |
 |---|---|---|---|
 | BLK-001 | GAIL OS spine is complete (Python, A1 local no-network, Chunks 1–19) but **not yet exposed as HTTP API**. Freedom (TypeScript, Linux) cannot call it. No JSON Schema contracts exist for cross-language consumers. | Freedom (Phase 3), M365 (Phase 4), all product apps (Phase 5) | Phase 1: Chunk 20 (evidence writes) → Chunk 21 (FastAPI HTTP layer) → Chunk 22 (`@gail/contracts` JSON Schema) → Chunk 23 (Freedom bridge). See `phase-1-chunk-specs.md`. |
-| BLK-002 | Graphify graph query HTTP API not yet exposed for external callers | Freedom cannot query Graphify context; OS evidence cannot link to graph refs | Phase 2.6 delivery in `graphify-workspace-cockpit` |
+| ~~BLK-002~~ | ~~Graphify graph query HTTP API not yet exposed for external callers~~ | **CLOSED 2026-06-27** — Graphify Phase 2 complete. 6 HTTP endpoints on port 8001, all SLAs verified. Freedom can query Graphify. | Resolved |
 | BLK-003 | `@gail/contracts` shared types package does not exist | Type drift between repos; no stable schema contract for consumers | Phase 0/1 task: create package in GAIL OS Rev 2 |
 | BLK-004 | Windows Enhanced Graphify has not extracted GAIL OS Rev 2 + M365 Foundation repos | Graphify has no knowledge of Windows-side architecture | Phase 2.7 task on Windows |
 | BLK-005 | M365 app registration + least-privilege permissions not yet confirmed as provisioned | Phase 4 M365 bridge cannot proceed without app registration | Confirm status against `ag-operations-m365-foundation/M365_STAGE_2_IDENTITY_FOUNDATION.md` |
@@ -61,6 +61,7 @@
 |---|---|---|---|
 | RSK-000 | Ambiguity between Freedom, GAIL OS, and Graphify as architecture layers | Master plan locked. DEC-001, DEC-002, DEC-003 captured. | 2026-06-25 |
 | RSK-00A | Graphify cross-machine graph fragmentation | DEC-005: Linux primary, Windows extraction node, GitHub sync. | 2026-06-25 |
+| BLK-002 | Graphify HTTP API not externally callable | Graphify Phase 2 complete 2026-06-27. 6 HTTP endpoints on port 8001, all SLAs verified (0.2ms p50 on 12,687 entities). | 2026-06-27 |
 
 ---
 
