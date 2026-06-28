@@ -1,6 +1,6 @@
 # Repo Workstream Board — Guided AI Labs Agentic OS CNS
 
-**Last Updated:** 2026-06-28 — Tasks 4.1–4.4 complete, 4.5 unblocked
+**Last Updated:** 2026-06-28 — Tasks 4.1–4.5 complete, 4.6 unblocked
 **Owner:** Build Agent Orchestrator
 
 Task states: `independent` | `coordinated` | `blocked` | `ready-for-integration` | `ready-for-review` | `complete`
@@ -96,8 +96,8 @@ Note: Phase 1 tasks are `windows-local`. A cloud agent may write code and open a
 | 4.2 | Implement Microsoft Graph auth (app registration, least privilege) | `gail-ai-operating-system-rev-2` | `complete` | Merged PR #14 2026-06-28. `GraphAuthProvider` (MSAL client-credentials) + `GET /api/v1/m365/status`. 11 tests. |
 | 4.3 | Implement first M365 read action (R0 observe) with evidence | `gail-ai-operating-system-rev-2` | `complete` | Merged PR #16 2026-06-28. `observe_graph_metadata()` + `POST /api/v1/m365/observe`. 12 tests. |
 | 4.4 | Implement first M365 internal write (R2) — List row or Planner task | `gail-ai-operating-system-rev-2` | `complete` | Merged PR #17 2026-06-28. `create_planner_task()` + `POST /api/v1/m365/write/planner-task`. 13 tests. |
-| 4.5 | Evidence packet returned and stored after M365 write | `gail-ai-operating-system-rev-2` | `independent` | Unblocked by 4.4. |
-| 4.6 | Graphify updates relationship map after M365 action | `graphify-workspace-cockpit` | `blocked` | Blocked by 4.5 |
+| 4.5 | Evidence packet returned and stored after M365 write | `gail-ai-operating-system-rev-2` | `complete` | Merged PR #18 2026-06-28. `save_evidence_packet()` + updated write endpoint. 10 tests. |
+| 4.6 | Graphify updates relationship map after M365 action | `graphify-workspace-cockpit` | `independent` | Unblocked by 4.5. |
 
 **Phase 4 gate (CP-4):** M365 write with OS evidence. Graphify updated. Reversible first action.
 

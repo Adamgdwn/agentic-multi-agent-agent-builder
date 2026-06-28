@@ -10,10 +10,10 @@ This file is the restart point for any agent, session, or context reset. Read th
 ## Loop State
 
 active: true
-last_completed_task: "Phase 4 task 4.4 — first M365 R2 write (Planner task) with EvidencePacket (GAIL OS PR #17). create_planner_task() + POST /api/v1/m365/write/planner-task. 13 tests. 2026-06-28"
-next_task: "Phase 4 task 4.5 — evidence packet stored after M365 write. Persist EvidencePacket to local_store after write action. Unblocked by 4.4."
+last_completed_task: "Phase 4 task 4.5 — evidence persistence (GAIL OS PR #18). save_evidence_packet() + updated write endpoint + GET /evidence/{mission_id} roundtrip. 10 tests. 2026-06-28"
+next_task: "Phase 4 task 4.6 — Graphify updates relationship map after M365 action. Add evidence ingest endpoint to graphify-workspace-cockpit CNS API. Unblocked by 4.5."
 skipped_tasks: []
-compaction_count: 13
+compaction_count: 14
 paused: false
 pause_reason: ""
 retry_counts: {}
@@ -23,10 +23,24 @@ retry_counts: {}
 ## Where We Are
 
 **Phase:** Phase 4 — **ACTIVE**
-**Status:** Phase 3 complete. Phase 4 tasks 4.1–4.4 all merged. Task 4.5 (evidence persistence after write) is next.
-**Immediate next:** Task 4.5 — persist EvidencePacket to local_store after M365 write action. The write endpoint already returns the packet; 4.5 adds disk persistence and retrieval via the existing evidence router. Cloud-safe via GitHub MCP.
+**Status:** Phase 3 complete. Phase 4 tasks 4.1–4.5 all merged. Task 4.6 (Graphify relationship map update) is next.
+**Immediate next:** Task 4.6 — add evidence ingest endpoint to Graphify CNS API (`graphify-workspace-cockpit`). After M365 write, the EvidencePacket should be ingested into the graph as a node linked to Mission + Connector. Cloud-safe via GitHub MCP.
 
 **Phase 2 completion note:** Chunks 2.1–2.9 plus 20D/20E were committed to `graphify-workspace-cockpit` in a prior session before this handoff was written. Discovered by reading git log + AGENTS.md. Tasks 2.7 (Windows Graphify extraction) and 2.8 (merge Windows graph) are NOT done — these are separate from the HTTP API work and remain pending.
+
+### 2026-06-28 — Phase 4 task 4.5 complete — Evidence persistence after M365 write
+
+**GAIL OS PR #18 merged.**
+
+**Task 4.5 — evidence packet stored and retrieved after M365 write:**
+- `packages/uaos-core/src/gail_ai_operating_system/evidence_store.py`: `save_evidence_packet()` — writes EvidencePacket as JSON to `{GAIL_OS_STORE_PATH}/evidence/{evidence_id}.json`. Creates directory if absent. Optional `store_path` param for test isolation.
+- `apps/gail-os-api/routers/m365_write.py`: updated — `POST /api/v1/m365/write/planner-task` now calls `save_evidence_packet()` after generating the packet. Packet is persisted AND returned in the response.
+- `tests/test_m365_evidence_store.py`: 10 tests — 6 unit tests (file created, content round-trip, dir created, path returned, file stem = evidence_id, GAIL_OS_STORE_PATH env var respected) + 4 API integration tests using tmp_path (file exists after write, GET evidence/{mission_id} returns ref, ref has correct fields, two writes both stored).
+- Full roundtrip proven: `POST /m365/write/planner-task` → file in `local_store/evidence/` → `GET /evidence/{mission_id}` returns refs.
+
+**Next:** Task 4.6 — Graphify ingest endpoint for evidence nodes (graphify-workspace-cockpit).
+
+---
 
 ### 2026-06-28 — Phase 4 task 4.4 complete — M365 R2 Planner task write with EvidencePacket
 
