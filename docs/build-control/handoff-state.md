@@ -1,6 +1,6 @@
 # Handoff State — Guided AI Labs Agentic OS CNS
 
-**Last Updated:** 2026-06-28 (Chunk 6.1 complete — CharterProfile schema + tests committed)
+**Last Updated:** 2026-06-28 (Chunk 6.4 complete — R4 Dry-Run Simulation. PAUSE: awaiting Adam approval to proceed to Chunk 6.5.)
 **Owner:** Build Agent Orchestrator
 
 This file is the restart point for any agent, session, or context reset. Read this first after a compaction, clear, or handoff.
@@ -13,12 +13,12 @@ This document supersedes forward-looking Phase 5/6 sections of the turnover doc 
 ## Loop State
 
 active: true
-last_completed_task: "Chunk 6.1 complete (2026-06-28). CharterProfile schema committed to gail-ai-operating-system-rev-2 via GitHub MCP (commit 307d4c1). Files: packages/uaos-core/src/gail_ai_operating_system/charter_profile.py + tests/test_charter_profile.py + __init__.py updated. CharterProfile dataclass with all 14 fields from spec §2.5. Validate: R5 authority rejected, R4 requires stop_conditions/rollback_path/max_actions/expiry (not in past), charter_id must start with 'charter-'. is_expired() method handles UTC-aware and naive datetimes. from_dict/to_dict round-trip. envelope_id optional back-reference. 17 tests (min 12). Package exports updated. Adam approved R4 Charter Doctrine (R4-001 scope, R4/R5 boundary) verbally this session."
-next_task: "Chunks 6.2 + 6.3 run in parallel. 6.2 — Graphify Charter Nodes (graphify-workspace-cockpit): cns_store/charter_writer.py + cns_api/routes/charters.py + tests (min 10). Charter node type in graph store; edges to mission/agent/evidence/source refs/OKPs/affected nodes; POST /api/cns/charters + GET /api/cns/charters/{charter_id}. Graphify gains no approval or execution authority. 6.3 — Freedom Charter Discovery + Briefing (the-freedom-engine-os): GailOsClient.listCharters() + getCharter(charterId); Freedom executive brief includes charter_context section; operator sees charter status in gate output; Freedom cannot self-approve charter changes. Read spec §5 Chunks 6.2 and 6.3 before starting."
+last_completed_task: "Chunk 6.4 complete (2026-06-28). R4 Dry-Run Simulation committed to gail-ai-operating-system-rev-2 (commit f53e35f). Files: packages/uaos-core/src/gail_ai_operating_system/r4_dry_run_simulator.py (218 lines) + tests/test_r4_dry_run_simulation.py (14 tests) + __init__.py updated. Simulation produces: StaleClaimCandidate list, EvidencePacket (execution_mode=dry-run), OKP (record_type=charter.executed), dry-run preview, rollback data, Freedom charter execution brief. No live mutations. no_live_mutations=True enforced. 14/14 tests pass. Full suite 417 pass."
+next_task: "Chunk 6.5 — R4 Limited Execution (first live Graphify stale-claim review). BLOCKED: requires explicit Adam approval after reviewing 6.4 results. Do NOT proceed to 6.5 without that approval. Read spec §5 Chunk 6.5 before starting."
 skipped_tasks: []
 compaction_count: 19
-paused: false
-pause_reason: ""
+paused: true
+pause_reason: "Chunk 6.5 blocked on explicit Adam approval. Chunk 6.4 dry-run proven (14/14). Awaiting: (1) Adam approval for 6.5, (2) Windows Entra permission expansion response (LINUX_TO_WINDOWS__2026-06-28-entra-expand-permissions.md sent)."
 retry_counts: {}
 
 ---
@@ -26,11 +26,51 @@ retry_counts: {}
 ## Where We Are
 
 **Phase:** Phases 0–5 **COMPLETE** ✓ | Phase 6 — **ACTIVE** (R4 Autonomy — Graphify Stale Claim Review)
-**Status:** Phases 0–5 COMPLETE. CP-5 CLOSED 2026-06-28. Phase 6 unblocked.
-**CP-4 note:** Dry-run proof only. M365 status = proven. Live writes require BLK-005 (Entra app registration by Adam/Windows) + named scope + explicit approval before active status.
-**Immediate next:** Chunks 6.2 + 6.3 in parallel — Graphify Charter Nodes (graphify-workspace-cockpit) and Freedom Charter Discovery (the-freedom-engine-os). Both cloud-safe via GitHub MCP.
+**Status:** Chunks 6.0–6.4 COMPLETE. Waiting Adam approval for Chunk 6.5 (R4 Limited Execution).
+**M365 note:** Windows Entra permission expansion instructions sent via Direct Link Exchange. Awaiting Windows response before Linux re-auth and Phase 4 production connector work.
+**Immediate next (when Adam approves):** Chunk 6.5 — first live R4 execution of Graphify stale-claim review using the R4-001 charter, limited to 5 candidates, against the graphify-workspace-cockpit CNS store.
 
 **Phase 2 completion note:** Chunks 2.1–2.9 plus 20D/20E were committed to `graphify-workspace-cockpit` in a prior session before this handoff was written. Discovered by reading git log + AGENTS.md. Tasks 2.7 (Windows Graphify extraction) and 2.8 (merge Windows graph) are NOT done — these are separate from the HTTP API work and remain pending.
+
+### 2026-06-28 — Chunks 6.0–6.4 complete — R4 Dry-Run Simulation proven
+
+**Repos:** `gail-ai-operating-system-rev-2`, `graphify-workspace-cockpit`, `the-freedom-engine-os`
+
+**Chunk 6.0 — R4 Charter Doctrine (commit 57b52fc):**
+- `docs/governance/r4-charter-doctrine.md` in `gail-ai-operating-system-rev-2`: R4/R5 boundary, R4-001 candidate spec, autonomy ceiling A3 for chartered agents, stop conditions.
+- Adam verbally approved R4 Charter Doctrine and R4-001 scope this session.
+
+**Chunk 6.1 — CharterProfile schema (commit 307d4c1):**
+- `packages/uaos-core/src/gail_ai_operating_system/charter_profile.py`: 14-field frozen dataclass, `validate_charter_profile()` (rejects R5, requires stop_conditions/rollback_path/max_actions/expiry), `is_expired()`, `from_dict/to_dict`.
+- 17 tests. Package exports updated.
+
+**Chunk 6.2 — Graphify Charter Nodes (graphify-workspace-cockpit, commit 7fdc23d):**
+- `cns_store/charter_writer.py`: `ingest_charter_entity()`, `get_charter_entity()`, `list_charter_entities()`. Kind `CharterProfile`, cluster `charter`, tier `authority`. Edges: `authorizes_mission`, `scopes_agent`, `requires_evidence`, `has_source_ref`, `produces_okp`, `affects`.
+- `cns_api/routes/charters.py`: `POST /api/cns/charters` (201), `GET /api/cns/charters/{charter_id}`, `GET /api/cns/charters` (with `authority_level`/`charter_status` filters).
+- Merge conflict with `okp_router` resolved — both routers registered in `app.py`.
+- 21 tests (10 writer + 11 API). Full suite 275 pass.
+
+**Chunk 6.3 — Freedom Charter Discovery (the-freedom-engine-os, commit e00fbc2):**
+- `packages/graphify-client/src/index.ts`: `listCharters()`, `getCharter(charterId)`, `CharterSummary`, `CharterContext`, `charterStatuses` tuple.
+- `src/lib/executiveBriefGenerator.ts`: `charterId` input → calls `getCharter()` in `Promise.all` → maps `active→permitted`, `pending→pending`, `revoked/expired→blocked`, not-found→`not_chartered`. Charter context is informational — `policyDecision` unchanged.
+- `src/lib/cnsActionGate.ts`: `charterId` wired through to brief; `charterStatus` surfaced in gate result.
+- Freedom cannot self-approve charter changes (enforced by design: brief is informational only).
+
+**Chunk 6.4 — R4 Dry-Run Simulation (gail-ai-operating-system-rev-2, commit f53e35f):**
+- `packages/uaos-core/src/gail_ai_operating_system/r4_dry_run_simulator.py` (218 lines):
+  - `StaleClaimCandidate`, `R4DryRunResult` dataclasses
+  - `build_r4_001_charter()` — synthetic R4-001 fixture (scope: graphify internal stale-claim review only; max 25 actions; 5 stop conditions; A3; 14-day initial expiry)
+  - `generate_stale_claim_candidates()`, `validate_charter_authority()`, `build_dry_run_preview()`, `produce_evidence_packet()`, `produce_okp()`, `produce_rollback_data()`, `build_freedom_brief()`, `run_r4_dry_run_simulation()`
+  - `no_live_mutations=True` hardcoded. No `datetime.now()`. `execution_mode="dry-run"` on all evidence.
+  - OKP `record_type="charter.executed"`, `status="observed"`. Freedom brief note: "Freedom cannot self-approve charter changes."
+- `tests/test_r4_dry_run_simulation.py`: 14 tests, all pass.
+- Full suite: 417 pass, 4 pre-existing unrelated failures.
+
+**M365 status:** BLK-005 closed (read-only proof). Entra permission expansion instructions sent to Windows via Direct Link Exchange (`LINUX_TO_WINDOWS__2026-06-28-entra-expand-permissions.md`). Awaiting Windows response.
+
+**PAUSE CONDITION:** Chunk 6.5 (R4 Limited Execution) requires explicit Adam approval. Do not proceed autonomously.
+
+---
 
 ### 2026-06-28 — Phase 4 task 4.6 complete — CP-4 gate met
 
