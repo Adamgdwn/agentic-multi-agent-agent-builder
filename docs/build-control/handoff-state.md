@@ -1,6 +1,6 @@
 # Handoff State — Guided AI Labs Agentic OS CNS
 
-**Last Updated:** 2026-06-28 (Chunk 5.6 complete — ready for Chunk 5.7 CP-5 Dry-Run Proof)
+**Last Updated:** 2026-06-28 (Chunk 5.7 complete — CP-5 CLOSED, Phase 6 unblocked)
 **Owner:** Build Agent Orchestrator
 
 This file is the restart point for any agent, session, or context reset. Read this first after a compaction, clear, or handoff.
@@ -13,10 +13,10 @@ This document supersedes forward-looking Phase 5/6 sections of the turnover doc 
 ## Loop State
 
 active: true
-last_completed_task: "Chunk 5.6 complete (2026-06-28). the-freedom-engine-os PR #34 merged (cdd3587). 3 new files: packages/gail-os-client/src/operatingKnowledge.ts (OkpRecord 17 types, CalibrationProposal, OkpGailOsClientMethods getOkp+listOkpByRecordType, createHttpOkpGailOsExtension, createFakeOkpGailOsExtension), packages/graphify-client/src/operatingKnowledge.ts (GravityFactorScores 9-factor, GravityResult L1/L2/used/degraded, SynapticProofChainStub stub-l2, OkpGraphifyClientMethods getOkpGravity+getOkpProofChain, createHttpOkpGraphifyExtension, createFakeOkpGraphifyExtension connected/degraded/unreachable), src/lib/operatingKnowledgeBrief.ts (generateOperatingKnowledgeBrief L2-preferred L1-fallback graphify_degraded flag, signal_gravity_health calibration proposals, per-factor breakdown in top_signal, empty-store safe note). Both client index.ts files updated with export * from ./operatingKnowledge.js. src/lib/operatingKnowledgeBrief.test.ts: 12 tests covering all acceptance criteria. executiveBriefGenerator.ts + cnsActionGate.ts untouched."
-next_task: "Chunk 5.7 — CP-5 Dry-Run Proof (all three code repos: gail-ai-operating-system-rev-2, graphify-workspace-cockpit, the-freedom-engine-os). Prerequisites: 5.2/5.3/5.4/5.5/5.6 all complete (all done). Objective: demonstrate complete operating knowledge flow from EvidencePacket → OKP → Graphify entity → Freedom brief with Signal Gravity visible + Synaptic Proof Chain in dual format. Machine-readable JSON via GET /api/cns/okp/{okp_id}/proof-chain. Human-readable markdown at docs/build-control/2026-06-28 - CP5 Synaptic Proof Chain.md. Read spec §4 Chunk 5.7 before starting. Unblocks Phase 6."
+last_completed_task: "Chunk 5.7 complete (2026-06-28). CP-5 CLOSED. Three PRs merged: GAIL OS PR #22 (712d532), Graphify PR #4 (64a8e39), Freedom PR #35 (6c77dab). Deliverables: tests/test_cp5_proof.py in GAIL OS (12 tests: EvidencePacket→OKP conversion, L1 gravity, OkpStore roundtrip, fingerprint determinism, proof-chain field completeness) + GET /api/v1/okp list-by-record-type + GET /api/v1/okp/{id}/proof-chain (stub-l1, CP-5 note). tests/test_cp5_proof.py in Graphify (10 tests: ingest, L2 all-9-factors, weights sum to 1, no orphan edges, proof-chain stub, upsert idempotency) + proof_chain_version stub-l2→v1-l2 + factor_weights_used in response. src/lib/cp5Proof.test.ts in Freedom (9 tests: full chain with fakes, L2 preferred over L1, 9-factor breakdown, source_refs, authority path, degraded fallback, unreachable fallback, boundary assertion). Human-readable Synaptic Proof Chain markdown committed to agentic-multi-agent-agent-builder docs/build-control/2026-06-28 - CP5 Synaptic Proof Chain.md."
+next_task: "Chunk 6.0 — R4 Charter Doctrine (gail-ai-operating-system-rev-2 docs). Prerequisites: CP-5 closed (done). Output: docs/decisions/2026-06-28 - R4 Charter Doctrine and First Internal Autonomy Candidate.md. Content: R4/R5 distinction, first R4 candidate R4-001 Graphify stale-claim review, scope/exclusions/rollback, CharterProfile fields from spec §2.5, Adam approval field. Unblocks 6.1. Read spec §5 Chunk 6.0 before starting."
 skipped_tasks: []
-compaction_count: 18
+compaction_count: 19
 paused: false
 pause_reason: ""
 retry_counts: {}
@@ -25,10 +25,10 @@ retry_counts: {}
 
 ## Where We Are
 
-**Phase:** Phases 0–4 **COMPLETE** ✓ | Phase 5 — **ACTIVE** (Operating Knowledge Intake and Relationship Mesh)
-**Status:** Phases 0–4 COMPLETE. CP-4 met (dry-run M365 proof only — live M365 not active). Chunks 5.0–5.6 complete. Next: Chunk 5.7 (CP-5 Dry-Run Proof, all three code repos).
+**Phase:** Phases 0–5 **COMPLETE** ✓ | Phase 6 — **ACTIVE** (R4 Autonomy — Graphify Stale Claim Review)
+**Status:** Phases 0–5 COMPLETE. CP-5 CLOSED 2026-06-28. Phase 6 unblocked.
 **CP-4 note:** Dry-run proof only. M365 status = proven. Live writes require BLK-005 (Entra app registration by Adam/Windows) + named scope + explicit approval before active status.
-**Immediate next:** Chunk 5.7 — CP-5 Dry-Run Proof (gail-ai-operating-system-rev-2, graphify-workspace-cockpit, the-freedom-engine-os) — cloud-safe via GitHub MCP. Completes Phase 5 and unlocks Phase 6.
+**Immediate next:** Chunk 6.0 — R4 Charter Doctrine (gail-ai-operating-system-rev-2 docs). Cloud-safe via GitHub MCP.
 
 **Phase 2 completion note:** Chunks 2.1–2.9 plus 20D/20E were committed to `graphify-workspace-cockpit` in a prior session before this handoff was written. Discovered by reading git log + AGENTS.md. Tasks 2.7 (Windows Graphify extraction) and 2.8 (merge Windows graph) are NOT done — these are separate from the HTTP API work and remain pending.
 
