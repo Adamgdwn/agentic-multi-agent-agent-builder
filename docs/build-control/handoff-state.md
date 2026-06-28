@@ -1,6 +1,6 @@
 # Handoff State — Guided AI Labs Agentic OS CNS
 
-**Last Updated:** 2026-06-28 (Chunk 5.7 complete — CP-5 CLOSED, Phase 6 unblocked)
+**Last Updated:** 2026-06-28 (Chunk 6.0 complete — R4 Charter Doctrine committed)
 **Owner:** Build Agent Orchestrator
 
 This file is the restart point for any agent, session, or context reset. Read this first after a compaction, clear, or handoff.
@@ -13,8 +13,8 @@ This document supersedes forward-looking Phase 5/6 sections of the turnover doc 
 ## Loop State
 
 active: true
-last_completed_task: "Chunk 5.7 complete (2026-06-28). CP-5 CLOSED. Three PRs merged: GAIL OS PR #22 (712d532), Graphify PR #4 (64a8e39), Freedom PR #35 (6c77dab). Deliverables: tests/test_cp5_proof.py in GAIL OS (12 tests: EvidencePacket→OKP conversion, L1 gravity, OkpStore roundtrip, fingerprint determinism, proof-chain field completeness) + GET /api/v1/okp list-by-record-type + GET /api/v1/okp/{id}/proof-chain (stub-l1, CP-5 note). tests/test_cp5_proof.py in Graphify (10 tests: ingest, L2 all-9-factors, weights sum to 1, no orphan edges, proof-chain stub, upsert idempotency) + proof_chain_version stub-l2→v1-l2 + factor_weights_used in response. src/lib/cp5Proof.test.ts in Freedom (9 tests: full chain with fakes, L2 preferred over L1, 9-factor breakdown, source_refs, authority path, degraded fallback, unreachable fallback, boundary assertion). Human-readable Synaptic Proof Chain markdown committed to agentic-multi-agent-agent-builder docs/build-control/2026-06-28 - CP5 Synaptic Proof Chain.md."
-next_task: "Chunk 6.0 — R4 Charter Doctrine (gail-ai-operating-system-rev-2 docs). Prerequisites: CP-5 closed (done). Output: docs/decisions/2026-06-28 - R4 Charter Doctrine and First Internal Autonomy Candidate.md. Content: R4/R5 distinction, first R4 candidate R4-001 Graphify stale-claim review, scope/exclusions/rollback, CharterProfile fields from spec §2.5, Adam approval field. Unblocks 6.1. Read spec §5 Chunk 6.0 before starting."
+last_completed_task: "Chunk 6.0 complete (2026-06-28). R4 Charter Doctrine committed to gail-ai-operating-system-rev-2 docs/decisions/2026-06-28 - R4 Charter Doctrine and First Internal Autonomy Candidate.md via GitHub MCP (commit 57b52fc). Content: full R0-R5 authority ladder, R4 definition and requirements (all 14 CharterProfile fields), R5 human-only constraint (charter cannot grant R5), first R4 candidate R4-001 Graphify Stale Claim Review with allowed/excluded action lists, live M365 exclusion doctrine, execution gate (6.4 simulation required before 6.5), Adam approval signature field. Document approved-by field left blank pending Adam signature."
+next_task: "Chunk 6.1 — CharterProfile Schema (gail-ai-operating-system-rev-2). Prerequisites: 6.0 done (complete). Output: packages/uaos-core/src/gail_ai_operating_system/charter_profile.py + tests/test_charter_profile.py. Pydantic model with all 14 fields from spec §2.5. R4 charter requires stop_conditions (non-empty), rollback_path (non-empty), max_actions, expiry (not in past). Charter cannot grant R5 (ValueError). charter_id must start with 'charter-'. is_expired() method. Update package exports. Read spec §5 Chunk 6.1 before starting."
 skipped_tasks: []
 compaction_count: 19
 paused: false
