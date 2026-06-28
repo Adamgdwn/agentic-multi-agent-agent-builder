@@ -219,6 +219,9 @@ The Chunk 20 CNS Orchestration Amendment redefines the build phase across four r
 | 2026-06-28 | 20A | control + GAIL OS | COMPLETE | control: a9722d9; GAIL OS: 8e56b8a | Four Repo Coordination Map, CP-1 Transport Parking Decision, GAIL OS pathway amendment appended. Loop mode: autonomous. pytest: run on Linux clone. |
 | 2026-06-28 | 20B | GAIL OS | COMPLETE — PR #8 open | 9043ead (branch: chunk-20b-approval-actions) | approval_actions.py: 4 functions + ApprovalDecision + ApprovalStore. 42 tests. 233 existing = 275 total green. No HTTP imports. R5 blocked by state machine. |
 | 2026-06-28 | 20C | GAIL OS | COMPLETE — PR #9 open | fbe8553 (branch: chunk-20c-contract-export) | 9 JSON Schema contracts in contracts/json-schema/. Closed enums: R0-R5, A0-A6, MissionStatus 12-stage. Export script. 43 tests. 234 total green. Transport-neutral. |
+| 2026-06-28 | 20D | Graphify | COMPLETE | dd118de (main) | CNS Connectome Contract + Endpoint Family Map. All 6 endpoints documented in 2 consumer families (GAIL OS Decision, Freedom Context). Extraction-write/API-read boundary stated. Authority boundary enforced. No new write paths. |
+| 2026-06-28 | 20G | M365 (GitHub MCP) | COMPLETE | aec24929 (main) | Bridge Placement Register + One-Writer Audit. BLK-005 UNKNOWN/BLOCKED. Zero M365 writes. GAIL OS Connector intent documented. Phase 4 gates recorded. |
+| 2026-06-28 | 20H | control repo | COMPLETE | (pending commit) | Infrastructure Placement Register + Promotion Gates. Four repos placed. CP-1 gate requirements mapped. One-writer rule confirmed clean. No infra provisioned. |
 
 ---
 
