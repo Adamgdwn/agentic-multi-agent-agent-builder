@@ -27,7 +27,7 @@ Every change should make the next correct change easier.
 
 Operate with strict context hygiene. Keep active context minimal, relevant, current, and recoverable.
 
-Work in clear phases. Summarize at phase boundaries. Compact or reset before quality degrades. Re-state critical constraints after compaction.
+Work in clear phases. Summarize at phase boundaries. Use the Non-Disruptive Context Reset Rule to decide when to handoff — do not interrupt active work unnecessarily. Re-state critical constraints after any restart.
 
 Narrow file scope before reading. Prefer targeted diffs and specific files over whole-repo exploration.
 
@@ -39,7 +39,7 @@ The repository remembers. Agents rent context. Keep work packets, scout summarie
 
 Keep read-only scout outputs summary-only.
 
-After a compaction, context clear, or fresh restart, use the latest handoff or work packet as the resume point. Then check `git status --short`, read short repo-local instructions, follow the active plan named by `START_HERE.md` only when needed, and avoid archived logs or broad scans unless the current objective requires them.
+After a handoff-and-wake cycle or fresh restart, use the latest handoff file, master run ledger, target repo `AGENTS.md`, and active chunk spec as the resume point. Check `git status --short`, read short repo-local instructions, do not load prior chat history, and do not broaden scope.
 
 ## Graphify Policy
 
@@ -60,18 +60,17 @@ Preserve existing secret-handling rules: do not index, print, summarize, or comm
 At the end of every chunk of work:
 
 1. Check `CARRY_FORWARD.md` — if it has any open items, surface them to the
-   user before proceeding. If there are open flags that must survive the context
-   reset, read them aloud and wait for confirmation.
+   user before proceeding.
 2. Stage the relevant files, commit with a clear message, and push. Do this
    automatically — do not ask unless a carry-forward flag or blocker requires
    a decision first.
-3. Confirm the push succeeded, then suggest `/compact` to compress the context
-   window. Do not suggest `/clear` — compact preserves the summary of what was
-   done, which is cheaper to resume from than a cold start.
-4. `/clear` is an explicit user override only: use it when prior context had
-   persistent wrong assumptions, or the next chunk is in a completely unrelated
-   domain.
-5. Do not auto-compact. Do not skip the commit step without flagging why.
+3. Write or update the chunk's run ledger entry and commit it.
+4. Apply the Non-Disruptive Context Reset Rule (`docs/standards/context-hygiene-standard.md`
+   § Non-Disruptive Context Reset) to decide whether to continue into the next chunk
+   in the same session, or write a durable handoff and fire a ScheduleWakeup.
+
+Do not suggest `/compact` at chunk end — the handoff-and-wake cycle IS the compact
+for agentic loops. `/clear` is an explicit user override only.
 
 A chunk ends when:
 - the current definition-of-done in `docs/current-build-pathway.md` is met, or

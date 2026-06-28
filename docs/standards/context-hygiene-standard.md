@@ -142,30 +142,35 @@ For meaningful tasks, separate discovery from implementation from review when
 the cost or risk justifies it. Tiny tasks may combine phases, but the agent
 should still avoid reading unrelated files.
 
-### Compact Or Reset Before Drift
+### Non-Disruptive Context Reset
 
-Do not wait until the context window is nearly exhausted. Summarize or reset when signal quality starts dropping.
+Context reset must support execution continuity, not interrupt it. Do not stop or wake a fresh session after every small action. Continue working in the same session while the current chunk is clear, bounded, and below context-risk thresholds.
 
-Use compaction or a fresh handoff when:
+**Use a handoff-and-wake cycle only at natural pause gates:**
 
-- a major phase completes
-- the active objective changes
-- the thread starts repeating mistakes
-- the agent ignores earlier constraints
-- broad exploration is complete and implementation is about to begin
-- validation is complete and only handoff remains
-- the next step can be stated more clearly than the transcript can preserve it
+1. A repo-level chunk is complete — validated, committed, pushed, and reported.
+2. The next step switches to a different repo.
+3. The next step requires loading a large new context set (major plans, logs, Graphify output, broad repo search, generated files, or test output).
+4. The next step involves authority, evidence, contracts, infrastructure, M365 writes, or cross-repo integration.
+5. Context appears above roughly 60% or near/above 100,000 tokens.
+6. Reasoning quality is degrading — constraints are being missed or repo boundaries are becoming unclear.
+7. The next action cannot be safely performed without first preserving current state.
 
-After compaction, restate critical constraints: architecture decisions, safety limits, acceptance criteria, project risk, validation expectations, and exact next objective.
+At each pause gate, decide: if the next step is safe to continue in the current context, continue. If context is high or the next step is risky, large, or cross-repo — write a durable handoff, update the master ledger, commit and push any status updates, fire a ScheduleWakeup with the full state snapshot embedded in the prompt, then stop.
 
-On restart after compaction or a context clear:
+For agentic loops, ScheduleWakeup with a full state snapshot in the prompt IS the compact — the next invocation starts with only that snapshot as context. The handoff-and-wake cycle replaces `/compact` for agentic loops and must not be used as a repeated interrupt during active work within a chunk.
 
-- treat the latest handoff or work packet as the resume point
-- run `git status --short`
-- read the short repo-local agent instructions
-- open `START_HERE.md` and the active plan only when the task needs material-work routing
-- avoid archived logs, superseded plans, generated output, and broad source scans unless the next objective requires them
-- query existing Graphify output for orientation instead of triggering a full semantic rebuild
+A chunk is complete only when:
+1. The work is validated, committed, pushed, and reported; AND
+2. Either the next step can safely continue in the same context, or a durable handoff and wake-up prompt have been written for a fresh session.
+
+**On restart after a handoff-and-wake cycle:**
+
+- Treat the handoff file, the master run ledger, the target repo `AGENTS.md`, and the active chunk spec as the resume point.
+- Run `git status --short` and read the short repo-local agent instructions.
+- Do not resume from memory or prior chat history. Do not broaden scope.
+- Query existing Graphify output for orientation instead of triggering a full semantic rebuild.
+- Avoid archived logs, superseded plans, generated output, and broad source scans unless the next objective requires them.
 
 ### Control Repository Scope
 
