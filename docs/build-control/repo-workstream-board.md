@@ -75,8 +75,8 @@ Note: Phase 1 tasks are `windows-local`. A cloud agent may write code and open a
 
 | # | Task | Repo | State | Notes |
 |---|---|---|---|---|
-| 3.1 | Connect Freedom to GAIL OS mission state API | `the-freedom-engine-os` | `independent` | CP-1 cleared. `gail-os-client` exists + proven. Wire into Freedom server-side flows (Next.js server actions/API routes). |
-| 3.2 | Connect Freedom to Graphify graph query API | `the-freedom-engine-os` | `independent` | 2.6 cleared. Build `graphify-cns-client` package in Freedom — mirrors `gail-os-client` pattern, calls `localhost:8001/api/cns/`. |
+| 3.1 | Connect Freedom to GAIL OS mission state API | `the-freedom-engine-os` | `ready-for-review` | PR #28 open 2026-06-28. `gail-os-server.ts` singleton + `/api/gail-os/missions` + `/api/gail-os/actions/validate` routes. |
+| 3.2 | Connect Freedom to Graphify graph query API | `the-freedom-engine-os` | `ready-for-review` | PR #28 open 2026-06-28. `createHttpGraphifyTransport` + CNS entity methods in `@freedom/graphify-client`. Entity context enrichment route. 8/8 unit tests. |
 | 3.3 | Build authority request flow (Freedom → OS override request) | `the-freedom-engine-os` + `gail-ai-operating-system-rev-2` | `independent` | CP-1 cleared. Coordinated across both repos. |
 | 3.4 | Build agent/capability discovery + routing in Freedom | `the-freedom-engine-os` | `blocked` | Still blocked by OS agent registry (1.6 — not yet implemented). |
 | 3.5 | Build executive briefing generator (context + risk + next action + authority path) | `the-freedom-engine-os` | `blocked` | Blocked by 3.1 + 3.2 |

@@ -28,6 +28,27 @@ retry_counts: {}
 
 **Phase 2 completion note:** Chunks 2.1–2.9 plus 20D/20E were committed to `graphify-workspace-cockpit` in a prior session before this handoff was written. Discovered by reading git log + AGENTS.md. Tasks 2.7 (Windows Graphify extraction) and 2.8 (merge Windows graph) are NOT done — these are separate from the HTTP API work and remain pending.
 
+### 2026-06-28 — Phase 3 tasks 3.1 + 3.2 complete — PR #28 open (the-freedom-engine-os)
+
+**Task 3.1 — Freedom → GAIL OS mission state API (server-side):**
+- `src/lib/gail-os-server.ts` — server-side GAIL OS client singleton
+- `src/app/api/gail-os/missions/route.ts` — `POST /api/gail-os/missions` (proposeMission)
+- `src/app/api/gail-os/actions/validate/route.ts` — `POST /api/gail-os/actions/validate` (validateAction → PolicyDecision)
+- `policy_blocked` is correctly handled as a valid decision outcome (not an error) at the API boundary
+
+**Task 3.2 — Freedom → Graphify CNS API:**
+- `@freedom/graphify-client`: `createHttpGraphifyTransport` + CNS GET methods: `cnsEntityContext`, `cnsMissionHistory`, `cnsDomainInfo`
+- Integration test file (3 skipped pending live CNS server + 1 fakeCnsMode passing)
+- `src/lib/graphify-server.ts` — server-side Graphify client singleton
+- `src/app/api/graphify/entity-context/[entityId]/route.ts` — pre-mission entity enrichment endpoint
+- 8/8 unit tests passing, clean typecheck
+
+**PR:** `the-freedom-engine-os` #28 — `phase3/3.1-3.2-graphify-gailos-server-connections`
+
+**Next:** Task 3.3 (authority request flow — Freedom → GAIL OS override request) is now unblocked. Task 3.4 remains blocked by OS agent registry (1.6). Task 3.5 blocked by 3.1+3.2 (now done). AG Operations 2-chunk completion also pending.
+
+---
+
 ### 2026-06-28 — Phase 2 COMPLETE (discovered); Phase 3 ACTIVE
 
 **Discovery:** Phase 2 (Graphify CNS API) was completed in a prior session before this handoff was updated.
