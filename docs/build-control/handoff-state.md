@@ -1,6 +1,6 @@
 # Handoff State — Guided AI Labs Agentic OS CNS
 
-**Last Updated:** 2026-06-28 (Chunk 5.1 complete — ready for Chunk 5.2)
+**Last Updated:** 2026-06-28 (Chunk 5.2 complete — ready for Chunks 5.3/5.4/5.5 in parallel)
 **Owner:** Build Agent Orchestrator
 
 This file is the restart point for any agent, session, or context reset. Read this first after a compaction, clear, or handoff.
@@ -13,10 +13,10 @@ This document supersedes forward-looking Phase 5/6 sections of the turnover doc 
 ## Loop State
 
 active: true
-last_completed_task: "Chunk 5.1 — Product Branch Abandonment Notes. Added docs/2026-06-28 - Phase 5 Branch Abandoned.md to all 6 product repo phase5 branches via GitHub MCP (guided-ai-journey-website-and-tools, oldskoolai.com, bowtie_risk_program, change-leadership-tools, clean-pdf-build, guided-ai-labs-website). No PRs opened. No main-branch changes. All 6 pushes confirmed. 2026-06-28."
-next_task: "Chunk 5.2 — OKP Schema + EvidencePacket Wrapper. Repo: gail-ai-operating-system-rev-2. Output: packages/uaos-core/src/gail_ai_operating_system/operating_knowledge.py + tests/test_operating_knowledge.py. Deliverables: OkpRecordType enum (18 values), OperatingKnowledgePacket Pydantic model, EvidencePacketToOkpConverter, SHA-256 fingerprint, unsafe source ref rejection, field validators. Read spec §3 before starting. Platform: cloud-safe via GitHub MCP."
+last_completed_task: "Chunk 5.2 — OKP Schema + EvidencePacket Wrapper. gail-ai-operating-system-rev-2 PR #19 merged (ff8144b). Created: operating_knowledge.py (OkpRecordType 18-value enum, OperatingKnowledgePacket frozen dataclass with __post_init__ validation, create_operating_knowledge_packet factory, EvidencePacketToOkpConverter), test_operating_knowledge.py (42 tests), __init__.py updated. SHA-256 fingerprint (32-char hex), unsafe source_ref rejection (.env/secret/token/password/absolute paths), authority R0-R5, autonomy A0-A6, risk_tier 1-5, confidence bounds, summary 1000-char cap, raw_payload_retained=True guard. 2026-06-28."
+next_task: "Chunks 5.3 + 5.4 + 5.5 — can run in parallel. 5.3: OKP Ingest + Signal Gravity L1 (gail-ai-operating-system-rev-2 — OkpStore, SignalGravityL1Calculator, POST/GET /api/v1/okp, signal_gravity_config.json). 5.4: Graphify OKP Nodes + Signal Gravity L2 (graphify-workspace-cockpit — ingest_okp_entity, SignalGravityL2Enricher, POST/GET /api/cns/okp, proof-chain endpoint). 5.5: M365 CNS Source Surface Map (ag-operations-m365-foundation — docs-only, 8 surfaces, BLK-005 status). Read spec §4 for each chunk's full spec before starting."
 skipped_tasks: []
-compaction_count: 15
+compaction_count: 16
 paused: false
 pause_reason: ""
 retry_counts: {}
@@ -26,9 +26,9 @@ retry_counts: {}
 ## Where We Are
 
 **Phase:** Phases 0–4 **COMPLETE** ✓ | Phase 5 — **ACTIVE** (Operating Knowledge Intake and Relationship Mesh)
-**Status:** Phases 0–4 COMPLETE. CP-4 met (dry-run M365 proof only — live M365 not active). Phase 5 reset: product-repo event-emitter scope retired. All Phase 5 implementation in four core CNS repos only. Chunks 5.0 + 5.1 complete. Chunk 5.2 (OKP schema in gail-ai-operating-system-rev-2) is next.
+**Status:** Phases 0–4 COMPLETE. CP-4 met (dry-run M365 proof only — live M365 not active). Phase 5 reset: product-repo event-emitter scope retired. All Phase 5 implementation in four core CNS repos only. Chunks 5.0 + 5.1 + 5.2 complete. Next: Chunks 5.3/5.4/5.5 in parallel.
 **CP-4 note:** Dry-run proof only. M365 status = proven. Live writes require BLK-005 (Entra app registration by Adam/Windows) + named scope + explicit approval before active status.
-**Immediate next:** Chunk 5.2 — OKP Schema + EvidencePacket Wrapper (gail-ai-operating-system-rev-2, cloud-safe via GitHub MCP).
+**Immediate next:** Chunks 5.3 (GAIL OS OKP ingest + Signal Gravity L1) + 5.4 (Graphify OKP nodes + Signal Gravity L2) + 5.5 (M365 source surface map) — all cloud-safe via GitHub MCP, run in parallel.
 
 **Phase 2 completion note:** Chunks 2.1–2.9 plus 20D/20E were committed to `graphify-workspace-cockpit` in a prior session before this handoff was written. Discovered by reading git log + AGENTS.md. Tasks 2.7 (Windows Graphify extraction) and 2.8 (merge Windows graph) are NOT done — these are separate from the HTTP API work and remain pending.
 
