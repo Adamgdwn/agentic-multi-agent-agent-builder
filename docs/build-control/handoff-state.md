@@ -1,6 +1,6 @@
 # Handoff State — Guided AI Labs Agentic OS CNS
 
-**Last Updated:** 2026-06-28 (Chunk 6.0 complete — R4 Charter Doctrine committed)
+**Last Updated:** 2026-06-28 (Chunk 6.1 complete — CharterProfile schema + tests committed)
 **Owner:** Build Agent Orchestrator
 
 This file is the restart point for any agent, session, or context reset. Read this first after a compaction, clear, or handoff.
@@ -13,8 +13,8 @@ This document supersedes forward-looking Phase 5/6 sections of the turnover doc 
 ## Loop State
 
 active: true
-last_completed_task: "Chunk 6.0 complete (2026-06-28). R4 Charter Doctrine committed to gail-ai-operating-system-rev-2 docs/decisions/2026-06-28 - R4 Charter Doctrine and First Internal Autonomy Candidate.md via GitHub MCP (commit 57b52fc). Content: full R0-R5 authority ladder, R4 definition and requirements (all 14 CharterProfile fields), R5 human-only constraint (charter cannot grant R5), first R4 candidate R4-001 Graphify Stale Claim Review with allowed/excluded action lists, live M365 exclusion doctrine, execution gate (6.4 simulation required before 6.5), Adam approval signature field. Document approved-by field left blank pending Adam signature."
-next_task: "Chunk 6.1 — CharterProfile Schema (gail-ai-operating-system-rev-2). Prerequisites: 6.0 done (complete). Output: packages/uaos-core/src/gail_ai_operating_system/charter_profile.py + tests/test_charter_profile.py. Pydantic model with all 14 fields from spec §2.5. R4 charter requires stop_conditions (non-empty), rollback_path (non-empty), max_actions, expiry (not in past). Charter cannot grant R5 (ValueError). charter_id must start with 'charter-'. is_expired() method. Update package exports. Read spec §5 Chunk 6.1 before starting."
+last_completed_task: "Chunk 6.1 complete (2026-06-28). CharterProfile schema committed to gail-ai-operating-system-rev-2 via GitHub MCP (commit 307d4c1). Files: packages/uaos-core/src/gail_ai_operating_system/charter_profile.py + tests/test_charter_profile.py + __init__.py updated. CharterProfile dataclass with all 14 fields from spec §2.5. Validate: R5 authority rejected, R4 requires stop_conditions/rollback_path/max_actions/expiry (not in past), charter_id must start with 'charter-'. is_expired() method handles UTC-aware and naive datetimes. from_dict/to_dict round-trip. envelope_id optional back-reference. 17 tests (min 12). Package exports updated. Adam approved R4 Charter Doctrine (R4-001 scope, R4/R5 boundary) verbally this session."
+next_task: "Chunks 6.2 + 6.3 run in parallel. 6.2 — Graphify Charter Nodes (graphify-workspace-cockpit): cns_store/charter_writer.py + cns_api/routes/charters.py + tests (min 10). Charter node type in graph store; edges to mission/agent/evidence/source refs/OKPs/affected nodes; POST /api/cns/charters + GET /api/cns/charters/{charter_id}. Graphify gains no approval or execution authority. 6.3 — Freedom Charter Discovery + Briefing (the-freedom-engine-os): GailOsClient.listCharters() + getCharter(charterId); Freedom executive brief includes charter_context section; operator sees charter status in gate output; Freedom cannot self-approve charter changes. Read spec §5 Chunks 6.2 and 6.3 before starting."
 skipped_tasks: []
 compaction_count: 19
 paused: false
@@ -28,7 +28,7 @@ retry_counts: {}
 **Phase:** Phases 0–5 **COMPLETE** ✓ | Phase 6 — **ACTIVE** (R4 Autonomy — Graphify Stale Claim Review)
 **Status:** Phases 0–5 COMPLETE. CP-5 CLOSED 2026-06-28. Phase 6 unblocked.
 **CP-4 note:** Dry-run proof only. M365 status = proven. Live writes require BLK-005 (Entra app registration by Adam/Windows) + named scope + explicit approval before active status.
-**Immediate next:** Chunk 6.0 — R4 Charter Doctrine (gail-ai-operating-system-rev-2 docs). Cloud-safe via GitHub MCP.
+**Immediate next:** Chunks 6.2 + 6.3 in parallel — Graphify Charter Nodes (graphify-workspace-cockpit) and Freedom Charter Discovery (the-freedom-engine-os). Both cloud-safe via GitHub MCP.
 
 **Phase 2 completion note:** Chunks 2.1–2.9 plus 20D/20E were committed to `graphify-workspace-cockpit` in a prior session before this handoff was written. Discovered by reading git log + AGENTS.md. Tasks 2.7 (Windows Graphify extraction) and 2.8 (merge Windows graph) are NOT done — these are separate from the HTTP API work and remain pending.
 
