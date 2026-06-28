@@ -10,10 +10,10 @@ This file is the restart point for any agent, session, or context reset. Read th
 ## Loop State
 
 active: true
-last_completed_task: "Phase 3 task 3.4 + GAIL OS 1.6 — Agent registry (GAIL OS PR #13) + agent/capability discovery + routing in Freedom (PR #31). listAgents + agentRouter. 18/18 tests. 2026-06-28"
-next_task: "Phase 3 task 3.6 — Integrate Freedom cockpit portals (desktop, gateway, mobile) with OS + Graphify. All 3.1–3.5 + 3.4 prerequisites now complete."
+last_completed_task: "Phase 3 task 3.6 — CNS action gate portal integration (Freedom PR #32). checkCnsActionGate() + POST /api/cns-gate. 6/6 tests. 238/238 suite clean. 2026-06-28"
+next_task: "Phase 4 (M365 first-class execution lane) — task 4.2 (Microsoft Graph auth) is independent. Task 4.1 blocked by CP-1 connector registry. Consider also Phase 1 tasks 1.1–1.5 on Windows."
 skipped_tasks: []
-compaction_count: 9
+compaction_count: 10
 paused: false
 pause_reason: ""
 retry_counts: {}
@@ -22,11 +22,27 @@ retry_counts: {}
 
 ## Where We Are
 
-**Phase:** Phase 3 — ACTIVE
-**Status:** Phase 1 (CP-1) and Phase 2 (Graphify CNS API) both complete. Phase 3 unblocked.
-**Immediate next:** Task 3.2 (Freedom → Graphify CNS client) + Task 3.1 (Freedom → GAIL OS mission state wiring) in parallel. Both are `independent`.
+**Phase:** Phase 3 — **COMPLETE**
+**Status:** All Phase 3 tasks (3.1–3.6) merged. Phase 4 is next.
+**Immediate next:** Task 4.2 (Microsoft Graph auth implementation in GAIL OS) is cloud-safe and independent. Task 4.1 (connector registry) remains blocked by CP-1 state machine.
 
 **Phase 2 completion note:** Chunks 2.1–2.9 plus 20D/20E were committed to `graphify-workspace-cockpit` in a prior session before this handoff was written. Discovered by reading git log + AGENTS.md. Tasks 2.7 (Windows Graphify extraction) and 2.8 (merge Windows graph) are NOT done — these are separate from the HTTP API work and remain pending.
+
+### 2026-06-28 — Phase 3 COMPLETE — Task 3.6 — CNS action gate portal integration
+
+**Freedom PR #32 merged.**
+
+**checkCnsActionGate() — unified portal pre-flight gate:**
+- `src/lib/cnsActionGate.ts`: `checkCnsActionGate()` — fans out to `generateExecutiveBrief` (GAIL OS + Graphify) + `resolveAgentForAction`. Returns `{ permitted, recommendation, brief, assignedAgent }`.
+- `src/app/api/cns-gate/route.ts`: `POST /api/cns-gate` — Zod-validated body (actionId, missionId, actionSummary, actionKind, riskTier, missionSummary, entityId, sourceRefIds, requestId). Returns permitted/recommendation/brief/assignedAgent.
+- `src/lib/cnsActionGate.test.ts`: 6 tests — approved low-risk, policy-blocked → await_approval + authority path, unreachable → halt, agent resolution (active preferred), null when no capable agent, evidence count propagation.
+- 6/6 new tests + 238/238 full suite clean + typecheck clean.
+
+**Phase 3 gate closure:** All tasks 3.1–3.6 complete. Freedom is fully wired: GAIL OS mission/action/evidence/override/agents + Graphify entity context + unified portal gate. CP-3 was formally met after 3.5. 3.6 closes the Phase 3 build surface.
+
+**Next phase:** Phase 4 — M365 first-class execution lane. Task 4.2 (Graph auth) is independent and cloud-safe.
+
+---
 
 ### 2026-06-28 — Tasks 1.6 + 3.4 complete — GAIL OS agent registry + Freedom routing
 

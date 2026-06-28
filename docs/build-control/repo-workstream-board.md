@@ -1,6 +1,6 @@
 # Repo Workstream Board — Guided AI Labs Agentic OS CNS
 
-**Last Updated:** 2026-06-28 — CP-3 met (tasks 3.1–3.3 + 3.5 complete)
+**Last Updated:** 2026-06-28 — Task 3.6 complete (all Phase 3 tasks done)
 **Owner:** Build Agent Orchestrator
 
 Task states: `independent` | `coordinated` | `blocked` | `ready-for-integration` | `ready-for-review` | `complete`
@@ -80,7 +80,7 @@ Note: Phase 1 tasks are `windows-local`. A cloud agent may write code and open a
 | 3.3 | Build authority request flow (Freedom → OS override request) | `the-freedom-engine-os` + `gail-ai-operating-system-rev-2` | `complete` | Merged Freedom PR #29 + GAIL OS PR #12 2026-06-28. `requestAuthorityOverride` in gail-os-client + POST /api/gail-os/authority/override route. 10/10 tests pass. |
 | 3.4 | Build agent/capability discovery + routing in Freedom | `the-freedom-engine-os` | `complete` | Merged PR #31 2026-06-28. `listAgents` in gail-os-client + `agentRouter.ts` (resolveAgentForAction). 18/18 tests. |
 | 3.5 | Build executive briefing generator (context + risk + next action + authority path) | `the-freedom-engine-os` | `complete` | Merged PR #30 2026-06-28. `generateExecutiveBrief()` — concurrent GAIL OS + Graphify fan-out, structured brief with context/risk/next-action/authority-path. 8/8 tests. **CP-3 gate met.** |
-| 3.6 | Integrate Freedom cockpit portals (desktop, gateway, mobile) with OS + Graphify | `the-freedom-engine-os` | `blocked` | Blocked by 3.1–3.5 all complete + 3.4 complete. Can now proceed. |
+| 3.6 | Integrate Freedom cockpit portals (desktop, gateway, mobile) with OS + Graphify | `the-freedom-engine-os` | `complete` | Merged PR #32 2026-06-28. `checkCnsActionGate()` + `POST /api/cns-gate`. 6/6 tests. 238/238 suite clean. |
 
 **Phase 3 gate (CP-3):** Freedom produces a decision brief. Override request recorded in OS.
 
@@ -137,7 +137,7 @@ Phases 6–9 are sequenced after Phase 1–5 gates are met. Do not plan implemen
 
 | Repo | Phase 0 | Phase 1 | Phase 2 | Phase 3 | Phase 4 | Phase 5 | Notes |
 |---|---|---|---|---|---|---|---|
-| `the-freedom-engine-os` | complete | complete | — | **active** | — | — | CP-1 proven. Phase 3 starting: 3.1 + 3.2 in parallel. |
+| `the-freedom-engine-os` | complete | complete | — | **complete** | — | — | All Phase 3 tasks done (3.1–3.6). checkCnsActionGate() unified portal gate live. |
 | `gail-ai-operating-system-rev-2` | complete | complete | — | independent | blocked | — | CP-1 proven. 3.3 (authority request) next coordinated task. |
 | `graphify-workspace-cockpit` | complete | — | **complete** | — | — | — | CNS API live on port 8001. 217 tests passing. 2.7/2.8 (Windows) still pending. |
 | `ag-operations-m365-foundation` | independent | — | — | — | independent | — | Stages 1–9 documented; needs OS connector registration |
