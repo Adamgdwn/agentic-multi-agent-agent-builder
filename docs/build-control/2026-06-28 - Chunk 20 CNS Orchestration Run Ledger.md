@@ -218,6 +218,7 @@ The Chunk 20 CNS Orchestration Amendment redefines the build phase across four r
 | 2026-06-28 | INIT | all | COMPLETE | baeab2d | Run ledger and matrix created. |
 | 2026-06-28 | 20A | control + GAIL OS | COMPLETE | control: a9722d9; GAIL OS: 8e56b8a | Four Repo Coordination Map, CP-1 Transport Parking Decision, GAIL OS pathway amendment appended. Loop mode: autonomous. pytest: run on Linux clone. |
 | 2026-06-28 | 20B | GAIL OS | COMPLETE — PR #8 open | 9043ead (branch: chunk-20b-approval-actions) | approval_actions.py: 4 functions + ApprovalDecision + ApprovalStore. 42 tests. 233 existing = 275 total green. No HTTP imports. R5 blocked by state machine. |
+| 2026-06-28 | 20C | GAIL OS | COMPLETE — PR #9 open | fbe8553 (branch: chunk-20c-contract-export) | 9 JSON Schema contracts in contracts/json-schema/. Closed enums: R0-R5, A0-A6, MissionStatus 12-stage. Export script. 43 tests. 234 total green. Transport-neutral. |
 
 ---
 
