@@ -10,10 +10,10 @@ This file is the restart point for any agent, session, or context reset. Read th
 ## Loop State
 
 active: true
-last_completed_task: "Phase 3 task 3.6 — CNS action gate portal integration (Freedom PR #32). checkCnsActionGate() + POST /api/cns-gate. 6/6 tests. 238/238 suite clean. 2026-06-28"
-next_task: "Phase 4 (M365 first-class execution lane) — task 4.2 (Microsoft Graph auth) is independent. Task 4.1 blocked by CP-1 connector registry. Consider also Phase 1 tasks 1.1–1.5 on Windows."
+last_completed_task: "Phase 4 tasks 4.2 + 4.1 — GraphAuthProvider + GET /api/v1/m365/status (GAIL OS PR #14) + m365-graph-api-bridge connector registration (GAIL OS PR #15). 21 combined tests. 2026-06-28"
+next_task: "Phase 4 task 4.3 — first M365 read action (R0 observe) with evidence packet in GAIL OS. Unblocked by 4.1 + 4.2."
 skipped_tasks: []
-compaction_count: 10
+compaction_count: 11
 paused: false
 pause_reason: ""
 retry_counts: {}
@@ -22,11 +22,32 @@ retry_counts: {}
 
 ## Where We Are
 
-**Phase:** Phase 3 — **COMPLETE**
-**Status:** All Phase 3 tasks (3.1–3.6) merged. Phase 4 is next.
-**Immediate next:** Task 4.2 (Microsoft Graph auth implementation in GAIL OS) is cloud-safe and independent. Task 4.1 (connector registry) remains blocked by CP-1 state machine.
+**Phase:** Phase 4 — **ACTIVE**
+**Status:** Phase 3 complete. Phase 4 tasks 4.1 (M365 bridge connector) and 4.2 (Graph auth) both merged. Task 4.3 (R0 observe read with evidence) is next.
+**Immediate next:** Task 4.3 — implement the first M365 read action (R0 observe) via Graph API using `GraphAuthProvider`, returning an `EvidencePacket`. Cloud-safe via GitHub MCP.
 
 **Phase 2 completion note:** Chunks 2.1–2.9 plus 20D/20E were committed to `graphify-workspace-cockpit` in a prior session before this handoff was written. Discovered by reading git log + AGENTS.md. Tasks 2.7 (Windows Graphify extraction) and 2.8 (merge Windows graph) are NOT done — these are separate from the HTTP API work and remain pending.
+
+### 2026-06-28 — Phase 4 tasks 4.2 + 4.1 complete — Graph auth + M365 bridge connector
+
+**GAIL OS PR #14 (task 4.2) + PR #15 (task 4.1) both merged.**
+
+**Task 4.2 — Microsoft Graph auth (GraphAuthProvider):**
+- `packages/uaos-core/src/gail_ai_operating_system/m365_auth.py`: `GraphAuthProvider` — MSAL client-credentials flow, `is_configured()` / `get_token()` / `from_env()`. `GraphAuthError` on config or MSAL failures.
+- `apps/gail-os-api/routers/m365.py`: `GET /api/v1/m365/status` — config readiness check, no live call, no token in response. Auth-gated.
+- `requirements.txt`: added `msal`.
+- 11 tests: env config combinations, MSAL mock (params + error paths), status endpoint, auth guards.
+
+**Task 4.1 — M365 Graph API bridge connector registration:**
+- `m365-graph-api-bridge` `ConnectorProfile` added to `initial_connector_profiles()` in `connector_registry.py`.
+- system_family: Microsoft 365, current_state: registry-only, live_access_enabled: False.
+- allowed_capabilities: planning-only, inventory-only, readiness-check.
+- Notes: wired to GraphAuthProvider from task 4.2; AZURE_* env vars required at runtime; task 4.3 is next gate.
+- 10 tests: bridge present, state/family/capabilities, full registry valid, unit validation, auth guards.
+
+**Next:** Task 4.3 — first M365 read action (R0 observe) with EvidencePacket. Requires mock MSAL in tests (A1 no-network boundary). Cloud-safe via GitHub MCP.
+
+---
 
 ### 2026-06-28 — Phase 3 COMPLETE — Task 3.6 — CNS action gate portal integration
 
