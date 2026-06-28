@@ -10,8 +10,8 @@ This file is the restart point for any agent, session, or context reset. Read th
 ## Loop State
 
 active: true
-last_completed_task: "Phase 2 — Graphify CNS API + schema extensions (chunks 2.1–2.6, BLK-002 resolved, 217 tests, 2026-06-27)"
-next_task: "Phase 3 — Freedom Operating Cognition: 3.1 (Freedom → GAIL OS mission state) + 3.2 (Freedom → Graphify CNS client) starting in parallel"
+last_completed_task: "Phase 3 task 3.3 — authority override flow (Freedom → GAIL OS override request). PRs: Freedom #29, GAIL OS #12. 2026-06-28"
+next_task: "Phase 3 task 3.5 — executive briefing generator (blocked by 3.1+3.2 merge). Review + merge PRs #28 (3.1/3.2), #29 (3.3 Freedom), #12 GAIL OS (3.3 Python)."
 skipped_tasks: []
 compaction_count: 8
 paused: false
@@ -46,6 +46,30 @@ retry_counts: {}
 **PR:** `the-freedom-engine-os` #28 — `phase3/3.1-3.2-graphify-gailos-server-connections`
 
 **Next:** Task 3.3 (authority request flow — Freedom → GAIL OS override request) is now unblocked. Task 3.4 remains blocked by OS agent registry (1.6). Task 3.5 blocked by 3.1+3.2 (now done). AG Operations 2-chunk completion also pending.
+
+---
+
+### 2026-06-28 — Phase 3 task 3.3 complete — PRs open
+
+**Task 3.3 — Authority override flow (Freedom → GAIL OS):**
+
+**GAIL OS Python side (PR #12):**
+- `apps/gail-os-api/routers/authority.py` — `POST /api/v1/authority/override` endpoint
+  - `OverrideRequest` Pydantic model: action_id, mission_id, summary, action_kind, risk_tier, blocking_reason, requested_by
+  - Returns pending `override_request_id` (UUID-based, unique per call), status, recorded_at (UTC Z)
+  - No live connectors, no M365 writes, A1 boundary only
+- `apps/gail-os-api/main.py` — authority router registered under `/api/v1`
+- `tests/test_api_authority.py` — 9 pytest tests
+
+**Freedom TypeScript side (PR #29):**
+- `@freedom/gail-os-client`: `requestAuthorityOverride` added to `gailOsOperations`; `AuthorityOverrideInput`/`AuthorityOverrideRecord` types; fake transport returns pending record; HTTP transport translates snake_case wire format
+- `src/app/api/gail-os/authority/override/route.ts` — `POST /api/gail-os/authority/override` Next.js API route with Zod validation
+- 10/10 unit tests passing, clean typecheck
+
+**Next tasks:**
+- 3.5 (executive briefing generator) — blocked until PRs #28/#29 merge
+- 3.4 (agent/capability discovery) — still blocked by 1.6 (OS agent registry)
+- PRs to merge: Freedom #28 (3.1+3.2), Freedom #29 (3.3), GAIL OS #12 (3.3 Python)
 
 ---
 
