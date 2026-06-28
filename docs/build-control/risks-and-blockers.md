@@ -1,6 +1,6 @@
 # Risks and Blockers — Guided AI Labs Agentic OS CNS
 
-**Last Updated:** 2026-06-25
+**Last Updated:** 2026-06-28
 **Owner:** Build Agent Orchestrator
 
 ---
@@ -13,7 +13,7 @@
 | ~~BLK-002~~ | ~~Graphify graph query HTTP API not yet exposed for external callers~~ | **CLOSED 2026-06-27** — Graphify Phase 2 complete. 6 HTTP endpoints on port 8001, all SLAs verified. Freedom can query Graphify. | Resolved |
 | BLK-003 | `@gail/contracts` shared types package does not exist | Type drift between repos; no stable schema contract for consumers | Phase 0/1 task: create package in GAIL OS Rev 2 |
 | BLK-004 | Windows Enhanced Graphify has not extracted GAIL OS Rev 2 + M365 Foundation repos | Graphify has no knowledge of Windows-side architecture | Phase 2.7 task on Windows |
-| BLK-005 | M365 app registration + least-privilege permissions not yet confirmed as provisioned | Phase 4 M365 bridge cannot proceed without app registration | Confirm status against `ag-operations-m365-foundation/M365_STAGE_2_IDENTITY_FOUNDATION.md` |
+| ~~BLK-005~~ | ~~M365 app registration + least-privilege permissions not yet confirmed as provisioned~~ | **CLOSED 2026-06-28** — App `9aeeeae6-be2a-476c-9c34-389dbc927c99` (`Guided AI Labs - CLI for Microsoft 365 Local Agent`) created via `m365 setup`, auth type `deviceCode`, tenant `1ca92af5-21ff-42e3-87ae-3bde9c2cc501`. Read-only proof passed (flow list verified). Permission expansion to full Phase 4 scope in progress (Exchange: `LINUX_TO_WINDOWS__2026-06-28-entra-expand-permissions.md`). | Resolved |
 
 ---
 
