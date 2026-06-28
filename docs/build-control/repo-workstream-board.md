@@ -1,6 +1,6 @@
 # Repo Workstream Board — Guided AI Labs Agentic OS CNS
 
-**Last Updated:** 2026-06-28
+**Last Updated:** 2026-06-28 — CP-3 met (tasks 3.1–3.3 + 3.5 complete)
 **Owner:** Build Agent Orchestrator
 
 Task states: `independent` | `coordinated` | `blocked` | `ready-for-integration` | `ready-for-review` | `complete`
@@ -75,12 +75,12 @@ Note: Phase 1 tasks are `windows-local`. A cloud agent may write code and open a
 
 | # | Task | Repo | State | Notes |
 |---|---|---|---|---|
-| 3.1 | Connect Freedom to GAIL OS mission state API | `the-freedom-engine-os` | `ready-for-review` | PR #28 open 2026-06-28. `gail-os-server.ts` singleton + `/api/gail-os/missions` + `/api/gail-os/actions/validate` routes. |
-| 3.2 | Connect Freedom to Graphify graph query API | `the-freedom-engine-os` | `ready-for-review` | PR #28 open 2026-06-28. `createHttpGraphifyTransport` + CNS entity methods in `@freedom/graphify-client`. Entity context enrichment route. 8/8 unit tests. |
-| 3.3 | Build authority request flow (Freedom → OS override request) | `the-freedom-engine-os` + `gail-ai-operating-system-rev-2` | `ready-for-review` | Freedom PR #29 + GAIL OS PR #12 open 2026-06-28. `requestAuthorityOverride` in gail-os-client + POST /api/gail-os/authority/override route. 10/10 tests pass. |
-| 3.4 | Build agent/capability discovery + routing in Freedom | `the-freedom-engine-os` | `blocked` | Still blocked by OS agent registry (1.6 — not yet implemented). |
-| 3.5 | Build executive briefing generator (context + risk + next action + authority path) | `the-freedom-engine-os` | `blocked` | Blocked by 3.1 + 3.2 |
-| 3.6 | Integrate Freedom cockpit portals (desktop, gateway, mobile) with OS + Graphify | `the-freedom-engine-os` | `blocked` | Final integration; blocked by 3.1–3.5 |
+| 3.1 | Connect Freedom to GAIL OS mission state API | `the-freedom-engine-os` | `complete` | Merged PR #28 2026-06-28. `gail-os-server.ts` singleton + `/api/gail-os/missions` + `/api/gail-os/actions/validate` routes. |
+| 3.2 | Connect Freedom to Graphify graph query API | `the-freedom-engine-os` | `complete` | Merged PR #28 2026-06-28. `createHttpGraphifyTransport` + CNS entity methods in `@freedom/graphify-client`. Entity context enrichment route. 8/8 unit tests. |
+| 3.3 | Build authority request flow (Freedom → OS override request) | `the-freedom-engine-os` + `gail-ai-operating-system-rev-2` | `complete` | Merged Freedom PR #29 + GAIL OS PR #12 2026-06-28. `requestAuthorityOverride` in gail-os-client + POST /api/gail-os/authority/override route. 10/10 tests pass. |
+| 3.4 | Build agent/capability discovery + routing in Freedom | `the-freedom-engine-os` | `blocked` | Blocked by GAIL OS task 1.6 (Agent registry — not yet implemented). |
+| 3.5 | Build executive briefing generator (context + risk + next action + authority path) | `the-freedom-engine-os` | `complete` | Merged PR #30 2026-06-28. `generateExecutiveBrief()` — concurrent GAIL OS + Graphify fan-out, structured brief with context/risk/next-action/authority-path. 8/8 tests. **CP-3 gate met.** |
+| 3.6 | Integrate Freedom cockpit portals (desktop, gateway, mobile) with OS + Graphify | `the-freedom-engine-os` | `blocked` | Final integration; blocked by 3.4 (needs GAIL OS 1.6 first). |
 
 **Phase 3 gate (CP-3):** Freedom produces a decision brief. Override request recorded in OS.
 

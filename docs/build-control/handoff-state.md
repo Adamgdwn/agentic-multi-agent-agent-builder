@@ -10,10 +10,10 @@ This file is the restart point for any agent, session, or context reset. Read th
 ## Loop State
 
 active: true
-last_completed_task: "Phase 3 task 3.3 — authority override flow (Freedom → GAIL OS override request). PRs: Freedom #29, GAIL OS #12. 2026-06-28"
-next_task: "Phase 3 task 3.5 — executive briefing generator (blocked by 3.1+3.2 merge). Review + merge PRs #28 (3.1/3.2), #29 (3.3 Freedom), #12 GAIL OS (3.3 Python)."
+last_completed_task: "Phase 3 task 3.5 — executive briefing generator (Freedom PR #30 merged). generateExecutiveBrief() fans out to GAIL OS + Graphify concurrently. 8/8 tests. CP-3 gate met. 2026-06-28"
+next_task: "GAIL OS task 1.6 — Agent registry (GET /api/v1/agents) — unblocks Phase 3 task 3.4 (agent/capability discovery in Freedom) → unblocks 3.6 (portal integration)."
 skipped_tasks: []
-compaction_count: 8
+compaction_count: 9
 paused: false
 pause_reason: ""
 retry_counts: {}
@@ -27,6 +27,29 @@ retry_counts: {}
 **Immediate next:** Task 3.2 (Freedom → Graphify CNS client) + Task 3.1 (Freedom → GAIL OS mission state wiring) in parallel. Both are `independent`.
 
 **Phase 2 completion note:** Chunks 2.1–2.9 plus 20D/20E were committed to `graphify-workspace-cockpit` in a prior session before this handoff was written. Discovered by reading git log + AGENTS.md. Tasks 2.7 (Windows Graphify extraction) and 2.8 (merge Windows graph) are NOT done — these are separate from the HTTP API work and remain pending.
+
+### 2026-06-28 — CP-3 gate met — Phase 3 tasks 3.1/3.2/3.3/3.5 complete
+
+**PRs #28 (3.1+3.2), #29 (3.3 Freedom), #12 GAIL OS (3.3 Python), #30 (3.5) all merged to main.**
+
+**CP-3 gate check:**
+- ✔ Freedom produces a decision brief — `generateExecutiveBrief()` in `src/lib/executiveBriefGenerator.ts`
+  - Fans out: `validateAction` + `getEvidence` (GAIL OS) + `cnsEntityContext` (Graphify, optional/degraded)
+  - Returns `ExecutiveBrief` with context, risk, nextAction (proceed/await_approval/halt), authorityPath
+  - `POST /api/executive-brief` route wired to real singletons. 8/8 tests pass.
+- ✔ Override request recorded in OS — `POST /api/v1/authority/override` (GAIL OS PR #12)
+  - Returns `override_request_id` (UUID-based unique), `status: "pending"`, `recorded_at` (UTC Z)
+- ✔ Freedom can call override via `POST /api/gail-os/authority/override` route (PR #29)
+
+**CP-3 is proven. Phase 4 is unblocked from the Freedom/OS integration perspective.**
+
+**Remaining Phase 3 work (not CP-3 gate requirements):**
+- 3.4: blocked by GAIL OS 1.6 (Agent registry — not yet implemented)
+- 3.6: blocked by 3.4
+
+**Next immediate task:** GAIL OS 1.6 — Agent registry (`GET /api/v1/agents`) — cloud-safe via GitHub MCP. Unblocks 3.4 → 3.6.
+
+---
 
 ### 2026-06-28 — Phase 3 tasks 3.1 + 3.2 complete — PR #28 open (the-freedom-engine-os)
 
