@@ -215,16 +215,21 @@ The Chunk 20 CNS Orchestration Amendment redefines the build phase across four r
 
 | Date | Chunk | Repo(s) | Status | Commit | Notes |
 |---|---|---|---|---|---|
-| 2026-06-28 | INIT | all | COMPLETE | TBD | Run ledger and matrix created. Awaiting Adam loop-mode confirmation. |
+| 2026-06-28 | INIT | all | COMPLETE | baeab2d | Run ledger and matrix created. |
+| 2026-06-28 | 20A | control + GAIL OS | COMPLETE | control: TBD; GAIL OS: 8e56b8a | Four Repo Coordination Map, CP-1 Transport Parking Decision, GAIL OS pathway amendment appended. Loop mode: autonomous. pytest: run on Linux clone. |
 
 ---
 
-## Open Clarifying Questions (from init — see below)
+## Loop Mode Confirmed
 
-| # | Question | Blocks |
-|---|---|---|
-| Q1 | Loop execution mode: sequential in this conversation vs. separate per-chunk triggers? | All execution |
-| Q2 | GAIL OS code chunk posture: push via GitHub MCP to branch, Adam validates pytest on Windows, then merge? | 20B, 20C |
+- **Loop execution:** Autonomous — sequential chunks, no user interjection required. Commit/push after each chunk and continue.
+- **GAIL OS code validation:** Clone repo on Linux, run pytest locally. Python is cross-platform. Windows-only was development placement, not a runtime constraint.
+
+---
+
+## Clarifying Questions
+
+All resolved. No open questions.
 
 ---
 
