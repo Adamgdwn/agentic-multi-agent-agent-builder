@@ -10,8 +10,8 @@ This file is the restart point for any agent, session, or context reset. Read th
 ## Loop State
 
 active: true
-last_completed_task: "Phase 3 task 3.5 — executive briefing generator (Freedom PR #30 merged). generateExecutiveBrief() fans out to GAIL OS + Graphify concurrently. 8/8 tests. CP-3 gate met. 2026-06-28"
-next_task: "GAIL OS task 1.6 — Agent registry (GET /api/v1/agents) — unblocks Phase 3 task 3.4 (agent/capability discovery in Freedom) → unblocks 3.6 (portal integration)."
+last_completed_task: "Phase 3 task 3.4 + GAIL OS 1.6 — Agent registry (GAIL OS PR #13) + agent/capability discovery + routing in Freedom (PR #31). listAgents + agentRouter. 18/18 tests. 2026-06-28"
+next_task: "Phase 3 task 3.6 — Integrate Freedom cockpit portals (desktop, gateway, mobile) with OS + Graphify. All 3.1–3.5 + 3.4 prerequisites now complete."
 skipped_tasks: []
 compaction_count: 9
 paused: false
@@ -27,6 +27,25 @@ retry_counts: {}
 **Immediate next:** Task 3.2 (Freedom → Graphify CNS client) + Task 3.1 (Freedom → GAIL OS mission state wiring) in parallel. Both are `independent`.
 
 **Phase 2 completion note:** Chunks 2.1–2.9 plus 20D/20E were committed to `graphify-workspace-cockpit` in a prior session before this handoff was written. Discovered by reading git log + AGENTS.md. Tasks 2.7 (Windows Graphify extraction) and 2.8 (merge Windows graph) are NOT done — these are separate from the HTTP API work and remain pending.
+
+### 2026-06-28 — Tasks 1.6 + 3.4 complete — GAIL OS agent registry + Freedom routing
+
+**GAIL OS PR #13 + Freedom PR #31 merged.**
+
+**GAIL OS 1.6 (agent_registry.py + GET /api/v1/agents):**
+- `AgentProfile` dataclass: agent_id, display_name, purpose, cns_layer, owner, maturity, max_authority_level, action_kinds, live_access_enabled
+- `AgentRegistry` with 6 seed agents across all three CNS layers (freedom-executive, freedom-gateway, freedom-desktop, freedom-mobile, gail-os-policy, graphify-cockpit)
+- `GET /api/v1/agents` — auth-gated, returns full profiles. 10 pytest tests.
+
+**Freedom 3.4 (listAgents + agentRouter):**
+- `@freedom/gail-os-client`: `listAgents` operation added — `GailOsAgent` Zod schema, fake transport, HTTP transport (snake_case → camelCase)
+- `src/lib/agentRouter.ts`: `resolveAgentsForAction()` + `resolveAgentForAction()` — pure ranking functions (active > prototype priority)
+- `src/app/api/gail-os/agents/route.ts`: `GET /api/gail-os/agents?actionKind=<kind>`
+- 11/11 gail-os-client tests + 7/7 agentRouter tests = 18/18 passing. Clean typecheck.
+
+**All Phase 3 prerequisites now met:** 3.1 ✓ 3.2 ✓ 3.3 ✓ 3.4 ✓ 3.5 ✓ → **3.6 unblocked.**
+
+---
 
 ### 2026-06-28 — CP-3 gate met — Phase 3 tasks 3.1/3.2/3.3/3.5 complete
 

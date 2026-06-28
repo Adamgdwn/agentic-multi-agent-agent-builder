@@ -41,7 +41,7 @@ Note: Phase 1 tasks are `windows-local`. A cloud agent may write code and open a
 | 1.3 | Define `AuthorityEnvelope` schema (all 14 charter fields from master plan) | `gail-ai-operating-system-rev-2` | `windows-local` | `independent` | New work. Cloud agent can write schema; validation needs test run. |
 | 1.4 | Define `EvidencePacket` schema (all required fields from master plan §11.4) | `gail-ai-operating-system-rev-2` | `windows-local` | `independent` | New work. Same note as 1.3. |
 | 1.5 | Build `Connector` registry (registered bridges, scopes, rate limits, evidence expectations) | `gail-ai-operating-system-rev-2` | `windows-local` | `independent` | |
-| 1.6 | Build `Agent` registry (purpose, owner/sponsor, maturity, permissions, performance) | `gail-ai-operating-system-rev-2` | `windows-local` | `independent` | Freedom Engine already has agent registry — check for import. |
+| 1.6 | Build `Agent` registry (purpose, owner/sponsor, maturity, permissions, performance) | `gail-ai-operating-system-rev-2` | `windows-local` | `complete` | Merged PR #13 2026-06-28. `AgentRegistry` + 6 seed agents. `GET /api/v1/agents`. 10 tests. |
 | 1.7 | Define canonical event vocabulary as TypeScript types | `gail-ai-operating-system-rev-2` | `windows-local` | `independent` | ~30 events from master plan §13.4. |
 | 1.8 | Expose mission + action + evidence as API endpoints (HTTP or Supabase RPC) | `gail-ai-operating-system-rev-2` | `windows-local` | `blocked` | Blocked by 1.1–1.4. |
 | 1.9 | Walk one action through full state machine manually with evidence | `gail-ai-operating-system-rev-2` | `windows-local` | `blocked` | Acceptance test for Phase 1 gate. |
@@ -78,9 +78,9 @@ Note: Phase 1 tasks are `windows-local`. A cloud agent may write code and open a
 | 3.1 | Connect Freedom to GAIL OS mission state API | `the-freedom-engine-os` | `complete` | Merged PR #28 2026-06-28. `gail-os-server.ts` singleton + `/api/gail-os/missions` + `/api/gail-os/actions/validate` routes. |
 | 3.2 | Connect Freedom to Graphify graph query API | `the-freedom-engine-os` | `complete` | Merged PR #28 2026-06-28. `createHttpGraphifyTransport` + CNS entity methods in `@freedom/graphify-client`. Entity context enrichment route. 8/8 unit tests. |
 | 3.3 | Build authority request flow (Freedom → OS override request) | `the-freedom-engine-os` + `gail-ai-operating-system-rev-2` | `complete` | Merged Freedom PR #29 + GAIL OS PR #12 2026-06-28. `requestAuthorityOverride` in gail-os-client + POST /api/gail-os/authority/override route. 10/10 tests pass. |
-| 3.4 | Build agent/capability discovery + routing in Freedom | `the-freedom-engine-os` | `blocked` | Blocked by GAIL OS task 1.6 (Agent registry — not yet implemented). |
+| 3.4 | Build agent/capability discovery + routing in Freedom | `the-freedom-engine-os` | `complete` | Merged PR #31 2026-06-28. `listAgents` in gail-os-client + `agentRouter.ts` (resolveAgentForAction). 18/18 tests. |
 | 3.5 | Build executive briefing generator (context + risk + next action + authority path) | `the-freedom-engine-os` | `complete` | Merged PR #30 2026-06-28. `generateExecutiveBrief()` — concurrent GAIL OS + Graphify fan-out, structured brief with context/risk/next-action/authority-path. 8/8 tests. **CP-3 gate met.** |
-| 3.6 | Integrate Freedom cockpit portals (desktop, gateway, mobile) with OS + Graphify | `the-freedom-engine-os` | `blocked` | Final integration; blocked by 3.4 (needs GAIL OS 1.6 first). |
+| 3.6 | Integrate Freedom cockpit portals (desktop, gateway, mobile) with OS + Graphify | `the-freedom-engine-os` | `blocked` | Blocked by 3.1–3.5 all complete + 3.4 complete. Can now proceed. |
 
 **Phase 3 gate (CP-3):** Freedom produces a decision brief. Override request recorded in OS.
 
