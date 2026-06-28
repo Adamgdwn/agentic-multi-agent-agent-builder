@@ -9,22 +9,45 @@ This file is the restart point for any agent, session, or context reset. Read th
 
 ## Loop State
 
-active: false
-last_completed_task: "CP-1 gate — Freedom → GAIL OS integration proof (4/4 tests passing, PR #27 merged 2026-06-28)"
-next_task: "Phase 2 — Graphify HTTP API + CNS schema extensions (Adam to confirm start)"
+active: true
+last_completed_task: "Phase 2 — Graphify CNS API + schema extensions (chunks 2.1–2.6, BLK-002 resolved, 217 tests, 2026-06-27)"
+next_task: "Phase 3 — Freedom Operating Cognition: 3.1 (Freedom → GAIL OS mission state) + 3.2 (Freedom → Graphify CNS client) starting in parallel"
 skipped_tasks: []
-compaction_count: 7
-paused: true
-pause_reason: "CP-1 gate closed. Phase 1 is complete. Awaiting Adam confirmation to start Phase 2."
+compaction_count: 8
+paused: false
+pause_reason: ""
 retry_counts: {}
 
 ---
 
 ## Where We Are
 
-**Phase:** Phase 1 — COMPLETE
-**Status:** All Phase 1 work merged. CP-1 gate proven live over direct Windows-Linux cable link.
-**Immediate next:** Phase 2 (Graphify HTTP API + CNS schema extensions) — Adam to confirm start.
+**Phase:** Phase 3 — ACTIVE
+**Status:** Phase 1 (CP-1) and Phase 2 (Graphify CNS API) both complete. Phase 3 unblocked.
+**Immediate next:** Task 3.2 (Freedom → Graphify CNS client) + Task 3.1 (Freedom → GAIL OS mission state wiring) in parallel. Both are `independent`.
+
+**Phase 2 completion note:** Chunks 2.1–2.9 plus 20D/20E were committed to `graphify-workspace-cockpit` in a prior session before this handoff was written. Discovered by reading git log + AGENTS.md. Tasks 2.7 (Windows Graphify extraction) and 2.8 (merge Windows graph) are NOT done — these are separate from the HTTP API work and remain pending.
+
+### 2026-06-28 — Phase 2 COMPLETE (discovered); Phase 3 ACTIVE
+
+**Discovery:** Phase 2 (Graphify CNS API) was completed in a prior session before this handoff was updated.
+
+- Graphify CNS API live on port 8001 (`graphify-workspace-cockpit/cns_api/`)
+- Freedom read-only endpoints: entity context, mission history, domain mapping (`routes/freedom.py`)
+- GAIL OS query endpoints: `routes/gail_os.py`
+- 217 tests passing, p95 latency < 0.3ms on 12,687-node graph
+- **BLK-002 resolved** — Graphify HTTP API now exposed externally
+- Chunks 2.1–2.6 confirmed committed; 2.7/2.8 (Windows extraction) still pending
+
+**Phase 3 now unblocked:**
+- CP-1 cleared (PR #27 merged 2026-06-28) → tasks 3.1 and 3.3 unblocked
+- Task 2.6 cleared (Graphify HTTP API live) → task 3.2 unblocked
+
+**Loop resumed by Adam** — authorized to continue into Phase 3 without waiting. Starting 3.2 and 3.1 in parallel.
+
+**AG Operations note:** Per next-phase-builder-wishlist.md — AG Operations (`ag-operations-m365-foundation`) has 2 remaining chunks before a solid M365 base. Do not plan M365-to-CNS integration specifics until those complete (P1 priority in wishlist).
+
+---
 
 ### 2026-06-28 — CP-1 gate closed — Phase 1 COMPLETE
 

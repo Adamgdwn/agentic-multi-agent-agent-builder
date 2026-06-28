@@ -1,6 +1,6 @@
 # Repo Workstream Board — Guided AI Labs Agentic OS CNS
 
-**Last Updated:** 2026-06-27
+**Last Updated:** 2026-06-28
 **Owner:** Build Agent Orchestrator
 
 Task states: `independent` | `coordinated` | `blocked` | `ready-for-integration` | `ready-for-review` | `complete`
@@ -56,12 +56,12 @@ Note: Phase 1 tasks are `windows-local`. A cloud agent may write code and open a
 
 | # | Task | Repo | State | Notes |
 |---|---|---|---|---|
-| 2.1 | Extend graph schema to cover CNS entity domains (see master plan §12.1) | `graphify-workspace-cockpit` | `independent` | Add: Evidence, Risk/Control, Capabilities/Agents, Research, Code/Build domains |
-| 2.2 | Add `EvidencePacket` node type — link to OS evidence via `SourceRef` | `graphify-workspace-cockpit` | `coordinated` | Requires CP-1 (OS evidence schema) |
-| 2.3 | Add `ResearchClaim` node type with confidence, expiry, recheck fields | `graphify-workspace-cockpit` | `independent` | |
-| 2.4 | Add `Agent` / `Capability` node types linked to OS agent registry | `graphify-workspace-cockpit` | `coordinated` | Requires 1.6 |
-| 2.5 | Build research ingestion pipeline (source → claim → affected capability → graph edge) | `graphify-workspace-cockpit` | `independent` | New backend route + service |
-| 2.6 | Expose graph query API as named HTTP endpoint (not just CLI) | `graphify-workspace-cockpit` | `independent` | Required before Freedom can query Graphify |
+| 2.1 | Extend graph schema to cover CNS entity domains (see master plan §12.1) | `graphify-workspace-cockpit` | `complete` | Done 2026-06-27 — chunks 2.1–2.9 in cockpit. Evidence, Research, Agent, Code/Build domains added. |
+| 2.2 | Add `EvidencePacket` node type — link to OS evidence via `SourceRef` | `graphify-workspace-cockpit` | `complete` | Done 2026-06-27 — part of schema extension work. |
+| 2.3 | Add `ResearchClaim` node type with confidence, expiry, recheck fields | `graphify-workspace-cockpit` | `complete` | Done 2026-06-27. |
+| 2.4 | Add `Agent` / `Capability` node types linked to OS agent registry | `graphify-workspace-cockpit` | `complete` | Done 2026-06-27. |
+| 2.5 | Build research ingestion pipeline (source → claim → affected capability → graph edge) | `graphify-workspace-cockpit` | `complete` | Done 2026-06-27 — `cns_api/routes/ingest.py` live. |
+| 2.6 | Expose graph query API as named HTTP endpoint (not just CLI) | `graphify-workspace-cockpit` | `complete` | Done 2026-06-27. **BLK-002 resolved.** CNS API on port 8001. Freedom endpoints: entity context, mission history, domain mapping. 217 tests passing. |
 | 2.7 | Windows Enhanced Graphify: extract GAIL OS Rev 2 + M365 Foundation repos | Windows | `independent` | Run extraction, push graph.json to GitHub |
 | 2.8 | Merge Windows graph output into Linux cockpit workspace graph | `graphify-workspace-cockpit` | `blocked` | Blocked by 2.7 |
 
@@ -75,10 +75,10 @@ Note: Phase 1 tasks are `windows-local`. A cloud agent may write code and open a
 
 | # | Task | Repo | State | Notes |
 |---|---|---|---|---|
-| 3.1 | Connect Freedom to GAIL OS mission state API | `the-freedom-engine-os` | `blocked` | Blocked by CP-1 |
-| 3.2 | Connect Freedom to Graphify graph query API | `the-freedom-engine-os` | `blocked` | Blocked by 2.6 |
-| 3.3 | Build authority request flow (Freedom → OS override request) | `the-freedom-engine-os` + `gail-ai-operating-system-rev-2` | `blocked` | Coordinated; blocked by CP-1 |
-| 3.4 | Build agent/capability discovery + routing in Freedom | `the-freedom-engine-os` | `blocked` | Blocked by CP-1 + OS agent registry (1.6) |
+| 3.1 | Connect Freedom to GAIL OS mission state API | `the-freedom-engine-os` | `independent` | CP-1 cleared. `gail-os-client` exists + proven. Wire into Freedom server-side flows (Next.js server actions/API routes). |
+| 3.2 | Connect Freedom to Graphify graph query API | `the-freedom-engine-os` | `independent` | 2.6 cleared. Build `graphify-cns-client` package in Freedom — mirrors `gail-os-client` pattern, calls `localhost:8001/api/cns/`. |
+| 3.3 | Build authority request flow (Freedom → OS override request) | `the-freedom-engine-os` + `gail-ai-operating-system-rev-2` | `independent` | CP-1 cleared. Coordinated across both repos. |
+| 3.4 | Build agent/capability discovery + routing in Freedom | `the-freedom-engine-os` | `blocked` | Still blocked by OS agent registry (1.6 — not yet implemented). |
 | 3.5 | Build executive briefing generator (context + risk + next action + authority path) | `the-freedom-engine-os` | `blocked` | Blocked by 3.1 + 3.2 |
 | 3.6 | Integrate Freedom cockpit portals (desktop, gateway, mobile) with OS + Graphify | `the-freedom-engine-os` | `blocked` | Final integration; blocked by 3.1–3.5 |
 
@@ -133,13 +133,13 @@ Phases 6–9 are sequenced after Phase 1–5 gates are met. Do not plan implemen
 
 ---
 
-## Repo Status Summary (2026-06-25)
+## Repo Status Summary (2026-06-28)
 
 | Repo | Phase 0 | Phase 1 | Phase 2 | Phase 3 | Phase 4 | Phase 5 | Notes |
 |---|---|---|---|---|---|---|---|
-| `the-freedom-engine-os` | in-progress | blocked | — | blocked | — | — | V1 scaffold exists; needs OS + Graphify connection |
-| `gail-ai-operating-system-rev-2` | in-progress | independent | — | — | blocked | — | Active Windows development; needs Rev 2 spine |
-| `graphify-workspace-cockpit` | in-progress | — | in-progress | — | — | — | "Second video ready"; needs CNS schema extensions |
+| `the-freedom-engine-os` | complete | complete | — | **active** | — | — | CP-1 proven. Phase 3 starting: 3.1 + 3.2 in parallel. |
+| `gail-ai-operating-system-rev-2` | complete | complete | — | independent | blocked | — | CP-1 proven. 3.3 (authority request) next coordinated task. |
+| `graphify-workspace-cockpit` | complete | — | **complete** | — | — | — | CNS API live on port 8001. 217 tests passing. 2.7/2.8 (Windows) still pending. |
 | `ag-operations-m365-foundation` | independent | — | — | — | independent | — | Stages 1–9 documented; needs OS connector registration |
 | `guided-ai-journey-website-and-tools` | independent | — | — | — | — | blocked | Active product; urgent customer journey fix in progress |
 | `oldskoolai.com` | independent | — | — | — | — | blocked | Active product |
