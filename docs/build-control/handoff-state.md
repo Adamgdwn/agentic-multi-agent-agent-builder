@@ -1,6 +1,6 @@
 # Handoff State — Guided AI Labs Agentic OS CNS
 
-**Last Updated:** 2026-06-27 (CP-0 confirmed — all 11 Phase 0 PRs merged)
+**Last Updated:** 2026-06-28 (CP-1 gate closed — Phase 1 COMPLETE)
 **Owner:** Build Agent Orchestrator
 
 This file is the restart point for any agent, session, or context reset. Read this first after a compaction, clear, or handoff.
@@ -10,21 +10,38 @@ This file is the restart point for any agent, session, or context reset. Read th
 ## Loop State
 
 active: false
-last_completed_task: "1.2 — Action schema + state machine (PR #7 merged 2026-06-27)"
-next_task: "Windows-local: Chunk 20 — Local Governed Approval Writes (gail-ai-operating-system-rev-2, Windows machine required)"
+last_completed_task: "CP-1 gate — Freedom → GAIL OS integration proof (4/4 tests passing, PR #27 merged 2026-06-28)"
+next_task: "Phase 2 — Graphify HTTP API + CNS schema extensions (Adam to confirm start)"
 skipped_tasks: []
-compaction_count: 6
+compaction_count: 7
 paused: true
-pause_reason: "All cloud-safe Phase 1 tasks complete. Remaining work (Chunks 20-23) is windows-local. Adam to confirm Windows machine ready before proceeding."
+pause_reason: "CP-1 gate closed. Phase 1 is complete. Awaiting Adam confirmation to start Phase 2."
 retry_counts: {}
 
 ---
 
 ## Where We Are
 
-**Phase:** Phase 1 — GAIL OS Spine schemas COMPLETE (cloud-safe portion)
-**Status:** Tasks 1.0–1.4 all merged. Cloud-safe Phase 1 schema foundation done.
-**Immediate next:** Windows-local Chunk 20 (Local Governed Approval Writes) on gail-ai-operating-system-rev-2. Requires Windows dev environment. Adam to signal when ready.
+**Phase:** Phase 1 — COMPLETE
+**Status:** All Phase 1 work merged. CP-1 gate proven live over direct Windows-Linux cable link.
+**Immediate next:** Phase 2 (Graphify HTTP API + CNS schema extensions) — Adam to confirm start.
+
+### 2026-06-28 — CP-1 gate closed — Phase 1 COMPLETE
+
+- **CP-1 integration proof: 4/4 tests passing** against live GAIL OS server at `10.77.77.1:8123` (direct Windows-Linux cable link).
+  - ✔ health check
+  - ✔ proposeMission → mission_id + status `proposed`
+  - ✔ validateAction → PolicyDecision received (policy_blocked at A1 boundary as expected)
+  - ✔ listConnectors → all 7 connectors `canExecute: false`
+- **Two HTTP transport fixes** merged as PR #27 (`the-freedom-engine-os`):
+  - Normalize server timestamp to UTC in `fromGailOsWireMission` (server returns `-06:00` offset; schema requires Z)
+  - Fix mission `owner` to `"Adam Goodwin"` in `buildMinimalWireMission` (server A1 policy validates owner identity)
+- **All Phase 1 PRs merged** across both repos:
+  - `gail-ai-operating-system-rev-2`: PRs #3–#11 (Chunks 20–21)
+  - `the-freedom-engine-os`: PRs #24 (contracts), #25 (HTTP bridge), #26 (CI fix), #27 (CP-1 gate)
+- **Blockers cleared:** BLK-001 (GAIL OS spine), BLK-003 (`@gail/contracts`), BLK-CP1 (integration proof) all resolved.
+- **Supabase RLS note:** 20 public tables in Freedom Supabase project have RLS disabled. Not a Phase 1 blocker. Adam to decide remediation path before Phase 3 production work.
+- **Vercel note:** Freedom Engine is NOT deployed to Vercel (expected for Phase 1 A1 local-only boundary). No action needed.
 
 ### 2026-06-27 — Task 1.2 merged; cloud-safe Phase 1 schema complete
 
