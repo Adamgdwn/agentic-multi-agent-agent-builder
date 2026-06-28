@@ -1,6 +1,6 @@
 # Handoff State — Guided AI Labs Agentic OS CNS
 
-**Last Updated:** 2026-06-28 (Chunk 5.2 complete — ready for Chunks 5.3/5.4/5.5 in parallel)
+**Last Updated:** 2026-06-28 (Chunks 5.3/5.4/5.5 complete — ready for Chunk 5.6)
 **Owner:** Build Agent Orchestrator
 
 This file is the restart point for any agent, session, or context reset. Read this first after a compaction, clear, or handoff.
@@ -13,10 +13,10 @@ This document supersedes forward-looking Phase 5/6 sections of the turnover doc 
 ## Loop State
 
 active: true
-last_completed_task: "Chunk 5.2 — OKP Schema + EvidencePacket Wrapper. gail-ai-operating-system-rev-2 PR #19 merged (ff8144b). Created: operating_knowledge.py (OkpRecordType 18-value enum, OperatingKnowledgePacket frozen dataclass with __post_init__ validation, create_operating_knowledge_packet factory, EvidencePacketToOkpConverter), test_operating_knowledge.py (42 tests), __init__.py updated. SHA-256 fingerprint (32-char hex), unsafe source_ref rejection (.env/secret/token/password/absolute paths), authority R0-R5, autonomy A0-A6, risk_tier 1-5, confidence bounds, summary 1000-char cap, raw_payload_retained=True guard. 2026-06-28."
-next_task: "Chunks 5.3 + 5.4 + 5.5 — can run in parallel. 5.3: OKP Ingest + Signal Gravity L1 (gail-ai-operating-system-rev-2 — OkpStore, SignalGravityL1Calculator, POST/GET /api/v1/okp, signal_gravity_config.json). 5.4: Graphify OKP Nodes + Signal Gravity L2 (graphify-workspace-cockpit — ingest_okp_entity, SignalGravityL2Enricher, POST/GET /api/cns/okp, proof-chain endpoint). 5.5: M365 CNS Source Surface Map (ag-operations-m365-foundation — docs-only, 8 surfaces, BLK-005 status). Read spec §4 for each chunk's full spec before starting."
+last_completed_task: "Chunks 5.3/5.4/5.5 complete (parallel, 2026-06-28). 5.3: gail-ai-operating-system-rev-2 PR #21 merged (ff0d6c7) — OkpStore (save/get/list_by_record_type, fingerprint dedup → superseded), SignalGravityL1Calculator (9 factors, L1 uses 1/2/3/5 from metadata, 4/6/7/8/9 placeholder 0.5), signal_gravity_config.json auto-created, CalibrationProposal, POST/GET /api/v1/okp router, 15 tests. Also PR #20 merged (222489b) — bug fix: OkpRecordType count test corrected to 17. 5.4: graphify-workspace-cockpit PR #3 merged (2a59854) — ingest_okp_entity (SQLite upsert, kind=OperatingKnowledgePacket, cluster=operating_knowledge), edges to mission/evidence/action/connector/agent only if entity exists, get_okp_entity, get_okp_neighborhood, SignalGravityL2Enricher (all 9 factors from graph topology), POST/GET/proof-chain/neighborhood /api/cns/okp routes, cns_api/app.py updated, 14 tests. 5.5: ag-operations-m365-foundation PR #4 merged (1e2b76d) — docs/2026-06-28 - M365 CNS Source Surface Map.md created, all 8 surfaces (CRM/ActionLog/DecisionRegister/Planner/SharePointEvidence/TeamsAlert/Forms/Bookings) with owner/read/write posture/OKP types/evidence refs/rollback/approval boundary/BLK-005/one-writer, BLK-005 status section with 10-step resolution path."
+next_task: "Chunk 5.6 — Freedom OKP Briefing + Signal Gravity (the-freedom-engine-os). Prerequisite: 5.3 + 5.4 complete (both done). Output: packages/gail-os-client/src/operatingKnowledge.ts, packages/graphify-client/src/operatingKnowledge.ts, src/lib/operatingKnowledgeBrief.ts. Key: GailOsClient.getOkp/listOkpByRecordType, GraphifyClient.getOkpGravity/getOkpProofChain, generateOperatingKnowledgeBrief (L2 preferred, L1 fallback, graphify_degraded flag), signal_gravity_health field, empty-store safe, existing executiveBriefGenerator.test.ts + cnsActionGate.test.ts must remain green. Minimum 10 new tests. Read spec §4 Chunk 5.6 before starting."
 skipped_tasks: []
-compaction_count: 16
+compaction_count: 17
 paused: false
 pause_reason: ""
 retry_counts: {}
@@ -26,9 +26,9 @@ retry_counts: {}
 ## Where We Are
 
 **Phase:** Phases 0–4 **COMPLETE** ✓ | Phase 5 — **ACTIVE** (Operating Knowledge Intake and Relationship Mesh)
-**Status:** Phases 0–4 COMPLETE. CP-4 met (dry-run M365 proof only — live M365 not active). Phase 5 reset: product-repo event-emitter scope retired. All Phase 5 implementation in four core CNS repos only. Chunks 5.0 + 5.1 + 5.2 complete. Next: Chunks 5.3/5.4/5.5 in parallel.
+**Status:** Phases 0–4 COMPLETE. CP-4 met (dry-run M365 proof only — live M365 not active). Chunks 5.0–5.5 complete. Next: Chunk 5.6 (Freedom OKP Briefing + Signal Gravity, the-freedom-engine-os).
 **CP-4 note:** Dry-run proof only. M365 status = proven. Live writes require BLK-005 (Entra app registration by Adam/Windows) + named scope + explicit approval before active status.
-**Immediate next:** Chunks 5.3 (GAIL OS OKP ingest + Signal Gravity L1) + 5.4 (Graphify OKP nodes + Signal Gravity L2) + 5.5 (M365 source surface map) — all cloud-safe via GitHub MCP, run in parallel.
+**Immediate next:** Chunk 5.6 — Freedom OKP briefing (the-freedom-engine-os) — cloud-safe via GitHub MCP. After 5.6: Chunk 5.7 (CP-5 dry-run proof, all three code repos).
 
 **Phase 2 completion note:** Chunks 2.1–2.9 plus 20D/20E were committed to `graphify-workspace-cockpit` in a prior session before this handoff was written. Discovered by reading git log + AGENTS.md. Tasks 2.7 (Windows Graphify extraction) and 2.8 (merge Windows graph) are NOT done — these are separate from the HTTP API work and remain pending.
 
