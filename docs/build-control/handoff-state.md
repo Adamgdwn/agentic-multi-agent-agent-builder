@@ -1,6 +1,6 @@
 # Handoff State — Guided AI Labs Agentic OS CNS
 
-**Last Updated:** 2026-06-28 (Chunk 6.4 complete — R4 Dry-Run Simulation. PAUSE: awaiting Adam approval to proceed to Chunk 6.5.)
+**Last Updated:** 2026-06-28 (Chunk 6.5 complete — R4 Limited Internal Execution. Phase 6 COMPLETE. Adam approved M365 Entra expansion — confirm scopes and re-auth before Phase 7.)
 **Owner:** Build Agent Orchestrator
 
 This file is the restart point for any agent, session, or context reset. Read this first after a compaction, clear, or handoff.
@@ -13,24 +13,65 @@ This document supersedes forward-looking Phase 5/6 sections of the turnover doc 
 ## Loop State
 
 active: true
-last_completed_task: "Chunk 6.4 complete (2026-06-28). R4 Dry-Run Simulation committed to gail-ai-operating-system-rev-2 (commit f53e35f). Files: packages/uaos-core/src/gail_ai_operating_system/r4_dry_run_simulator.py (218 lines) + tests/test_r4_dry_run_simulation.py (14 tests) + __init__.py updated. Simulation produces: StaleClaimCandidate list, EvidencePacket (execution_mode=dry-run), OKP (record_type=charter.executed), dry-run preview, rollback data, Freedom charter execution brief. No live mutations. no_live_mutations=True enforced. 14/14 tests pass. Full suite 417 pass."
-next_task: "Chunk 6.5 — R4 Limited Execution (first live Graphify stale-claim review). BLOCKED: requires explicit Adam approval after reviewing 6.4 results. Do NOT proceed to 6.5 without that approval. Read spec §5 Chunk 6.5 before starting."
+last_completed_task: "Chunk 6.5 complete (2026-06-28). R4 Limited Internal Execution committed. graphify-workspace-cockpit commit 48167ef: cns_store/stale_claim_executor.py (seed/execute/rollback), cns_api/routes/charter_execute.py (POST /api/cns/charters/{charter_id}/execute), 24 tests. gail-ai-operating-system-rev-2 commit 5478b64: r4_live_executor.py (R4LiveResult, build_live_evidence_packet allow_live=True, build_live_okp execution_mode=live, run_r4_live_execution), 18 tests. Phase 6 COMPLETE. All 6 chunks done."
+next_task: "Phase 7 planning. Immediate: confirm M365 Entra permission expansion (Adam says done) + re-auth Linux m365 CLI to pick up new scopes. After re-auth: bounded SharePoint write proof. Determine Phase 7 scope from spec."
 skipped_tasks: []
-compaction_count: 19
-paused: true
-pause_reason: "Chunk 6.5 blocked on explicit Adam approval. Chunk 6.4 dry-run proven (14/14). Awaiting: (1) Adam approval for 6.5, (2) Windows Entra permission expansion response (LINUX_TO_WINDOWS__2026-06-28-entra-expand-permissions.md sent)."
+compaction_count: 20
+paused: false
+pause_reason: ""
 retry_counts: {}
 
 ---
 
 ## Where We Are
 
-**Phase:** Phases 0–5 **COMPLETE** ✓ | Phase 6 — **ACTIVE** (R4 Autonomy — Graphify Stale Claim Review)
-**Status:** Chunks 6.0–6.4 COMPLETE. Waiting Adam approval for Chunk 6.5 (R4 Limited Execution).
-**M365 note:** Windows Entra permission expansion instructions sent via Direct Link Exchange. Awaiting Windows response before Linux re-auth and Phase 4 production connector work.
-**Immediate next (when Adam approves):** Chunk 6.5 — first live R4 execution of Graphify stale-claim review using the R4-001 charter, limited to 5 candidates, against the graphify-workspace-cockpit CNS store.
+**Phase:** Phases 0–6 **COMPLETE** ✓ | Phase 7 — **PENDING** (next phase scope TBD)
+**Status:** Phase 6 ALL COMPLETE (Chunks 6.0–6.5). R4-001 executed live — 5 stale claims marked review_required, evidence packet + OKP produced, rollback data stored.
+**M365 note:** Adam confirms Entra permissions expanded. Linux m365 CLI re-auth needed to pick up new token scopes before Phase 7 live M365 write work.
+**Immediate next:** (1) m365 re-auth on Linux, (2) verify expanded scopes, (3) determine Phase 7 scope.
 
 **Phase 2 completion note:** Chunks 2.1–2.9 plus 20D/20E were committed to `graphify-workspace-cockpit` in a prior session before this handoff was written. Discovered by reading git log + AGENTS.md. Tasks 2.7 (Windows Graphify extraction) and 2.8 (merge Windows graph) are NOT done — these are separate from the HTTP API work and remain pending.
+
+### 2026-06-28 — Chunk 6.5 complete — Phase 6 DONE — R4 Live Execution proven
+
+**Repos:** `gail-ai-operating-system-rev-2` (commit 5478b64), `graphify-workspace-cockpit` (commit 48167ef)
+
+**Chunk 6.5 — R4 Limited Internal Execution:**
+- `graphify-workspace-cockpit/cns_store/stale_claim_executor.py`:
+  - `seed_stale_claim_candidates(db_path, count, seed_timestamp)` — seeds StaleClaimCandidate entities (kind=StaleClaimCandidate, cluster=stale_claim, status=stale)
+  - `get_stale_claim_candidates(db_path, max_candidates)` — reads candidates excluding already-reviewed
+  - `execute_r4_stale_claim_review(db_path, charter_id, max_candidates, execution_timestamp)` — real SQLite write: status → review_required, reviewed_by_charter set. Returns candidates_reviewed + rollback_data.
+  - `rollback_r4_execution(db_path, rollback_data)` — reverts status to prior_status, removes reviewed_by_charter
+- `graphify-workspace-cockpit/cns_api/routes/charter_execute.py` — `POST /api/cns/charters/{charter_id}/execute` (200 on success, 400 if no candidates)
+- `graphify-workspace-cockpit/cns_api/app.py` — registers charter_execute_router
+- `graphify-workspace-cockpit/tests/test_stale_claim_executor.py` — 24 tests, all green. Full suite 299/300 (1 pre-existing unrelated).
+- `gail-ai-operating-system-rev-2/packages/uaos-core/src/gail_ai_operating_system/r4_live_executor.py`:
+  - `R4LiveResult` frozen dataclass — `no_live_mutations=False` (inverse of dry-run flag)
+  - `build_live_evidence_packet()` — `execution_mode="live"`, `allow_live=True`, `result="success"`. All IDs meet prefix constraints.
+  - `build_live_okp()` — `record_type="charter.executed"`, `execution_mode="live"`, `status="observed"`
+  - `run_r4_live_execution(graphify_execution_result, execution_timestamp)` — full orchestration using `build_r4_001_charter()` + `validate_charter_authority()` from dry-run module
+- `gail-ai-operating-system-rev-2/tests/test_r4_live_executor.py` — 18 tests, all green. Full suite 435 pass, 4 pre-existing fastapi errors.
+- `__init__.py` updated: exports `R4LiveResult`, `run_r4_live_execution`
+
+**Key design invariants:**
+- No `datetime.now()` anywhere — all timestamps injected; default `"2026-06-28T00:00:00Z"`
+- SQLite JSON update is Python-side (read → dict update → write back) — no SQL JSON function dependency
+- `allow_live=True` is the single gate for live execution; dry-run path never sets this
+- `no_live_mutations=False` in R4LiveResult — explicit inverse of dry-run safeguard
+
+**Phase 6 gate closure:**
+- ✔ 6.0 R4 charter doctrine (commit 57b52fc)
+- ✔ 6.1 CharterProfile schema, 17 tests (commit 307d4c1)
+- ✔ 6.2 Graphify charter nodes + HTTP API, 21 tests (commit 7fdc23d)
+- ✔ 6.3 Freedom charter discovery + briefing (commit e00fbc2)
+- ✔ 6.4 R4 dry-run simulation, 14 tests (commit f53e35f)
+- ✔ 6.5 R4 live execution — 24 graphify tests + 18 GAIL OS tests (commits 48167ef + 5478b64)
+
+**Phase 6 COMPLETE. CP-6 closed 2026-06-28.**
+
+**M365 status:** Adam confirms Entra app permissions expanded. Linux CLI re-auth needed before any Phase 7 live M365 write work.
+
+---
 
 ### 2026-06-28 — Chunks 6.0–6.4 complete — R4 Dry-Run Simulation proven
 
