@@ -1,6 +1,6 @@
 # Repo Workstream Board — Guided AI Labs Agentic OS CNS
 
-**Last Updated:** 2026-06-28 — Tasks 4.1–4.5 complete, 4.6 unblocked
+**Last Updated:** 2026-06-28 — Phase 4 COMPLETE (tasks 4.1–4.6 all merged). CP-4 gate met.
 **Owner:** Build Agent Orchestrator
 
 Task states: `independent` | `coordinated` | `blocked` | `ready-for-integration` | `ready-for-review` | `complete`
@@ -97,9 +97,9 @@ Note: Phase 1 tasks are `windows-local`. A cloud agent may write code and open a
 | 4.3 | Implement first M365 read action (R0 observe) with evidence | `gail-ai-operating-system-rev-2` | `complete` | Merged PR #16 2026-06-28. `observe_graph_metadata()` + `POST /api/v1/m365/observe`. 12 tests. |
 | 4.4 | Implement first M365 internal write (R2) — List row or Planner task | `gail-ai-operating-system-rev-2` | `complete` | Merged PR #17 2026-06-28. `create_planner_task()` + `POST /api/v1/m365/write/planner-task`. 13 tests. |
 | 4.5 | Evidence packet returned and stored after M365 write | `gail-ai-operating-system-rev-2` | `complete` | Merged PR #18 2026-06-28. `save_evidence_packet()` + updated write endpoint. 10 tests. |
-| 4.6 | Graphify updates relationship map after M365 action | `graphify-workspace-cockpit` | `independent` | Unblocked by 4.5. |
+| 4.6 | Graphify updates relationship map after M365 action | `graphify-workspace-cockpit` | `complete` | Merged PR #2 2026-06-28. `ingest_evidence_entity()` + `POST /api/cns/evidence` + `GET /api/cns/evidence/{id}`. 10 tests. |
 
-**Phase 4 gate (CP-4):** M365 write with OS evidence. Graphify updated. Reversible first action.
+**Phase 4 gate (CP-4):** M365 write with OS evidence. Graphify updated. Reversible first action. **CP-4 COMPLETE.**
 
 ---
 
@@ -139,7 +139,7 @@ Phases 6–9 are sequenced after Phase 1–5 gates are met. Do not plan implemen
 |---|---|---|---|---|---|---|---|
 | `the-freedom-engine-os` | complete | complete | — | **complete** | — | — | All Phase 3 tasks done (3.1–3.6). checkCnsActionGate() unified portal gate live. |
 | `gail-ai-operating-system-rev-2` | complete | complete | — | independent | blocked | — | CP-1 proven. 3.3 (authority request) next coordinated task. |
-| `graphify-workspace-cockpit` | complete | — | **complete** | — | — | — | CNS API live on port 8001. 217 tests passing. 2.7/2.8 (Windows) still pending. |
+| `graphify-workspace-cockpit` | complete | — | **complete** | — | **complete** | — | CNS API live on port 8001. Evidence ingest endpoint live (4.6). 2.7/2.8 (Windows) still pending. |
 | `ag-operations-m365-foundation` | independent | — | — | — | independent | — | Stages 1–9 documented; needs OS connector registration |
 | `guided-ai-journey-website-and-tools` | independent | — | — | — | — | blocked | Active product; urgent customer journey fix in progress |
 | `oldskoolai.com` | independent | — | — | — | — | blocked | Active product |

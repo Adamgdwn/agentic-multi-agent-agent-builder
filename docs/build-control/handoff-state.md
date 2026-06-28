@@ -1,6 +1,6 @@
 # Handoff State — Guided AI Labs Agentic OS CNS
 
-**Last Updated:** 2026-06-28 (CP-1 gate closed — Phase 1 COMPLETE)
+**Last Updated:** 2026-06-28 (CP-4 gate closed — Phase 4 COMPLETE)
 **Owner:** Build Agent Orchestrator
 
 This file is the restart point for any agent, session, or context reset. Read this first after a compaction, clear, or handoff.
@@ -10,10 +10,10 @@ This file is the restart point for any agent, session, or context reset. Read th
 ## Loop State
 
 active: true
-last_completed_task: "Phase 4 task 4.5 — evidence persistence (GAIL OS PR #18). save_evidence_packet() + updated write endpoint + GET /evidence/{mission_id} roundtrip. 10 tests. 2026-06-28"
-next_task: "Phase 4 task 4.6 — Graphify updates relationship map after M365 action. Add evidence ingest endpoint to graphify-workspace-cockpit CNS API. Unblocked by 4.5."
+last_completed_task: "Phase 4 task 4.6 — Graphify evidence ingest endpoint (graphify-workspace-cockpit PR #2). ingest_evidence_entity() + POST /api/cns/evidence + GET /api/cns/evidence/{id}. 10 tests. CP-4 GATE MET. 2026-06-28"
+next_task: "Phase 5 blocked by CP-1 event contracts. Next cloud-safe work: Supabase RLS remediation (20 public tables, Freedom project — pending Adam decision) OR Windows-local tasks 2.7/2.8 (Graphify extraction on Windows)."
 skipped_tasks: []
-compaction_count: 14
+compaction_count: 15
 paused: false
 pause_reason: ""
 retry_counts: {}
@@ -22,11 +22,33 @@ retry_counts: {}
 
 ## Where We Are
 
-**Phase:** Phase 4 — **ACTIVE**
-**Status:** Phase 3 complete. Phase 4 tasks 4.1–4.5 all merged. Task 4.6 (Graphify relationship map update) is next.
-**Immediate next:** Task 4.6 — add evidence ingest endpoint to Graphify CNS API (`graphify-workspace-cockpit`). After M365 write, the EvidencePacket should be ingested into the graph as a node linked to Mission + Connector. Cloud-safe via GitHub MCP.
+**Phase:** Phase 4 — **COMPLETE** ✓ | Phase 5 — **BLOCKED** (by CP-1 event contracts)
+**Status:** Phases 1–4 all complete. CP-4 gate met. Phase 5 product app integration blocked by CP-1 (event vocabulary not yet contracted). Two cloud-safe paths available: (1) Supabase RLS remediation in Freedom project (20 public tables — pending Adam decision); (2) defer to Adam for Windows-local tasks 2.7/2.8.
+**Immediate next:** Await Adam direction on Supabase RLS or Phase 5 scope.
 
 **Phase 2 completion note:** Chunks 2.1–2.9 plus 20D/20E were committed to `graphify-workspace-cockpit` in a prior session before this handoff was written. Discovered by reading git log + AGENTS.md. Tasks 2.7 (Windows Graphify extraction) and 2.8 (merge Windows graph) are NOT done — these are separate from the HTTP API work and remain pending.
+
+### 2026-06-28 — Phase 4 task 4.6 complete — CP-4 gate met
+
+**Graphify PR #2 merged (`graphify-workspace-cockpit`).**
+
+**Task 4.6 — Graphify updates relationship map after M365 action:**
+- `cns_store/evidence_writer.py`: `ingest_evidence_entity()` — upserts EvidencePacket as a graph entity (`kind='EvidencePacket'`, `cluster='evidence'`, `importance_tier='evidence'`) into the CNS SQLite store. Creates `produced_by_mission` and `via_connector` relationship edges only when target entities already exist — never creates placeholder nodes. Returns `{entity_id, relationships_created, relationships_skipped}`. Also `get_evidence_entity()` for retrieval by evidence_id.
+- `cns_api/routes/evidence.py`: `POST /api/cns/evidence` (201) + `GET /api/cns/evidence/{evidence_id}` (200/404). Optional `X-Api-Key` guard consistent with admin write path. Pydantic request/response models with full EvidencePacket field coverage.
+- `cns_api/app.py`: updated to register `evidence_router`.
+- `tests/test_cns_evidence_route.py`: 10 tests — ingest 201, response shape, entity created in store, metadata round-trip, to_mission skipped when absent, to_mission created when seeded, upsert idempotent; GET entity, GET 404, GET correct fields. All use `tmp_path` SQLite fixture for isolation.
+
+**CP-4 gate closure:**
+- ✔ M365 write — `create_planner_task()` dry-run (PR #17)
+- ✔ OS evidence — `save_evidence_packet()` persisted to `local_store/evidence/` (PR #18)
+- ✔ Graphify updated — EvidencePacket ingested as graph entity with relationship edges (PR #2)
+- ✔ Reversible — rollback note `DELETE /v1.0/planner/tasks/{task_id}` in every evidence packet
+
+**Phase 4 COMPLETE. CP-4 closed 2026-06-28.**
+
+**Phase 5 status:** All Phase 5 tasks blocked by CP-1 event contracts. CP-1 is proven (Phase 1 complete) but event vocabulary TypeScript types (task 1.7) are not yet contracted.
+
+---
 
 ### 2026-06-28 — Phase 4 task 4.5 complete — Evidence persistence after M365 write
 
