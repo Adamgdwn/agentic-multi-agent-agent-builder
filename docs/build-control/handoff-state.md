@@ -10,10 +10,10 @@ This file is the restart point for any agent, session, or context reset. Read th
 ## Loop State
 
 active: true
-last_completed_task: "Phase 4 task 4.3 — first M365 R0 observe action with EvidencePacket (GAIL OS PR #16). observe_graph_metadata() + POST /api/v1/m365/observe. 12 tests. 2026-06-28"
-next_task: "Phase 4 task 4.4 — first M365 internal write (R2) — List row or Planner task. Unblocked by 4.3."
+last_completed_task: "Phase 4 task 4.4 — first M365 R2 write (Planner task) with EvidencePacket (GAIL OS PR #17). create_planner_task() + POST /api/v1/m365/write/planner-task. 13 tests. 2026-06-28"
+next_task: "Phase 4 task 4.5 — evidence packet stored after M365 write. Persist EvidencePacket to local_store after write action. Unblocked by 4.4."
 skipped_tasks: []
-compaction_count: 12
+compaction_count: 13
 paused: false
 pause_reason: ""
 retry_counts: {}
@@ -23,10 +23,25 @@ retry_counts: {}
 ## Where We Are
 
 **Phase:** Phase 4 — **ACTIVE**
-**Status:** Phase 3 complete. Phase 4 tasks 4.1 + 4.2 + 4.3 all merged. Task 4.4 (first M365 write, R2) is next.
-**Immediate next:** Task 4.4 — implement first M365 internal write (R2) — List row or Planner task with source refs and EvidencePacket. Cloud-safe via GitHub MCP.
+**Status:** Phase 3 complete. Phase 4 tasks 4.1–4.4 all merged. Task 4.5 (evidence persistence after write) is next.
+**Immediate next:** Task 4.5 — persist EvidencePacket to local_store after M365 write action. The write endpoint already returns the packet; 4.5 adds disk persistence and retrieval via the existing evidence router. Cloud-safe via GitHub MCP.
 
 **Phase 2 completion note:** Chunks 2.1–2.9 plus 20D/20E were committed to `graphify-workspace-cockpit` in a prior session before this handoff was written. Discovered by reading git log + AGENTS.md. Tasks 2.7 (Windows Graphify extraction) and 2.8 (merge Windows graph) are NOT done — these are separate from the HTTP API work and remain pending.
+
+### 2026-06-28 — Phase 4 task 4.4 complete — M365 R2 Planner task write with EvidencePacket
+
+**GAIL OS PR #17 merged.**
+
+**Task 4.4 — first M365 internal write (R2) — Planner task:**
+- `packages/uaos-core/src/gail_ai_operating_system/m365_writer.py`: `create_planner_task()` — R2 dry-run write. Validates plan_id, bucket_id, task_title, then auth config; produces a planned EvidencePacket without any live Graph call. Live path calls `POST /v1.0/planner/tasks`; rollback note includes `DELETE /v1.0/planner/tasks/{task_id}` for reversibility.
+- `apps/gail-os-api/routers/m365_write.py`: `POST /api/v1/m365/write/planner-task` — PlannerTaskRequest Pydantic model; always `dry_run=True, allow_live=False` in Phase 4. Returns `{ok, evidence}`.
+- `apps/gail-os-api/main.py`: updated to import and register `m365_write` router.
+- `tests/test_m365_write.py`: 13 tests — service-layer units (dry-run success, not-configured stopped, empty title/plan_id stopped, R2 authority basis, evidence-id prefix, validate passes, dry-run mode, rollback note) + 5 API tests.
+- Authority basis: `R2_INTERNAL_WRITE — m365-graph-api-bridge (registry-only) — dry-run — target=planner-task`.
+
+**Next:** Task 4.5 — evidence packet stored to `local_store/evidence/` after M365 write.
+
+---
 
 ### 2026-06-28 — Phase 4 task 4.3 complete — M365 R0 observe action with EvidencePacket
 
