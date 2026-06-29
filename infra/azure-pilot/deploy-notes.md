@@ -50,7 +50,7 @@ az monitor log-analytics workspace create \
 az monitor log-analytics workspace update \
   --resource-group rg-gail-cns-pilot-canadacentral \
   --workspace-name law-gail-cns-pilot \
-  --ingestion-cap 5
+  --quota 5
 
 LAW_ID=$(az monitor log-analytics workspace show \
   --resource-group rg-gail-cns-pilot-canadacentral \
