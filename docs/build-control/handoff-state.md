@@ -1,6 +1,6 @@
 # Handoff State — Guided AI Labs Agentic OS CNS
 
-**Last Updated:** 2026-06-28 (Deep test pass complete. CTP-0/1/2 all proven. All seams clean. Phase 7 scope TBD.)
+**Last Updated:** 2026-06-28 (Phase 7 H1–H3 complete. Graphify persistent storage live. Entra permissions expanded + consented. M365 re-auth confirmed all scopes. H4 Freedom smoke test is next.)
 **Owner:** Build Agent Orchestrator
 
 This file is the restart point for any agent, session, or context reset. Read this first after a compaction, clear, or handoff.
@@ -13,8 +13,8 @@ This document supersedes forward-looking Phase 5/6 sections of the turnover doc 
 ## Loop State
 
 active: true
-last_completed_task: "Deep integration test pass complete (2026-06-28). CTP-0/1/2 all proven across Linux and Windows. Freedom → GAIL OS 4/4. Freedom → Graphify 4/4. GAIL OS Windows server restarted to 13 routes (was 5). m365/status, m365/observe dry-run, authority/override, agents — all probes pass. Linux M365 CLI authenticated (adamgoodwin@guidedailabs.com, deviceCode). Power Automate flow list confirmed. 3 Graphify CNS API bugs fixed (lifespan init_db, /api/cns/health alias, stub-l2 assertion). Phase 6 COMPLETE."
-next_task: "Phase 7 planning. Determine Phase 7 scope from spec. All seams proven clean — ready to build."
+last_completed_task: "Phase 7 H1–H3 + M365 auth complete (2026-06-28). Both ACA apps healthy (GAIL OS + Graphify). Graphify persistent storage mounted — graphify-files Azure Files share, /app/data/cns.db, health confirmed. Entra permission expansion approved by Adam and consented (Sites.ReadWrite.All, Files.ReadWrite.All, Group.ReadWrite.All, TeamSettings.ReadWrite.All, ChannelSettings.ReadWrite.All, ChannelMessage.Send, Tasks.ReadWrite, Mail.ReadWrite, Mail.Send, Calendars.ReadWrite, MailboxSettings.ReadWrite, Flows.Manage.All, Exchange.Manage, Exchange.ManageV2, Exchange.AdminAPI.Manage). Linux M365 CLI re-authenticated (adamgoodwin@guidedailabs.com, deviceCode) — fresh tokens include all new scopes. Scope verification: Mail.ReadWrite OK, Tasks.ReadWrite OK, Calendars.ReadWrite OK, Group.ReadWrite.All OK (Guided AI Labs + A.G. Operations Ltd Teams groups visible)."
+next_task: "H4 Freedom smoke test — run Freedom integration tests against live Azure ACA endpoints (proposeMission, validateAction, listConnectors, Graphify entity context, executive brief). Requires API keys from Windows KV to be set in .env.local or Vercel."
 skipped_tasks: []
 compaction_count: 20
 paused: false
@@ -25,12 +25,35 @@ retry_counts: {}
 
 ## Where We Are
 
-**Phase:** Phases 0–6 **COMPLETE** ✓ | Deep test pass **COMPLETE** ✓ | Phase 7 — **PENDING** (scope TBD)
-**Status:** Phase 6 ALL COMPLETE. Deep integration test pass complete. CTP-0/1/2 all proven — all seams clean. See proof artifact in Exchange.
-**M365 note:** Linux m365 CLI now authenticated (adamgoodwin@guidedailabs.com, deviceCode, appId 9aeeeae6-be2a-476c-9c34-389dbc927c99). Power Automate flow list confirmed. M365 token has delegated flows/graph/ARM scopes only — SharePoint/CRM write requires separate Entra expansion gate still pending Adam approval.
-**Immediate next:** Determine Phase 7 scope.
+**Phase:** Phases 0–6 **COMPLETE** ✓ | Phase 7 **IN PROGRESS** — H1 ✓ H2 ✓ H3 ✓ (H4 next)
+**Status:** ACA deployment live. Both apps healthy. Graphify persistent storage mounted. Entra expanded + consented. M365 re-auth complete. H4 (Freedom → Azure smoke test) is the next gate.
+**M365 note:** Linux m365 CLI re-authenticated (adamgoodwin@guidedailabs.com, deviceCode, appId 9aeeeae6-be2a-476c-9c34-389dbc927c99). All expanded Entra scopes live and verified by read-only Graph API probes. No live M365 writes — M365 Live Bridge (Lane 2) remains gated until explicit Adam connector-level gate.
+**Immediate next:** H4 Freedom smoke test (requires API keys from Windows KV set in .env.local or Vercel).
 
 **Phase 2 completion note:** Chunks 2.1–2.9 plus 20D/20E were committed to `graphify-workspace-cockpit` in a prior session before this handoff was written. Discovered by reading git log + AGENTS.md. Tasks 2.7 (Windows Graphify extraction) and 2.8 (merge Windows graph) are NOT done — these are separate from the HTTP API work and remain pending.
+
+### 2026-06-28 — Phase 7 H1–H3 complete — ACA live, storage mounted, M365 auth ready
+
+**H1 — Azure scaffold:** Resource group, Log Analytics, Key Vault, Storage Account, ACR, ACA environment all provisioned in `canadacentral`. Confirmed by Windows.
+
+**H2 — GAIL OS container:** `aca-gail-os-api` deployed. Health: `{"status":"ok","boundary":"A1 local no-network","phase":"1"}` HTTP 200. URL: `https://aca-gail-os-api.ambitiousforest-f57e95ff.canadacentral.azurecontainerapps.io`.
+
+**H3 — Graphify container + persistent storage:** `aca-graphify-cns-api` deployed with Azure Files share `graphify-files` mounted at `/app/data` via `az containerapp update --yaml`. `CNS_STORE_PATH=/app/data/cns.db`. Health: `{"status":"ok","store":"connected","node_count":0}` HTTP 200. URL: `https://aca-graphify-cns-api.ambitiousforest-f57e95ff.canadacentral.azurecontainerapps.io`.
+
+**Entra permissions expanded (Adam approved, admin consent granted):**
+- Microsoft Graph: `Sites.ReadWrite.All`, `Files.ReadWrite.All`, `Group.ReadWrite.All`, `TeamSettings.ReadWrite.All`, `ChannelSettings.ReadWrite.All`, `ChannelMessage.Send`, `Tasks.ReadWrite`, `offline_access`, `Mail.ReadWrite`, `Mail.Send`, `Calendars.ReadWrite`, `MailboxSettings.ReadWrite`
+- Microsoft Flow Service: `Flows.Manage.All`
+- Office 365 Exchange Online: `Exchange.Manage`, `Exchange.ManageV2`, `Exchange.AdminAPI.Manage`
+
+**M365 re-auth:** Linux CLI re-authenticated with fresh tokens. Read-only scope probes all pass: Mail.ReadWrite ✓, Tasks.ReadWrite ✓, Calendars.ReadWrite ✓, Group.ReadWrite.All ✓ (Guided AI Labs + A.G. Operations Ltd visible).
+
+**H4 blockers (Adam action required):**
+- API keys for `GAIL_OS_API_KEY` and `GRAPHIFY_API_KEY` must be retrieved from `kv-gail-cns-pilot` on Windows and set in `.env.local` or Vercel dashboard.
+- Freedom Vercel project link: `vercel link` not yet run.
+
+**Env vars already set in `.env.local` (Freedom):** URL vars set. Key vars commented with retrieval instructions. See `docs/hosting/2026-06-28 - vercel-env-setup.md`.
+
+---
 
 ### 2026-06-28 — Chunk 6.5 complete — Phase 6 DONE — R4 Live Execution proven
 

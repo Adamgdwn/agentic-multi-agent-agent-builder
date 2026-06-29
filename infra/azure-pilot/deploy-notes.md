@@ -283,9 +283,9 @@ Health checks confirmed (2026-06-28):
 - GAIL OS `/api/v1/health`: `{"status":"ok","boundary":"A1 local no-network","phase":"1"}` — HTTP 200
 - Graphify `/health`: `{"status":"ok","store":"connected","node_count":0}` — HTTP 200
 
-Storage note: Graphify deployed with ephemeral SQLite (`/tmp/cns.db`) — CLI lacked
-`--volume`/`--volume-mount` flags. Use `graphify-volume-update.yaml` + `az containerapp update --yaml`
-to attach the `graphify-files` Azure Files share for persistent storage.
+Storage: Graphify persistent volume mounted (2026-06-28) — `graphify-files` Azure Files share attached
+via `az containerapp update --yaml graphify-volume-update.yaml`. `CNS_STORE_PATH=/app/data/cns.db`,
+volume `graphifyvol` → mount path `/app/data`. Health confirmed: `{"status":"ok","store":"connected","node_count":0}`.
 
 These URLs go into Freedom Vercel env vars (H4 gate — Adam approves before applying):
 - `GAIL_OS_API_URL` = `https://aca-gail-os-api.ambitiousforest-f57e95ff.canadacentral.azurecontainerapps.io`
