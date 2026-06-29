@@ -1,6 +1,6 @@
 # Handoff State — Guided AI Labs Agentic OS CNS
 
-**Last Updated:** 2026-06-28 (Chunk 6.5 complete — R4 Limited Internal Execution. Phase 6 COMPLETE. Adam approved M365 Entra expansion — confirm scopes and re-auth before Phase 7.)
+**Last Updated:** 2026-06-28 (Deep test pass complete. CTP-0/1/2 all proven. All seams clean. Phase 7 scope TBD.)
 **Owner:** Build Agent Orchestrator
 
 This file is the restart point for any agent, session, or context reset. Read this first after a compaction, clear, or handoff.
@@ -13,8 +13,8 @@ This document supersedes forward-looking Phase 5/6 sections of the turnover doc 
 ## Loop State
 
 active: true
-last_completed_task: "Chunk 6.5 complete (2026-06-28). R4 Limited Internal Execution committed. graphify-workspace-cockpit commit 48167ef: cns_store/stale_claim_executor.py (seed/execute/rollback), cns_api/routes/charter_execute.py (POST /api/cns/charters/{charter_id}/execute), 24 tests. gail-ai-operating-system-rev-2 commit 5478b64: r4_live_executor.py (R4LiveResult, build_live_evidence_packet allow_live=True, build_live_okp execution_mode=live, run_r4_live_execution), 18 tests. Phase 6 COMPLETE. All 6 chunks done."
-next_task: "Phase 7 planning. Immediate: confirm M365 Entra permission expansion (Adam says done) + re-auth Linux m365 CLI to pick up new scopes. After re-auth: bounded SharePoint write proof. Determine Phase 7 scope from spec."
+last_completed_task: "Deep integration test pass complete (2026-06-28). CTP-0/1/2 all proven across Linux and Windows. Freedom → GAIL OS 4/4. Freedom → Graphify 4/4. GAIL OS Windows server restarted to 13 routes (was 5). m365/status, m365/observe dry-run, authority/override, agents — all probes pass. Linux M365 CLI authenticated (adamgoodwin@guidedailabs.com, deviceCode). Power Automate flow list confirmed. 3 Graphify CNS API bugs fixed (lifespan init_db, /api/cns/health alias, stub-l2 assertion). Phase 6 COMPLETE."
+next_task: "Phase 7 planning. Determine Phase 7 scope from spec. All seams proven clean — ready to build."
 skipped_tasks: []
 compaction_count: 20
 paused: false
@@ -25,10 +25,10 @@ retry_counts: {}
 
 ## Where We Are
 
-**Phase:** Phases 0–6 **COMPLETE** ✓ | Phase 7 — **PENDING** (next phase scope TBD)
-**Status:** Phase 6 ALL COMPLETE (Chunks 6.0–6.5). R4-001 executed live — 5 stale claims marked review_required, evidence packet + OKP produced, rollback data stored.
-**M365 note:** Adam confirms Entra permissions expanded. Linux m365 CLI re-auth needed to pick up new token scopes before Phase 7 live M365 write work.
-**Immediate next:** (1) m365 re-auth on Linux, (2) verify expanded scopes, (3) determine Phase 7 scope.
+**Phase:** Phases 0–6 **COMPLETE** ✓ | Deep test pass **COMPLETE** ✓ | Phase 7 — **PENDING** (scope TBD)
+**Status:** Phase 6 ALL COMPLETE. Deep integration test pass complete. CTP-0/1/2 all proven — all seams clean. See proof artifact in Exchange.
+**M365 note:** Linux m365 CLI now authenticated (adamgoodwin@guidedailabs.com, deviceCode, appId 9aeeeae6-be2a-476c-9c34-389dbc927c99). Power Automate flow list confirmed. M365 token has delegated flows/graph/ARM scopes only — SharePoint/CRM write requires separate Entra expansion gate still pending Adam approval.
+**Immediate next:** Determine Phase 7 scope.
 
 **Phase 2 completion note:** Chunks 2.1–2.9 plus 20D/20E were committed to `graphify-workspace-cockpit` in a prior session before this handoff was written. Discovered by reading git log + AGENTS.md. Tasks 2.7 (Windows Graphify extraction) and 2.8 (merge Windows graph) are NOT done — these are separate from the HTTP API work and remain pending.
 
