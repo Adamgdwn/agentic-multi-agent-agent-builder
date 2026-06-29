@@ -3,7 +3,7 @@
 **Date:** 2026-06-28
 **Session window:** ~21:42 – 23:00 MDT
 **Protocol:** DirectLink Exchange (`DIRECTLINK_CURRENT.md`) — Windows/Linux back-and-forth
-**Result:** H4 and H5 complete. Phase 7 H1–H5 done. Hosted Supabase apply pending Adam gate.
+**Result:** H4, H5, and H5-apply complete. Phase 7 H1–H5 + H5-apply done. H6 and BLK-004 remain.
 
 ---
 
@@ -56,9 +56,34 @@ Freedom CI was red after H5 push due to a pre-existing mobile Jest setup lint er
 
 Linux verified and ACK'd. Freedom CI is green on `origin/main`.
 
+### H5-apply — Hosted Supabase RLS Migration Apply
+
+Adam explicitly approved the hosted apply after H5 CI was confirmed green.
+
+Windows applied the forward migration to Freedom Supabase project `basbwglynuyfxcqxfyur` via Supabase Management API (HTTP 201).
+
+**Pre-apply validation:**
+- 7 existing backups confirmed (`2026-06-28T07:08:47.680Z` latest, `walg_enabled=true`, `pitr_enabled=false`)
+- 21/21 target tables present, all RLS-disabled, 0 existing policies on target tables
+
+**Post-apply validation:**
+- 21/21 tables with `relrowsecurity=true` (was 0)
+- 0 new policies created — tables remain server-side-only via existing service-role paths
+- Service-role HEAD probe: 21/21 OK, no row data accessed
+
+**Freedom H5-apply commit `3543b29`:**
+- `docs/CHANGELOG.md` — H5-apply record
+- `docs/security/2026-06-28 - Supabase RLS Remediation Plan.md` — updated with hosted apply evidence
+
+**Rev 2 coordination commit `e93b358`.**
+
+No secrets logged, printed, or committed. No row data read. Rollback SQL remains available at `supabase/rollbacks/202606280001_disable_rls_for_legacy_public_tables.sql` (requires fresh Adam gate if needed).
+
+Linux ACK'd both commits verified on `origin/main`.
+
 ### Handoff State Updated
 
-`docs/build-control/handoff-state.md` updated and pushed (commit `5ff9ec9`) to reflect H4+H5 complete.
+`docs/build-control/handoff-state.md` updated and pushed (commit `5ff9ec9`) to reflect H4+H5 complete. Updated again (this session) to reflect H5-apply complete.
 
 ---
 
@@ -71,23 +96,23 @@ Linux verified and ACK'd. Freedom CI is green on `origin/main`.
 | H3 — Graphify container + storage | ✓ Complete | `aca-graphify-cns-api` deployed, Azure Files mounted, health 200 |
 | H4 — Freedom → Azure | ✓ Complete | All 6 smoke test checks pass, both sides ACK |
 | H5 — Supabase RLS package | ✓ Complete | Committed, CI green, 21 tables covered |
-| **H5-apply** | **Gate** | Hosted Supabase migration apply — requires Adam explicit approval + backup/rollback posture |
+| **H5-apply** | **✓ Complete** | Hosted Supabase RLS applied. 21/21 tables `relrowsecurity=true`, 0 new policies. Freedom `3543b29`, Rev 2 `e93b358`. |
 | H6 — M365 Bridge readiness | Queued | Lane 2, docs/prep only, no live writes |
 | BLK-004 — Windows Graphify extraction | Queued | Windows-side work |
 
 ---
 
-## Active Gates
+## Remaining Gates
 
-### H5-apply — Hosted Supabase RLS Migration Apply
-- Migration file: `supabase/migrations/202606280001_enable_rls_for_legacy_public_tables.sql`
-- Rollback: `supabase/rollbacks/202606280001_disable_rls_for_legacy_public_tables.sql`
-- **Required before applying:** Adam explicit approval + confirmation of backup/rollback posture.
-- Linux and Windows both hold on this gate.
+### H5-apply — CLOSED 2026-06-28
+Applied. 21/21 tables RLS-enabled, 0 new policies. Rollback SQL remains available if ever needed (fresh Adam gate required): `supabase/rollbacks/202606280001_disable_rls_for_legacy_public_tables.sql`.
 
 ### H6 — M365 Live Bridge Readiness
 - Lane 2 (Linux). Docs/prep only — update M365 source surface map in `ag-operations-m365-foundation`.
 - No live M365 writes. No Entra permission expansion. Can proceed once Adam signals.
+
+### BLK-004 — Windows Graphify Extraction
+- Windows-side work. Enhanced Graphify extraction of GAIL OS Rev 2 + M365 Foundation repos.
 
 ---
 

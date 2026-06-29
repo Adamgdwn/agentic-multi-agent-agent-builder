@@ -1,6 +1,6 @@
 # Repo Workstream Board — Guided AI Labs Agentic OS CNS
 
-**Last Updated:** 2026-06-28 — Phases 0–6 COMPLETE. Phase 7 (CNS Hosting Pilot) IN PROGRESS — H1–H5 done. H5-apply (Adam gate) + H6 + BLK-004 remain.
+**Last Updated:** 2026-06-28 — Phases 0–6 COMPLETE. Phase 7 (CNS Hosting Pilot) IN PROGRESS — H1–H5 + H5-apply done. H6 (M365 docs) + BLK-004 (Windows Graphify) remain.
 **Owner:** Build Agent Orchestrator
 
 Task states: `independent` | `coordinated` | `blocked` | `ready-for-integration` | `ready-for-review` | `complete`
@@ -150,7 +150,7 @@ Platform tags: `cloud-safe` = GitHub MCP only | `windows-local` = needs Windows 
 
 **Phase goal:** Deploy GAIL OS + Graphify to Azure Container Apps (Canada Central). Connect Freedom on Vercel. Remediate Supabase RLS. Prepare M365 live bridge readiness docs. Budget target: under $300/month.
 
-**Status:** H1–H5 complete. H5-apply + H6 + BLK-004 pending.
+**Status:** H1–H5 + H5-apply complete. H6 (M365 docs) + BLK-004 (Windows Graphify) pending.
 
 **Gate:** Phases 0–6 complete. Azure personal account (`adamgdwn@hotmail.com`) approved for pilot.
 
@@ -162,7 +162,7 @@ Platform tags: `cloud-safe` = GitHub MCP only | `windows-local` = needs Windows 
 | H3 | Graphify container + persistent storage | `graphify-workspace-cockpit` | `windows-local` | `complete` | `aca-graphify-cns-api` live with Azure Files share `graphify-files` mounted at `/app/data`. Health: `{"status":"ok","store":"connected","node_count":0}` HTTP 200. |
 | H4 | Freedom → Azure connected | `the-freedom-engine-os` | `linux-local` | `complete` | API keys applied via `.env.local`. All 6 smoke test checks pass (both sides ACK). Env var doc: `docs/hosting/2026-06-28 - vercel-env-setup.md`. |
 | H5 | Supabase RLS package committed | `the-freedom-engine-os` | `windows-local` | `complete` | Commits `530f575` (Freedom) + `3e4b5d7` (Rev 2). 21 legacy public tables covered. Forward migration + rollback SQL + remediation plan committed. CI green (`28348544121`). **Migration NOT applied to hosted Supabase — separate Adam gate required.** |
-| H5-apply | Hosted Supabase RLS migration apply | `the-freedom-engine-os` | `linux-local` | `gate` | **Adam explicit approval required.** Backup/rollback posture must be confirmed. Do not apply without that gate. |
+| H5-apply | Hosted Supabase RLS migration apply | `the-freedom-engine-os` | `windows-local` | `complete` | Applied 2026-06-28. Project `basbwglynuyfxcqxfyur`. 21/21 tables `relrowsecurity=true`, 0 new policies. 7 backups confirmed pre-apply. Service-role access intact. Freedom `3543b29`, Rev 2 `e93b358`. |
 | H6 | M365 live bridge readiness docs | `ag-operations-m365-foundation` | `linux-local` | `queued` | Lane 2. Docs/prep only — update M365 source surface map. No live M365 writes. |
 | BLK-004 | Windows Graphify extraction | Windows | `windows-local` | `queued` | Windows Enhanced Graphify extraction of GAIL OS Rev 2 + M365 Foundation. |
 
@@ -185,7 +185,7 @@ Phases 8–9 are sequenced after Phase 7 gate is met.
 
 | Repo | P0 | P1 | P2 | P3 | P4 | P5 | P6 | P7 | Notes |
 |---|---|---|---|---|---|---|---|---|---|
-| `the-freedom-engine-os` | ✓ | ✓ | — | ✓ | — | ✓ | ✓ (6.3) | H4 ✓ H5 ✓ | H4 smoke test pass. H5 RLS package committed (530f575). CI green. |
+| `the-freedom-engine-os` | ✓ | ✓ | — | ✓ | — | ✓ | ✓ (6.3) | H4 ✓ H5 ✓ H5-apply ✓ | H5-apply: hosted Supabase RLS applied to `basbwglynuyfxcqxfyur` — 21/21 tables, 0 new policies (3543b29). Freedom CI green. |
 | `gail-ai-operating-system-rev-2` | ✓ | ✓ | — | ✓ | ✓ | ✓ | ✓ (6.5) | H2 ✓ | ACA deployed. GAIL OS A1 boundary enforced. Rev 2 coordination commit 3e4b5d7 (H5). |
 | `graphify-workspace-cockpit` | ✓ | — | ✓ | — | ✓ | ✓ | ✓ (6.2) | H3 ✓ | ACA deployed with Azure Files persistence. CNS store connected. |
 | `ag-operations-m365-foundation` | ✓ | — | — | — | — | ✓ | — | H6 (queued) | Lane 2. H6 docs/prep queued. No live writes. |
