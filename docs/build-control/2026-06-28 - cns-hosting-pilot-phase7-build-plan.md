@@ -1,7 +1,7 @@
 # CNS Hosting Pilot — Phase 7 Build Plan
 
 **Date:** 2026-06-28
-**Status:** Draft — awaiting Adam review before execution
+**Status:** Approved — decisions locked 2026-06-28, execution in progress
 **Owner:** Build Agent Orchestrator
 **Directive source:** `2026-06-28 - CNS Hosting Pilot Planning and Execution Directive.md`
 **Prior state:** Phases 0–6 complete. All seams proven clean (CTP-0/1/2). No open PRs.
@@ -30,15 +30,15 @@ This document is the execution plan for Phase 7 — the internal Guided AI Labs 
 
 ---
 
-## 2. Open Decisions — Adam Input Required Before H1 Execution
+## 2. Decisions — Locked 2026-06-28
 
-| # | Decision | Options | Impact |
-|---|---|---|---|
-| D1 | **Azure account** | (a) Use personal account `adamgdwn@hotmail.com` with $1,000 Microsoft credits — acceptable for internal pilot, subscription already active; (b) Use or create a business Azure account | Determines who owns the resource group and billing. Credits on personal account are a legitimate pilot path — no governance concern for internal-only use. |
-| D2 | **Container registry** | (a) Azure Container Registry (integrates cleanly with ACA, no extra auth wiring); (b) GitHub Container Registry (already have GitHub, free for public, can restrict) | Affects GitHub Actions workflow and ACA pull auth. ACR is simpler for ACA + Key Vault integration. |
-| D3 | **IaC tooling** | (a) Azure Bicep (native, no state file, easiest rollback); (b) az CLI scripts (least tooling overhead, simplest for pilot); (c) Terraform (most portable, most complex for small pilot) | H1 choice gates all deployment scaffolding. Recommendation: az CLI scripts for pilot speed, Bicep for repeatability. |
-| D4 | **PostgreSQL timing** | (a) Deploy GAIL OS in H2 with JSON file store only — PostgreSQL migration is a separate post-H2 chunk; (b) Include PostgreSQL migration in H2 | Directive explicitly allows file store for H2 pilot start. Option (a) is faster and lower risk. |
-| D5 | **Graphify store persistence** | SQLite on a mounted Azure Files share (simplest, single-writer safe) vs migrate to PostgreSQL later | H3 single-replica SQLite + Azure Files is the lowest-risk pilot path. |
+| # | Decision | **Locked Value** |
+|---|---|---|
+| D1 | **Azure account** | **Personal account `adamgdwn@hotmail.com`** — use $1,000 Microsoft credits for pilot. Internal-only, no governance concern. When migrating to business account later, re-deploy from IaC scripts (not resource move — personal and business accounts are in different tenants). |
+| D2 | **Container registry** | **Azure Container Registry (ACR)** — cleaner ACA integration, no extra auth wiring. |
+| D3 | **IaC tooling** | **az CLI scripts** — lowest overhead for pilot; scripts are re-runnable against a new subscription when migrating to business account. |
+| D4 | **PostgreSQL timing** | **Delay — post-H2 separate chunk.** GAIL OS deploys in H2 with JSON file store only. |
+| D5 | **Graphify store persistence** | **Azure Files share + SQLite single-writer.** Max replicas = 1 for Graphify container. |
 
 ---
 

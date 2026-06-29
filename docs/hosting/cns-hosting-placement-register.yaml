@@ -1,0 +1,105 @@
+# CNS Hosting Placement Register
+# Phase 7 — Internal Guided AI Labs CNS Hosting Pilot
+# Last updated: 2026-06-28
+# Region default: Azure Canada Central
+# Account: adamgdwn@hotmail.com (Microsoft personal account, $1,000 credits)
+
+components:
+
+  - component: gail-os-api
+    repo: gail-ai-operating-system-rev-2
+    path: apps/gail-os-api
+    current_runtime: local (Windows uvicorn, port 8123; Linux port 8124 for CTP)
+    pilot_runtime: Azure Container Apps — Canada Central
+    target_runtime: Azure Container Apps — Canada Central (re-deploy to business sub when available)
+    region: canadacentral
+    data_owner: Guided AI Labs (internal)
+    secret_owner: Azure Key Vault (rg-gail-cns-pilot-canadacentral)
+    network_exposure: public HTTPS via ACA ingress; GAIL_OS_API_KEY required on all routes
+    auth_model: API key (GAIL_OS_API_KEY env var; never hardcoded or committed)
+    budget_cap: $25/month (ACA consumption)
+    scale_rule: min_replicas=0, max_replicas=2, HTTP concurrency trigger
+    backup_policy: Evidence store is idempotent JSON; re-creatable from mission log
+    promotion_gate: Adam explicit approval for Azure resource creation (H1 gate)
+    rollback_path: >
+      az containerapp update --name aca-gail-os-api
+      --revision-weight previous=100 current=0;
+      or: az group delete to remove all pilot resources
+
+  - component: graphify-cns-api
+    repo: graphify-workspace-cockpit
+    path: root (FastAPI app)
+    current_runtime: local (Linux uvicorn, port 8001)
+    pilot_runtime: Azure Container Apps — Canada Central
+    target_runtime: Azure Container Apps — Canada Central (re-deploy to business sub when available)
+    region: canadacentral
+    data_owner: Guided AI Labs (internal)
+    secret_owner: Azure Key Vault (rg-gail-cns-pilot-canadacentral)
+    network_exposure: public HTTPS via ACA ingress; CNS_API_KEY required
+    auth_model: API key (CNS_API_KEY env var; never hardcoded or committed)
+    budget_cap: $15/month (ACA consumption)
+    scale_rule: min_replicas=0, max_replicas=1 (single-writer SQLite constraint)
+    persistence: Azure Files share (LRS standard); mounted at /app/data/cns.db
+    backup_policy: >
+      Daily azcopy snapshot of Azure Files share to cool storage.
+      SQLite WAL mode enabled; consistent copy safe with azcopy.
+    promotion_gate: Adam explicit approval for Azure resource creation (H1 gate)
+    rollback_path: >
+      az containerapp update --name aca-graphify-cns-api
+      --revision-weight previous=100 current=0;
+      Azure Files share preserves state across rollback
+
+  - component: freedom
+    repo: the-freedom-engine-os
+    path: root (Next.js)
+    current_runtime: Vercel (production deployment active)
+    pilot_runtime: Vercel (unchanged — no hosting change in Phase 7)
+    target_runtime: Vercel (stable)
+    region: vercel-edge (no change)
+    data_owner: Guided AI Labs
+    secret_owner: Vercel project env vars (dashboard — not committed)
+    network_exposure: public (Vercel managed)
+    auth_model: Supabase Auth + Vercel env vars; GAIL_OS_API_KEY passed from env
+    budget_cap: existing Vercel plan (no new cost in Phase 7)
+    scale_rule: Vercel managed
+    backup_policy: git history; Vercel deployment rollback
+    promotion_gate: Adam explicit approval to update GAIL_OS_API_URL + GRAPHIFY_API_URL in Vercel (H4 gate)
+    rollback_path: Revert env vars in Vercel dashboard to prior values; instant
+
+  - component: supabase-product-data
+    repo: the-freedom-engine-os
+    path: supabase/
+    current_runtime: Supabase cloud (project basbwglynuyfxcqxfyur)
+    pilot_runtime: Supabase cloud (unchanged)
+    target_runtime: Supabase cloud
+    region: Supabase managed
+    data_owner: Guided AI Labs
+    secret_owner: Vercel env vars (SUPABASE_URL, SUPABASE_ANON_KEY — not committed)
+    network_exposure: Supabase managed (HTTPS)
+    auth_model: Supabase Auth + RLS (RLS remediation pending H5)
+    budget_cap: existing Supabase plan
+    scale_rule: Supabase managed
+    backup_policy: Supabase daily backups (plan tier)
+    promotion_gate: >
+      Adam explicit approval before applying RLS migration (H5 gate).
+      20 public tables require audit before enabling RLS.
+    rollback_path: >
+      Rollback SQL: DISABLE ROW LEVEL SECURITY per table.
+      H5 chunk includes rollback migration file.
+
+  - component: model-providers
+    repos: [the-freedom-engine-os, gail-ai-operating-system-rev-2]
+    path: provider abstraction layer (Freedom-side)
+    current_runtime: OpenAI + Anthropic (behind Freedom router)
+    pilot_runtime: OpenAI + Anthropic (unchanged — no Azure OpenAI in pilot)
+    target_runtime: OpenAI + Anthropic; Azure OpenAI optional future addition
+    region: provider-managed (global)
+    data_owner: Guided AI Labs
+    secret_owner: Vercel env vars (OPENAI_API_KEY, ANTHROPIC_API_KEY — not committed)
+    network_exposure: outbound from Vercel to provider APIs
+    auth_model: provider API keys (env vars only)
+    budget_cap: usage-based (tracked separately from Azure budget)
+    scale_rule: provider-managed
+    backup_policy: n/a
+    promotion_gate: n/a — no change in Phase 7
+    rollback_path: n/a
