@@ -1,6 +1,6 @@
 # Repo Workstream Board — Guided AI Labs Agentic OS CNS
 
-**Last Updated:** 2026-06-28 — Phase 4 COMPLETE. CP-4 gate met (dry-run proof only). Phase 5 reset to Operating Knowledge Intake — four core repos only.
+**Last Updated:** 2026-06-28 — Phases 0–6 COMPLETE. Phase 7 (CNS Hosting Pilot) IN PROGRESS — H1–H5 done. H5-apply (Adam gate) + H6 + BLK-004 remain.
 **Owner:** Build Agent Orchestrator
 
 Task states: `independent` | `coordinated` | `blocked` | `ready-for-integration` | `ready-for-review` | `complete`
@@ -146,29 +146,53 @@ Platform tags: `cloud-safe` = GitHub MCP only | `windows-local` = needs Windows 
 
 ---
 
-## Phase 7–9 — Future Phases
+## Phase 7 — CNS Hosting Pilot
 
-Phases 7–9 are sequenced after Phase 6 gates are met. Do not plan implementation tasks until the preceding gate is cleared.
+**Phase goal:** Deploy GAIL OS + Graphify to Azure Container Apps (Canada Central). Connect Freedom on Vercel. Remediate Supabase RLS. Prepare M365 live bridge readiness docs. Budget target: under $300/month.
+
+**Status:** H1–H5 complete. H5-apply + H6 + BLK-004 pending.
+
+**Gate:** Phases 0–6 complete. Azure personal account (`adamgdwn@hotmail.com`) approved for pilot.
+
+| H | Chunk | Repo | Platform | State | Notes |
+|---|---|---|---|---|---|
+| H0 | Hosting placement register | `agentic-multi-agent-agent-builder` | `cloud-safe` | `complete` | `docs/hosting/2026-06-28 - CNS Hosting Pilot Strategy.md` + `cns-hosting-placement-register.yaml` committed. |
+| H1 | Azure foundation scaffold | `agentic-multi-agent-agent-builder` | `windows-local` | `complete` | Resource group, Log Analytics, Key Vault, Storage Account, ACR, ACA environment — all provisioned in `canadacentral`. IaC in `infra/azure-pilot/deploy-notes.md`. |
+| H2 | GAIL OS container deployed | `gail-ai-operating-system-rev-2` | `windows-local` | `complete` | `aca-gail-os-api` live. Health: `{"status":"ok","boundary":"A1 local no-network","phase":"1"}` HTTP 200. URL: `https://aca-gail-os-api.ambitiousforest-f57e95ff.canadacentral.azurecontainerapps.io` |
+| H3 | Graphify container + persistent storage | `graphify-workspace-cockpit` | `windows-local` | `complete` | `aca-graphify-cns-api` live with Azure Files share `graphify-files` mounted at `/app/data`. Health: `{"status":"ok","store":"connected","node_count":0}` HTTP 200. |
+| H4 | Freedom → Azure connected | `the-freedom-engine-os` | `linux-local` | `complete` | API keys applied via `.env.local`. All 6 smoke test checks pass (both sides ACK). Env var doc: `docs/hosting/2026-06-28 - vercel-env-setup.md`. |
+| H5 | Supabase RLS package committed | `the-freedom-engine-os` | `windows-local` | `complete` | Commits `530f575` (Freedom) + `3e4b5d7` (Rev 2). 21 legacy public tables covered. Forward migration + rollback SQL + remediation plan committed. CI green (`28348544121`). **Migration NOT applied to hosted Supabase — separate Adam gate required.** |
+| H5-apply | Hosted Supabase RLS migration apply | `the-freedom-engine-os` | `linux-local` | `gate` | **Adam explicit approval required.** Backup/rollback posture must be confirmed. Do not apply without that gate. |
+| H6 | M365 live bridge readiness docs | `ag-operations-m365-foundation` | `linux-local` | `queued` | Lane 2. Docs/prep only — update M365 source surface map. No live M365 writes. |
+| BLK-004 | Windows Graphify extraction | Windows | `windows-local` | `queued` | Windows Enhanced Graphify extraction of GAIL OS Rev 2 + M365 Foundation. |
+
+**Phase 7 gate (CP-7):** All H-chunks complete (including H5-apply after Adam gate) + budget confirmed under $300/month + no secrets committed + no live M365 writes without explicit separate approval.
+
+---
+
+## Phase 8–9 — Future Phases
+
+Phases 8–9 are sequenced after Phase 7 gate is met.
 
 | Phase | Next action when gate met |
 |---|---|
-| 7 — Learning Loop | Define first learning consolidation target when Phases 1–5 produce operational evidence |
-| 8 — Client Package | Begin packaging when CP-6 cleared + one R4 charter proven in execution |
+| 8 — Client Package | Begin packaging when CP-7 cleared + one R4 charter proven in execution |
 | 9 — R&D Edge | R&D track runs in parallel; never blocks production gates |
 
 ---
 
 ## Repo Status Summary (2026-06-28)
 
-| Repo | Phase 0 | Phase 1 | Phase 2 | Phase 3 | Phase 4 | Phase 5 | Notes |
-|---|---|---|---|---|---|---|---|
-| `the-freedom-engine-os` | complete | complete | — | **complete** | — | 5.6 (blocked by 5.3+5.4) | All Phase 3 tasks done (3.1–3.6). checkCnsActionGate() unified portal gate live. |
-| `gail-ai-operating-system-rev-2` | complete | **complete** | — | complete | complete | 5.2 → 5.3 | CP-1 proven 2026-06-28. All Phase 1 tasks 1.1–1.9 complete. OKP work next (5.2). |
-| `graphify-workspace-cockpit` | complete | — | **complete** | — | **complete** | 5.4 (blocked by 5.2) | CNS API live on port 8001. Evidence ingest endpoint live (4.6). 2.7/2.8 (Windows) still pending. |
-| `ag-operations-m365-foundation` | complete | — | — | — | — | 5.5 (independent) | Stages 1–9 documented. M365 CNS Source Surface Map (5.5) can proceed now. BLK-005 outstanding. |
-| `guided-ai-journey-website-and-tools` | complete | — | — | — | — | Phase 5 branch abandoned | Product repo — not a Phase 5 implementation target. Branch abandoned (Chunk 5.1). |
-| `oldskoolai.com` | complete | — | — | — | — | Phase 5 branch abandoned | Product repo — not a Phase 5 implementation target. Branch abandoned (Chunk 5.1). |
-| `bowtie_risk_program` | complete | — | — | — | — | Phase 5 branch abandoned | Product repo — not a Phase 5 implementation target. Branch abandoned (Chunk 5.1). |
-| `change-leadership-tools` | complete | — | — | — | — | Phase 5 branch abandoned | Product repo — not a Phase 5 implementation target. Branch abandoned (Chunk 5.1). |
-| `clean-pdf-build` | complete | — | — | — | — | Phase 5 branch abandoned | Product repo — not a Phase 5 implementation target. Branch abandoned (Chunk 5.1). |
-| `guided-ai-labs-website` | complete | — | — | — | — | Phase 5 branch abandoned | Product repo — not a Phase 5 implementation target. Branch abandoned (Chunk 5.1). |
+| Repo | P0 | P1 | P2 | P3 | P4 | P5 | P6 | P7 | Notes |
+|---|---|---|---|---|---|---|---|---|---|
+| `the-freedom-engine-os` | ✓ | ✓ | — | ✓ | — | ✓ | ✓ (6.3) | H4 ✓ H5 ✓ | H4 smoke test pass. H5 RLS package committed (530f575). CI green. |
+| `gail-ai-operating-system-rev-2` | ✓ | ✓ | — | ✓ | ✓ | ✓ | ✓ (6.5) | H2 ✓ | ACA deployed. GAIL OS A1 boundary enforced. Rev 2 coordination commit 3e4b5d7 (H5). |
+| `graphify-workspace-cockpit` | ✓ | — | ✓ | — | ✓ | ✓ | ✓ (6.2) | H3 ✓ | ACA deployed with Azure Files persistence. CNS store connected. |
+| `ag-operations-m365-foundation` | ✓ | — | — | — | — | ✓ | — | H6 (queued) | Lane 2. H6 docs/prep queued. No live writes. |
+| `agentic-multi-agent-agent-builder` | — | — | — | — | — | — | — | H0 ✓ H1 ✓ | IaC scripts committed. Build control docs current. |
+| `guided-ai-journey-website-and-tools` | ✓ | — | — | — | — | abandoned | — | — | Product repo. Phase 5 branch abandoned. |
+| `oldskoolai.com` | ✓ | — | — | — | — | abandoned | — | — | Product repo. Phase 5 branch abandoned. |
+| `bowtie_risk_program` | ✓ | — | — | — | — | abandoned | — | — | Product repo. Phase 5 branch abandoned. |
+| `change-leadership-tools` | ✓ | — | — | — | — | abandoned | — | — | Product repo. Phase 5 branch abandoned. |
+| `clean-pdf-build` | ✓ | — | — | — | — | abandoned | — | — | Product repo. Phase 5 branch abandoned. |
+| `guided-ai-labs-website` | ✓ | — | — | — | — | abandoned | — | — | Product repo. Phase 5 branch abandoned. |

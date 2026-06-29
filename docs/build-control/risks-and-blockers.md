@@ -1,6 +1,6 @@
 # Risks and Blockers — Guided AI Labs Agentic OS CNS
 
-**Last Updated:** 2026-06-28
+**Last Updated:** 2026-06-28 (Phase 7 H1–H5 complete. BLK-001/002/003/005 closed. BLK-004 queued.)
 **Owner:** Build Agent Orchestrator
 
 ---
@@ -9,11 +9,11 @@
 
 | ID | Blocker | Affects | Unblocked By |
 |---|---|---|---|
-| BLK-001 | GAIL OS spine is complete (Python, A1 local no-network, Chunks 1–19) but **not yet exposed as HTTP API**. Freedom (TypeScript, Linux) cannot call it. No JSON Schema contracts exist for cross-language consumers. | Freedom (Phase 3), M365 (Phase 4), all product apps (Phase 5) | Phase 1: Chunk 20 (evidence writes) → Chunk 21 (FastAPI HTTP layer) → Chunk 22 (`@gail/contracts` JSON Schema) → Chunk 23 (Freedom bridge). See `phase-1-chunk-specs.md`. |
+| ~~BLK-001~~ | ~~GAIL OS spine not exposed as HTTP API~~ | **CLOSED 2026-06-28** — Phase 1 complete. FastAPI HTTP layer live (PRs #8–#11). CP-1 integration test 4/4 passed. Freedom bridge live (Freedom PR #27). | Resolved |
 | ~~BLK-002~~ | ~~Graphify graph query HTTP API not yet exposed for external callers~~ | **CLOSED 2026-06-27** — Graphify Phase 2 complete. 6 HTTP endpoints on port 8001, all SLAs verified. Freedom can query Graphify. | Resolved |
-| BLK-003 | `@gail/contracts` shared types package does not exist | Type drift between repos; no stable schema contract for consumers | Phase 0/1 task: create package in GAIL OS Rev 2 |
-| BLK-004 | Windows Enhanced Graphify has not extracted GAIL OS Rev 2 + M365 Foundation repos | Graphify has no knowledge of Windows-side architecture | Phase 2.7 task on Windows |
-| ~~BLK-005~~ | ~~M365 app registration + least-privilege permissions not yet confirmed as provisioned~~ | **CLOSED 2026-06-28** — App `9aeeeae6-be2a-476c-9c34-389dbc927c99` (`Guided AI Labs - CLI for Microsoft 365 Local Agent`) created via `m365 setup`, auth type `deviceCode`, tenant `1ca92af5-21ff-42e3-87ae-3bde9c2cc501`. Read-only proof passed (flow list verified). Permission expansion to full Phase 4 scope in progress (Exchange: `LINUX_TO_WINDOWS__2026-06-28-entra-expand-permissions.md`). | Resolved |
+| ~~BLK-003~~ | ~~`@gail/contracts` shared types package does not exist~~ | **CLOSED 2026-06-28** — `@gail/contracts` JSON Schema package implemented in Phase 1 Chunk 22. TypeScript wire types merged to Freedom (PR #33). Cross-language contracts live. | Resolved |
+| BLK-004 | Windows Enhanced Graphify has not extracted GAIL OS Rev 2 + M365 Foundation repos | Graphify has no knowledge of Windows-side architecture | Phase 2.7 task on Windows — queued as Phase 7 BLK-004 |
+| ~~BLK-005~~ | ~~M365 app registration + least-privilege permissions not yet confirmed as provisioned~~ | **CLOSED 2026-06-28** — App `9aeeeae6-be2a-476c-9c34-389dbc927c99` (`Guided AI Labs - CLI for Microsoft 365 Local Agent`) created via `m365 setup`, auth type `deviceCode`, tenant `1ca92af5-21ff-42e3-87ae-3bde9c2cc501`. Read-only proof passed (flow list verified). Full Entra scope expansion complete 2026-06-28. | Resolved |
 
 ---
 
@@ -61,7 +61,10 @@
 |---|---|---|---|
 | RSK-000 | Ambiguity between Freedom, GAIL OS, and Graphify as architecture layers | Master plan locked. DEC-001, DEC-002, DEC-003 captured. | 2026-06-25 |
 | RSK-00A | Graphify cross-machine graph fragmentation | DEC-005: Linux primary, Windows extraction node, GitHub sync. | 2026-06-25 |
-| BLK-002 | Graphify HTTP API not externally callable | Graphify Phase 2 complete 2026-06-27. 6 HTTP endpoints on port 8001, all SLAs verified (0.2ms p50 on 12,687 entities). | 2026-06-27 |
+| BLK-001 | GAIL OS spine not exposed as HTTP API | Phase 1 complete. FastAPI HTTP layer live. CP-1 4/4 passed. Freedom bridge live. | 2026-06-28 |
+| BLK-002 | Graphify HTTP API not externally callable | Graphify Phase 2 complete. 6 HTTP endpoints on port 8001, all SLAs verified (0.2ms p50 on 12,687 entities). | 2026-06-27 |
+| BLK-003 | `@gail/contracts` shared types package missing | Phase 1 Chunk 22 implemented JSON Schema contracts. TypeScript wire types merged to Freedom PR #33. | 2026-06-28 |
+| BLK-005 | M365 app registration not confirmed | App `9aeeeae6` created. Full Entra scope expansion complete. Read-only proof passed. | 2026-06-28 |
 
 ---
 
