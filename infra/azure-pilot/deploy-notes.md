@@ -158,33 +158,46 @@ Cost checkpoint: ACA environment itself is free (consumption tier); costs are pe
 This step requires the GAIL OS image to be pushed to ACR first (H2 chunk).
 Run after H2 image is built and pushed.
 
-```bash
-az containerapp create \
-  --name aca-gail-os-api \
-  --resource-group rg-gail-cns-pilot-canadacentral \
-  --environment aca-env-gail-cns-pilot \
-  --image "acrgailcnspilot.azurecr.io/gail-os-api:latest" \
-  --registry-server "$ACR_SERVER" \
-  --registry-username acrgailcnspilot \
-  --registry-password "$ACR_PASS" \
-  --target-port 8123 \
-  --ingress external \
-  --min-replicas 0 \
-  --max-replicas 2 \
-  --cpu 0.5 \
-  --memory 1Gi \
-  --secrets "gail-os-api-key=keyvaultref:https://kv-gail-cns-pilot.vault.azure.net/secrets/gail-os-api-key,identityref:system" \
-  --env-vars \
-      "GAIL_OS_API_KEY=secretref:gail-os-api-key" \
-      "GAIL_OS_STORE_PATH=/app/data/evidence" \
-      "PYTHONPATH=/app/packages/uaos-core/src"
+Note: secrets are passed directly (not via Key Vault runtime reference) to avoid
+managed-identity RBAC setup. Upgrade to KV refs after pilot validates connectivity.
 
-GAIL_OS_URL=$(az containerapp show \
-  --name aca-gail-os-api \
-  --resource-group rg-gail-cns-pilot-canadacentral \
-  --query "properties.configuration.ingress.fqdn" --output tsv)
+```powershell
+# Get values from existing Azure resources
+$ACR_PASS = az acr credential show `
+  --name acrgailcnspilot `
+  --query "passwords[0].value" --output tsv
 
-echo "GAIL OS URL: https://$GAIL_OS_URL"
+$GAIL_KEY = az keyvault secret show `
+  --vault-name kv-gail-cns-pilot `
+  --name gail-os-api-key `
+  --query value --output tsv
+
+az containerapp create `
+  --name aca-gail-os-api `
+  --resource-group rg-gail-cns-pilot-canadacentral `
+  --environment aca-env-gail-cns-pilot `
+  --image "acrgailcnspilot.azurecr.io/gail-os-api:latest" `
+  --registry-server "acrgailcnspilot.azurecr.io" `
+  --registry-username acrgailcnspilot `
+  --registry-password $ACR_PASS `
+  --target-port 8123 `
+  --ingress external `
+  --min-replicas 0 `
+  --max-replicas 2 `
+  --cpu 0.5 `
+  --memory 1Gi `
+  --secrets "gail-os-api-key=$GAIL_KEY" `
+  --env-vars `
+    "GAIL_OS_API_KEY=secretref:gail-os-api-key" `
+    "GAIL_OS_STORE_PATH=/app/data/evidence" `
+    "PYTHONPATH=/app/packages/uaos-core/src"
+
+$GAIL_OS_URL = az containerapp show `
+  --name aca-gail-os-api `
+  --resource-group rg-gail-cns-pilot-canadacentral `
+  --query "properties.configuration.ingress.fqdn" --output tsv
+
+Write-Output "GAIL OS URL: https://$GAIL_OS_URL"
 ```
 
 Cost checkpoint: ~$5–$25/month at typical traffic; scale-to-zero when idle.
@@ -196,49 +209,63 @@ Cost checkpoint: ~$5–$25/month at typical traffic; scale-to-zero when idle.
 This step requires the Graphify image to be pushed to ACR first (H3 chunk).
 Run after H3 image is built and pushed.
 
-```bash
-# Get storage key for volume mount
-STORAGE_KEY=$(az storage account keys list \
-  --account-name stgailcnspilot \
-  --resource-group rg-gail-cns-pilot-canadacentral \
-  --query "[0].value" --output tsv)
+Note: Azure Files volume mount uses the correct two-step pattern:
+1. Register storage on the ACA environment
+2. Reference via volume in the container app
 
-az containerapp create \
-  --name aca-graphify-cns-api \
-  --resource-group rg-gail-cns-pilot-canadacentral \
-  --environment aca-env-gail-cns-pilot \
-  --image "acrgailcnspilot.azurecr.io/graphify-cns-api:latest" \
-  --registry-server "$ACR_SERVER" \
-  --registry-username acrgailcnspilot \
-  --registry-password "$ACR_PASS" \
-  --target-port 8001 \
-  --ingress external \
-  --min-replicas 0 \
-  --max-replicas 1 \
-  --cpu 0.5 \
-  --memory 1Gi \
-  --secrets "cns-api-key=keyvaultref:https://kv-gail-cns-pilot.vault.azure.net/secrets/cns-api-key,identityref:system" \
-  --env-vars \
-      "CNS_API_KEY=secretref:cns-api-key" \
-      "CNS_STORE_PATH=/app/data/cns.db"
+```powershell
+$ACR_PASS = az acr credential show `
+  --name acrgailcnspilot `
+  --query "passwords[0].value" --output tsv
 
-# Mount Azure Files share for SQLite persistence
-az containerapp update \
-  --name aca-graphify-cns-api \
-  --resource-group rg-gail-cns-pilot-canadacentral \
-  --storage-name graphify-storage \
-  --azure-file-account-name stgailcnspilot \
-  --azure-file-account-key "$STORAGE_KEY" \
-  --azure-file-share-name graphify-cns-data \
-  --mount-path /app/data \
+$CNS_KEY = az keyvault secret show `
+  --vault-name kv-gail-cns-pilot `
+  --name cns-api-key `
+  --query value --output tsv
+
+$STORAGE_KEY = az storage account keys list `
+  --account-name stgailcnspilot `
+  --resource-group rg-gail-cns-pilot-canadacentral `
+  --query "[0].value" --output tsv
+
+# Step 8a — Register Azure Files storage on the ACA environment
+az containerapp env storage set `
+  --name aca-env-gail-cns-pilot `
+  --resource-group rg-gail-cns-pilot-canadacentral `
+  --storage-name graphify-files `
+  --azure-file-account-name stgailcnspilot `
+  --azure-file-account-key $STORAGE_KEY `
+  --azure-file-share-name graphify-cns-data `
   --access-mode ReadWrite
 
-GRAPHIFY_URL=$(az containerapp show \
-  --name aca-graphify-cns-api \
-  --resource-group rg-gail-cns-pilot-canadacentral \
-  --query "properties.configuration.ingress.fqdn" --output tsv)
+# Step 8b — Create container app referencing the registered storage
+az containerapp create `
+  --name aca-graphify-cns-api `
+  --resource-group rg-gail-cns-pilot-canadacentral `
+  --environment aca-env-gail-cns-pilot `
+  --image "acrgailcnspilot.azurecr.io/graphify-cns-api:latest" `
+  --registry-server "acrgailcnspilot.azurecr.io" `
+  --registry-username acrgailcnspilot `
+  --registry-password $ACR_PASS `
+  --target-port 8001 `
+  --ingress external `
+  --min-replicas 0 `
+  --max-replicas 1 `
+  --cpu 0.5 `
+  --memory 1Gi `
+  --secrets "cns-api-key=$CNS_KEY" `
+  --env-vars `
+    "CNS_API_KEY=secretref:cns-api-key" `
+    "CNS_STORE_PATH=/app/data/cns.db" `
+  --volume "name=graphifyvol,storage-name=graphify-files,storage-type=AzureFile" `
+  --volume-mount "volume-name=graphifyvol,mount-path=/app/data"
 
-echo "Graphify URL: https://$GRAPHIFY_URL"
+$GRAPHIFY_URL = az containerapp show `
+  --name aca-graphify-cns-api `
+  --resource-group rg-gail-cns-pilot-canadacentral `
+  --query "properties.configuration.ingress.fqdn" --output tsv
+
+Write-Output "Graphify URL: https://$GRAPHIFY_URL"
 ```
 
 Cost checkpoint: ~$3–$15/month; scale-to-zero when idle. SQLite single-writer enforced by max_replicas=1.
