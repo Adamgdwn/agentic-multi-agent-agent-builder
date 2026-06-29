@@ -1,9 +1,9 @@
-# CNS Phase 7 — H4 + H5 Session Summary
+# CNS Phase 7 — H4 + H5 Session Summary + Night Close-Out
 
 **Date:** 2026-06-28
-**Session window:** ~21:42 – 23:00 MDT
+**Session window:** ~21:42 – 23:30 MDT
 **Protocol:** DirectLink Exchange (`DIRECTLINK_CURRENT.md`) — Windows/Linux back-and-forth
-**Result:** H4, H5, and H5-apply complete. Phase 7 H1–H5 + H5-apply done. H6 and BLK-004 remain.
+**Result:** H4, H5, and H5-apply complete. Phase 7 H1–H5 + H5-apply done. CRITICAL FINDING: Freedom AI capability gap. Strategic pivot ordered. H6 and BLK-004 remain queued but secondary.
 
 ---
 
@@ -113,6 +113,39 @@ Applied. 21/21 tables RLS-enabled, 0 new policies. Rollback SQL remains availabl
 
 ### BLK-004 — Windows Graphify Extraction
 - Windows-side work. Enhanced Graphify extraction of GAIL OS Rev 2 + M365 Foundation repos.
+
+---
+
+---
+
+## Night Close-Out — CRITICAL FINDING + Strategic Pivot
+
+### Freedom AI Capability Gap
+
+After H5-apply was confirmed and the DirectLink channel closed for the night, Adam tested Freedom's actual AI capability and found it **empty**.
+
+**The finding:** Freedom's AI interface can report "I'm connected to GAIL OS" but cannot act through those connections. When asked to check the CRM in M365, Freedom said it couldn't. The infrastructure (Phase 3–7) exists but Freedom's AI has no depth to USE it.
+
+**Adam's directive:**
+> "None of this matters if I can't use it through Freedom. That is the most important front portal to this. I want Freedom's functionality in this CNS to be exactly the level and depth that you or Codex can go with full permissions and bypass permissions. I want Freedom to be able to get into every file in this system, answer any questions I have, initiate any activities I need."
+
+**Strategic pivot ordered:**
+- Stop building "everything all at once Fizbee Deep type of connections"
+- Start working specific pathways targeting actual, usable functionality
+- Build with intention — every chunk must deliver something Adam can USE through Freedom, not just background infrastructure
+
+### Freedom Executive AI Build Directive
+
+**For the Freedom build session (Adam delivering this briefing directly):**
+
+- Freedom must match Claude Code / Codex depth with full permissions
+- Full file access across all GAIL OS repos
+- Ability to answer any question about system state
+- Ability to initiate any activity the underlying systems support
+- Not a chatbot wrapper — a true executive AI with real reach into the CNS
+- This is the "executive AI business partner" level Adam has been requesting for months
+
+**What the agent-builder session does NOT do:** Do not build this here. Record the directive, hand off cleanly. The Freedom build session receives this from Adam directly. Agent-builder's next role after this close-out: H6/BLK-004 docs support + Freedom capability map when Freedom build calls for it.
 
 ---
 

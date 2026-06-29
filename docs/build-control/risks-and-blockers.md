@@ -1,6 +1,6 @@
 # Risks and Blockers — Guided AI Labs Agentic OS CNS
 
-**Last Updated:** 2026-06-28 (Phase 7 H1–H5 complete. BLK-001/002/003/005 closed. BLK-004 queued.)
+**Last Updated:** 2026-06-28 (Phase 7 H1–H5 + H5-apply complete. RSK-015 added: Freedom AI capability gap. BLK-001/002/003/005 closed. BLK-004 queued.)
 **Owner:** Build Agent Orchestrator
 
 ---
@@ -45,6 +45,12 @@
 | RSK-010 | Build effort spreads across too many repos simultaneously before core spine exists | High | Medium | Strict phase gates. Phase 1 (GAIL OS spine) must reach CP-1 before Freedom or product app integration work begins. |
 | RSK-011 | Direct link (Windows/Linux cable) used as primary coordination path — becomes a fragile dependency | Low | High | DEC-006: GitHub is primary. Direct link is last resort. |
 | RSK-012 | `user-ai-operating-system` (Linux, superseded) accidentally used as reference for new OS work | Medium | Medium | SUPERSEDED notice is in place. Agents must check `SUPERSEDED_BY_GAIL_AI_OPERATING_SYSTEM_REV_2.md` before reading. |
+
+### Critical Capability Risks
+
+| ID | Risk | Probability | Impact | Mitigation |
+|---|---|---|---|---|
+| RSK-015 | **Freedom AI capability gap** — Infrastructure connectivity to GAIL OS / Graphify / M365 exists (Phase 3–7 complete) but the Freedom AI interface cannot USE those connections. Freedom can say "I'm connected" but cannot check M365, query files, initiate actions, or answer questions through the CNS. All Phase 3–7 infrastructure work is effectively unusable until Freedom's AI interface is built to executive depth. | **CRITICAL** | **Critical** | Freedom executive AI build: must match Claude/Codex depth — full file access, question answering, activity initiation. Adam delivering this directive directly to Freedom build session 2026-06-28. Ordered: stop broad connection building; start specific-pathway capability build. |
 
 ### Commercial Risks
 

@@ -1,6 +1,6 @@
 # Handoff State — Guided AI Labs Agentic OS CNS
 
-**Last Updated:** 2026-06-28 (Phase 7 H1–H5 + H5-apply complete. Hosted Supabase RLS migration applied — 21/21 tables RLS-enabled, 0 new policies. H6 M365 Bridge readiness docs and BLK-004 Windows Graphify extraction remain.)
+**Last Updated:** 2026-06-28 (Phase 7 H1–H5 + H5-apply complete. CRITICAL FINDING: Freedom AI has zero actual use-capability despite infrastructure connectivity. Strategic pivot: specific-pathway, intention-driven build. Freedom executive AI build is the next priority. H6 and BLK-004 remain queued but secondary.)
 **Owner:** Build Agent Orchestrator
 
 This file is the restart point for any agent, session, or context reset. Read this first after a compaction, clear, or handoff.
@@ -13,8 +13,8 @@ This document supersedes forward-looking Phase 5/6 sections of the turnover doc 
 ## Loop State
 
 active: true
-last_completed_task: "Phase 7 H1–H5 + H5-apply complete (2026-06-28). H5-apply: hosted Supabase RLS migration applied to Freedom project basbwglynuyfxcqxfyur. Pre-apply: 21/21 tables RLS-disabled, 0 policies. Post-apply: 21/21 with relrowsecurity=true, 0 new policies, service-role HEAD probes pass. Freedom commit 3543b29, Rev 2 commit e93b358. 7 backups confirmed before apply (pitr disabled, walg enabled). No secrets logged or committed. No row data read."
-next_task: "H6 — M365 Live Bridge readiness docs (Lane 2, docs/prep only, no live writes, update M365 source surface map in ag-operations-m365-foundation). OR BLK-004 — Windows Graphify extraction of GAIL OS Rev 2 + M365 Foundation."
+last_completed_task: "Phase 7 H1–H5 + H5-apply complete (2026-06-28). H5-apply: hosted Supabase RLS migration applied to Freedom project basbwglynuyfxcqxfyur. Pre-apply: 21/21 tables RLS-disabled, 0 policies. Post-apply: 21/21 with relrowsecurity=true, 0 new policies, service-role HEAD probes pass. Freedom commit 3543b29, Rev 2 commit e93b358. 7 backups confirmed before apply (pitr disabled, walg enabled). No secrets logged or committed. No row data read. CRITICAL FINDING at night close-out: Freedom AI has zero actual use-capability — infrastructure connectivity proven but AI interface cannot act through it. Strategic pivot ordered."
+next_task: "PRIORITY: Freedom executive AI build. Brief Freedom build session: Freedom must have full executive-level AI depth — full file access, answer any question, initiate any activity, at the same depth and permission level as Claude/Codex. Adam is delivering this same briefing directly to the Freedom build. Do NOT build this in this session — record and hand off. Secondary (queued): H6 M365 Bridge readiness docs (Lane 2, docs/prep only, no live writes). BLK-004 Windows Graphify extraction (Windows-side). No further Phase 7 infrastructure work until Freedom AI capability gap is addressed."
 skipped_tasks: []
 compaction_count: 20
 paused: false
@@ -25,12 +25,32 @@ retry_counts: {}
 
 ## Where We Are
 
-**Phase:** Phases 0–6 **COMPLETE** ✓ | Phase 7 **IN PROGRESS** — H1 ✓ H2 ✓ H3 ✓ H4 ✓ H5 ✓ H5-apply ✓ (H6 or BLK-004 next)
-**Status:** ACA deployment live. Freedom connected to Azure. GAIL OS A1 boundary enforced. Graphify store connected. Supabase RLS applied (21/21 tables, 0 new policies). Entra expanded + consented. M365 re-auth complete.
+**Phase:** Phases 0–6 **COMPLETE** ✓ | Phase 7 **IN PROGRESS** — H1 ✓ H2 ✓ H3 ✓ H4 ✓ H5 ✓ H5-apply ✓ | STRATEGIC PIVOT ORDERED — Freedom executive AI build is next priority
+**Status:** ACA deployment live. Freedom infrastructure connected to Azure + GAIL OS + Graphify. CRITICAL FINDING: Freedom AI interface cannot USE those connections (AI has no depth). Supabase RLS applied (21/21 tables, 0 new policies). Entra expanded + consented. M365 re-auth complete.
 **M365 note:** Linux m365 CLI re-authenticated (adamgoodwin@guidedailabs.com, deviceCode, appId 9aeeeae6-be2a-476c-9c34-389dbc927c99). All expanded Entra scopes live and verified by read-only Graph API probes. No live M365 writes — M365 Live Bridge (Lane 2) remains gated until explicit Adam connector-level gate.
-**Immediate next:** H6 M365 Bridge readiness docs (Lane 2, docs/prep only, no live writes) OR BLK-004 Windows Graphify extraction (Windows-side).
+**Immediate next:** Freedom executive AI build (Adam briefing the Freedom build session directly). H6 / BLK-004 remain queued but are secondary to the capability gap fix.
 
 **Phase 2 completion note:** Chunks 2.1–2.9 plus 20D/20E were committed to `graphify-workspace-cockpit` in a prior session before this handoff was written. Discovered by reading git log + AGENTS.md. Tasks 2.7 (Windows Graphify extraction) and 2.8 (merge Windows graph) are NOT done — these are separate from the HTTP API work and remain pending.
+
+### 2026-06-28 — CRITICAL FINDING + STRATEGIC PIVOT (night close-out)
+
+**Finding:** Freedom has infrastructure connectivity to GAIL OS and Graphify (Phase 3–7 work proven) but the Freedom AI interface has **zero actual use-capability** through those connections. When Adam tested by asking Freedom to check the CRM in M365, Freedom said it couldn't. The AI assistant can say "I'm connected" but cannot act, query, answer questions, or initiate anything through the connections.
+
+**Adam's directive (verbatim):** "None of this matters if I can't use it through Freedom. That is the most important front portal to this. I want Freedom's functionality in this CNS to be exactly the level and depth that you or Codex can go with full permissions and bypass permissions. I want Freedom to be able to get into every file in this system, answer any questions I have, initiate any activities I need."
+
+**Strategic pivot:** Stop building "everything all at once Fizbee Deep type of connections." Start working specific pathways targeting actual, usable functionality. Every build chunk must deliver something Adam can USE through Freedom, not just infrastructure that exists in the background.
+
+**Freedom executive AI build directive (for the Freedom build session):**
+- Freedom must have full executive-level AI depth — same capability as Claude Code or Codex with full permissions
+- Full file access across all GAIL OS repos on the system
+- Ability to answer any question about the system state
+- Ability to initiate any activity (query, write, route, execute) that the underlying systems support
+- Not a chatbot wrapper — a true executive AI with real reach into the CNS
+- Adam is delivering this same briefing directly to the Freedom build session
+
+**What to do:** Do NOT build this in the agent-builder session. This is a note-and-hand-off. The Freedom build session receives the directive from Adam. Agent-builder's next role is to ensure the H6/BLK-004 docs are ready, then support Freedom build with accurate capability maps.
+
+---
 
 ### 2026-06-28 — Phase 7 H1–H3 complete — ACA live, storage mounted, M365 auth ready
 
