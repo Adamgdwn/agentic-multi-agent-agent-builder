@@ -272,16 +272,24 @@ Cost checkpoint: ~$3–$15/month; scale-to-zero when idle. SQLite single-writer 
 
 ---
 
-## Expected Outputs After Full Deployment
+## Live Deployment URLs (deployed 2026-06-28)
 
 ```
-GAIL OS API:  https://aca-gail-os-api.<hash>.canadacentral.azurecontainerapps.io
-Graphify API: https://aca-graphify-cns-api.<hash>.canadacentral.azurecontainerapps.io
+GAIL OS API:  https://aca-gail-os-api.ambitiousforest-f57e95ff.canadacentral.azurecontainerapps.io
+Graphify API: https://aca-graphify-cns-api.ambitiousforest-f57e95ff.canadacentral.azurecontainerapps.io
 ```
+
+Health checks confirmed (2026-06-28):
+- GAIL OS `/api/v1/health`: `{"status":"ok","boundary":"A1 local no-network","phase":"1"}` — HTTP 200
+- Graphify `/health`: `{"status":"ok","store":"connected","node_count":0}` — HTTP 200
+
+Storage note: Graphify deployed with ephemeral SQLite (`/tmp/cns.db`) — CLI lacked
+`--volume`/`--volume-mount` flags. Use `graphify-volume-update.yaml` + `az containerapp update --yaml`
+to attach the `graphify-files` Azure Files share for persistent storage.
 
 These URLs go into Freedom Vercel env vars (H4 gate — Adam approves before applying):
-- `GAIL_OS_API_URL` = GAIL OS URL above
-- `GRAPHIFY_API_URL` = Graphify URL above
+- `GAIL_OS_API_URL` = `https://aca-gail-os-api.ambitiousforest-f57e95ff.canadacentral.azurecontainerapps.io`
+- `GRAPHIFY_API_URL` = `https://aca-graphify-cns-api.ambitiousforest-f57e95ff.canadacentral.azurecontainerapps.io`
 
 ---
 

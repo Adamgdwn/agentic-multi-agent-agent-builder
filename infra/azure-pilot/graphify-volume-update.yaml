@@ -1,0 +1,20 @@
+properties:
+  template:
+    volumes:
+    - name: graphifyvol
+      storageType: AzureFile
+      storageName: graphify-files
+    containers:
+    - name: aca-graphify-cns-api
+      image: acrgailcnspilot.azurecr.io/graphify-cns-api:latest
+      env:
+      - name: CNS_API_KEY
+        secretRef: cns-api-key
+      - name: CNS_STORE_PATH
+        value: /app/data/cns.db
+      volumeMounts:
+      - volumeName: graphifyvol
+        mountPath: /app/data
+      resources:
+        cpu: 0.5
+        memory: 1Gi
