@@ -1,6 +1,6 @@
 # Handoff State — Guided AI Labs Agentic OS CNS
 
-**Last Updated:** 2026-06-28 (Phase 7 H1–H3 complete. Graphify persistent storage live. Entra permissions expanded + consented. M365 re-auth confirmed all scopes. H4 Freedom smoke test is next.)
+**Last Updated:** 2026-06-28 (Phase 7 H1–H5 complete. H4 Freedom→Azure smoke test passed. H5 Supabase RLS package committed — NOT yet applied to hosted Supabase. H5-apply and H6 M365 Bridge readiness are next gates.)
 **Owner:** Build Agent Orchestrator
 
 This file is the restart point for any agent, session, or context reset. Read this first after a compaction, clear, or handoff.
@@ -13,8 +13,8 @@ This document supersedes forward-looking Phase 5/6 sections of the turnover doc 
 ## Loop State
 
 active: true
-last_completed_task: "Phase 7 H1–H3 + M365 auth complete (2026-06-28). Both ACA apps healthy (GAIL OS + Graphify). Graphify persistent storage mounted — graphify-files Azure Files share, /app/data/cns.db, health confirmed. Entra permission expansion approved by Adam and consented (Sites.ReadWrite.All, Files.ReadWrite.All, Group.ReadWrite.All, TeamSettings.ReadWrite.All, ChannelSettings.ReadWrite.All, ChannelMessage.Send, Tasks.ReadWrite, Mail.ReadWrite, Mail.Send, Calendars.ReadWrite, MailboxSettings.ReadWrite, Flows.Manage.All, Exchange.Manage, Exchange.ManageV2, Exchange.AdminAPI.Manage). Linux M365 CLI re-authenticated (adamgoodwin@guidedailabs.com, deviceCode) — fresh tokens include all new scopes. Scope verification: Mail.ReadWrite OK, Tasks.ReadWrite OK, Calendars.ReadWrite OK, Group.ReadWrite.All OK (Guided AI Labs + A.G. Operations Ltd Teams groups visible)."
-next_task: "H4 Freedom smoke test — run Freedom integration tests against live Azure ACA endpoints (proposeMission, validateAction, listConnectors, Graphify entity context, executive brief). Requires API keys from Windows KV to be set in .env.local or Vercel."
+last_completed_task: "Phase 7 H1–H5 complete (2026-06-28). H4: Freedom→Azure smoke test passed — all 6 route checks green, GAIL OS A1 boundary enforced, Graphify store connected, both API keys from kv-gail-cns-pilot applied via .env.local. H5: Supabase RLS remediation package committed to Freedom (530f575) and Rev 2 (3e4b5d7). 21 legacy public tables covered, forward migration + rollback SQL + remediation plan doc. Migration NOT yet applied to hosted Supabase — that is a separate Adam gate."
+next_task: "H5-apply — Adam explicitly approves hosted Supabase RLS migration apply with backup/rollback posture confirmed. OR H6 — M365 Live Bridge readiness docs (Lane 2, docs/prep only, no live writes). OR BLK-004 — Windows Graphify extraction of GAIL OS Rev 2 + M365 Foundation."
 skipped_tasks: []
 compaction_count: 20
 paused: false
@@ -25,10 +25,10 @@ retry_counts: {}
 
 ## Where We Are
 
-**Phase:** Phases 0–6 **COMPLETE** ✓ | Phase 7 **IN PROGRESS** — H1 ✓ H2 ✓ H3 ✓ (H4 next)
-**Status:** ACA deployment live. Both apps healthy. Graphify persistent storage mounted. Entra expanded + consented. M365 re-auth complete. H4 (Freedom → Azure smoke test) is the next gate.
+**Phase:** Phases 0–6 **COMPLETE** ✓ | Phase 7 **IN PROGRESS** — H1 ✓ H2 ✓ H3 ✓ H4 ✓ H5 ✓ (H5-apply or H6 next)
+**Status:** ACA deployment live. Freedom connected to Azure. GAIL OS A1 boundary enforced. Graphify store connected. Supabase RLS package committed (not yet applied). Entra expanded + consented. M365 re-auth complete.
 **M365 note:** Linux m365 CLI re-authenticated (adamgoodwin@guidedailabs.com, deviceCode, appId 9aeeeae6-be2a-476c-9c34-389dbc927c99). All expanded Entra scopes live and verified by read-only Graph API probes. No live M365 writes — M365 Live Bridge (Lane 2) remains gated until explicit Adam connector-level gate.
-**Immediate next:** H4 Freedom smoke test (requires API keys from Windows KV set in .env.local or Vercel).
+**Immediate next:** H5-apply (Adam explicit gate required) OR H6 M365 Bridge readiness docs (Lane 2, no live writes).
 
 **Phase 2 completion note:** Chunks 2.1–2.9 plus 20D/20E were committed to `graphify-workspace-cockpit` in a prior session before this handoff was written. Discovered by reading git log + AGENTS.md. Tasks 2.7 (Windows Graphify extraction) and 2.8 (merge Windows graph) are NOT done — these are separate from the HTTP API work and remain pending.
 
@@ -47,11 +47,15 @@ retry_counts: {}
 
 **M365 re-auth:** Linux CLI re-authenticated with fresh tokens. Read-only scope probes all pass: Mail.ReadWrite ✓, Tasks.ReadWrite ✓, Calendars.ReadWrite ✓, Group.ReadWrite.All ✓ (Guided AI Labs + A.G. Operations Ltd visible).
 
-**H4 blockers (Adam action required):**
-- API keys for `GAIL_OS_API_KEY` and `GRAPHIFY_API_KEY` must be retrieved from `kv-gail-cns-pilot` on Windows and set in `.env.local` or Vercel dashboard.
-- Freedom Vercel project link: `vercel link` not yet run.
+**H4 complete (2026-06-28):**
+- API keys retrieved from `kv-gail-cns-pilot` by Windows and applied to `.env.local` (git-ignored, mode 600). All 5 env vars confirmed.
+- Smoke test passed: Freedom health ✓, GAIL OS ACA ✓ (A1 boundary enforced), Graphify ACA ✓ (store connected), Auth ✓, Freedom→GAIL OS proxy ✓, Freedom→Graphify proxy ✓.
+- See `docs/hosting/2026-06-28 - vercel-env-setup.md` for env var table.
 
-**Env vars already set in `.env.local` (Freedom):** URL vars set. Key vars commented with retrieval instructions. See `docs/hosting/2026-06-28 - vercel-env-setup.md`.
+**H5 complete (2026-06-28) — Supabase RLS package committed, NOT yet applied:**
+- Freedom commit `530f575`: `docs/security/2026-06-28 - Supabase RLS Remediation Plan.md`, `supabase/migrations/202606280001_enable_rls_for_legacy_public_tables.sql`, `supabase/rollbacks/202606280001_disable_rls_for_legacy_public_tables.sql`, `docs/CHANGELOG.md`. 21 tables covered (builder estimated 20 — live probe found 21). All validations pass.
+- Rev 2 coordination commit: `3e4b5d7`.
+- **H5-apply gate:** Hosted Supabase migration apply requires Adam explicit approval with backup/rollback posture confirmed. Do not apply without that gate.
 
 ---
 
