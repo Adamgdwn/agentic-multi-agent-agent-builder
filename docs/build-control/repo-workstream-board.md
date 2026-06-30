@@ -1,9 +1,19 @@
 # Repo Workstream Board — Guided AI Labs Agentic OS CNS
 
-**Last Updated:** 2026-06-28 — Phases 0–6 COMPLETE. Phase 7 (CNS Hosting Pilot) IN PROGRESS — H1–H5 + H5-apply done. H6 (M365 docs) + BLK-004 (Windows Graphify) remain.
+**Last Updated:** 2026-06-29 — Phases 0–6 COMPLETE. Phase 7 H1–H5 + H5-apply done. Forward pivot: Freedom executive capability is the next priority; H6 and BLK-004 remain secondary queued support work.
 **Owner:** Build Agent Orchestrator
 
-Task states: `independent` | `coordinated` | `blocked` | `ready-for-integration` | `ready-for-review` | `complete`
+Task states: `independent` | `coordinated` | `queued` | `queued-secondary` | `blocked` | `ready-for-integration` | `ready-for-review` | `complete`
+
+## 2026-06-29 Forward Pivot
+
+This board is no longer the sole next-task source for capability work. For forward planning, use:
+
+- `docs/build-control/handoff-state.md`
+- `docs/build-control/2026-06-29 - Forward Plan Refactor - Freedom Executive Capability.md`
+- `docs/build-control/2026-06-29 - Graphify Connective Layer Boundary Note.md`
+
+Freedom executive capability is the next priority. Graphify remains relationship infrastructure and should not become mandatory runtime ballast. H6 and BLK-004 are useful support work, but they are secondary to fixing Freedom's use-capability gap.
 
 ---
 
@@ -114,35 +124,35 @@ Platform tags: `cloud-safe` = GitHub MCP only | `windows-local` = needs Windows 
 | # | Chunk | Repo | Platform | State | Notes |
 |---|---|---|---|---|---|
 | 5.0 | Corrections + board reconciliation | `agentic-multi-agent-agent-builder` | `cloud-safe` | `complete` | Decision doc written. Board corrected. 2026-06-28. |
-| 5.1 | Product branch abandonment notes | Six product repos (docs only) | `cloud-safe` | `independent` | Abandonment note on each mistaken Phase 5 branch. No PRs, no main changes. |
-| 5.2 | OKP schema + EvidencePacket wrapper | `gail-ai-operating-system-rev-2` | `cloud-safe` | `independent` | `operating_knowledge.py` — 18 record types, OKP Pydantic model, EvidencePacketToOkpConverter, fingerprint, unsafe source ref rejection. Min 15 tests. |
-| 5.3 | OKP ingest + Signal Gravity L1 | `gail-ai-operating-system-rev-2` | `cloud-safe` | `blocked` | Blocked by 5.2. `operating_knowledge_store.py`, `signal_gravity.py`, `signal_gravity_config.json`, `GET /api/v1/okp/` + `POST /api/v1/okp/` endpoints. L1 scores on ingest. Min 15 tests. Parallel with 5.4. |
-| 5.4 | Graphify OKP nodes + Signal Gravity L2 | `graphify-workspace-cockpit` | `cloud-safe` | `blocked` | Blocked by 5.2. `operating_knowledge_writer.py`, OKP graph nodes + edges, L2 9-factor score, `POST /api/cns/okp`, `GET /api/cns/okp/{id}`. Min 10 tests. Parallel with 5.3. |
-| 5.5 | M365 CNS source surface map | `ag-operations-m365-foundation` | `cloud-safe` | `independent` | `docs/2026-06-28 - M365 CNS Source Surface Map.md` — 8 surfaces documented. BLK-005 status. No live Graph calls. Fully independent. |
-| 5.6 | Freedom OKP briefing + Signal Gravity | `the-freedom-engine-os` | `cloud-safe` | `blocked` | Blocked by 5.3 + 5.4. OKP query methods in gail-os-client + graphify-client. `generateOperatingKnowledgeBrief()` with gravity scores, source refs, calibration health. Min 10 tests. |
-| 5.7 | CP-5 dry-run proof (dual format) | All three code repos | `cloud-safe` | `blocked` | Blocked by 5.2–5.6. One EvidencePacket → OKP → Graphify → Freedom brief. Synaptic Proof Chain JSON + markdown. All three test suites green. |
-| 5.8 | Windows Graphify extraction status update | `graphify-workspace-cockpit` | `windows-local` | `blocked` | Blocked pending Windows operator action (BLK-004). Does not block 5.2–5.7. |
+| 5.1 | Product branch abandonment notes | Six product repos (docs only) | `cloud-safe` | `complete` | Completed during Phase 5 reset. Product repo event-emitter path retired. |
+| 5.2 | OKP schema + EvidencePacket wrapper | `gail-ai-operating-system-rev-2` | `cloud-safe` | `complete` | Completed 2026-06-28. See handoff-state and CP-5 proof chain. |
+| 5.3 | OKP ingest + Signal Gravity L1 | `gail-ai-operating-system-rev-2` | `cloud-safe` | `complete` | Completed 2026-06-28. |
+| 5.4 | Graphify OKP nodes + Signal Gravity L2 | `graphify-workspace-cockpit` | `cloud-safe` | `complete` | Completed 2026-06-28. Graphify remains relationship intelligence, not authority. |
+| 5.5 | M365 CNS source surface map | `ag-operations-m365-foundation` | `cloud-safe` | `complete` | Completed 2026-06-28. No live Graph writes. |
+| 5.6 | Freedom OKP briefing + Signal Gravity | `the-freedom-engine-os` | `cloud-safe` | `complete` | Completed 2026-06-28. |
+| 5.7 | CP-5 dry-run proof (dual format) | All three code repos | `cloud-safe` | `complete` | CP-5 proof complete; see `docs/build-control/2026-06-28 - CP5 Synaptic Proof Chain.md`. |
+| 5.8 | Windows Graphify extraction status update | `graphify-workspace-cockpit` | `windows-local` | `queued-secondary` | BLK-004 remains useful, but does not block hot-path Freedom capability work. |
 
-**Phase 5 gate (CP-5):** Operating knowledge flows from source record → Graphify relationship → Freedom brief with Signal Gravity and Synaptic Proof Chain (dual format). **CP-5 closes when Chunk 5.7 passes.**
+**Phase 5 gate (CP-5):** COMPLETE. Operating knowledge flows from source record → Graphify relationship → Freedom brief with Signal Gravity and Synaptic Proof Chain (dual format).
 
 ---
 
 ## Phase 6 — R4 Autonomy (Charter-Based)
 
-**Phase goal:** Define, prove, and execute the first R4 autonomous charter — Graphify stale-claim review — under governed conditions. Live execution (6.5) blocked until Adam explicitly approves.
+**Phase goal:** Define, prove, and execute the first R4 autonomous charter — Graphify stale-claim review — under governed conditions.
 
-**Gate:** Begins after CP-5 is closed.
+**Gate:** COMPLETE.
 
 | # | Chunk | Repo | Platform | State | Notes |
 |---|---|---|---|---|---|
-| 6.0 | R4 Charter Doctrine | `gail-ai-operating-system-rev-2` (docs) | `cloud-safe` | `blocked` | Blocked by CP-5. Decision doc: R4/R5 distinction, R4-001 Graphify Stale Claim Review Charter, exclusions, rollback, simulation-before-mutation rule. |
-| 6.1 | CharterProfile schema | `gail-ai-operating-system-rev-2` | `cloud-safe` | `blocked` | Blocked by 6.0. `charter_profile.py` — Pydantic model, R5-grant rejection, is_expired(), required fields for R4. Min 12 tests. |
-| 6.2 | Graphify charter nodes | `graphify-workspace-cockpit` | `cloud-safe` | `blocked` | Blocked by 6.1. Parallel with 6.3. Charter node type, edges to mission/agent/evidence/OKPs, `POST /api/cns/charters`, `GET /api/cns/charters/{id}`. Min 10 tests. |
-| 6.3 | Freedom charter discovery + briefing | `the-freedom-engine-os` | `cloud-safe` | `blocked` | Blocked by 6.1. Parallel with 6.2. `listCharters()`, `getCharter()`, charter_context in executive brief, CNS gate output. No self-approval. Min 8 tests. |
-| 6.4 | R4 dry-run simulation | All three code repos | `mixed` | `blocked` | Blocked by 6.1, 6.2, 6.3. Stale claim candidates → GAIL OS charter validation → dry-run execution → EvidencePacket → OKP (charter.executed) → Graphify preview → Freedom brief → rollback data. |
-| 6.5 | R4 limited internal execution | All three code repos | `mixed` | `blocked` | **BLOCKED — explicit Adam approval required.** No agent begins 6.5 without separate written authorization from Adam. |
+| 6.0 | R4 Charter Doctrine | `gail-ai-operating-system-rev-2` (docs) | `cloud-safe` | `complete` | Commit `57b52fc`. R4/R5 distinction, R4-001 scope, exclusions, rollback, simulation-before-mutation rule. |
+| 6.1 | CharterProfile schema | `gail-ai-operating-system-rev-2` | `cloud-safe` | `complete` | Commit `307d4c1`. 17 tests. |
+| 6.2 | Graphify charter nodes | `graphify-workspace-cockpit` | `cloud-safe` | `complete` | Commit `7fdc23d`. 21 tests. |
+| 6.3 | Freedom charter discovery + briefing | `the-freedom-engine-os` | `cloud-safe` | `complete` | Commit `e00fbc2`. No self-approval. |
+| 6.4 | R4 dry-run simulation | All three code repos | `mixed` | `complete` | Commit `f53e35f`. No live mutation. |
+| 6.5 | R4 limited internal execution | All three code repos | `mixed` | `complete` | Adam approved. Graphify stale-claim review executed; graphify commit `48167ef`, GAIL OS commit `5478b64`. |
 
-**Phase 6 gate (CP-6):** R4 charter simulated (6.4 proven). First limited internal execution reviewed by Adam. **6.5 requires explicit Adam authorization.**
+**Phase 6 gate (CP-6):** COMPLETE 2026-06-28.
 
 ---
 
@@ -161,10 +171,10 @@ Platform tags: `cloud-safe` = GitHub MCP only | `windows-local` = needs Windows 
 | H2 | GAIL OS container deployed | `gail-ai-operating-system-rev-2` | `windows-local` | `complete` | `aca-gail-os-api` live. Health: `{"status":"ok","boundary":"A1 local no-network","phase":"1"}` HTTP 200. URL: `https://aca-gail-os-api.ambitiousforest-f57e95ff.canadacentral.azurecontainerapps.io` |
 | H3 | Graphify container + persistent storage | `graphify-workspace-cockpit` | `windows-local` | `complete` | `aca-graphify-cns-api` live with Azure Files share `graphify-files` mounted at `/app/data`. Health: `{"status":"ok","store":"connected","node_count":0}` HTTP 200. |
 | H4 | Freedom → Azure connected | `the-freedom-engine-os` | `linux-local` | `complete` | API keys applied via `.env.local`. All 6 smoke test checks pass (both sides ACK). Env var doc: `docs/hosting/2026-06-28 - vercel-env-setup.md`. |
-| H5 | Supabase RLS package committed | `the-freedom-engine-os` | `windows-local` | `complete` | Commits `530f575` (Freedom) + `3e4b5d7` (Rev 2). 21 legacy public tables covered. Forward migration + rollback SQL + remediation plan committed. CI green (`28348544121`). **Migration NOT applied to hosted Supabase — separate Adam gate required.** |
+| H5 | Supabase RLS package committed | `the-freedom-engine-os` | `windows-local` | `complete` | Commits `530f575` (Freedom) + `3e4b5d7` (Rev 2). 21 legacy public tables covered. Forward migration + rollback SQL + remediation plan committed. CI green (`28348544121`). Hosted apply completed separately in H5-apply. |
 | H5-apply | Hosted Supabase RLS migration apply | `the-freedom-engine-os` | `windows-local` | `complete` | Applied 2026-06-28. Project `basbwglynuyfxcqxfyur`. 21/21 tables `relrowsecurity=true`, 0 new policies. 7 backups confirmed pre-apply. Service-role access intact. Freedom `3543b29`, Rev 2 `e93b358`. |
-| H6 | M365 live bridge readiness docs | `ag-operations-m365-foundation` | `linux-local` | `queued` | Lane 2. Docs/prep only — update M365 source surface map. No live M365 writes. |
-| BLK-004 | Windows Graphify extraction | Windows | `windows-local` | `queued` | Windows Enhanced Graphify extraction of GAIL OS Rev 2 + M365 Foundation. |
+| H6 | M365 live bridge readiness docs | `ag-operations-m365-foundation` | `linux-local` | `queued-secondary` | Lane 2. Docs/prep only — update M365 source surface map. No live M365 writes. |
+| BLK-004 | Windows Graphify extraction | Windows | `windows-local` | `queued-secondary` | Useful for relationship coverage; not a hot-path blocker for Freedom executive capability work. |
 
 **Phase 7 gate (CP-7):** All H-chunks complete (including H5-apply after Adam gate) + budget confirmed under $300/month + no secrets committed + no live M365 writes without explicit separate approval.
 
@@ -181,7 +191,7 @@ Phases 8–9 are sequenced after Phase 7 gate is met.
 
 ---
 
-## Repo Status Summary (2026-06-28)
+## Repo Status Summary (2026-06-29)
 
 | Repo | P0 | P1 | P2 | P3 | P4 | P5 | P6 | P7 | Notes |
 |---|---|---|---|---|---|---|---|---|---|

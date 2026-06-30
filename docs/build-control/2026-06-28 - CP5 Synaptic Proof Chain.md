@@ -231,7 +231,7 @@ All acceptance criteria met:
 - [x] No Supabase authority/evidence writes
 - [x] All three repos' test suites extended with CP-5 proof tests
 
-**Phase 6 is unblocked.** Next: Chunk 6.0 — R4 Charter Doctrine.
+**2026-06-29 update:** Phase 6 is complete. This CP-5 note is retained as proof-chain evidence, not current next-task routing.
 
 ---
 

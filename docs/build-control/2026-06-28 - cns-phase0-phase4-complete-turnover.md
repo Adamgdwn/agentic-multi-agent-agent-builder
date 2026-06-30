@@ -1,9 +1,23 @@
 # CNS Build Turnover — Phases 0–4 Complete
 **Date:** 2026-06-28
+**Status:** historical / superseded for forward planning as of 2026-06-29
 **Prepared for:** GPT Pro deep research / phase planning session
 **Author:** Build Agent (Claude Sonnet 4.6), reviewed by Adam Goodwin
 
 ---
+
+## 2026-06-29 Supersession Notice
+
+This turnover is historical evidence for Phases 0–4. It is no longer the restart point and must not be used as current next-task authority.
+
+For current work, read:
+
+1. `docs/build-control/handoff-state.md`
+2. `docs/build-control/2026-06-29 - Forward Plan Refactor - Freedom Executive Capability.md`
+3. `docs/build-control/2026-06-29 - Graphify Connective Layer Boundary Note.md`
+4. `docs/current-build-pathway.md`
+
+Known stale items in this document include the Phase 5/6 open questions, BLK-005 status, Supabase RLS status, and "read this document first" language. The latest handoff and forward refactor supersede them.
 
 ## Purpose of This Document
 
@@ -349,10 +363,7 @@ not been done.
 
 ### 5.5 Supabase RLS
 
-**Status:** 20 public tables in the Freedom Supabase project (`basbwglynuyfxcqxfyur`) have
-RLS (Row Level Security) disabled. This is a security gap before any production or
-multi-user use. Adam needs to decide: remediate now, or defer until Freedom is closer
-to external user traffic.
+**2026-06-29 update:** Closed. H5/H5-apply found 21 legacy public tables, committed the remediation package, and applied the hosted migration on 2026-06-28. Post-apply state: 21/21 target tables with `relrowsecurity=true`, 0 new policies, service-role paths intact.
 
 ---
 
@@ -490,11 +501,9 @@ cns_store/
    autonomously? Candidates: Planner task triage, SharePoint row append, Graphify staleness
    sweep, Freedom memory consolidation.
 
-4. **BLK-005 M365 app registration:** Has this been provisioned? What are the AZURE_* env
-   var values? Without these, Phase 4 live mode and Phase 6 can't execute real M365 work.
+4. **BLK-005 M365 app registration:** Closed 2026-06-28. Entra app and expanded scopes were confirmed. Live writes still require explicit named approval.
 
-5. **Supabase RLS:** Remediate Freedom's 20 public tables now (before Freedom gets user traffic),
-   or defer?
+5. **Supabase RLS:** Closed 2026-06-28. H5/H5-apply covered 21 target tables and applied the hosted migration after Adam approval.
 
 6. **Windows Graphify extraction (BLK-004):** When will Adam run the extraction on Windows
    to push `gail-ai-operating-system-rev-2` and `ag-operations-m365-foundation` graph data?
@@ -505,7 +514,7 @@ cns_store/
 
 The next build agent (whether GPT or Claude) should:
 
-1. **Read this document first.** Do not reload the full master architecture or all handoff history.
+1. **Do not use this document as the restart point.** Read `docs/build-control/handoff-state.md`, the 2026-06-29 forward refactor, and the Graphify boundary note first.
 
 2. **Start with Adam's Phase 5/6 decisions** from the questions in Part 8.
 

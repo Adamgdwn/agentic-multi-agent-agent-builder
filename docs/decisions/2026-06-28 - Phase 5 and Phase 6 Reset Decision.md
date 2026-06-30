@@ -133,7 +133,7 @@ Phase 6 begins only after CP-5 is closed.
 
 ### Phase 6.5 Gate
 
-Chunk 6.5 (R4 limited internal execution) is **blocked until Adam explicitly approves.** No agent may begin 6.5 without a separate written authorization from Adam.
+**2026-06-29 update:** This gate closed on 2026-06-28. Adam explicitly approved Chunk 6.5, and R4 limited internal execution completed. The original rule remains the precedent for future R4/R5-adjacent work: no live autonomous execution begins without explicit named approval.
 
 ---
 

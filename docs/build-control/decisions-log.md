@@ -1,6 +1,6 @@
 # Decisions Log — Guided AI Labs Agentic OS CNS
 
-**Last Updated:** 2026-06-25
+**Last Updated:** 2026-06-29
 **Owner:** Build Agent Orchestrator
 
 Add a row for every meaningful architecture, design, or contract decision. Include the date, decision, rationale, and affected repos. Do not delete rows — mark superseded decisions as SUPERSEDED.
@@ -86,10 +86,24 @@ Add a row for every meaningful architecture, design, or contract decision. Inclu
 - **Decision:** Cross-repo TypeScript types for Mission, Action, AuthorityEnvelope, EvidencePacket, SourceRef, events, R/A level enums will be extracted into `@gail/contracts` published from `gail-ai-operating-system-rev-2/packages/`.
 - **Rationale:** Prevents type drift across Freedom, Graphify, and product apps. Contracts document defines the schema.
 - **Affects:** `gail-ai-operating-system-rev-2`, `the-freedom-engine-os`, `graphify-workspace-cockpit`, all product repos
-- **Status:** Active — not yet implemented (Phase 1 / Phase 0 task)
+- **Status:** Implemented 2026-06-28 — Freedom PR #33 and GAIL OS Python-side OKP/event work completed the cross-language contract path.
 
 ### DEC-012 — Research role included in this agent's mandate
 - **Decision:** The build orchestration agent (this repo) is also responsible for researching relevant architecture, standards, vendor patterns, and emerging agentic AI design as needed to inform the build.
 - **Rationale:** Adam confirmed 2026-06-25: "I want this agent to be researching where necessary as well."
 - **Affects:** This repo — agent behavior and task scope
+- **Status:** Active
+
+## 2026-06-29
+
+### DEC-013 — Graphify connective-layer boundary
+- **Decision:** Graphify remains the CNS relationship, routing, dependency, provenance, and memory-stitching layer. It must not become mandatory runtime ballast, the authority layer, the execution engine, or a file store.
+- **Rationale:** Adam clarified that Graphify is the highway/electrical/neuronal connective layer. It should connect everything, not sit inside everything.
+- **Affects:** Freedom, GAIL OS, Graphify, Phase 7+ capability planning
+- **Status:** Active
+
+### DEC-014 — Freedom executive capability becomes next priority
+- **Decision:** Forward work prioritizes user-visible Freedom executive capability over generic infrastructure expansion. Each chunk must deliver a specific pathway Adam can use through Freedom.
+- **Rationale:** Phase 7 proved infrastructure connectivity, but Adam found Freedom's AI interface had no practical reach through those connections. Infrastructure without front-door capability creates rework and fallback risk.
+- **Affects:** `the-freedom-engine-os`, `gail-ai-operating-system-rev-2`, `graphify-workspace-cockpit`, `ag-operations-m365-foundation`, this control repo
 - **Status:** Active

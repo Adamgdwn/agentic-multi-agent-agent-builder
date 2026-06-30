@@ -1,6 +1,6 @@
 # Handoff State — Guided AI Labs Agentic OS CNS
 
-**Last Updated:** 2026-06-29 (Graphify connective-layer boundary note added. Phase 7 H1-H5 + H5-apply complete. CRITICAL FINDING: Freedom AI has zero actual use-capability despite infrastructure connectivity. Strategic pivot: specific-pathway, intention-driven build. Freedom executive AI build is the next priority. H6 and BLK-004 remain queued but secondary.)
+**Last Updated:** 2026-06-29T19:02:26-06:00 (Forward plan refactor added. Graphify connective-layer boundary is now part of the restart path. Phase 7 H1-H5 + H5-apply complete. CRITICAL FINDING remains: Freedom AI has zero actual use-capability despite infrastructure connectivity. Strategic pivot: specific-pathway, intention-driven build. Freedom executive AI build is the next priority. H6 and BLK-004 remain queued but secondary.)
 **Owner:** Build Agent Orchestrator
 
 This file is the restart point for any agent, session, or context reset. Read this first after a compaction, clear, or handoff.
@@ -8,13 +8,16 @@ This file is the restart point for any agent, session, or context reset. Read th
 **Active planning reference:** `docs/build-control/2026-06-28 - cns-phase5-phase6-build-specification.md`
 This document supersedes forward-looking Phase 5/6 sections of the turnover doc and the GPT Pro directive. Read it before any Phase 5/6 chunk.
 
+**Forward capability reference:** `docs/build-control/2026-06-29 - Forward Plan Refactor - Freedom Executive Capability.md`
+Read this before designing new Freedom/GAIL OS/Graphify capability chunks. It supersedes older next-task language where conflicts exist.
+
 ---
 
 ## Loop State
 
 active: true
 last_completed_task: "Phase 7 H1–H5 + H5-apply complete (2026-06-28). H5-apply: hosted Supabase RLS migration applied to Freedom project basbwglynuyfxcqxfyur. Pre-apply: 21/21 tables RLS-disabled, 0 policies. Post-apply: 21/21 with relrowsecurity=true, 0 new policies, service-role HEAD probes pass. Freedom commit 3543b29, Rev 2 commit e93b358. 7 backups confirmed before apply (pitr disabled, walg enabled). No secrets logged or committed. No row data read. CRITICAL FINDING at night close-out: Freedom AI has zero actual use-capability — infrastructure connectivity proven but AI interface cannot act through it. Strategic pivot ordered."
-next_task: "PRIORITY: Freedom executive AI build. Brief Freedom build session: Freedom must have full executive-level AI depth - full file access, answer any question, initiate any activity, at the same depth and permission level as Claude/Codex. Apply 2026-06-29 Graphify connective-layer boundary: Graphify is highway/electrical/neuronal relationship infrastructure, not mandatory ballast embedded inside every component. Adam is delivering this same briefing directly to the Freedom build. Do NOT build this in this session - record and hand off. Secondary (queued): H6 M365 Bridge readiness docs (Lane 2, docs/prep only, no live writes). BLK-004 Windows Graphify extraction (Windows-side). No further Phase 7 infrastructure work until Freedom AI capability gap is addressed."
+next_task: "PRIORITY: F1 Freedom capability audit and build packet in the Freedom build session. Freedom must have executive-level usable depth - approved local file/workspace reach, answer synthesis, and activity initiation at Codex/Claude depth while routing governed external/destructive/live actions through GAIL OS authority and evidence. Apply the 2026-06-29 Forward Plan Refactor and Graphify connective-layer boundary: Graphify is highway/electrical/neuronal relationship infrastructure, not mandatory ballast embedded inside every component. Secondary (queued): H6 M365 Bridge readiness docs (Lane 2, docs/prep only, no live writes). BLK-004 Windows Graphify extraction (Windows-side). No further generic infrastructure work until Freedom's use-capability gap is addressed."
 skipped_tasks: []
 compaction_count: 20
 paused: false
@@ -31,6 +34,8 @@ retry_counts: {}
 **Immediate next:** Freedom executive AI build (Adam briefing the Freedom build session directly). H6 / BLK-004 remain queued but are secondary to the capability gap fix.
 
 **2026-06-29 Graphify boundary refinement:** Read `docs/build-control/2026-06-29 - Graphify Connective Layer Boundary Note.md` before designing new Freedom/GAIL OS/Graphify capability chunks. Adam's intent is that Graphify acts as the highway, electrical connection layer, communication loop, and neuronal/quantum-level connective tissue. It should connect everything, not sit inside everything or become mandatory runtime ballast for every feature.
+
+**2026-06-29 forward plan refactor:** Read `docs/build-control/2026-06-29 - Forward Plan Refactor - Freedom Executive Capability.md` before building new capability chunks. The next useful chunk is F1 in Freedom: audit actual AI entry points and write the build packet for the first user-visible executive pathway.
 
 **Phase 2 completion note:** Chunks 2.1–2.9 plus 20D/20E were committed to `graphify-workspace-cockpit` in a prior session before this handoff was written. Discovered by reading git log + AGENTS.md. Tasks 2.7 (Windows Graphify extraction) and 2.8 (merge Windows graph) are NOT done — these are separate from the HTTP API work and remain pending.
 
@@ -51,6 +56,8 @@ retry_counts: {}
 - Adam is delivering this same briefing directly to the Freedom build session
 
 **What to do:** Do NOT build this in the agent-builder session. This is a note-and-hand-off. The Freedom build session receives the directive from Adam. Agent-builder's next role is to ensure the H6/BLK-004 docs are ready, then support Freedom build with accurate capability maps.
+
+**Historical warning:** Older sections below preserve session history and may contain stale status snapshots. If any older entry conflicts with the Loop State, Where We Are, the 2026-06-29 forward refactor, or the Graphify boundary note, use the newer restart materials.
 
 ---
 
@@ -309,10 +316,9 @@ retry_counts: {}
 **CP-3 is proven. Phase 4 is unblocked from the Freedom/OS integration perspective.**
 
 **Remaining Phase 3 work (not CP-3 gate requirements):**
-- 3.4: blocked by GAIL OS 1.6 (Agent registry — not yet implemented)
-- 3.6: blocked by 3.4
+- 2026-06-29 historical update: Phase 3 work is complete. Agent registry (GAIL OS 1.6), Freedom agent routing (3.4), and Freedom cockpit portal integration (3.6) were completed after this snapshot.
 
-**Next immediate task:** GAIL OS 1.6 — Agent registry (`GET /api/v1/agents`) — cloud-safe via GitHub MCP. Unblocks 3.4 → 3.6.
+**Next immediate task:** Historical note superseded. Use the Loop State and the 2026-06-29 forward refactor for current next-task routing.
 
 ---
 
@@ -396,7 +402,7 @@ retry_counts: {}
   - `gail-ai-operating-system-rev-2`: PRs #3–#11 (Chunks 20–21)
   - `the-freedom-engine-os`: PRs #24 (contracts), #25 (HTTP bridge), #26 (CI fix), #27 (CP-1 gate)
 - **Blockers cleared:** BLK-001 (GAIL OS spine), BLK-003 (`@gail/contracts`), BLK-CP1 (integration proof) all resolved.
-- **Supabase RLS note:** 20 public tables in Freedom Supabase project have RLS disabled. Not a Phase 1 blocker. Adam to decide remediation path before Phase 3 production work.
+- **Supabase RLS note:** Historical Phase 1 note superseded by H5/H5-apply. Hosted apply covered 21 target tables on 2026-06-28.
 - **Vercel note:** Freedom Engine is NOT deployed to Vercel (expected for Phase 1 A1 local-only boundary). No action needed.
 
 ### 2026-06-27 — Task 1.2 merged; cloud-safe Phase 1 schema complete

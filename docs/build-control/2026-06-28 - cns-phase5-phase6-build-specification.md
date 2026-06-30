@@ -2,8 +2,10 @@
 ## Operating Knowledge Intake and R4 Autonomy
 
 **Date:** 2026-06-28
-**Status:** Active — primary planning reference for Phase 5 and Phase 6
+**Status:** historical-complete — superseded for forward planning by `docs/build-control/handoff-state.md` and `docs/build-control/2026-06-29 - Forward Plan Refactor - Freedom Executive Capability.md`
 **Owner:** Build Agent Orchestrator
+
+**2026-06-29 status update:** Phases 5 and 6 are complete. This document is retained as implementation evidence and historical chunk specification. Do not use its unchecked acceptance boxes, open blockers, or risk register as current next-task authority.
 
 **Supersedes (for Phase 5/6 planning):**
 - `2026-06-28 - Phase 5 Phase 6 CNS Planning and Execution Directive.md` (GPT Pro input doc — absorbed here)
@@ -944,7 +946,7 @@ Do not begin this chunk on agent judgment. Adam approval is the gate.
 | Synaptic Proof Chain becomes doc burden | Medium | Review note in CP-5 format; Adam will revisit if needed |
 | Windows Graphify extraction undone | Medium | BLK-004 tracked; does not block 5.2–5.7 |
 | Abandoned product branches accidentally PRed | Medium | Note-only; no PRs; check before 5.1 |
-| Supabase RLS | Medium | 20 public tables in Freedom; Adam decision pending |
+| Supabase RLS | Closed | H5/H5-apply complete: 21 legacy public tables covered; hosted migration applied 2026-06-28 with 0 new policies. |
 
 ---
 
@@ -952,11 +954,11 @@ Do not begin this chunk on agent judgment. Adam approval is the gate.
 
 | ID | Item | Status | Required action |
 |---|---|---|---|
-| BLK-004 | Windows Enhanced Graphify extraction | Pending | Adam / Windows operator: run extraction on GAIL OS + M365 repos, push graph.json |
-| BLK-005 | M365 Azure Entra app registration | Unknown | Windows operator: confirm AZURE_CLIENT_ID / SECRET / TENANT_ID provisioned; update M365 surface map |
-| SUPABASE-RLS | 20 public Freedom Supabase tables | Open | Adam: remediate before external user traffic, or defer with explicit deferral note |
-| R4-FIRST | First R4 charter | Selected (R4-001 Graphify stale claim) | No action until 6.4 passes |
-| PHASE6-GATE | 6.5 execution approval | Blocked | Adam explicit approval after 6.4 passes |
+| BLK-004 | Windows Enhanced Graphify extraction | Queued-secondary | Adam / Windows operator: run extraction on GAIL OS + M365 repos, push graph.json when useful. Not a hot-path blocker for Freedom capability work. |
+| BLK-005 | M365 Azure Entra app registration | Closed | App registration and expanded scopes confirmed 2026-06-28; live writes remain gated by named approval. |
+| SUPABASE-RLS | 21 public Freedom Supabase tables | Closed | Hosted RLS migration applied 2026-06-28. |
+| R4-FIRST | First R4 charter | Complete | R4-001 Graphify stale claim review selected, simulated, and executed. |
+| PHASE6-GATE | 6.5 execution approval | Complete | Adam approval received; Phase 6.5 complete. |
 
 ---
 

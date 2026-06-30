@@ -99,7 +99,8 @@ freedom-mobile, gail-os-policy, graphify-cockpit. Authority levels consistent.
 
 ## Remaining
 
-- **Phase 7 scope**: Not yet determined. All seams proven clean — ready to plan.
+- **2026-06-29 update**: This session summary is historical. Current restart point is `docs/build-control/handoff-state.md`.
+- **Phase 7 scope**: Determined and mostly executed. H1-H5 + H5-apply complete; H6 remains queued-secondary.
 - **SharePoint/CRM write gate**: Requires separate Entra expansion + Adam approval.
 - **BLK-004**: Windows Enhanced Graphify extraction of GAIL OS Rev 2 + M365 Foundation still pending.
-- **Supabase RLS**: 20 public tables in Freedom Supabase project have RLS disabled. Adam decision pending.
+- **Supabase RLS**: Closed by H5/H5-apply. Hosted apply covered 21 target tables on 2026-06-28.

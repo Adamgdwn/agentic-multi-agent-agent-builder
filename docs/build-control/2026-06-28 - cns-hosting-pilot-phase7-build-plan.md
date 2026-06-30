@@ -1,10 +1,12 @@
 # CNS Hosting Pilot — Phase 7 Build Plan
 
 **Date:** 2026-06-28
-**Status:** Approved — decisions locked 2026-06-28, execution in progress
+**Status:** historical execution plan — H1–H5 + H5-apply complete as of 2026-06-28; H6 queued-secondary
 **Owner:** Build Agent Orchestrator
 **Directive source:** `2026-06-28 - CNS Hosting Pilot Planning and Execution Directive.md`
 **Prior state:** Phases 0–6 complete. All seams proven clean (CTP-0/1/2). No open PRs.
+
+**2026-06-29 status update:** Use `docs/build-control/handoff-state.md` and `docs/build-control/2026-06-28 - cns-phase7-h4-h5-session-summary.md` for current Phase 7 status. This plan is retained as historical execution design. Forward capability planning is governed by `docs/build-control/2026-06-29 - Forward Plan Refactor - Freedom Executive Capability.md`.
 
 ---
 
@@ -369,10 +371,10 @@ CMD: uvicorn cns_api.app:app --host 0.0.0.0 --port 8001
 
 #### H5 — Supabase RLS Remediation
 
-**Status:** Can run before or after H4; does not require Azure to be live.
+**Status:** Complete. H5 package committed and H5-apply executed on hosted Supabase 2026-06-28 after Adam approval.
 
 **New file: `docs/security/2026-06-28 - Supabase RLS Remediation Plan.md`**
-- Audit of all 20 public tables with RLS disabled
+- Audit of all 21 legacy public tables with RLS disabled
 - For each table: purpose, freedom usage, RLS recommendation, policy spec
 - Categories:
   - Tables that need RLS enabled with explicit policies
@@ -385,15 +387,16 @@ CMD: uvicorn cns_api.app:app --host 0.0.0.0 --port 8001
 - `CREATE POLICY` statements per table
 - Rollback: `ALTER TABLE <name> DISABLE ROW LEVEL SECURITY;` (explicit, tested)
 
-**Adam approval required before applying migration to production Supabase.**
+Adam approval was received before applying the migration to hosted Supabase.
 
 **Acceptance criteria:**
-- [ ] All 20 public tables audited and documented
-- [ ] RLS plan documented for each
-- [ ] Migration SQL written and reviewed
-- [ ] No GAIL OS authority/evidence in Supabase confirmed
-- [ ] Service role key usage confirmed as server-side only
-- [ ] Adam approves migration before applying
+- [x] All 21 target tables audited and documented
+- [x] RLS plan documented for each
+- [x] Migration SQL written and reviewed
+- [x] No GAIL OS authority/evidence in Supabase confirmed
+- [x] Service role key usage confirmed as server-side only
+- [x] Adam approved migration before applying
+- [x] Hosted migration applied: 21/21 tables `relrowsecurity=true`, 0 new policies
 
 ---
 

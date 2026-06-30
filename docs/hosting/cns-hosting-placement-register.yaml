@@ -1,6 +1,6 @@
 # CNS Hosting Placement Register
 # Phase 7 — Internal Guided AI Labs CNS Hosting Pilot
-# Last updated: 2026-06-28
+# Last updated: 2026-06-29
 # Region default: Azure Canada Central
 # Account: adamgdwn@hotmail.com (Microsoft personal account, $1,000 credits)
 
@@ -76,13 +76,13 @@ components:
     data_owner: Guided AI Labs
     secret_owner: Vercel env vars (SUPABASE_URL, SUPABASE_ANON_KEY — not committed)
     network_exposure: Supabase managed (HTTPS)
-    auth_model: Supabase Auth + RLS (RLS remediation pending H5)
+    auth_model: Supabase Auth + RLS (H5/H5-apply complete 2026-06-28)
     budget_cap: existing Supabase plan
     scale_rule: Supabase managed
     backup_policy: Supabase daily backups (plan tier)
     promotion_gate: >
-      Adam explicit approval before applying RLS migration (H5 gate).
-      20 public tables require audit before enabling RLS.
+      Adam explicit approval was required and received before applying RLS migration.
+      H5/H5-apply covered 21 legacy public tables; hosted apply completed 2026-06-28.
     rollback_path: >
       Rollback SQL: DISABLE ROW LEVEL SECURITY per table.
       H5 chunk includes rollback migration file.

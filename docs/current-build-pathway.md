@@ -1,7 +1,7 @@
 # Current Build Pathway
 
-Last Updated: 2026-06-27
-Status: draft
+Last Updated: 2026-06-29T19:02:26-06:00
+Status: active
 Owner: Technical Lead
 
 > **Single active pathway document.** This is the one active pathway for this project.
@@ -11,6 +11,16 @@ Owner: Technical Lead
 ## Purpose
 
 This document is the live path from current plan to completed build. It keeps agent work small, timestamped, and easy to resume.
+
+## 2026-06-29 Forward Reset
+
+The forward build path is now governed by:
+
+- `docs/build-control/handoff-state.md`
+- `docs/build-control/2026-06-29 - Forward Plan Refactor - Freedom Executive Capability.md`
+- `docs/build-control/2026-06-29 - Graphify Connective Layer Boundary Note.md`
+
+Older chunks in this file remain historical evidence unless they are listed in the current Active Path table. Do not use old Phase 1, Phase 5, Phase 6, or Phase 7 planning rows as next-task authority when they conflict with the handoff or the 2026-06-29 forward refactor.
 
 ## Required Work Pattern
 
@@ -78,8 +88,35 @@ Avoid mixing unrelated code, governance, deployment, and product decisions in on
 | Compaction-first loop protocol | complete | 2026-06-26 | Claude Code | Mandatory compaction, richer checkpoint format, rehydration spec. See Chunk Four. |
 | Phase 0 cloud agent runs | complete | 2026-06-27 | Claude Code (/loop) | All 11 PRs opened and merged. See Chunk Two. |
 | CP-0 gate | complete | 2026-06-27 | Adam | All Phase 0 PRs merged. All 9 repos mapped to CNS layer. |
-| Phase 1 CI + test harness setup | next | — | Cloud agent | Add GitHub Actions CI to gail-ai-operating-system-rev-2 before code work begins. See Chunk Five. |
-| Phase 1 — GAIL OS HTTP API | planned | — | Windows local | Begin Chunk 20 after CI is in place. See phase-1-chunk-specs.md. |
+| Phase 1–6 CNS spine, knowledge mesh, and R4 proof | complete | 2026-06-28 | Build agents | Phases 0–6 complete. See `docs/build-control/handoff-state.md`. |
+| Phase 7 H0–H5 + H5-apply | complete | 2026-06-28 | Windows/Linux local | Azure pilot live; Supabase RLS applied to hosted Freedom project. |
+| Graphify connective-layer boundary | complete | 2026-06-29 | Adam / Build agent | Graphify is connective infrastructure, not mandatory runtime ballast. |
+| Forward plan refactor + stale-doc cleanup | complete | 2026-06-29T19:02:26-06:00 | Codex | Live path now routes to Freedom executive capability build and marks stale docs historical. |
+| Freedom executive capability build | next | — | Freedom build session | Build specific user-visible pathways through Freedom, with GAIL OS authority and Graphify warm-path context. |
+| H6 M365 readiness docs | queued-secondary | — | Build agents | Docs/prep only; no live M365 writes. Secondary to Freedom capability gap. |
+| BLK-004 Windows Graphify extraction | queued-secondary | — | Windows | Useful relationship coverage, but not a blocker for hot-path Freedom capability work. |
+
+## Current Forward Chunk - Graphify Boundary Plan Refactor
+
+Status: complete
+Date: 2026-06-29T19:02:26-06:00
+
+Completion target: Task complete
+
+Budget class: Strategic
+
+Objective: Refactor the control repo's live plan so future work builds a fast, usable Freedom executive capability while preserving Graphify as relationship infrastructure and GAIL OS as the authority/evidence layer.
+
+Acceptance criteria:
+
+- [x] Forward capability refactor exists as a dated build-control document.
+- [x] Current pathway points to the forward refactor and Graphify boundary note.
+- [x] Workstream board no longer presents old Phase 5/6 rows as blocked future work.
+- [x] H5 hosted Supabase apply status is corrected where stale.
+- [x] Older planning docs are marked historical or superseded for forward planning.
+- [x] Governance preflight result is recorded honestly.
+
+Next action: Start F1 in `the-freedom-engine-os`: Freedom capability audit and build packet.
 
 ## Chunk One - Cloud Agent Infrastructure Setup
 
@@ -268,14 +305,14 @@ Next action: Run `/loop coordinate CNS build` in this repo to begin Phase 0 exec
 
 ## Chunk Five - Phase 1 CI and Test Harness Setup
 
-Status: next
+Status: historical / superseded
 Date: —
 
 Completion target: Task complete
 
 Budget class: Tiny
 
-Objective: Add GitHub Actions CI to `gail-ai-operating-system-rev-2` before any Phase 1 code work begins. Once in place, every Phase 1 code PR must pass CI before merge — this is the structural gate that prevents untested code from accumulating across chunks.
+Objective: Historical Phase 1 setup plan retained for evidence. Do not use as current next work; Phase 1 is complete.
 
 Acceptance criteria:
 
@@ -305,7 +342,7 @@ Stop condition: Stop if GitHub Actions is already configured (check before creat
 
 Platform: cloud-safe (GitHub MCP only — write one YAML file, open one PR)
 
-Next action: After Chunk Five — begin Phase 1 code work (Chunk 20 in `gail-ai-operating-system-rev-2`), which can now run as a cloud agent writing code + tests with CI validating on merge.
+Next action: Superseded by completed Phase 1 work and the 2026-06-29 forward reset above.
 
 ---
 
@@ -324,7 +361,8 @@ date -Iseconds
 | 2026-06-26 | `git status --short` | clean | Confirmed before Chunk One edits. |
 | 2026-06-26 | Human review: `docs/cloud-agent-startup.md` | pending | Verify startup sequence has no local paths before first cloud agent run. |
 | 2026-06-26 | Human review: `docs/build-control/cloud-dispatch.yaml` | pending | Verify task list, branch strategy, and platform tags. |
+| 2026-06-29T19:02:26-06:00 | `bash scripts/governance-preflight.sh` | failed: 2 pre-existing errors | Validator does not accept intentional `risk_tier: strategic` and `repository_model: multi-repo-coordination`. |
 
 ## Next Handoff
 
-Next agent should use lean startup for ordinary scoped work: check `git status --short`, read short repo-local instructions, use `docs/context-map.md` when routing is unclear, inspect targeted files, and run targeted validation. After compaction or a context clear, resume from the latest handoff/work packet before loading more context. Use this file to identify the current chunk, budget class, target completion state, acceptance criteria, stop condition, validation status, known gaps, and next bounded action.
+Next agent should use lean startup for ordinary scoped work: check `git status --short`, read short repo-local instructions, use `docs/context-map.md` when routing is unclear, inspect targeted files, and run targeted validation. For forward CNS capability work, resume from `docs/build-control/handoff-state.md`, then read the 2026-06-29 forward refactor and Graphify boundary note before touching target repos. The next bounded action is F1 in `the-freedom-engine-os`: audit Freedom's actual AI capability path and write the build packet for the first usable executive pathway.

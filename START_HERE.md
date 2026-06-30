@@ -1,6 +1,6 @@
 # Start Here
 
-Last Updated: 2026-06-25T21:22:27-06:00
+Last Updated: 2026-06-29T19:02:26-06:00
 Status: draft
 Owner: Project Owner
 
@@ -20,10 +20,13 @@ Current priorities:
 - fill in project commands in `AI_BOOTSTRAP.md`
 - keep work in context-window-friendly chunks
 - timestamp material work, decisions, validation, and handoffs
+- for forward CNS capability work, apply `docs/build-control/2026-06-29 - Forward Plan Refactor - Freedom Executive Capability.md` and `docs/build-control/2026-06-29 - Graphify Connective Layer Boundary Note.md`
 
 ## Current Build Pathway
 
 Default live build route: [docs/current-build-pathway.md](docs/current-build-pathway.md).
+
+Forward capability refactor: [docs/build-control/2026-06-29 - Forward Plan Refactor - Freedom Executive Capability.md](docs/build-control/2026-06-29%20-%20Forward%20Plan%20Refactor%20-%20Freedom%20Executive%20Capability.md). Read it before designing new Freedom/GAIL OS/Graphify capability chunks.
 
 If this project later promotes a different active plan, name it here and route
 agents there instead of rereading archived pathway history.

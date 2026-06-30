@@ -3,7 +3,7 @@
 **Date:** 2026-06-28
 **Owner:** Build Agent Orchestrator (agentic-multi-agent-agent-builder)
 **Source:** Chunk 20 CNS Orchestration Amendment
-**Status:** Active — Chunk 20 execution underway
+**Status:** historical — Chunk 20 and Phases 0–6 are complete. Use `docs/build-control/handoff-state.md` and the 2026-06-29 forward refactor for current routing.
 
 ---
 
