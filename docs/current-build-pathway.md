@@ -1,7 +1,7 @@
 # Current Build Pathway
 
-Last Updated: 2026-06-29T19:02:26-06:00
-Status: task complete (2026-06-29T19:30:23-06:00)
+Last Updated: 2026-06-29T20:11:10-06:00
+Status: task complete (2026-06-29T20:11:10-06:00)
 Owner: Technical Lead
 
 > **Single active pathway document.** This is the one active pathway for this project.
@@ -21,6 +21,13 @@ The forward build path is now governed by:
 - `docs/build-control/2026-06-29 - Graphify Connective Layer Boundary Note.md`
 
 Older chunks in this file remain historical evidence unless they are listed in the current Active Path table. Do not use old Phase 1, Phase 5, Phase 6, or Phase 7 planning rows as next-task authority when they conflict with the handoff or the 2026-06-29 forward refactor.
+
+2026-06-29 M365 redirection: Adam pulled AG Operations / M365 forward for
+bridge-readiness informing. M365 should be ready as a daily team workspace and
+as a powerful agentic IO substrate, but Freedom-origin M365 task completion
+routes through GAIL OS authority/evidence. No live M365 writes, app consent,
+permission changes, source webhooks, external sends, or unattended automation
+were opened by this docs/config pass.
 
 ## Required Work Pattern
 
@@ -92,14 +99,15 @@ Avoid mixing unrelated code, governance, deployment, and product decisions in on
 | Phase 7 H0–H5 + H5-apply | complete | 2026-06-28 | Windows/Linux local | Azure pilot live; Supabase RLS applied to hosted Freedom project. |
 | Graphify connective-layer boundary | complete | 2026-06-29 | Adam / Build agent | Graphify is connective infrastructure, not mandatory runtime ballast. |
 | Forward plan refactor + stale-doc cleanup | complete | 2026-06-29T19:02:26-06:00 | Codex | Freedom capability concern documented; retained as reference while current owner direction parks Freedom implementation. |
-| Subject repo instruction ledger + GAIL OS informing route | active | 2026-06-29T19:30:23-06:00 | Codex | Keep repo instructions separate. Active lane is GAIL OS informing and Graphify boundary transfer. |
+| Subject repo instruction ledger + GAIL OS informing route | complete | 2026-06-29T19:30:23-06:00 | Codex | Keep repo instructions separate. GAIL OS PR #23, Graphify PR #5, and control PR #1 merged. |
+| AG Operations M365 agentic IO bridge readiness | active | 2026-06-29T20:11:10-06:00 | Codex | M365 PR #5 opened with docs/config contract for information-out, information-in, triggered-action, and deliverable-out lanes. Freedom-origin task completion routes through GAIL OS authority/evidence. |
 | Freedom executive capability build | parked | — | Freedom build session | Resume only when Adam explicitly routes back or Freedom asks for review/CI/implementation support. |
-| H6 M365 readiness docs | queued-secondary | — | Build agents | Docs/prep only; no live M365 writes. Secondary to active GAIL OS informing lane. |
+| H6 M365 readiness docs | active-subsumed | 2026-06-29T20:11:10-06:00 | Codex | Subsumed into AG Operations M365 agentic IO bridge readiness docs/config pass. No live M365 writes. |
 | BLK-004 Windows Graphify extraction | queued-secondary | — | Windows | Useful relationship coverage, but not a blocker for active GAIL OS informing. |
 
 ## Current Forward Chunk - Subject Repo Instruction Ledger And GAIL OS Informing Route
 
-Status: active
+Status: complete
 Date: 2026-06-29T19:30:23-06:00
 
 Completion target: Task complete
@@ -135,6 +143,56 @@ Validation and closeout:
   not accept.
 - GAIL OS PR opened: `https://github.com/Adamgdwn/gail-ai-operating-system-rev-2/pull/23`.
 - Control repo PR opened: `https://github.com/Adamgdwn/agentic-multi-agent-agent-builder/pull/1`.
+
+Closeout update 2026-06-29T20:11:10-06:00:
+
+- GAIL OS PR #23 merged.
+- Graphify PR #5 merged.
+- Control repo PR #1 merged.
+
+## Current Forward Chunk - AG Operations M365 Agentic IO Bridge Readiness
+
+Status: active
+Date: 2026-06-29T20:11:10-06:00
+
+Completion target: Task complete
+
+Budget class: Strategic
+
+Objective: Pull the AG Operations / M365 foundation repo forward for bridge
+readiness so Microsoft 365 remains a strong daily team workspace and becomes a
+well-bounded agentic IO substrate for information-out, information-in,
+triggered-action, and deliverable-out lanes.
+
+Acceptance criteria:
+
+- [x] AG Operations repo has an active agentic IO / GAIL OS bridge contract.
+- [x] AG Operations repo has a structured companion config for future surface
+  review/preflight work.
+- [x] Startup, active plan, Stage 9, source-map, and index docs route future
+  agents to the new contract.
+- [x] Direct Freedom-to-M365 writes are explicitly blocked; Freedom-origin M365
+  task completion routes through GAIL OS authority/evidence.
+- [x] Validation is recorded honestly.
+- [x] M365 PR is opened.
+- [x] Control repo ledger/pathway update is committed, pushed, and PR opened.
+
+Stop condition: stop before live M365 business writes, sends, Planner changes,
+SharePoint mutations, Power Automate changes, Exchange configuration changes,
+app registration, consent, permission changes, source webhooks, source secrets,
+external sends, unattended automation, or direct Freedom-to-M365 writes.
+
+Validation and closeout:
+
+- AG Operations `jq . config/M365_AGENTIC_IO_GAIL_OS_BRIDGE_CONTRACT.json`
+  passed.
+- AG Operations `git diff --check` passed.
+- AG Operations targeted stale-route scan passed.
+- AG Operations Markdown fence balance check passed.
+- AG Operations draft PR opened:
+  `https://github.com/Adamgdwn/ag-operations-m365-foundation/pull/5`.
+- Control repo draft PR opened:
+  `https://github.com/Adamgdwn/agentic-multi-agent-agent-builder/pull/2`.
 
 ## Current Forward Chunk - Graphify Boundary Plan Refactor
 

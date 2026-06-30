@@ -27,6 +27,8 @@ Keep these files compact. They should route to durable docs, not duplicate them.
 |---|---|
 | Current plan, chunking, validation, or handoff | Active plan named by `START_HERE.md`; default `docs/current-build-pathway.md` |
 | Subject-repo instruction separation, active/parked repo lane, or cross-repo "who got what instruction" checks | `docs/build-control/2026-06-29 - Subject Repo Instruction Ledger.md`, then `docs/build-control/handoff-state.md` and `docs/build-control/repo-workstream-board.md` |
+| AG Operations / M365 bridge-readiness, Freedom-through-GAIL M365 route, or agentic IO push-pull planning | `docs/build-control/2026-06-29 - Subject Repo Instruction Ledger.md`, then the AG Operations repo packet `docs/2026-06-29_M365_AGENTIC_IO_AND_GAIL_OS_BRIDGE_CONTRACT.md` |
+| Experimental memory-compression ideas, TurboQuant, or local inference RAM/VRAM research | `docs/experimental-ideas/2026-06-29 - TurboQuant Memory Compression Research Note.md`; treat as research-only unless promoted by Adam |
 | Engineering standards map | `docs/standards/README.md` |
 | Context windows, token budgets, compaction, scoped reads, or handoffs | `docs/standards/context-hygiene-standard.md` |
 | Durable implementation, design quality, testing discipline, or AI coding fundamentals | `docs/policy/durable-development-engineering-policy.md` |
