@@ -1,7 +1,7 @@
 # Current Build Pathway
 
 Last Updated: 2026-06-29T19:02:26-06:00
-Status: active
+Status: task complete (2026-06-29T19:30:23-06:00)
 Owner: Technical Lead
 
 > **Single active pathway document.** This is the one active pathway for this project.
@@ -112,18 +112,29 @@ for the Graphify boundary transfer.
 
 Acceptance criteria:
 
-- [ ] Subject repo instruction ledger exists and names active, parked, queued,
+- [x] Subject repo instruction ledger exists and names active, parked, queued,
   and historical lanes.
-- [ ] `START_HERE.md`, `handoff-state.md`, and `repo-workstream-board.md`
+- [x] `START_HERE.md`, `handoff-state.md`, and `repo-workstream-board.md`
   point to the ledger and mark Freedom implementation parked.
-- [ ] GAIL OS has a repo-local informing packet for the refined Graphify
+- [x] GAIL OS has a repo-local informing packet for the refined Graphify
   boundary.
-- [ ] Validation is recorded honestly.
-- [ ] Changes are committed, pushed, and PRs are opened.
+- [x] Validation is recorded honestly.
+- [x] Changes are committed, pushed, and PRs are opened.
 
 Stop condition: stop before Freedom implementation, live M365 writes, Graphify
 persistent ingest, Azure setting changes, secret handling changes, or R4 live
 execution.
+
+Validation and closeout:
+
+- `git diff --check` passed.
+- Targeted stale-route scan passed.
+- `bash scripts/governance-preflight.sh` failed on known control-repo validator
+  gaps: `project-control.yaml` uses `risk_tier: strategic` and
+  `repository_model: multi-repo-coordination`, which the current validator does
+  not accept.
+- GAIL OS PR opened: `https://github.com/Adamgdwn/gail-ai-operating-system-rev-2/pull/23`.
+- Control repo PR opened: `https://github.com/Adamgdwn/agentic-multi-agent-agent-builder/pull/1`.
 
 ## Current Forward Chunk - Graphify Boundary Plan Refactor
 
