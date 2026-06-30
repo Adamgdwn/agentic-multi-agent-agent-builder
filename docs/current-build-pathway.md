@@ -91,10 +91,39 @@ Avoid mixing unrelated code, governance, deployment, and product decisions in on
 | Phase 1–6 CNS spine, knowledge mesh, and R4 proof | complete | 2026-06-28 | Build agents | Phases 0–6 complete. See `docs/build-control/handoff-state.md`. |
 | Phase 7 H0–H5 + H5-apply | complete | 2026-06-28 | Windows/Linux local | Azure pilot live; Supabase RLS applied to hosted Freedom project. |
 | Graphify connective-layer boundary | complete | 2026-06-29 | Adam / Build agent | Graphify is connective infrastructure, not mandatory runtime ballast. |
-| Forward plan refactor + stale-doc cleanup | complete | 2026-06-29T19:02:26-06:00 | Codex | Live path now routes to Freedom executive capability build and marks stale docs historical. |
-| Freedom executive capability build | next | — | Freedom build session | Build specific user-visible pathways through Freedom, with GAIL OS authority and Graphify warm-path context. |
-| H6 M365 readiness docs | queued-secondary | — | Build agents | Docs/prep only; no live M365 writes. Secondary to Freedom capability gap. |
-| BLK-004 Windows Graphify extraction | queued-secondary | — | Windows | Useful relationship coverage, but not a blocker for hot-path Freedom capability work. |
+| Forward plan refactor + stale-doc cleanup | complete | 2026-06-29T19:02:26-06:00 | Codex | Freedom capability concern documented; retained as reference while current owner direction parks Freedom implementation. |
+| Subject repo instruction ledger + GAIL OS informing route | active | 2026-06-29T19:30:23-06:00 | Codex | Keep repo instructions separate. Active lane is GAIL OS informing and Graphify boundary transfer. |
+| Freedom executive capability build | parked | — | Freedom build session | Resume only when Adam explicitly routes back or Freedom asks for review/CI/implementation support. |
+| H6 M365 readiness docs | queued-secondary | — | Build agents | Docs/prep only; no live M365 writes. Secondary to active GAIL OS informing lane. |
+| BLK-004 Windows Graphify extraction | queued-secondary | — | Windows | Useful relationship coverage, but not a blocker for active GAIL OS informing. |
+
+## Current Forward Chunk - Subject Repo Instruction Ledger And GAIL OS Informing Route
+
+Status: active
+Date: 2026-06-29T19:30:23-06:00
+
+Completion target: Task complete
+
+Budget class: Strategic
+
+Objective: Keep main subject-repo instructions separate and redirect the active
+control-plane lane away from Freedom implementation and into GAIL OS informing
+for the Graphify boundary transfer.
+
+Acceptance criteria:
+
+- [ ] Subject repo instruction ledger exists and names active, parked, queued,
+  and historical lanes.
+- [ ] `START_HERE.md`, `handoff-state.md`, and `repo-workstream-board.md`
+  point to the ledger and mark Freedom implementation parked.
+- [ ] GAIL OS has a repo-local informing packet for the refined Graphify
+  boundary.
+- [ ] Validation is recorded honestly.
+- [ ] Changes are committed, pushed, and PRs are opened.
+
+Stop condition: stop before Freedom implementation, live M365 writes, Graphify
+persistent ingest, Azure setting changes, secret handling changes, or R4 live
+execution.
 
 ## Current Forward Chunk - Graphify Boundary Plan Refactor
 
@@ -116,7 +145,9 @@ Acceptance criteria:
 - [x] Older planning docs are marked historical or superseded for forward planning.
 - [x] Governance preflight result is recorded honestly.
 
-Next action: Start F1 in `the-freedom-engine-os`: Freedom capability audit and build packet.
+Next action superseded 2026-06-29T19:30:23-06:00: Freedom implementation is
+parked by current owner direction. Use the subject repo instruction ledger and
+GAIL OS informing packet instead.
 
 ## Chunk One - Cloud Agent Infrastructure Setup
 

@@ -1,6 +1,6 @@
 # Risks and Blockers — Guided AI Labs Agentic OS CNS
 
-**Last Updated:** 2026-06-29 (Forward plan refactor added. RSK-016 added for Graphify hot-path overembedding risk. BLK-004 remains queued-secondary.)
+**Last Updated:** 2026-06-29 (Subject repo instruction ledger added. Freedom capability risk retained but implementation lane parked by current owner direction. RSK-017 added for instruction drift. BLK-004 remains queued-secondary.)
 **Owner:** Build Agent Orchestrator
 
 ---
@@ -12,7 +12,7 @@
 | ~~BLK-001~~ | ~~GAIL OS spine not exposed as HTTP API~~ | **CLOSED 2026-06-28** — Phase 1 complete. FastAPI HTTP layer live (PRs #8–#11). CP-1 integration test 4/4 passed. Freedom bridge live (Freedom PR #27). | Resolved |
 | ~~BLK-002~~ | ~~Graphify graph query HTTP API not yet exposed for external callers~~ | **CLOSED 2026-06-27** — Graphify Phase 2 complete. 6 HTTP endpoints on port 8001, all SLAs verified. Freedom can query Graphify. | Resolved |
 | ~~BLK-003~~ | ~~`@gail/contracts` shared types package does not exist~~ | **CLOSED 2026-06-28** — `@gail/contracts` JSON Schema package implemented in Phase 1 Chunk 22. TypeScript wire types merged to Freedom (PR #33). Cross-language contracts live. | Resolved |
-| BLK-004 | Windows Enhanced Graphify has not extracted GAIL OS Rev 2 + M365 Foundation repos | Graphify has incomplete Windows-side architecture coverage | Phase 2.7 task on Windows — queued-secondary. Useful for relationship coverage, not a blocker for hot-path Freedom capability work. |
+| BLK-004 | Windows Enhanced Graphify has not extracted GAIL OS Rev 2 + M365 Foundation repos | Graphify has incomplete Windows-side architecture coverage | Phase 2.7 task on Windows — queued-secondary. Useful for relationship coverage, not a blocker for the active GAIL OS informing lane. |
 | ~~BLK-005~~ | ~~M365 app registration + least-privilege permissions not yet confirmed as provisioned~~ | **CLOSED 2026-06-28** — App `9aeeeae6-be2a-476c-9c34-389dbc927c99` (`Guided AI Labs - CLI for Microsoft 365 Local Agent`) created via `m365 setup`, auth type `deviceCode`, tenant `1ca92af5-21ff-42e3-87ae-3bde9c2cc501`. Read-only proof passed (flow list verified). Full Entra scope expansion complete 2026-06-28. | Resolved |
 
 ---
@@ -50,8 +50,9 @@
 
 | ID | Risk | Probability | Impact | Mitigation |
 |---|---|---|---|---|
-| RSK-015 | **Freedom AI capability gap** — Infrastructure connectivity to GAIL OS / Graphify / M365 exists (Phase 3–7 complete) but the Freedom AI interface cannot USE those connections. Freedom can say "I'm connected" but cannot check M365, query files, initiate actions, or answer questions through the CNS. All Phase 3–7 infrastructure work is effectively unusable until Freedom's AI interface is built to executive depth. | **CRITICAL** | **Critical** | Freedom executive AI build: must match Claude/Codex depth — full file access, question answering, activity initiation. Adam delivering this directive directly to Freedom build session 2026-06-28. Ordered: stop broad connection building; start specific-pathway capability build. |
-| RSK-016 | Graphify becomes mandatory runtime ballast or absorbs authority/execution responsibilities while trying to solve the Freedom capability gap. | Medium | High | Apply `2026-06-29 - Graphify Connective Layer Boundary Note.md` and `2026-06-29 - Forward Plan Refactor - Freedom Executive Capability.md`. Use hot/warm/cold context tiers; Graphify informs relationships, GAIL OS owns authority/evidence, Freedom owns executive use. |
+| RSK-015 | **Freedom AI capability gap** — Infrastructure connectivity to GAIL OS / Graphify / M365 exists (Phase 3–7 complete) but the Freedom AI interface cannot USE those connections. Freedom can say "I'm connected" but cannot check M365, query files, initiate actions, or answer questions through the CNS. All Phase 3–7 infrastructure work is effectively unusable until Freedom's AI interface is built to executive depth. | **CRITICAL** | **Critical** | Retain the Freedom executive AI build reference, but do not restart Freedom implementation from this control-plane lane while Adam is actively improving Freedom elsewhere. Resume only when Adam routes back or Freedom asks for review/CI/implementation support. |
+| RSK-016 | Graphify becomes mandatory runtime ballast or absorbs authority/execution responsibilities while trying to solve the Freedom capability gap. | Medium | High | Apply `2026-06-29 - Graphify Connective Layer Boundary Note.md` and the active subject repo ledger. Use hot/warm/cold context tiers; Graphify informs relationships, GAIL OS owns authority/evidence, Freedom owns executive use. |
+| RSK-017 | Subject-repo instructions blur together, causing agents to apply parked Freedom work, Graphify speed doctrine, GAIL OS authority work, or M365 queued work in the wrong repository. | Medium | High | Maintain `2026-06-29 - Subject Repo Instruction Ledger.md`; update `handoff-state.md`, `repo-workstream-board.md`, and target repo startup docs when repo lanes change. |
 
 ### Commercial Risks
 
