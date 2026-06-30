@@ -1,6 +1,6 @@
 # Handoff State — Guided AI Labs Agentic OS CNS
 
-**Last Updated:** 2026-06-28 (Phase 7 H1–H5 + H5-apply complete. CRITICAL FINDING: Freedom AI has zero actual use-capability despite infrastructure connectivity. Strategic pivot: specific-pathway, intention-driven build. Freedom executive AI build is the next priority. H6 and BLK-004 remain queued but secondary.)
+**Last Updated:** 2026-06-29 (Graphify connective-layer boundary note added. Phase 7 H1-H5 + H5-apply complete. CRITICAL FINDING: Freedom AI has zero actual use-capability despite infrastructure connectivity. Strategic pivot: specific-pathway, intention-driven build. Freedom executive AI build is the next priority. H6 and BLK-004 remain queued but secondary.)
 **Owner:** Build Agent Orchestrator
 
 This file is the restart point for any agent, session, or context reset. Read this first after a compaction, clear, or handoff.
@@ -14,7 +14,7 @@ This document supersedes forward-looking Phase 5/6 sections of the turnover doc 
 
 active: true
 last_completed_task: "Phase 7 H1–H5 + H5-apply complete (2026-06-28). H5-apply: hosted Supabase RLS migration applied to Freedom project basbwglynuyfxcqxfyur. Pre-apply: 21/21 tables RLS-disabled, 0 policies. Post-apply: 21/21 with relrowsecurity=true, 0 new policies, service-role HEAD probes pass. Freedom commit 3543b29, Rev 2 commit e93b358. 7 backups confirmed before apply (pitr disabled, walg enabled). No secrets logged or committed. No row data read. CRITICAL FINDING at night close-out: Freedom AI has zero actual use-capability — infrastructure connectivity proven but AI interface cannot act through it. Strategic pivot ordered."
-next_task: "PRIORITY: Freedom executive AI build. Brief Freedom build session: Freedom must have full executive-level AI depth — full file access, answer any question, initiate any activity, at the same depth and permission level as Claude/Codex. Adam is delivering this same briefing directly to the Freedom build. Do NOT build this in this session — record and hand off. Secondary (queued): H6 M365 Bridge readiness docs (Lane 2, docs/prep only, no live writes). BLK-004 Windows Graphify extraction (Windows-side). No further Phase 7 infrastructure work until Freedom AI capability gap is addressed."
+next_task: "PRIORITY: Freedom executive AI build. Brief Freedom build session: Freedom must have full executive-level AI depth - full file access, answer any question, initiate any activity, at the same depth and permission level as Claude/Codex. Apply 2026-06-29 Graphify connective-layer boundary: Graphify is highway/electrical/neuronal relationship infrastructure, not mandatory ballast embedded inside every component. Adam is delivering this same briefing directly to the Freedom build. Do NOT build this in this session - record and hand off. Secondary (queued): H6 M365 Bridge readiness docs (Lane 2, docs/prep only, no live writes). BLK-004 Windows Graphify extraction (Windows-side). No further Phase 7 infrastructure work until Freedom AI capability gap is addressed."
 skipped_tasks: []
 compaction_count: 20
 paused: false
@@ -29,6 +29,8 @@ retry_counts: {}
 **Status:** ACA deployment live. Freedom infrastructure connected to Azure + GAIL OS + Graphify. CRITICAL FINDING: Freedom AI interface cannot USE those connections (AI has no depth). Supabase RLS applied (21/21 tables, 0 new policies). Entra expanded + consented. M365 re-auth complete.
 **M365 note:** Linux m365 CLI re-authenticated (adamgoodwin@guidedailabs.com, deviceCode, appId 9aeeeae6-be2a-476c-9c34-389dbc927c99). All expanded Entra scopes live and verified by read-only Graph API probes. No live M365 writes — M365 Live Bridge (Lane 2) remains gated until explicit Adam connector-level gate.
 **Immediate next:** Freedom executive AI build (Adam briefing the Freedom build session directly). H6 / BLK-004 remain queued but are secondary to the capability gap fix.
+
+**2026-06-29 Graphify boundary refinement:** Read `docs/build-control/2026-06-29 - Graphify Connective Layer Boundary Note.md` before designing new Freedom/GAIL OS/Graphify capability chunks. Adam's intent is that Graphify acts as the highway, electrical connection layer, communication loop, and neuronal/quantum-level connective tissue. It should connect everything, not sit inside everything or become mandatory runtime ballast for every feature.
 
 **Phase 2 completion note:** Chunks 2.1–2.9 plus 20D/20E were committed to `graphify-workspace-cockpit` in a prior session before this handoff was written. Discovered by reading git log + AGENTS.md. Tasks 2.7 (Windows Graphify extraction) and 2.8 (merge Windows graph) are NOT done — these are separate from the HTTP API work and remain pending.
 
