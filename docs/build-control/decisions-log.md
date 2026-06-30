@@ -102,8 +102,14 @@ Add a row for every meaningful architecture, design, or contract decision. Inclu
 - **Affects:** Freedom, GAIL OS, Graphify, Phase 7+ capability planning
 - **Status:** Active
 
-### DEC-014 — Freedom executive capability becomes next priority
+### DEC-014 — Freedom executive capability refactor retained as reference
 - **Decision:** Forward work prioritizes user-visible Freedom executive capability over generic infrastructure expansion. Each chunk must deliver a specific pathway Adam can use through Freedom.
 - **Rationale:** Phase 7 proved infrastructure connectivity, but Adam found Freedom's AI interface had no practical reach through those connections. Infrastructure without front-door capability creates rework and fallback risk.
 - **Affects:** `the-freedom-engine-os`, `gail-ai-operating-system-rev-2`, `graphify-workspace-cockpit`, `ag-operations-m365-foundation`, this control repo
+- **Status:** Retained reference as of DEC-015; Freedom implementation is parked until Adam routes back.
+
+### DEC-015 — Subject repo instruction separation and GAIL OS informing lane
+- **Decision:** Keep subject-repo instructions separated in a durable ledger. Park new Freedom implementation work in this control-plane lane while Adam improves Freedom elsewhere. Route current active work into GAIL OS informing and Graphify boundary transfer.
+- **Rationale:** Repo-specific instructions were starting to blur across Freedom, GAIL OS, Graphify, AG Operations, and product-repo lanes. A separate ledger reduces fallback, weak layers, and rework by showing which repo received which instruction.
+- **Affects:** `agentic-multi-agent-agent-builder`, `gail-ai-operating-system-rev-2`, `graphify-workspace-cockpit`, `the-freedom-engine-os`, `ag-operations-m365-foundation`
 - **Status:** Active

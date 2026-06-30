@@ -1,8 +1,9 @@
 # 2026-06-29 - Forward Plan Refactor - Freedom Executive Capability
 
-Status: active forward plan
+Status: retained reference; Freedom implementation parked by 2026-06-29 owner redirection
 Owner: Adam Goodwin / Build Agent Orchestrator
 Created: 2026-06-29T19:02:26-06:00
+Last Updated: 2026-06-29T19:30:23-06:00
 
 ## Purpose
 
@@ -10,15 +11,25 @@ This note refactors the forward CNS build direction after Adam's 2026-06-29 Grap
 
 The goal is a tight, fast, extensively capable multi-layer CNS where Freedom is the usable executive front door, GAIL OS is the authority and evidence layer, and Graphify is relationship intelligence and routing infrastructure. Infrastructure that exists but cannot be used through Freedom is not enough.
 
-This document supersedes forward-looking next-task language in older Phase 5, Phase 6, Phase 7, and turnover documents when there is any conflict. Historical documents remain useful evidence, but they are not the restart point.
+2026-06-29 update: Adam has serious Freedom improvements happening elsewhere
+and directed this control-plane lane to stay away from Freedom for now. This
+document remains the Freedom capability reference, but it is not current
+permission to begin Freedom implementation. Use
+`docs/build-control/2026-06-29 - Subject Repo Instruction Ledger.md` and
+`docs/build-control/handoff-state.md` for the active/parked repo lane.
+
+This document supersedes older forward-looking next-task language only when
+Freedom work is explicitly resumed. Historical documents remain useful
+evidence, but they are not the current restart point while Freedom is parked.
 
 Read order for future capability planning:
 
 1. `docs/build-control/handoff-state.md`
-2. This document
+2. `docs/build-control/2026-06-29 - Subject Repo Instruction Ledger.md`
 3. `docs/build-control/2026-06-29 - Graphify Connective Layer Boundary Note.md`
-4. `docs/current-build-pathway.md`
-5. Target-repo instructions for the repo being changed
+4. This document only if Adam has explicitly resumed Freedom work
+5. `docs/current-build-pathway.md`
+6. Target-repo instructions for the repo being changed
 
 ## Build Thesis
 
