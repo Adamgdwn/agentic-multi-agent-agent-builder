@@ -1,6 +1,6 @@
 # Risks and Blockers — Guided AI Labs Agentic OS CNS
 
-**Last Updated:** 2026-06-29 (Subject repo instruction ledger added. Freedom capability risk retained but implementation lane parked by current owner direction. RSK-017 added for instruction drift. BLK-004 remains queued-secondary.)
+**Last Updated:** 2026-06-29 (AG Operations / M365 bridge-readiness informing pulled forward. Freedom capability risk retained but implementation lane parked by current owner direction. RSK-017 tracks instruction drift. BLK-004 remains queued-secondary.)
 **Owner:** Build Agent Orchestrator
 
 ---
@@ -12,7 +12,7 @@
 | ~~BLK-001~~ | ~~GAIL OS spine not exposed as HTTP API~~ | **CLOSED 2026-06-28** — Phase 1 complete. FastAPI HTTP layer live (PRs #8–#11). CP-1 integration test 4/4 passed. Freedom bridge live (Freedom PR #27). | Resolved |
 | ~~BLK-002~~ | ~~Graphify graph query HTTP API not yet exposed for external callers~~ | **CLOSED 2026-06-27** — Graphify Phase 2 complete. 6 HTTP endpoints on port 8001, all SLAs verified. Freedom can query Graphify. | Resolved |
 | ~~BLK-003~~ | ~~`@gail/contracts` shared types package does not exist~~ | **CLOSED 2026-06-28** — `@gail/contracts` JSON Schema package implemented in Phase 1 Chunk 22. TypeScript wire types merged to Freedom (PR #33). Cross-language contracts live. | Resolved |
-| BLK-004 | Windows Enhanced Graphify has not extracted GAIL OS Rev 2 + M365 Foundation repos | Graphify has incomplete Windows-side architecture coverage | Phase 2.7 task on Windows — queued-secondary. Useful for relationship coverage, not a blocker for the active GAIL OS informing lane. |
+| BLK-004 | Windows Enhanced Graphify has not extracted GAIL OS Rev 2 + M365 Foundation repos | Graphify has incomplete Windows-side architecture coverage | Phase 2.7 task on Windows — queued-secondary. Useful for relationship coverage, not a blocker for the active M365 bridge-readiness informing lane. |
 | ~~BLK-005~~ | ~~M365 app registration + least-privilege permissions not yet confirmed as provisioned~~ | **CLOSED 2026-06-28** — App `9aeeeae6-be2a-476c-9c34-389dbc927c99` (`Guided AI Labs - CLI for Microsoft 365 Local Agent`) created via `m365 setup`, auth type `deviceCode`, tenant `1ca92af5-21ff-42e3-87ae-3bde9c2cc501`. Read-only proof passed (flow list verified). Full Entra scope expansion complete 2026-06-28. | Resolved |
 
 ---

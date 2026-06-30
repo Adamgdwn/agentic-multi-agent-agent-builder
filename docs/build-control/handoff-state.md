@@ -1,6 +1,6 @@
 # Handoff State — Guided AI Labs Agentic OS CNS
 
-**Last Updated:** 2026-06-29T19:30:23-06:00 (Subject-repo instruction ledger added. Current owner redirection: stay away from new Freedom implementation for now while Adam improves it elsewhere; active control-plane lane is GAIL OS informing and Graphify boundary transfer. Phase 7 H1-H5 + H5-apply complete. Freedom capability concern remains retained reference, not the active lane. H6 and BLK-004 remain queued support work.)
+**Last Updated:** 2026-06-29T20:11:10-06:00 (AG Operations / M365 bridge-readiness informing pulled forward. M365 draft PR #5 adds agentic IO / GAIL OS bridge contract docs/config. Current owner redirection still parks new Freedom implementation while Adam improves it elsewhere. GAIL OS informing, Graphify boundary/speed, and control ledger PRs from the prior chunk are merged. BLK-004 remains queued support work.)
 **Owner:** Build Agent Orchestrator
 
 This file is the restart point for any agent, session, or context reset. Read this first after a compaction, clear, or handoff.
@@ -20,7 +20,7 @@ Read this before cross-repo planning or whenever the active/parked subject repo 
 
 active: true
 last_completed_task: "Phase 7 H1–H5 + H5-apply complete (2026-06-28). H5-apply: hosted Supabase RLS migration applied to Freedom project basbwglynuyfxcqxfyur. Pre-apply: 21/21 tables RLS-disabled, 0 policies. Post-apply: 21/21 with relrowsecurity=true, 0 new policies, service-role HEAD probes pass. Freedom commit 3543b29, Rev 2 commit e93b358. 7 backups confirmed before apply (pitr disabled, walg enabled). No secrets logged or committed. No row data read. CRITICAL FINDING at night close-out: Freedom AI has zero actual use-capability — infrastructure connectivity proven but AI interface cannot act through it. Strategic pivot ordered."
-next_task: "PRIORITY: GAIL OS informing lane. Apply the Graphify boundary transfer inside gail-ai-operating-system-rev-2 and keep subject-repo instructions separated through the 2026-06-29 Subject Repo Instruction Ledger. Freedom implementation is parked by current owner direction because Adam is improving it elsewhere; retain the Freedom executive-capability refactor as reference only. Graphify remains highway/electrical/neuronal relationship infrastructure, not authority and not mandatory runtime ballast. Secondary queued: H6 M365 Bridge readiness docs (Lane 2, docs/prep only, no live writes) and BLK-004 Windows Graphify extraction."
+next_task: "PRIORITY: AG Operations / M365 bridge-readiness informing. Review M365 draft PR #5 and keep the control subject-repo ledger updated. M365 should be ready as both daily team workspace and agentic IO substrate, but Freedom-origin M365 task completion routes through GAIL OS authority/evidence; no direct Freedom-to-M365 writes. Freedom implementation remains parked by current owner direction because Adam is improving it elsewhere. Graphify remains relationship/context infrastructure, not authority and not mandatory runtime ballast. Secondary queued: BLK-004 Windows Graphify extraction."
 skipped_tasks: []
 compaction_count: 20
 paused: false
@@ -31,12 +31,14 @@ retry_counts: {}
 
 ## Where We Are
 
-**Phase:** Phases 0–6 **COMPLETE** ✓ | Phase 7 **IN PROGRESS** — H1 ✓ H2 ✓ H3 ✓ H4 ✓ H5 ✓ H5-apply ✓ | 2026-06-29 OWNER REDIRECTION — GAIL OS informing lane active; Freedom implementation parked for now
+**Phase:** Phases 0–6 **COMPLETE** ✓ | Phase 7 **IN PROGRESS** — H1 ✓ H2 ✓ H3 ✓ H4 ✓ H5 ✓ H5-apply ✓ | 2026-06-29 OWNER REDIRECTION — M365 bridge-readiness informing active; Freedom implementation parked for now
 **Status:** ACA deployment live. Freedom infrastructure connected to Azure + GAIL OS + Graphify. CRITICAL FINDING: Freedom AI interface cannot USE those connections (AI has no depth). Supabase RLS applied (21/21 tables, 0 new policies). Entra expanded + consented. M365 re-auth complete.
 **M365 note:** Linux m365 CLI re-authenticated (adamgoodwin@guidedailabs.com, deviceCode, appId 9aeeeae6-be2a-476c-9c34-389dbc927c99). All expanded Entra scopes live and verified by read-only Graph API probes. No live M365 writes — M365 Live Bridge (Lane 2) remains gated until explicit Adam connector-level gate.
-**Immediate next:** GAIL OS informing and Graphify boundary transfer. Use the subject-repo instruction ledger to keep repo instructions separate. H6 / BLK-004 remain queued support work. Do not initiate new Freedom implementation from this control-plane lane unless Adam explicitly routes back there.
+**Immediate next:** Review and merge AG Operations / M365 draft PR #5 when ready, then keep the subject-repo instruction ledger current. BLK-004 remains queued support work. Do not initiate new Freedom implementation from this control-plane lane unless Adam explicitly routes back there.
 
-**2026-06-29 subject repo instruction separation:** Read `docs/build-control/2026-06-29 - Subject Repo Instruction Ledger.md` to see which repo got which instruction. Current state: GAIL OS active, Graphify boundary/speed PR active, Freedom parked, AG Operations queued, product repo Phase 5 branches historical.
+**2026-06-29 subject repo instruction separation:** Read `docs/build-control/2026-06-29 - Subject Repo Instruction Ledger.md` to see which repo got which instruction. Current state: AG Operations / M365 bridge-readiness informing active, GAIL OS informing merged/reference-active, Graphify boundary/speed merged/reference-active, Freedom parked, product repo Phase 5 branches historical.
+
+**2026-06-29 M365 bridge-readiness direction:** AG Operations / M365 PR #5 adds `docs/2026-06-29_M365_AGENTIC_IO_AND_GAIL_OS_BRIDGE_CONTRACT.md` and `config/M365_AGENTIC_IO_GAIL_OS_BRIDGE_CONTRACT.json`. It makes M365 ready for information-out, information-in, triggered-action, and deliverable-out planning while keeping Freedom-origin M365 task completion routed through GAIL OS authority/evidence. No live M365 writes, app consent, permission changes, source webhooks, external sends, or unattended automation were performed.
 
 **2026-06-29 Graphify boundary refinement:** Read `docs/build-control/2026-06-29 - Graphify Connective Layer Boundary Note.md` before designing new Freedom/GAIL OS/Graphify capability chunks. Adam's intent is that Graphify acts as the highway, electrical connection layer, communication loop, and neuronal/quantum-level connective tissue. It should connect everything, not sit inside everything or become mandatory runtime ballast for every feature.
 

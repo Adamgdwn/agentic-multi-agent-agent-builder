@@ -1,6 +1,6 @@
 # Start Here
 
-Last Updated: 2026-06-29T19:30:23-06:00
+Last Updated: 2026-06-29T20:11:10-06:00
 Status: draft
 Owner: Project Owner
 
@@ -21,7 +21,7 @@ Current priorities:
 - keep work in context-window-friendly chunks
 - timestamp material work, decisions, validation, and handoffs
 - for cross-repo subject instructions, apply `docs/build-control/2026-06-29 - Subject Repo Instruction Ledger.md` so GAIL OS, Graphify, Freedom, AG Operations, and product-repo instructions stay separate
-- for the current owner direction, park new Freedom implementation work unless Adam explicitly routes back there, and use the GAIL OS informing packet named in the subject-repo ledger
+- for the current owner direction, park new Freedom implementation work unless Adam explicitly routes back there, use the AG Operations / M365 bridge-readiness packet named in the subject-repo ledger, and keep Freedom-origin M365 task completion routed through GAIL OS authority/evidence
 - for forward CNS capability work, apply `docs/build-control/2026-06-29 - Graphify Connective Layer Boundary Note.md`; keep `docs/build-control/2026-06-29 - Forward Plan Refactor - Freedom Executive Capability.md` as retained Freedom reference while Freedom is parked
 
 ## Current Build Pathway

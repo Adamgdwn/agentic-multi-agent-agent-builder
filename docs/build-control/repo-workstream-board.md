@@ -1,6 +1,6 @@
 # Repo Workstream Board — Guided AI Labs Agentic OS CNS
 
-**Last Updated:** 2026-06-29 — Phases 0–6 COMPLETE. Phase 7 H1–H5 + H5-apply done. Current owner redirection: Freedom implementation is parked while Adam improves it elsewhere; GAIL OS informing and Graphify boundary transfer are active. H6 and BLK-004 remain secondary queued support work.
+**Last Updated:** 2026-06-29 — Phases 0–6 COMPLETE. Phase 7 H1–H5 + H5-apply done. Current owner redirection: Freedom implementation is parked while Adam improves it elsewhere; AG Operations / M365 bridge-readiness informing is active through PR #5. BLK-004 remains secondary queued support work.
 **Owner:** Build Agent Orchestrator
 
 Task states: `independent` | `coordinated` | `queued` | `queued-secondary` | `blocked` | `ready-for-integration` | `ready-for-review` | `complete`
@@ -16,11 +16,13 @@ This board is no longer the sole next-task source for capability work. For forwa
 
 Current owner redirection after the Freedom refactor: do not initiate new
 Freedom implementation from this control-plane lane unless Adam explicitly
-routes back there. Active work is GAIL OS informing and Graphify boundary
-transfer, with subject-repo instructions kept separate in the ledger. Graphify
-remains relationship infrastructure and should not become mandatory runtime
-ballast. H6 and BLK-004 are useful support work, but they are secondary to the
-active GAIL OS informing lane.
+routes back there. Active work is AG Operations / M365 bridge-readiness
+informing, with subject-repo instructions kept separate in the ledger. M365
+should be ready as both daily team workspace and agentic IO substrate, but
+Freedom-origin M365 task completion routes through GAIL OS authority/evidence.
+Graphify remains relationship infrastructure and should not become mandatory
+runtime ballast. BLK-004 is useful support work, but it is secondary to the
+active M365 informing lane.
 
 ---
 
@@ -138,7 +140,7 @@ Platform tags: `cloud-safe` = GitHub MCP only | `windows-local` = needs Windows 
 | 5.5 | M365 CNS source surface map | `ag-operations-m365-foundation` | `cloud-safe` | `complete` | Completed 2026-06-28. No live Graph writes. |
 | 5.6 | Freedom OKP briefing + Signal Gravity | `the-freedom-engine-os` | `cloud-safe` | `complete` | Completed 2026-06-28. |
 | 5.7 | CP-5 dry-run proof (dual format) | All three code repos | `cloud-safe` | `complete` | CP-5 proof complete; see `docs/build-control/2026-06-28 - CP5 Synaptic Proof Chain.md`. |
-| 5.8 | Windows Graphify extraction status update | `graphify-workspace-cockpit` | `windows-local` | `queued-secondary` | BLK-004 remains useful, but does not block the active GAIL OS informing lane. |
+| 5.8 | Windows Graphify extraction status update | `graphify-workspace-cockpit` | `windows-local` | `queued-secondary` | BLK-004 remains useful, but does not block the active M365 bridge-readiness informing lane. |
 
 **Phase 5 gate (CP-5):** COMPLETE. Operating knowledge flows from source record → Graphify relationship → Freedom brief with Signal Gravity and Synaptic Proof Chain (dual format).
 
@@ -180,8 +182,8 @@ Platform tags: `cloud-safe` = GitHub MCP only | `windows-local` = needs Windows 
 | H4 | Freedom → Azure connected | `the-freedom-engine-os` | `linux-local` | `complete` | API keys applied via `.env.local`. All 6 smoke test checks pass (both sides ACK). Env var doc: `docs/hosting/2026-06-28 - vercel-env-setup.md`. |
 | H5 | Supabase RLS package committed | `the-freedom-engine-os` | `windows-local` | `complete` | Commits `530f575` (Freedom) + `3e4b5d7` (Rev 2). 21 legacy public tables covered. Forward migration + rollback SQL + remediation plan committed. CI green (`28348544121`). Hosted apply completed separately in H5-apply. |
 | H5-apply | Hosted Supabase RLS migration apply | `the-freedom-engine-os` | `windows-local` | `complete` | Applied 2026-06-28. Project `basbwglynuyfxcqxfyur`. 21/21 tables `relrowsecurity=true`, 0 new policies. 7 backups confirmed pre-apply. Service-role access intact. Freedom `3543b29`, Rev 2 `e93b358`. |
-| H6 | M365 live bridge readiness docs | `ag-operations-m365-foundation` | `linux-local` | `queued-secondary` | Lane 2. Docs/prep only — update M365 source surface map. No live M365 writes. |
-| BLK-004 | Windows Graphify extraction | Windows | `windows-local` | `queued-secondary` | Useful for relationship coverage; not a blocker for the active GAIL OS informing lane. |
+| H6 | M365 live bridge readiness docs | `ag-operations-m365-foundation` | `linux-local` | `active-subsumed` | M365 draft PR #5 adds the 2026-06-29 agentic IO / GAIL OS bridge contract and config. Docs/config only. No live M365 writes, app consent, permission changes, source webhooks, external sends, or unattended automation. |
+| BLK-004 | Windows Graphify extraction | Windows | `windows-local` | `queued-secondary` | Useful for relationship coverage; not a blocker for the active M365 bridge-readiness informing lane. |
 
 **Phase 7 gate (CP-7):** All H-chunks complete (including H5-apply after Adam gate) + budget confirmed under $300/month + no secrets committed + no live M365 writes without explicit separate approval.
 
